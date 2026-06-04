@@ -222,9 +222,23 @@ tbody tr[data-rank="3"]{background:linear-gradient(90deg,rgba(180,83,9,.11),rgba
 .metric-card ul{list-style:none;display:grid;gap:6px}
 .metric-card li{font-size:12px;color:#454e5a;border-top:1px solid #f0f1f3;padding-top:6px}
 .metric-card b{color:#111}
-.case-viewer{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(280px,.75fr);gap:16px;align-items:stretch}
-.case-stage{border:1px solid var(--faint);border-radius:8px;background:#fff;overflow:hidden}
+.case-viewer{position:relative}
+.case-carousel-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:12px}
+.case-counter{font-size:12px;font-weight:800;color:#596270;background:#f3f5f7;border-radius:999px;padding:5px 10px}
+.case-nav{display:flex;align-items:center;gap:8px}
+.case-arrow{width:34px;height:34px;border:1px solid #d9dee5;border-radius:999px;background:#fff;color:#111;font:20px/1 Georgia,"Times New Roman",serif;cursor:pointer;display:grid;place-items:center}
+.case-arrow:hover{border-color:#9fa8b5;background:#f8fafc}
+.case-arrow:disabled{opacity:.4;cursor:not-allowed}
+.case-track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:2px 2px 16px;overscroll-behavior-x:contain;scrollbar-width:thin}
+.case-track::-webkit-scrollbar{height:8px}
+.case-track::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:999px}
+.case-track::-webkit-scrollbar-track{background:#f1f5f9;border-radius:999px}
+.case-stage{flex:0 0 100%;scroll-snap-align:start;border:1px solid var(--faint);border-radius:8px;background:#fff;overflow:hidden;box-shadow:0 18px 45px rgba(15,23,42,.08)}
+.case-video-wrap{position:relative;background:#111}
 .case-stage video{display:block;width:100%;aspect-ratio:32/9;object-fit:contain;background:#111}
+.case-side-labels{position:absolute;z-index:2;top:10px;left:10px;right:10px;display:grid;grid-template-columns:1fr 1fr;gap:10px;pointer-events:none}
+.case-side-labels span{justify-self:start;border:1px solid rgba(255,255,255,.45);border-radius:999px;background:rgba(15,23,42,.72);color:#fff;padding:4px 10px;font-size:12px;font-weight:900;backdrop-filter:blur(8px)}
+.case-side-labels span+span{justify-self:start}
 .case-body{padding:16px}
 .case-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
 .case-title h3{font-size:16px}
@@ -243,14 +257,22 @@ tbody tr[data-rank="3"]{background:linear-gradient(90deg,rgba(180,83,9,.11),rgba
 .case-body p{font-size:13px;color:#5c6570}
 .case-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
 .case-meta span{font-size:11px;color:#596270;background:#f3f5f7;border-radius:5px;padding:3px 7px}
-.case-tabs{display:grid;gap:8px;max-height:560px;overflow:auto;padding-right:4px}
-.case-tab{width:100%;text-align:left;border:1px solid var(--faint);border-radius:8px;background:#fff;padding:13px 14px;cursor:pointer;font:inherit}
-.case-tab:hover{border-color:#cfd5dd}
-.case-tab.active{border-color:#171717;background:#f7f8fa}
-.case-tab b{display:block;font-size:13px;color:#14191f;margin-bottom:2px}
-.case-tab span{display:block;font-size:12px;color:#67707b}
-.case-tab .tag{display:inline-block;margin-top:7px}
+.case-prompt{margin-top:12px;border-top:1px solid #eef1f4;padding-top:10px}
+.case-prompt summary{cursor:pointer;font-size:12px;font-weight:900;color:#1f2937}
+.case-prompt p{margin-top:8px;max-height:220px;overflow:auto;border:1px solid #edf0f3;border-radius:6px;background:#fbfcfd;padding:10px;color:#4d5662;font-size:12px;line-height:1.55;white-space:pre-wrap}
+.case-loading{border:1px solid var(--faint);border-radius:8px;background:#fff;padding:28px;color:#68717d;font-size:13px}
 .quote{border-left:3px solid var(--blue);padding:10px 0 10px 16px;color:#3f4854;font-size:14px;background:#fafbfc}
+.ack-card{border:1px solid var(--faint);border-radius:8px;background:#fff;padding:20px}
+.ack-card p{font-size:14px;color:#46505c;margin-bottom:14px}
+.ack-card p:last-child{margin-bottom:0}
+.ack-card a{color:var(--blue);font-weight:800;text-decoration:none}
+.ack-card a:hover{text-decoration:underline}
+.citation-card{border:1px solid var(--faint);border-radius:8px;background:#0f172a;color:#e5edf8;overflow:hidden}
+.citation-head{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.12)}
+.citation-head h3{font-size:14px;color:#fff}
+.copy-btn{border:1px solid rgba(255,255,255,.24);border-radius:6px;background:rgba(255,255,255,.08);color:#fff;padding:7px 11px;font:inherit;font-size:12px;font-weight:800;cursor:pointer}
+.copy-btn:hover{background:rgba(255,255,255,.14)}
+.bibtex{margin:0;padding:18px;overflow:auto;font:12px/1.6 ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;white-space:pre;color:#dbeafe;background:#111827}
 .page-layout{position:relative}
 .toc{position:fixed;top:98px;right:calc((100vw - 1040px)/2 - 185px);width:160px;border:1px solid var(--faint);border-radius:8px;padding:12px;background:#fff}
 .toc-title{font-size:12px;font-weight:800;color:#171717;margin-bottom:8px}
@@ -317,6 +339,7 @@ footer a{color:#4b5563;text-decoration:none;margin:0 8px}
       <a href="#leaderboard">Leaderboard</a>
       <a href="#metrics">Metrics</a>
       <a href="#cases">Cases</a>
+      <a href="#citation">Citation</a>
       <a href="../paper.tex">Paper</a>
       <a class="nav-btn" href="https://github.com/alibaba-damo-academy/WorldOlympiad">Code</a>
     </div>
@@ -333,6 +356,8 @@ footer a{color:#4b5563;text-decoration:none;margin:0 8px}
       <a href="#findings">Findings</a>
       <a href="#metrics">Metrics</a>
       <a href="#cases">Cases</a>
+      <a href="#acknowledgement">Thanks</a>
+      <a href="#citation">Citation</a>
     </aside>
 
     <div class="hero-shell">
@@ -524,27 +549,27 @@ footer a{color:#4b5563;text-decoration:none;margin:0 8px}
             </tr>
           </thead>
           <tbody>
-            <tr data-task="all" data-rank="1" data-model="LingBot-World" data-physical="0.942" data-geometry="0.373" data-clip="0.314" data-interact="0.752" data-all="0.675">
+            <tr data-task="all" data-rank="1" data-model="LingBot-World" data-physical="0.942" data-geometry="0.373" data-clip="0.314" data-interact="0.734" data-all="0.683">
               <td class="rank gold"><span class="rank-badge">1</span></td>
               <td><div class="model-cell"><span class="model-logo"><img src="assets/logo/lingbot.png" alt="LingBot logo"></span><span><span class="model-name">LingBot-World</span></span></div></td>
               <td><span class="category all">All Tasks</span></td>
               <td class="score-cell"><div class="score-viz" style="--score:0.942;--bar-color:var(--orange)"><b>0.942</b><span class="score-bar"><i></i></span></div></td>
               <td class="score-cell"><div class="score-viz" style="--score:0.373;--bar-color:var(--violet)"><b>0.373</b><span class="score-bar"><i></i></span></div></td>
               <td class="score-cell"><div class="score-viz" style="--score:0.314;--bar-color:var(--cyan)"><b>0.314</b><span class="score-bar"><i></i></span></div></td>
-              <td class="score-cell"><div class="score-viz" style="--score:0.752;--bar-color:var(--green)"><b>0.752</b><span class="score-bar"><i></i></span></div></td>
-              <td class="score-cell score-strong"><div class="score-viz" style="--score:0.675;--bar-color:var(--blue)"><b>0.675</b><span class="score-bar"><i></i></span></div></td>
+              <td class="score-cell"><div class="score-viz" style="--score:0.734;--bar-color:var(--green)"><b>0.734</b><span class="score-bar"><i></i></span></div></td>
+              <td class="score-cell score-strong"><div class="score-viz" style="--score:0.683;--bar-color:var(--blue)"><b>0.683</b><span class="score-bar"><i></i></span></div></td>
             </tr>
-            <tr data-task="all" data-rank="2" data-model="Cosmos-Predict-2.5" data-physical="0.906" data-geometry="0.399" data-clip="0.313" data-interact="0.723" data-all="0.664">
+            <tr data-task="all" data-rank="2" data-model="Cosmos-Predict-2.5" data-physical="0.906" data-geometry="0.399" data-clip="0.313" data-interact="0.707" data-all="0.671">
               <td class="rank silver"><span class="rank-badge">2</span></td>
               <td><div class="model-cell"><span class="model-logo"><img src="assets/logo/cosmos.png" alt="Cosmos logo"></span><span><span class="model-name">Cosmos-Predict-2.5</span></span></div></td>
               <td><span class="category all">All Tasks</span></td>
               <td class="score-cell"><div class="score-viz" style="--score:0.906;--bar-color:var(--orange)"><b>0.906</b><span class="score-bar"><i></i></span></div></td>
               <td class="score-cell"><div class="score-viz" style="--score:0.399;--bar-color:var(--violet)"><b>0.399</b><span class="score-bar"><i></i></span></div></td>
               <td class="score-cell"><div class="score-viz" style="--score:0.313;--bar-color:var(--cyan)"><b>0.313</b><span class="score-bar"><i></i></span></div></td>
-              <td class="score-cell"><div class="score-viz" style="--score:0.723;--bar-color:var(--green)"><b>0.723</b><span class="score-bar"><i></i></span></div></td>
-              <td class="score-cell score-strong"><div class="score-viz" style="--score:0.664;--bar-color:var(--blue)"><b>0.664</b><span class="score-bar"><i></i></span></div></td>
+              <td class="score-cell"><div class="score-viz" style="--score:0.707;--bar-color:var(--green)"><b>0.707</b><span class="score-bar"><i></i></span></div></td>
+              <td class="score-cell score-strong"><div class="score-viz" style="--score:0.671;--bar-color:var(--blue)"><b>0.671</b><span class="score-bar"><i></i></span></div></td>
             </tr>
-            <tr data-task="all" data-rank="3" data-model="Rolling Forcing" data-physical="0.873" data-geometry="0.321" data-clip="0.327" data-interact="0.636" data-all="0.598">
+            <tr data-task="all" data-rank="3" data-model="Rolling Forcing" data-physical="0.873" data-geometry="0.321" data-clip="0.327" data-interact="0.636" data-all="0.610">
               <td class="rank bronze"><span class="rank-badge">3</span></td>
               <td><div class="model-cell"><span class="model-logo"><img src="assets/logo/rolling-forcing.png" alt="Rolling Forcing logo"></span><span><span class="model-name">Rolling Forcing</span></span></div></td>
               <td><span class="category all">All Tasks</span></td>
@@ -552,57 +577,57 @@ footer a{color:#4b5563;text-decoration:none;margin:0 8px}
               <td class="score-cell"><div class="score-viz" style="--score:0.321;--bar-color:var(--violet)"><b>0.321</b><span class="score-bar"><i></i></span></div></td>
               <td class="score-cell"><div class="score-viz" style="--score:0.327;--bar-color:var(--cyan)"><b>0.327</b><span class="score-bar"><i></i></span></div></td>
               <td class="score-cell"><div class="score-viz" style="--score:0.636;--bar-color:var(--green)"><b>0.636</b><span class="score-bar"><i></i></span></div></td>
-              <td class="score-cell score-strong"><div class="score-viz" style="--score:0.598;--bar-color:var(--blue)"><b>0.598</b><span class="score-bar"><i></i></span></div></td>
+              <td class="score-cell score-strong"><div class="score-viz" style="--score:0.610;--bar-color:var(--blue)"><b>0.610</b><span class="score-bar"><i></i></span></div></td>
             </tr>
-            <tr data-task="all" data-rank="4" data-model="Yume-1.5" data-physical="0.863" data-geometry="0.301" data-clip="0.306" data-interact="0.662" data-all="0.598">
+            <tr data-task="all" data-rank="4" data-model="Yume-1.5" data-physical="0.863" data-geometry="0.301" data-clip="0.306" data-interact="0.649" data-all="0.604">
               <td class="rank"><span class="rank-badge">4</span></td>
               <td><div class="model-cell"><span class="model-logo"><img src="assets/logo/yume.png" alt="Yume logo"></span><span><span class="model-name">Yume-1.5</span></span></div></td>
               <td><span class="category all">All Tasks</span></td>
               <td class="score-cell"><div class="score-viz" style="--score:0.863;--bar-color:var(--orange)"><b>0.863</b><span class="score-bar"><i></i></span></div></td>
               <td class="score-cell"><div class="score-viz" style="--score:0.301;--bar-color:var(--violet)"><b>0.301</b><span class="score-bar"><i></i></span></div></td>
               <td class="score-cell"><div class="score-viz" style="--score:0.306;--bar-color:var(--cyan)"><b>0.306</b><span class="score-bar"><i></i></span></div></td>
-              <td class="score-cell"><div class="score-viz" style="--score:0.662;--bar-color:var(--green)"><b>0.662</b><span class="score-bar"><i></i></span></div></td>
-              <td class="score-cell score-strong"><div class="score-viz" style="--score:0.598;--bar-color:var(--blue)"><b>0.598</b><span class="score-bar"><i></i></span></div></td>
+              <td class="score-cell"><div class="score-viz" style="--score:0.649;--bar-color:var(--green)"><b>0.649</b><span class="score-bar"><i></i></span></div></td>
+              <td class="score-cell score-strong"><div class="score-viz" style="--score:0.604;--bar-color:var(--blue)"><b>0.604</b><span class="score-bar"><i></i></span></div></td>
             </tr>
-            <tr data-task="all" data-rank="5" data-model="LongLive" data-physical="0.863" data-geometry="0.363" data-clip="0.323" data-interact="0.516" data-all="0.570">
+            <tr data-task="all" data-rank="5" data-model="LongLive" data-physical="0.863" data-geometry="0.363" data-clip="0.323" data-interact="0.526" data-all="0.584">
               <td class="rank"><span class="rank-badge">5</span></td>
               <td><div class="model-cell"><span class="model-logo"><img src="assets/logo/longlive.png" alt="LongLive logo"></span><span><span class="model-name">LongLive</span></span></div></td>
               <td><span class="category all">All Tasks</span></td>
               <td class="score-cell"><div class="score-viz" style="--score:0.863;--bar-color:var(--orange)"><b>0.863</b><span class="score-bar"><i></i></span></div></td>
               <td class="score-cell"><div class="score-viz" style="--score:0.363;--bar-color:var(--violet)"><b>0.363</b><span class="score-bar"><i></i></span></div></td>
               <td class="score-cell"><div class="score-viz" style="--score:0.323;--bar-color:var(--cyan)"><b>0.323</b><span class="score-bar"><i></i></span></div></td>
-              <td class="score-cell"><div class="score-viz" style="--score:0.516;--bar-color:var(--green)"><b>0.516</b><span class="score-bar"><i></i></span></div></td>
-              <td class="score-cell score-strong"><div class="score-viz" style="--score:0.570;--bar-color:var(--blue)"><b>0.570</b><span class="score-bar"><i></i></span></div></td>
+              <td class="score-cell"><div class="score-viz" style="--score:0.526;--bar-color:var(--green)"><b>0.526</b><span class="score-bar"><i></i></span></div></td>
+              <td class="score-cell score-strong"><div class="score-viz" style="--score:0.584;--bar-color:var(--blue)"><b>0.584</b><span class="score-bar"><i></i></span></div></td>
             </tr>
-            <tr data-task="all" data-rank="6" data-model="Hunyuan-WorldPlay" data-physical="0.692" data-geometry="0.424" data-clip="0.290" data-interact="0.301" data-all="0.468">
+            <tr data-task="all" data-rank="6" data-model="Hunyuan-WorldPlay" data-physical="0.692" data-geometry="0.424" data-clip="0.290" data-interact="0.316" data-all="0.477">
               <td class="rank"><span class="rank-badge">6</span></td>
               <td><div class="model-cell"><span class="model-logo"><img src="assets/logo/hunyuanworldplay.webp" alt="Hunyuan logo"></span><span><span class="model-name">Hunyuan-WorldPlay</span></span></div></td>
               <td><span class="category all">All Tasks</span></td>
               <td class="score-cell"><div class="score-viz" style="--score:0.692;--bar-color:var(--orange)"><b>0.692</b><span class="score-bar"><i></i></span></div></td>
               <td class="score-cell"><div class="score-viz" style="--score:0.424;--bar-color:var(--violet)"><b>0.424</b><span class="score-bar"><i></i></span></div></td>
               <td class="score-cell"><div class="score-viz" style="--score:0.290;--bar-color:var(--cyan)"><b>0.290</b><span class="score-bar"><i></i></span></div></td>
-              <td class="score-cell"><div class="score-viz" style="--score:0.301;--bar-color:var(--green)"><b>0.301</b><span class="score-bar"><i></i></span></div></td>
-              <td class="score-cell score-strong"><div class="score-viz" style="--score:0.468;--bar-color:var(--blue)"><b>0.468</b><span class="score-bar"><i></i></span></div></td>
+              <td class="score-cell"><div class="score-viz" style="--score:0.316;--bar-color:var(--green)"><b>0.316</b><span class="score-bar"><i></i></span></div></td>
+              <td class="score-cell score-strong"><div class="score-viz" style="--score:0.477;--bar-color:var(--blue)"><b>0.477</b><span class="score-bar"><i></i></span></div></td>
             </tr>
-            <tr data-task="all" data-rank="7" data-model="WoW" data-physical="0.708" data-geometry="0.250" data-clip="0.267" data-interact="0.346" data-all="0.440">
+            <tr data-task="all" data-rank="7" data-model="WoW" data-physical="0.708" data-geometry="0.250" data-clip="0.267" data-interact="0.345" data-all="0.434">
               <td class="rank"><span class="rank-badge">7</span></td>
               <td><div class="model-cell"><span class="model-logo"><img src="assets/logo/wow.png" alt="WoW logo"></span><span><span class="model-name">WoW</span></span></div></td>
               <td><span class="category all">All Tasks</span></td>
               <td class="score-cell"><div class="score-viz" style="--score:0.708;--bar-color:var(--orange)"><b>0.708</b><span class="score-bar"><i></i></span></div></td>
               <td class="score-cell"><div class="score-viz" style="--score:0.250;--bar-color:var(--violet)"><b>0.250</b><span class="score-bar"><i></i></span></div></td>
               <td class="score-cell"><div class="score-viz" style="--score:0.267;--bar-color:var(--cyan)"><b>0.267</b><span class="score-bar"><i></i></span></div></td>
-              <td class="score-cell"><div class="score-viz" style="--score:0.346;--bar-color:var(--green)"><b>0.346</b><span class="score-bar"><i></i></span></div></td>
-              <td class="score-cell score-strong"><div class="score-viz" style="--score:0.440;--bar-color:var(--blue)"><b>0.440</b><span class="score-bar"><i></i></span></div></td>
+              <td class="score-cell"><div class="score-viz" style="--score:0.345;--bar-color:var(--green)"><b>0.345</b><span class="score-bar"><i></i></span></div></td>
+              <td class="score-cell score-strong"><div class="score-viz" style="--score:0.434;--bar-color:var(--blue)"><b>0.434</b><span class="score-bar"><i></i></span></div></td>
             </tr>
-            <tr data-task="all" data-rank="8" data-model="Matrix-Game 2.0" data-physical="0.325" data-geometry="0.255" data-clip="0.237" data-interact="0.105" data-all="0.244">
+            <tr data-task="all" data-rank="8" data-model="Matrix-Game 2.0" data-physical="0.325" data-geometry="0.255" data-clip="0.237" data-interact="0.113" data-all="0.231">
               <td class="rank"><span class="rank-badge">8</span></td>
               <td><div class="model-cell"><span class="model-logo"><img src="assets/logo/matrix-game.jpeg" alt="Matrix-Game logo"></span><span><span class="model-name">Matrix-Game 2.0</span></span></div></td>
               <td><span class="category all">All Tasks</span></td>
               <td class="score-cell"><div class="score-viz" style="--score:0.325;--bar-color:var(--orange)"><b>0.325</b><span class="score-bar"><i></i></span></div></td>
               <td class="score-cell"><div class="score-viz" style="--score:0.255;--bar-color:var(--violet)"><b>0.255</b><span class="score-bar"><i></i></span></div></td>
               <td class="score-cell"><div class="score-viz" style="--score:0.237;--bar-color:var(--cyan)"><b>0.237</b><span class="score-bar"><i></i></span></div></td>
-              <td class="score-cell"><div class="score-viz" style="--score:0.105;--bar-color:var(--green)"><b>0.105</b><span class="score-bar"><i></i></span></div></td>
-              <td class="score-cell score-strong"><div class="score-viz" style="--score:0.244;--bar-color:var(--blue)"><b>0.244</b><span class="score-bar"><i></i></span></div></td>
+              <td class="score-cell"><div class="score-viz" style="--score:0.113;--bar-color:var(--green)"><b>0.113</b><span class="score-bar"><i></i></span></div></td>
+              <td class="score-cell score-strong"><div class="score-viz" style="--score:0.231;--bar-color:var(--blue)"><b>0.231</b><span class="score-bar"><i></i></span></div></td>
             </tr>
           </tbody>
         </table>
@@ -705,7 +730,7 @@ footer a{color:#4b5563;text-decoration:none;margin:0 8px}
       <div class="findings-list">
         <div class="finding-card">
           <div class="finding-num">1</div>
-          <p><b>Stateful simulation separates top models from visually plausible generators.</b> LingBot-World ranks first overall with strong physical faithfulness (0.942) and interaction fidelity (0.752), while Cosmos-Predict-2.5 follows closely despite a smaller 2B model scale.</p>
+          <p><b>Stateful simulation separates top models from visually plausible generators.</b> LingBot-World ranks first overall with strong physical faithfulness (0.942) and interaction fidelity (0.734), while Cosmos-Predict-2.5 follows closely despite a smaller 2B model scale.</p>
         </div>
         <div class="finding-card">
           <div class="finding-num">2</div>
@@ -769,49 +794,57 @@ footer a{color:#4b5563;text-decoration:none;margin:0 8px}
       <div class="section-head">
         <div>
           <h2>Qualitative Compare Cases</h2>
-          <p class="desc">Switch between side-by-side Good vs Bad videos curated from outputs_batch cases and curated candidates. Each case uses the same source scenario and contrasts the stronger rollout with a specific failure mode.</p>
+          <p class="desc">Good vs Bad comparisons selected from outputs_batch/cases.md. Each paired clip uses the same scenario; the left side is the stronger rollout and the right side shows the failure.</p>
         </div>
-      </div>
-      <div class="case-tools">
-        <div class="filter-row case-filter-row">
-          <span class="filter-label">Case type:</span>
-          <span class="seg" id="caseFilters">
-            <button class="active" data-category="all">All</button>
-            <button data-category="embodied">Embodied</button>
-            <button data-category="gaming">Gaming</button>
-            <button data-category="general">General</button>
-          </span>
-        </div>
-        <div class="filter-row case-filter-row">
-          <span class="filter-label">Failure:</span>
-          <span class="seg" id="failureFilters">
-            <button class="active" data-failure="all">All</button>
-            <button data-failure="static">Static</button>
-            <button data-failure="transition">Transition</button>
-            <button data-failure="physics">Physics</button>
-            <button data-failure="interaction">Interaction</button>
-            <button data-failure="consistency">Consistency</button>
-          </span>
-        </div>
-        <span class="case-note" id="caseCount">Left: stronger rollout. Right: failure rollout.</span>
       </div>
       <div class="case-viewer">
-        <article class="case-stage">
-          <video id="caseVideo" controls autoplay loop muted playsinline preload="metadata">
-            <source src="assets/video/compare_drawer_longlive_vs_cosmos.mp4" type="video/mp4">
-          </video>
-          <div class="case-body">
-            <div class="case-title">
-              <h3 id="caseTitle">Drawer gravity/contact</h3>
-              <span id="caseTag" class="tag compare">Good vs Bad</span>
-            </div>
-            <p id="caseDescription">Same nightstand drawer scene: the bad rollout places the remote directly into the drawer, skipping the expected fall, contact, and gravity-driven settling.</p>
-            <div class="case-meta" id="caseMeta">
-              <span>Embodied</span><span>Good LongLive</span><span>Bad Cosmos</span><span>Score 0.639 vs 0.361</span><span>Physical 0.933 vs 0.317</span>
-            </div>
+        <div class="case-carousel-head">
+          <span class="case-counter" id="caseCounter">Loading cases</span>
+          <div class="case-nav" aria-label="Case carousel controls">
+            <button class="case-arrow" id="casePrev" type="button" aria-label="Previous case">&#8249;</button>
+            <button class="case-arrow" id="caseNext" type="button" aria-label="Next case">&#8250;</button>
           </div>
-        </article>
-        <div class="case-tabs" id="caseTabs" aria-label="Case study videos"></div>
+        </div>
+        <div class="case-track" id="caseTrack" aria-label="Swipe horizontally through case study videos">
+          <div class="case-loading">Loading case videos...</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="acknowledgement">
+      <div class="section-head">
+        <div>
+          <h2>Acknowledgement</h2>
+          <p class="desc">WorldOlympiad acknowledges the generation infrastructure and foundation models that support the benchmark workflow.</p>
+        </div>
+      </div>
+      <div class="ack-card">
+        <p>We thank <a href="https://github.com/OpenDCAI/OpenWorldLib?tab=readme-ov-file">OpenWorldLib</a> for providing the generation pipeline infrastructure used in our video world model rollouts, and we also acknowledge <a href="https://github.com/QwenLM/Qwen3-VL">Qwen3-VL</a>, <a href="https://github.com/bytedance-seed/depth-anything-3">Depth Anything 3</a>, and <a href="https://github.com/facebookresearch/sam3">SAM 3</a> for their foundational model capabilities that support language understanding, depth perception, and segmentation in our workflow.</p>
+      </div>
+    </section>
+
+    <section id="citation">
+      <div class="section-head">
+        <div>
+          <h2>Citation</h2>
+          <p class="desc">If WorldOlympiad is useful for your research, please cite our work.</p>
+        </div>
+      </div>
+      <div class="citation-card">
+        <div class="citation-head">
+          <h3>BibTeX</h3>
+          <button class="copy-btn" id="copyBibtex" type="button">Copy</button>
+        </div>
+<pre class="bibtex" id="bibtexBlock">@misc{zhao2026worldolympiad,
+  title        = {WorldOlympiad: Can Your World Model Survive a Triathlon?},
+  author       = {Yuke Zhao and Wangbo Zhao and Weijie Wang and
+                  Zeyu Zhang and Dakai An and Akide Liu and
+                  Yinghao Yu and Jiasheng Tang and Fan Wang and
+                  Wei Wang and Bohan Zhuang},
+  year         = {2026},
+  howpublished = {\url{https://alibaba-damo-academy.github.io/WorldOlympiad}},
+  note         = {Project website and benchmark}
+}</pre>
       </div>
     </section>
   </div>
@@ -836,6 +869,20 @@ footer a{color:#4b5563;text-decoration:none;margin:0 8px}
 
 <script>
 const table=document.getElementById("leaderboardTable");
+const copyBibtexButton=document.getElementById("copyBibtex");
+if(copyBibtexButton){
+  copyBibtexButton.addEventListener("click",async()=>{
+    const bibtex=document.getElementById("bibtexBlock").textContent.trim();
+    try{
+      await navigator.clipboard.writeText(bibtex);
+      copyBibtexButton.textContent="Copied";
+      setTimeout(()=>{copyBibtexButton.textContent="Copy";},1600);
+    }catch(error){
+      copyBibtexButton.textContent="Select text";
+      setTimeout(()=>{copyBibtexButton.textContent="Copy";},1600);
+    }
+  });
+}
 const leaderboardBody=table.tBodies[0];
 const taskLabels={all:"All Tasks",gaming:"Gaming",robotics:"Robotics",general:"General"};
 const taskKeyByDomain={Gaming:"gaming",Robotics:"robotics",General:"general"};
@@ -979,40 +1026,40 @@ const modelScores=Array.from(table.tBodies[0].rows).map(row=>{
   };
 });
 const domainScores=[
-  {domain:"Gaming",model:"Matrix-Game 2.0",physical:.332,geometry:.189,interact:.107,clip:.230,all:.232},
-  {domain:"Gaming",model:"LingBot-World",physical:.884,geometry:.366,interact:.800,clip:.315,all:.680},
-  {domain:"Gaming",model:"Cosmos-Predict-2.5",physical:.867,geometry:.361,interact:.696,clip:.306,all:.636},
-  {domain:"Gaming",model:"WoW",physical:.633,geometry:.223,interact:.251,clip:.247,all:.387},
-  {domain:"Gaming",model:"Rolling Forcing",physical:.853,geometry:.289,interact:.677,clip:.332,all:.598},
-  {domain:"Gaming",model:"LongLive",physical:.851,geometry:.292,interact:.548,clip:.322,all:.560},
-  {domain:"Gaming",model:"Yume-1.5",physical:.813,geometry:.352,interact:.682,clip:.291,all:.624},
-  {domain:"Gaming",model:"Hunyuan-WorldPlay",physical:.852,geometry:.348,interact:.470,clip:.296,all:.551},
-  {domain:"Robotics",model:"Matrix-Game 2.0",physical:.364,geometry:.338,interact:.125,clip:.252,all:.283},
-  {domain:"Robotics",model:"LingBot-World",physical:.949,geometry:.393,interact:.725,clip:.314,all:.671},
-  {domain:"Robotics",model:"Cosmos-Predict-2.5",physical:.937,geometry:.479,interact:.734,clip:.321,all:.699},
-  {domain:"Robotics",model:"WoW",physical:.787,geometry:.272,interact:.448,clip:.288,all:.498},
-  {domain:"Robotics",model:"Rolling Forcing",physical:.870,geometry:.389,interact:.557,clip:.329,all:.590},
-  {domain:"Robotics",model:"LongLive",physical:.857,geometry:.472,interact:.452,clip:.327,all:.578},
-  {domain:"Robotics",model:"Yume-1.5",physical:.851,geometry:.288,interact:.631,clip:.312,all:.575},
-  {domain:"Robotics",model:"Hunyuan-WorldPlay",physical:.630,geometry:.600,interact:.231,clip:.309,all:.491},
-  {domain:"General",model:"Matrix-Game 2.0",physical:.216,geometry:.220,interact:.062,clip:.222,all:.185},
-  {domain:"General",model:"LingBot-World",physical:.963,geometry:.335,interact:.790,clip:.311,all:.680},
-  {domain:"General",model:"Cosmos-Predict-2.5",physical:.939,geometry:.317,interact:.755,clip:.313,all:.651},
-  {domain:"General",model:"WoW",physical:.692,geometry:.251,interact:.305,clip:.256,all:.414},
-  {domain:"General",model:"Rolling Forcing",physical:.933,geometry:.285,interact:.667,clip:.314,all:.612},
-  {domain:"General",model:"LongLive",physical:.909,geometry:.290,interact:.579,clip:.315,all:.572},
-  {domain:"General",model:"Yume-1.5",physical:.925,geometry:.302,interact:.715,clip:.302,all:.633},
-  {domain:"General",model:"Hunyuan-WorldPlay",physical:.389,geometry:.219,interact:.088,clip:.235,all:.242}
+  {domain:"Gaming",model:"Matrix-Game 2.0",physical:.332,geometry:.189,interact:.111,clip:.230,all:.211},
+  {domain:"Gaming",model:"LingBot-World",physical:.884,geometry:.366,interact:.778,clip:.315,all:.676},
+  {domain:"Gaming",model:"Cosmos-Predict-2.5",physical:.867,geometry:.361,interact:.679,clip:.306,all:.636},
+  {domain:"Gaming",model:"WoW",physical:.633,geometry:.223,interact:.249,clip:.247,all:.368},
+  {domain:"Gaming",model:"Rolling Forcing",physical:.853,geometry:.289,interact:.675,clip:.332,all:.606},
+  {domain:"Gaming",model:"LongLive",physical:.851,geometry:.292,interact:.554,clip:.322,all:.566},
+  {domain:"Gaming",model:"Yume-1.5",physical:.813,geometry:.352,interact:.659,clip:.291,all:.608},
+  {domain:"Gaming",model:"Hunyuan-WorldPlay",physical:.852,geometry:.348,interact:.471,clip:.296,all:.557},
+  {domain:"Robotics",model:"Matrix-Game 2.0",physical:.364,geometry:.338,interact:.139,clip:.252,all:.280},
+  {domain:"Robotics",model:"LingBot-World",physical:.949,geometry:.393,interact:.710,clip:.314,all:.684},
+  {domain:"Robotics",model:"Cosmos-Predict-2.5",physical:.937,geometry:.479,interact:.721,clip:.321,all:.712},
+  {domain:"Robotics",model:"WoW",physical:.787,geometry:.272,interact:.447,clip:.288,all:.502},
+  {domain:"Robotics",model:"Rolling Forcing",physical:.870,geometry:.389,interact:.566,clip:.329,all:.608},
+  {domain:"Robotics",model:"LongLive",physical:.857,geometry:.472,interact:.470,clip:.327,all:.600},
+  {domain:"Robotics",model:"Yume-1.5",physical:.851,geometry:.288,interact:.624,clip:.312,all:.588},
+  {domain:"Robotics",model:"Hunyuan-WorldPlay",physical:.630,geometry:.600,interact:.262,clip:.309,all:.497},
+  {domain:"General",model:"Matrix-Game 2.0",physical:.216,geometry:.220,interact:.067,clip:.222,all:.168},
+  {domain:"General",model:"LingBot-World",physical:.963,geometry:.335,interact:.767,clip:.311,all:.688},
+  {domain:"General",model:"Cosmos-Predict-2.5",physical:.939,geometry:.317,interact:.736,clip:.313,all:.664},
+  {domain:"General",model:"WoW",physical:.692,geometry:.251,interact:.302,clip:.256,all:.415},
+  {domain:"General",model:"Rolling Forcing",physical:.933,geometry:.285,interact:.657,clip:.314,all:.625},
+  {domain:"General",model:"LongLive",physical:.909,geometry:.290,interact:.579,clip:.315,all:.593},
+  {domain:"General",model:"Yume-1.5",physical:.925,geometry:.302,interact:.694,clip:.302,all:.640},
+  {domain:"General",model:"Hunyuan-WorldPlay",physical:.389,geometry:.219,interact:.097,clip:.235,all:.235}
 ];
 const alignmentScores=[
-  {model:"LingBot-World",human:.721,auto:.675,humanRank:1,autoRank:1,gap:0},
-  {model:"Cosmos-Predict-2.5",human:.648,auto:.664,humanRank:2,autoRank:2,gap:0},
-  {model:"Rolling Forcing",human:.579,auto:.598,humanRank:3,autoRank:3,gap:0},
-  {model:"LongLive",human:.532,auto:.570,humanRank:4,autoRank:5,gap:-1},
-  {model:"Yume-1.5",human:.491,auto:.598,humanRank:5,autoRank:4,gap:1},
-  {model:"Hunyuan-WorldPlay",human:.423,auto:.468,humanRank:6,autoRank:6,gap:0},
-  {model:"Matrix-Game 2.0",human:.309,auto:.244,humanRank:7,autoRank:8,gap:-1},
-  {model:"WoW",human:.271,auto:.440,humanRank:8,autoRank:7,gap:1}
+  {model:"LingBot-World",human:.721,auto:.683,humanRank:1,autoRank:1,gap:0},
+  {model:"Cosmos-Predict-2.5",human:.648,auto:.671,humanRank:2,autoRank:2,gap:0},
+  {model:"Rolling Forcing",human:.579,auto:.610,humanRank:3,autoRank:3,gap:0},
+  {model:"LongLive",human:.532,auto:.584,humanRank:4,autoRank:5,gap:-1},
+  {model:"Yume-1.5",human:.491,auto:.604,humanRank:5,autoRank:4,gap:1},
+  {model:"Hunyuan-WorldPlay",human:.423,auto:.477,humanRank:6,autoRank:6,gap:0},
+  {model:"Matrix-Game 2.0",human:.309,auto:.231,humanRank:7,autoRank:8,gap:-1},
+  {model:"WoW",human:.271,auto:.434,humanRank:8,autoRank:7,gap:1}
 ];
 let activeDiagnosticModel=null;
 let activeRankMetric="all";
@@ -1344,124 +1391,106 @@ document.addEventListener("keydown",event=>{
   if(event.key==="Escape")closeCaption();
 });
 
-const caseItems=[
-  {id:"paired_extra_01_general_soccer_actor_disappears_yume_vs_matrix",video:"assets/video/paired_extra_01_general_soccer_actor_disappears_yume_vs_matrix.mp4",title:"Soccer field: actor disappears",category:"general",failure:"static",failureLabel:"Static",good:"Yume-1.5",bad:"Matrix-Game 2.0",description:"A same-input soccer field rollout: the stronger clip keeps human runners on the pitch, while the failure collapses into an almost empty field or ground-like view, losing the action subject and target.",meta:["New from outputs_batch/general","Score 0.610 vs 0.084","Actor disappearance"]},
-  {id:"paired_extra_02_general_real_motion_loss_rolling_vs_gamecraft",video:"assets/video/paired_extra_02_general_real_motion_loss_rolling_vs_gamecraft.mp4",title:"Greenhouse: missing hand interaction",category:"general",failure:"interaction",failureLabel:"Interaction",good:"Rolling Forcing",bad:"Hunyuan-GameCraft",description:"Both clips preserve a greenhouse/plant-picking context. The failure still moves the camera through foliage, but it never generates the hand, cucumber target, or picking interaction required by the prompt.",meta:["New from outputs_batch/general","Score 0.682 vs 0.175","Interaction missing with motion"]},
-  {id:"paired_extra_03_general_reflection_scale_rolling_vs_wow",video:"assets/video/paired_extra_03_general_scene_motion_rolling_vs_wow.mp4",title:"Reflection scene: unstable scale",category:"general",failure:"consistency",failureLabel:"Consistency",good:"Rolling Forcing",bad:"WoW",description:"The stronger rollout keeps a coherent low-angle human/reflection scene. The failure destabilizes leg scale, floor reflection, and perspective, making the body appear stretched across frames.",meta:["New from outputs_batch/general","Score 0.757 vs 0.204","3D perspective failure"]},
-  {id:"paired_extra_04_general_gym_ball_pose_yume_vs_wow",video:"assets/video/paired_extra_04_general_motion_yume_vs_wow.mp4",title:"Gym ball: pose and gravity",category:"general",failure:"physics",failureLabel:"Physics",good:"Yume-1.5",bad:"WoW",description:"Same gymnastics mat and ball-routine prompt. The bad rollout places the athlete and ball in unsupported poses, with rolling, kneeling, and hovering states that do not follow gravity or body support.",meta:["New from outputs_batch/general","Score 0.642 vs 0.227","Human pose + gravity"]},
-  {id:"paired_extra_05_gaming_fire_state_jump_rolling_vs_cosmos",video:"assets/video/paired_extra_05_gaming_fire_state_jump_rolling_vs_cosmos.mp4",title:"Combat fire: state jump",category:"gaming",failure:"transition",failureLabel:"Transition",good:"Rolling Forcing",bad:"Cosmos",description:"In a fast combat scene, the failure jumps into a close fiery view where effects occlude the subject and reset the spatial relation between player, enemy, and camera.",meta:["New from outputs_batch/gaming","Score 0.679 vs 0.438","Fire/action state jump"]},
-  {id:"paired_extra_06_gaming_snow_combat_cosmos_vs_rolling",video:"assets/video/paired_extra_06_gaming_snow_combat_cosmos_vs_rolling.mp4",title:"Snow combat: weak impact",category:"gaming",failure:"physics",failureLabel:"Physics",good:"Cosmos",bad:"Rolling Forcing",description:"The stronger rollout gives a more coherent fall and hit reaction. The failure keeps character, shield, and snowy environment positions unstable after collision, with weak force feedback.",meta:["New from outputs_batch/gaming","Score 0.568 vs 0.408","Combat impact"]},
-  {id:"paired_extra_07_gaming_missing_action_effect_rolling_vs_longlive",video:"assets/video/paired_extra_07_gaming_missing_action_effect_rolling_vs_longlive.mp4",title:"Road encounter: action omitted",category:"gaming",failure:"interaction",failureLabel:"Interaction",good:"Rolling Forcing",bad:"LongLive",description:"The failure contains plausible walking motion along an open-world road, but it omits the requested attack or fiery action effect, so the scene moves without the required interaction semantics.",meta:["New from outputs_batch/gaming","Score 0.630 vs 0.379","Missing action effect"]},
-  {id:"paired_extra_08_gaming_waterfront_reset_rolling_vs_wow",video:"assets/video/paired_extra_08_gaming_waterfront_reset_rolling_vs_wow.mp4",title:"Waterfront scene reset",category:"gaming",failure:"consistency",failureLabel:"Consistency",good:"Rolling Forcing",bad:"WoW",description:"The stronger rollout preserves the waterfront context. The failure resets from a harbor/water scene to an empty promenade-like corridor, breaking 3D continuity and camera intent.",meta:["New from outputs_batch/gaming","Score 0.532 vs 0.353","Scene transition"]},
-  {id:"paired_extra_09_embodied_garden_grasp_longlive_vs_rolling",video:"assets/video/paired_extra_09_embodied_garden_grasp_longlive_vs_rolling.mp4",title:"Garden items: grasp state jump",category:"embodied",failure:"interaction",failureLabel:"Interaction",good:"LongLive",bad:"Rolling Forcing",description:"In the same object-storage task, the bad rollout repeatedly changes the relative pose of gripper and ball-like objects, producing unstable contacts and object identity jumps.",meta:["New from outputs_batch/embodied","Score 0.571 vs 0.366","Grasp contact"]},
-  {id:"paired_extra_10_embodied_scallion_cutting_rolling_vs_longlive",video:"assets/video/paired_extra_10_embodied_scallion_cutting_rolling_vs_longlive.mp4",title:"Scallion cutting: no tool contact",category:"embodied",failure:"physics",failureLabel:"Physics",good:"Rolling Forcing",bad:"LongLive",description:"The bad rollout shows a robot arm and moving light near the scallions, but the tool never makes effective contact or produces a real cut, turning a cutting task into a near-pass motion.",meta:["New from outputs_batch/embodied","Score 0.897 vs 0.689","Missing tool contact"]},
-  {id:"paired_extra_11_embodied_banana_release_wow_vs_longlive",video:"assets/video/paired_extra_11_embodied_banana_release_wow_vs_longlive.mp4",title:"Banana basket: forced placement",category:"embodied",failure:"physics",failureLabel:"Physics",good:"WoW",bad:"LongLive",description:"The failure pushes the banana into the basket with the gripper and then withdraws abruptly, without a natural release, fall, or post-impact rest state.",meta:["New from outputs_batch/embodied","Score 0.635 vs 0.295","Release/contact failure"]},
-  {id:"paired_extra_12_embodied_bowl_floating_cosmos_vs_rolling",video:"assets/video/paired_extra_12_embodied_bowl_floating_cosmos_vs_rolling.mp4",title:"Bowl storage: floating object",category:"embodied",failure:"physics",failureLabel:"Physics",good:"Cosmos",bad:"Rolling Forcing",description:"The failure turns the bowl/packet manipulation into floating or split object states between the tabletop and robot arm, breaking gravity and contact continuity.",meta:["New from outputs_batch/embodied","Score 0.631 vs 0.196","Floating/state inconsistency"]},
-  {id:"paired_extra_13_embodied_cup_contact_cosmos_vs_longlive",video:"assets/video/paired_extra_13_embodied_cup_contact_cosmos_vs_longlive.mp4",title:"Cup cleanup: locked pose",category:"embodied",failure:"interaction",failureLabel:"Interaction",good:"Cosmos",bad:"LongLive",description:"In a table-cleaning task, the failure keeps cup and gripper contact unstable, with the cup pose appearing manually locked or rotated rather than driven by a plausible grasp.",meta:["New from outputs_batch/embodied","Score 0.811 vs 0.312","Cup grasp contact"]},
-  {id:"paired_extra_14_embodied_obstacle_viewpoint_longlive_vs_wow",video:"assets/video/paired_extra_14_embodied_obstacle_viewpoint_longlive_vs_wow.mp4",title:"Obstacle recovery: viewpoint break",category:"embodied",failure:"consistency",failureLabel:"Consistency",good:"LongLive",bad:"WoW",description:"The bad rollout preserves the tabletop for a while, then abruptly changes camera viewpoint and arm-water-bottle spatial relations, breaking 3D continuity during recovery.",meta:["New from outputs_batch/embodied","Score 0.681 vs 0.469","3D viewpoint discontinuity"]},
-  {id:"drawer_longlive_vs_cosmos",video:"assets/video/compare_drawer_longlive_vs_cosmos.mp4",title:"Drawer gravity/contact",category:"embodied",failure:"physics",failureLabel:"Physics",good:"LongLive",bad:"Cosmos",description:"Same nightstand drawer scene: the bad rollout places the remote directly into the drawer, skipping the expected fall, contact, and gravity-driven settling.",meta:["From outputs_batch/cases.md","Score 0.639 vs 0.361","Physical 0.933 vs 0.317"]},
-  {id:"triangle_bread_cosmos_vs_wow",video:"assets/video/compare_triangle_bread_cosmos_vs_wow.mp4",title:"Triangle bread target",category:"embodied",failure:"interaction",failureLabel:"Interaction",good:"Cosmos",bad:"WoW",description:"Same tabletop task: the bad rollout manipulates the blue plate instead of the triangular bread, breaking target identity and contact logic.",meta:["From outputs_batch/cases.md","Score 0.799 vs 0.250","Interaction 0.758 vs 0.417"]},
-  {id:"gaming_transition_longlive_vs_cosmos",video:"assets/video/compare_gaming_transition_longlive_vs_cosmos.mp4",title:"Hard scene transition",category:"gaming",failure:"transition",failureLabel:"Transition",good:"LongLive",bad:"Cosmos",description:"Both videos start near combat and stairs; the bad rollout jumps into a red circular space with dust and a horse, resetting camera path and 3D scene.",meta:["From outputs_batch/cases.md","Score 0.370 vs 0.254","3D transition failure"]},
-  {id:"plate_fruit_cosmos_vs_longlive",video:"assets/video/compare_plate_fruit_cosmos_vs_longlive.mp4",title:"Fruit release physics",category:"embodied",failure:"physics",failureLabel:"Physics",good:"Cosmos",bad:"LongLive",description:"Same fruit-into-plate task: after release, the bad rollout leaves the apple hovering or still held, so gravity and contact are not resolved.",meta:["From outputs_batch/cases.md","Score 0.734 vs 0.423","Physical 0.925 vs 0.000"]},
-  {id:"bottle_state_cosmos_vs_rolling",video:"assets/video/compare_bottle_state_cosmos_vs_rolling.mp4",title:"Bottle state jump",category:"embodied",failure:"physics",failureLabel:"Physics",good:"Cosmos",bad:"Rolling Forcing",description:"Same bottle/wipes/plate task: the bad rollout shows the bottle falling and then suddenly standing upright, a clear support-state jump.",meta:["From outputs_batch/cases.md","Score 0.671 vs 0.221","Physical 0.967 vs 0.000"]},
-  {id:"gymnast_cosmos_vs_gamecraft",video:"assets/video/compare_gymnast_cosmos_vs_gamecraft.mp4",title:"Rhythmic gymnastics props",category:"general",failure:"interaction",failureLabel:"Interaction",good:"Cosmos",bad:"Hunyuan-GameCraft",description:"The good rollout shows prop motion during a gymnastics routine; the bad rollout keeps similar body motion but misses toss/catch and ribbon/hoop trajectories.",meta:["From outputs_batch/cases.md","Score 0.723 vs 0.295","Instruction following"]},
-  {id:"bodyboard_longlive_vs_rolling",video:"assets/video/compare_bodyboard_longlive_vs_rolling.mp4",title:"Bodyboard pose physics",category:"general",failure:"physics",failureLabel:"Physics",good:"LongLive",bad:"Rolling Forcing",description:"The good rollout keeps the child prone on the board; the bad rollout makes the child stand upright, violating bodyboard buoyancy and support.",meta:["From outputs_batch/cases.md","Score 0.642 vs 0.346","Real-world physics"]},
-  {id:"dog_frisbee_cosmos_vs_wow",video:"assets/video/compare_dog_frisbee_cosmos_vs_wow.mp4",title:"Dog frisbee interaction",category:"general",failure:"interaction",failureLabel:"Interaction",good:"Cosmos",bad:"WoW",description:"Same dog-frisbee scene: the bad rollout misses the airborne catch and return, leaving the key object interaction unstable.",meta:["From outputs_batch/cases.md","Object interaction","Structure instability"]},
-  {id:"scene_consistency_cosmos_vs_rolling",video:"assets/video/compare_scene_consistency_cosmos_vs_rolling.mp4",title:"Scene consistency",category:"general",failure:"consistency",failureLabel:"Consistency",good:"Cosmos",bad:"Rolling Forcing",description:"Same real-world clip: the comparison highlights long-horizon scene consistency differences across generators.",meta:["From outputs_batch/cases.md","Long-horizon consistency","compressed_02BEoux44n8_part3"]},
-  {id:"paired_01_cobot_magic_mobile_cube_observation_images_cam_high_rgb_episode_000000_longlive_vs_matrix_game2",video:"assets/video/paired_01_cobot_magic_mobile_cube_observation_images_cam_high_rgb_episode_000000_longlive_vs_matrix_game2.mp4",title:"Mobile cube: missing robot arm",category:"embodied",failure:"static",failureLabel:"Static",good:"LongLive",bad:"Matrix-Game 2.0",description:"The stronger rollout shows the robotic arm descending toward the cube. The failure clip stays on the cube and ball with no arm entering, so the action subject is absent.",meta:["Curated paired case","Score 1.000 vs 0.000","Gap 1.000"]},
-  {id:"paired_02_cobot_magic_place_the_cube_block_observation_images_cam_high_rgb_episode_000000_cosmos_vs_matrix_game2",video:"assets/video/paired_02_cobot_magic_place_the_cube_block_observation_images_cam_high_rgb_episode_000000_cosmos_vs_matrix_game2.mp4",title:"Cube block: static tabletop",category:"embodied",failure:"static",failureLabel:"Static",good:"Cosmos",bad:"Matrix-Game 2.0",description:"The same red block and tabletop context are visible, but the bad rollout remains nearly motionless and never performs the grasp-and-lift action.",meta:["Curated paired case","Score 0.975 vs 0.050","Gap 0.925"]},
-  {id:"paired_03_ixnhfqyq5k_part5_rolling_forcing_vs_wow",video:"assets/video/paired_03_ixnhfqyq5k_part5_rolling_forcing_vs_wow.mp4",title:"Game path: frozen navigation",category:"gaming",failure:"static",failureLabel:"Static",good:"Rolling Forcing",bad:"WoW",description:"Both clips share an outdoor path and wooden-fence context. The good rollout advances along the route, while the bad rollout locks the camera in place.",meta:["Curated paired case","Score 1.000 vs 0.100","Gap 0.900"]},
-  {id:"paired_04_2n86_qnsxqc_part2_lingbot_world_vs_rolling_forcing",video:"assets/video/paired_04_2n86_qnsxqc_part2_lingbot_world_vs_rolling_forcing.mp4",title:"Cave entry: progress stalls",category:"gaming",failure:"transition",failureLabel:"Transition",good:"LingBot-World",bad:"Rolling Forcing",description:"The prompt asks the player to enter a cave. The stronger rollout moves into the cave context, while the failure remains around the entrance and stream.",meta:["Curated paired case","Score 0.888 vs 0.000","Transition gap"]},
-  {id:"paired_06_cobot_magic_the_plate_holds_the_fruit_observation_images_cam_front_rgb_episode_000000_rolling_forcing_vs_matrix_game2",video:"assets/video/paired_06_cobot_magic_the_plate_holds_the_fruit_observation_images_cam_front_rgb_episode_000000_rolling_forcing_vs_matrix_game2.mp4",title:"Fruit plate: action absent",category:"embodied",failure:"static",failureLabel:"Static",good:"Rolling Forcing",bad:"Matrix-Game 2.0",description:"The failure preserves the bag, plate, and fruit layout but does not generate the robotic arm action required for grasping the fruit.",meta:["Curated paired case","Score 0.925 vs 0.050","Action subject missing"]},
-  {id:"paired_07_2n86_qnsxqc_part1_longlive_vs_wow",video:"assets/video/paired_07_2n86_qnsxqc_part1_longlive_vs_wow.mp4",title:"Desert scene: subjects disappear",category:"gaming",failure:"transition",failureLabel:"Transition",good:"LongLive",bad:"WoW",description:"The stronger rollout retains riders and forward narrative motion in a desert scene. The failure collapses to empty sand dunes, losing the characters and event state.",meta:["Curated paired case","Score 1.000 vs 0.175","Subject disappearance"]},
-  {id:"paired_08_cobot_magic_mobile_cube_blackboard_observation_images_cam_high_rgb_episode_000000_longlive_vs_matrix_game2",video:"assets/video/paired_08_cobot_magic_mobile_cube_blackboard_observation_images_cam_high_rgb_episode_000000_longlive_vs_matrix_game2.mp4",title:"Blackboard cube: no manipulation",category:"embodied",failure:"static",failureLabel:"Static",good:"LongLive",bad:"Matrix-Game 2.0",description:"The good rollout includes arm motion around the cube. The bad rollout keeps a static green tabletop and cubes with no manipulator action.",meta:["Curated paired case","Score 0.950 vs 0.150","Static failure"]},
-  {id:"paired_09_leju_robot_box_storage_parcel_j_observation_images_camera_head_rgb_episode_000000_cosmos_vs_matrix_game2",video:"assets/video/paired_09_leju_robot_box_storage_parcel_j_observation_images_camera_head_rgb_episode_000000_cosmos_vs_matrix_game2.mp4",title:"Box storage: bimanual stagnation",category:"embodied",failure:"static",failureLabel:"Static",good:"Cosmos",bad:"Matrix-Game 2.0",description:"Both clips match the tabletop, bottles, and dual-arm robot context. The failure does not execute the coordinated grasping action.",meta:["Curated paired case","Score 0.950 vs 0.167","Bimanual interaction"]},
-  {id:"paired_15_cobot_magic_move_the_ball_interference_observation_images_cam_high_rgb_episode_000000_cosmos_vs_matrix_game2",video:"assets/video/paired_15_cobot_magic_move_the_ball_interference_observation_images_cam_high_rgb_episode_000000_cosmos_vs_matrix_game2.mp4",title:"Ball interference: missing arm",category:"embodied",failure:"interaction",failureLabel:"Interaction",good:"Cosmos",bad:"Matrix-Game 2.0",description:"The stronger rollout brings in the robot arm to move the ball. The failure retains the ball and blocks but omits the arm, so the interaction cannot occur.",meta:["Curated paired case","Score 0.950 vs 0.200","Interaction target"]},
-  {id:"paired_16_0j9dft5t7py_part1_cosmos_vs_hunyuan_gamecraft",video:"assets/video/paired_16_0j9dft5t7py_part1_cosmos_vs_hunyuan_gamecraft.mp4",title:"Underwater pool: empty scene",category:"general",failure:"static",failureLabel:"Static",good:"Cosmos",bad:"Hunyuan-GameCraft",description:"Both clips are underwater pool scenes. The stronger rollout shows swimmers and motion, while the failure reduces the clip to pool-floor lines without subjects.",meta:["Curated paired case","Score 0.883 vs 0.150","Subject missing"]},
-  {id:"paired_17_r72bwihbw1a_part1_cosmos_vs_hunyuan_gamecraft",video:"assets/video/paired_17_r72bwihbw1a_part1_cosmos_vs_hunyuan_gamecraft.mp4",title:"Horse race: start gate reset",category:"general",failure:"transition",failureLabel:"Transition",good:"Cosmos",bad:"Hunyuan-GameCraft",description:"The stronger rollout advances the race down the track. The failure remains near the starting gate, contradicting the expected narrative progression.",meta:["Curated paired case","Score 0.919 vs 0.188","Temporal progress"]},
-  {id:"paired_18_4z5fleh7p18_part3_lingbot_world_vs_longlive",video:"assets/video/paired_18_4z5fleh7p18_part3_lingbot_world_vs_longlive.mp4",title:"Night street: missing carriage event",category:"gaming",failure:"transition",failureLabel:"Transition",good:"LingBot-World",bad:"LongLive",description:"Both clips share a wet night-street setting. The stronger rollout introduces the expected carriage motion, while the failure stays static in the same street context.",meta:["Curated paired case","Score 0.931 vs 0.206","Event continuity"]},
-  {id:"paired_19_bvzd9qpzxnu_part10_rolling_forcing_vs_cosmos",video:"assets/video/paired_19_bvzd9qpzxnu_part10_rolling_forcing_vs_cosmos.mp4",title:"Courtyard: frozen advance",category:"gaming",failure:"transition",failureLabel:"Transition",good:"Rolling Forcing",bad:"Cosmos",description:"The stronger rollout advances through the courtyard. The failure remains almost fixed around the courtyard center, breaking the requested camera and scene progression.",meta:["Curated paired case","Score 0.850 vs 0.125","Scene progress"]},
-  {id:"paired_21_cobot_magic_prepare_breakfast_observation_images_cam_high_rgb_episode_000000_cosmos_vs_matrix_game2",video:"assets/video/paired_21_cobot_magic_prepare_breakfast_observation_images_cam_high_rgb_episode_000000_cosmos_vs_matrix_game2.mp4",title:"Breakfast: static objects",category:"embodied",failure:"static",failureLabel:"Static",good:"Cosmos",bad:"Matrix-Game 2.0",description:"The breakfast objects align closely across clips, but the bad rollout never introduces the robotic arm action needed to grasp the apple.",meta:["Curated paired case","Score 0.950 vs 0.233","Action missing"]},
-  {id:"paired_22_agibot_g1_picks_up_cardboard_box_observation_images_cam_high_rgb_episode_000000_cosmos_vs_rolling_forcing",video:"assets/video/paired_22_agibot_g1_picks_up_cardboard_box_observation_images_cam_high_rgb_episode_000000_cosmos_vs_rolling_forcing.mp4",title:"Cardboard box: state jump",category:"embodied",failure:"transition",failureLabel:"Transition",good:"Cosmos",bad:"Rolling Forcing",description:"The stronger rollout shows the pick-up process. The failure jumps to a later object state without showing the grasp, making the motion trajectory discontinuous.",meta:["Curated paired case","Score 0.958 vs 0.250","Object-state continuity"]},
-  {id:"paired_23_m_9ygua8n6u_part1_cosmos_vs_longlive",video:"assets/video/paired_23_m_9ygua8n6u_part1_cosmos_vs_longlive.mp4",title:"Temple scene: transition does not occur",category:"general",failure:"transition",failureLabel:"Transition",good:"Cosmos",bad:"LongLive",description:"The prompt expects progression from an indoor temple context toward another scene. The failure repeats the indoor setup rather than executing the transition.",meta:["Curated paired case","Score 0.895 vs 0.190","Scene transition"]},
-  {id:"paired_25_4tpoyb2pews_part9_lingbot_world_vs_matrix_game2",video:"assets/video/paired_25_4tpoyb2pews_part9_lingbot_world_vs_matrix_game2.mp4",title:"Forest path: character disappears",category:"gaming",failure:"transition",failureLabel:"Transition",good:"LingBot-World",bad:"Matrix-Game 2.0",description:"Both clips show a sunlit forest path. The stronger rollout follows the character, while the failure keeps the environment but drops the character and camera continuity.",meta:["Curated paired case","Score 0.942 vs 0.250","Character continuity"]},
-  {id:"paired_26_2l4qtbcxosc_part2_rolling_forcing_vs_hunyuan_gamecraft",video:"assets/video/paired_26_2l4qtbcxosc_part2_rolling_forcing_vs_hunyuan_gamecraft.mp4",title:"Ski slope: subject vanishes",category:"general",failure:"static",failureLabel:"Static",good:"Rolling Forcing",bad:"Hunyuan-GameCraft",description:"The stronger rollout tracks a skier through the slalom. The failure quickly reduces to an empty snowy slope with no skier or pole continuity.",meta:["Curated paired case","Score 0.875 vs 0.183","Subject missing"]}
-];
+let caseItems=[];
+let activeCaseIndex=0;
 
-const categoryNames={embodied:"Embodied",gaming:"Gaming",general:"General"};
-const failureClasses={static:"static",transition:"transition",physics:"physics",interaction:"interaction",consistency:"consistency"};
-let activeCaseCategory="all";
-let activeCaseFailure="all";
-
-function renderCaseTabs(){
-  const tabs=document.getElementById("caseTabs");
-  tabs.innerHTML=caseItems.map((item,index)=>`
-    <button class="case-tab${index===0?" active":""}" data-case-id="${escapeHtml(item.id)}" data-category="${escapeHtml(item.category)}" data-failure="${escapeHtml(item.failure)}">
-      <b>${escapeHtml(item.title)}</b>
-      <span>${escapeHtml(item.good)} vs ${escapeHtml(item.bad)}</span>
-      <span class="tag ${failureClasses[item.failure]||"compare"}">${escapeHtml(item.failureLabel)}</span>
-    </button>
+function renderCaseCarousel(){
+  const track=document.getElementById("caseTrack");
+  if(!caseItems.length){
+    track.innerHTML=`<div class="case-loading">No case videos available.</div>`;
+    updateCaseCounter();
+    return;
+  }
+  track.innerHTML=caseItems.map(item=>`
+    <article class="case-stage" data-case-id="${escapeHtml(item.id)}">
+      <div class="case-video-wrap">
+        <div class="case-side-labels" aria-hidden="true"><span>Good</span><span>Bad</span></div>
+        <video controls loop muted playsinline preload="metadata">
+          <source src="${escapeHtml(item.video)}" type="video/mp4">
+        </video>
+      </div>
+      <div class="case-body">
+        <div class="case-title">
+          <h3>${escapeHtml(item.title)}</h3>
+          <span class="tag compare">Good / Bad</span>
+        </div>
+        <p>${escapeHtml(item.reason)}</p>
+        <div class="case-meta">
+          ${(item.meta||[]).map(meta=>`<span>${escapeHtml(meta)}</span>`).join("")}
+        </div>
+        <details class="case-prompt">
+          <summary>Prompt</summary>
+          <p>${escapeHtml(item.prompt||"Prompt is unavailable for this case.")}</p>
+        </details>
+      </div>
+    </article>
   `).join("");
+  updateActiveCaseFromScroll();
 }
 
-function selectCaseById(caseId){
-  const data=caseItems.find(item=>item.id===caseId);
-  if(!data)return;
-  document.querySelectorAll("#caseTabs button").forEach(button=>button.classList.toggle("active",button.dataset.caseId===caseId));
-  const video=document.getElementById("caseVideo");
-  video.querySelector("source").src=data.video;
-  video.load();
-  video.play().catch(()=>{});
-  document.getElementById("caseTitle").textContent=data.title;
-  const tag=document.getElementById("caseTag");
-  tag.textContent=data.failureLabel;
-  tag.className="tag "+(failureClasses[data.failure]||"compare");
-  document.getElementById("caseDescription").textContent=data.description;
-  const meta=[categoryNames[data.category]||data.category,"Good "+data.good,"Bad "+data.bad,...data.meta];
-  document.getElementById("caseMeta").innerHTML=meta.map(item=>`<span>${escapeHtml(item)}</span>`).join("");
+function updateCaseCounter(){
+  const counter=document.getElementById("caseCounter");
+  const total=caseItems.length;
+  counter.textContent=total?`Case ${activeCaseIndex+1} / ${total}`:"No cases";
+  document.getElementById("casePrev").disabled=activeCaseIndex<=0;
+  document.getElementById("caseNext").disabled=activeCaseIndex>=total-1;
 }
 
-function updateCaseVisibility(){
-  const tabs=Array.from(document.querySelectorAll("#caseTabs .case-tab"));
-  const visible=[];
-  tabs.forEach(tab=>{
-    const showCategory=activeCaseCategory==="all"||tab.dataset.category===activeCaseCategory;
-    const showFailure=activeCaseFailure==="all"||tab.dataset.failure===activeCaseFailure;
-    const show=showCategory&&showFailure;
-    tab.classList.toggle("hidden",!show);
-    if(show)visible.push(tab);
+function updateActiveCaseFromScroll(){
+  const track=document.getElementById("caseTrack");
+  const cards=Array.from(track.querySelectorAll(".case-stage"));
+  if(!cards.length){
+    updateCaseCounter();
+    return;
+  }
+  const trackLeft=track.getBoundingClientRect().left;
+  let nearestIndex=0;
+  let nearestDistance=Infinity;
+  cards.forEach((card,index)=>{
+    const distance=Math.abs(card.getBoundingClientRect().left-trackLeft);
+    if(distance<nearestDistance){
+      nearestDistance=distance;
+      nearestIndex=index;
+    }
   });
-  document.getElementById("caseCount").textContent=`${visible.length} comparison cases shown. Left: stronger rollout. Right: failure rollout.`;
-  const active=document.querySelector("#caseTabs .case-tab.active:not(.hidden)");
-  if(!active&&visible[0])selectCaseById(visible[0].dataset.caseId);
+  activeCaseIndex=nearestIndex;
+  updateCaseCounter();
+  cards.forEach((card,index)=>{
+    const video=card.querySelector("video");
+    if(!video)return;
+    if(index===activeCaseIndex){
+      video.play().catch(()=>{});
+    }else{
+      video.pause();
+    }
+  });
 }
 
-document.getElementById("caseTabs").addEventListener("click",event=>{
-  const btn=event.target.closest("button");
-  if(btn)selectCaseById(btn.dataset.caseId);
+function scrollCaseBy(delta){
+  const track=document.getElementById("caseTrack");
+  const cards=Array.from(track.querySelectorAll(".case-stage"));
+  if(!cards.length)return;
+  const nextIndex=Math.max(0,Math.min(cards.length-1,activeCaseIndex+delta));
+  cards[nextIndex].scrollIntoView({behavior:"smooth",block:"nearest",inline:"start"});
+}
+
+document.getElementById("casePrev").addEventListener("click",()=>scrollCaseBy(-1));
+document.getElementById("caseNext").addEventListener("click",()=>scrollCaseBy(1));
+document.getElementById("caseTrack").addEventListener("scroll",()=>{
+  window.clearTimeout(window.caseScrollTimer);
+  window.caseScrollTimer=window.setTimeout(updateActiveCaseFromScroll,80);
 });
 
-document.getElementById("caseFilters").addEventListener("click",event=>{
-  const btn=event.target.closest("button");
-  if(!btn)return;
-  document.querySelectorAll("#caseFilters button").forEach(button=>button.classList.remove("active"));
-  btn.classList.add("active");
-  activeCaseCategory=btn.dataset.category;
-  updateCaseVisibility();
+async function initCaseStudies(){
+  const response=await fetch("assets/video/cases_from_cases_md/cases_data.json");
+  caseItems=await response.json();
+  renderCaseCarousel();
+}
+initCaseStudies().catch(error=>{
+  document.getElementById("caseTrack").innerHTML=`<div class="case-loading">Case data failed to load.</div>`;
+  updateCaseCounter();
+  console.error(error);
 });
-
-document.getElementById("failureFilters").addEventListener("click",event=>{
-  const btn=event.target.closest("button");
-  if(!btn)return;
-  document.querySelectorAll("#failureFilters button").forEach(button=>button.classList.remove("active"));
-  btn.classList.add("active");
-  activeCaseFailure=btn.dataset.failure;
-  updateCaseVisibility();
-});
-
-renderCaseTabs();
-selectCaseById(caseItems[0].id);
-updateCaseVisibility();
 
 const sections=Array.from(document.querySelectorAll("section[id]"));
 const tocLinks=Array.from(document.querySelectorAll(".toc a"));

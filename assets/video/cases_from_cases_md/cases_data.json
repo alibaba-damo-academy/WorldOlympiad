@@ -1,0 +1,166 @@
+[
+  {
+    "id": "triangle_bread_target",
+    "video": "assets/video/cases_from_cases_md/case_md_02_triangle_bread_target.mp4",
+    "title": "Triangle bread: target-object following",
+    "domain": "Embodied",
+    "reason": "Instruction following failure: the rollout manipulates the wrong tabletop object instead of the triangle bread.",
+    "prompt": "[00:01, 00:05) | Action None | In a white workspace containing scattered objects like a light blue plate, a wooden block, a red heart, a toy spatula, a small black box, a teal pot, and a toy pie slice, a black robotic arm with a parallel jaw gripper enters from the left. It executes a downward and forward trajectory towards the toy pie slice in the center. As it nears the target, the arm decelerates, and the gripper descends upon the pie slice. The jaws close around the crust section of the pie, making physical contact and securing a firm grip, slightly lifting the object from the surface.\n\n[00:05, 00:07) | Action None | The black robotic arm, firmly grasping the toy pie slice, lifts the object and moves in a smooth upward and leftward trajectory across the workspace. It carries the pie slice over the light blue plate without making contact, continuing its motion toward the bottom left corner of the table and lowering the object toward the surface.\n\n[00:07, 00:09) | Action None | The robotic arm opens its jaws to release the toy pie slice onto the surface at the bottom left corner of the workspace. With its parallel jaw gripper now fully open and empty, the arm retracts by moving forward and to the right, moving away from the released object. All other items on the white tabletop remain completely stationary.",
+    "meta": [
+      "Embodied",
+      "Overall score: Good 0.799 / Bad 0.250",
+      "Physical: Good 0.950 / Bad 0.000",
+      "Failure: physical"
+    ]
+  },
+  {
+    "id": "fruit_plate_contact",
+    "video": "assets/video/cases_from_cases_md/case_md_03_fruit_plate_contact.mp4",
+    "title": "Plate and fruit: contact physics",
+    "domain": "Embodied",
+    "reason": "Physical contact failure: the bad rollout does not resolve fruit release, gravity, and plate contact into a plausible resting state.",
+    "prompt": "[00:02, 00:04) | Action None | A black robotic arm with a parallel gripper enters the frame from the right, descending towards a white cloth bag containing a green apple, a yellow lemon, and a kiwi on a green tiled surface. The arm moves steadily downward, positioning its open gripper directly over the green apple before closing it to securely grasp the fruit.\n\n[00:04, 00:07) | Action None | The robotic arm lifts the grasped green apple vertically out of the cloth bag and moves horizontally to the left, positioning it directly over a yellow translucent plate. The gripper then opens to release the apple, allowing it to drop onto the center of the plate. Following the release, the robotic arm retracts upwards and exits the frame to the right.",
+    "meta": [
+      "Embodied",
+      "Overall score: Good 0.734 / Bad 0.422",
+      "Physical: Good 0.925 / Bad 0.000",
+      "Failure: physical"
+    ]
+  },
+  {
+    "id": "bottle_wipes_no_contact",
+    "video": "assets/video/cases_from_cases_md/case_md_04_bottle_wipes_no_contact.mp4",
+    "title": "Bottle and wipes: contactless motion",
+    "domain": "Embodied",
+    "reason": "No-contact physical motion: the failure shows object state changes without sufficient gripper contact or support.",
+    "prompt": "[00:00, 00:07) | Action None | A dual-arm robotic setup is positioned over a blue mat. Initially, a bottle of orange liquid sits on a white plate in the center, with a blue package to the right. The left robotic arm, equipped with a multi-fingered end-effector featuring green indicator lights, smoothly extends toward the bottle and grasps its midsection. It lifts the bottle vertically off the plate, moves it leftward and slightly forward, and gently lowers it onto the blue mat. The gripper secures the bottle during transport without causing visible deformation. After setting the bottle down upright, the fingers open to release it, and the left arm slightly retracts.\n\n[00:07, 00:11) | Action None | Next, the right robotic arm, also featuring a multi-fingered hand with green indicator lights, descends towards the blue package resting on the right side of the blue mat. Its fingers close inwards to secure a firm grasp on the object. The right arm lifts the blue package, moving it upwards and over to the now-empty white plate. The right hand then opens to release the blue package onto the plate. Throughout this sequence, the previously relocated plastic bottle remains undisturbed.",
+    "meta": [
+      "Embodied",
+      "Overall score: Good 0.671 / Bad 0.221",
+      "Physical: Good 0.967 / Bad 0.000",
+      "Failure: physical, interaction"
+    ]
+  },
+  {
+    "id": "gymnast_instruction_motion",
+    "video": "assets/video/cases_from_cases_md/case_md_05_gymnast_instruction_motion.mp4",
+    "title": "Gymnastics: missing instructed object motion",
+    "domain": "General",
+    "reason": "Instruction following failure: the scene has body motion, but the required prop toss/catch and interaction trajectory are missing.",
+    "prompt": "[00:00, 00:18) | Action D | In a brightly lit gymnasium, a young gymnast in a sparkling turquoise leotard performs a rhythmic gymnastics routine on a large mat. She expertly manipulates a long, colorful ribbon, creating large, flowing circles and spirals around her as she gracefully dances and leaps. The camera follows her as she moves from the left side of the floor towards the right. In the background, judges are seated at tables covered with red and gold cloths, in front of large windows. An American flag, a podium, and signs reading 'Welcome to Rhythmic Art!' are also visible. Towards the end of her sequence, she tosses the ribbon's stick high into the air, performs a quick leap, and fluidly drops to a kneeling position on the mat to catch the stick as it descends.\n\n[00:18, 00:27) | Action None | In an indoor gymnasium setting with a judges' table and a numbered podium in the background, a young girl in a sparkly teal leotard is performing a rhythmic gymnastics routine. Starting on her knees facing away from the camera, she continuously twirls a colorful ribbon. She smoothly rises to a standing position, maintaining the fluid motion of the ribbon around her. She then gracefully kicks her right leg backwards, catching her foot with her right hand to pull it straight up into a high, vertical standing split behind her head. She holds this demanding pose, demonstrating exceptional flexibility and balance while the ribbon swirls beside her.\n\n[00:27, 00:37) | Action A | A young girl in a sparkling blue leotard is performing a rhythmic gymnastics routine with a colorful ribbon on a beige mat in an indoor gymnasium. The background features large glass doors, an American flag hung on the wall, a numbered podium, and a judges' table with seated individuals. The gymnast leaps from the right side of the frame towards the left, elegantly twirling the ribbon. She then stops and executes a series of spins on one leg, maintaining the ribbon's continuous circular motion around her body. Finally, she bounds forward towards the camera with small leaps, still manipulating the ribbon, and concludes the sequence by striking a pose with her arms raised.\n\n[00:37, 00:43) | Action None | In an indoor gymnasium, a young female gymnast wearing a sparkling turquoise leotard performs a rhythmic gymnastics routine on a light-colored mat. In the background, an American flag, glass doors, a table with a laptop and a person, and a numbered podium are visible. The gymnast gracefully twirls a long, colorful ribbon, tosses it high into the air, and executes a spin before skillfully catching it. She then continues her routine, creating sweeping circular patterns with the ribbon around her body while balancing elegantly on one leg.\n\n[00:43, 00:51) | Action D | In an indoor gymnasium, a young girl in a sparkling turquoise leotard performs a rhythmic gymnastics routine on a beige mat. In the background, an American flag, a winner's podium, and judges sitting at tables are visible. The gymnast holds a wand with a long, flowing, multi-colored ribbon attached. She begins by balancing on one leg while gracefully swirling the ribbon around her body. She then lowers her leg, turns to her left, and begins walking across the mat, continuously twirling the ribbon in large, fluid circles and figure-eight patterns in front of her. The camera steadily pans to the right to track her movement across the floor.\n\n[00:51, 00:58) | Action A | In a spacious gymnasium with a beige floor mat, a young female gymnast in a sparkling turquoise leotard performs a rhythmic gymnastics routine with a long, colorful ribbon. The background shows large windows, judges seated at tables covered with red and gold cloths, a hanging US flag, and a numbered podium. The gymnast begins by spinning in place, swirling the ribbon around her in loops. She then turns her back to the camera, takes a few steps, and executes a high leap with her legs split, flicking the ribbon in a large arc over her head. The camera steadily pans left to keep her centered in the frame. Following the leap, she lands gracefully and stands with her arms outstretched as the ribbon forms circles in the air beside her.",
+    "meta": [
+      "General",
+      "Overall score: Good 0.723 / Bad 0.295",
+      "Physical: Good 0.925 / Bad 0.000",
+      "Failure: physical"
+    ]
+  },
+  {
+    "id": "underwater_transition",
+    "video": "assets/video/cases_from_cases_md/case_md_08_underwater_transition.mp4",
+    "title": "Underwater scene: unnatural transition",
+    "domain": "General",
+    "reason": "Unnatural transition: the bad rollout introduces a visible discontinuity in scene state and motion flow.",
+    "prompt": "[00:01, 00:08) | Action None | An underwater shot captures a group of people playing underwater hockey in a swimming pool. The players, equipped with swimsuits, masks, snorkels, and fins, are seen diving down towards the lined floor of the pool. Several players cluster together near the bottom, using small sticks in an attempt to maneuver a puck. Other participants swim above them near the surface, occasionally diving down to join the ongoing scramble. The camera remains stationary near the pool floor, observing the players as they actively kick their fins and compete for control of the puck in the clear water.\n\n[00:08, 00:13) | Action W+D | In an underwater view within a swimming pool, several individuals are actively engaged in playing underwater hockey. The players are equipped with diving masks, snorkels, swim fins, and small sticks. They swim close to the tiled bottom of the pool, maneuvering around each other as they compete. The camera tracks their movement, capturing their dynamic underwater swimming and interactions as they progress from the left toward the right side of the pool.\n\n[00:13, 00:17) | Action D | In an underwater view of a swimming pool, a group of people equipped with snorkels, masks, and flippers are actively swimming. They are clustered together, moving swiftly towards the right side of the frame near the tiled bottom of the pool. The swimmers kick their flippers forcefully, navigating the water as a pack. The camera tracks their movement to the right, keeping the main group in view as they continue their underwater progression.\n\n[00:17, 00:23) | Action W | In an underwater setting, possibly a swimming pool, several individuals are engaged in a game of underwater hockey. They are equipped with snorkels, masks, fins, and short sticks. The camera follows a player wearing black trunks who swims rapidly along the tiled pool floor. He extends his right arm to strike a bright orange puck with his stick, pushing it forward. He then continues to swim vigorously in pursuit of the puck, while other players maneuver around him, some swimming alongside and others turning or kicking their fins as they participate in the ongoing match.\n\n[00:23, 00:27) | Action W+D | The video captures an underwater scene in a swimming pool where several people are playing an underwater game, equipped with snorkels, masks, fins, and small sticks. In the foreground, two male players are actively engaged, swimming close to the tiled pool floor which is marked with dark lines. One player, wearing dark trunks with yellow stripes, swims towards a small orange and white object on the bottom, reaching out with his stick. Another player in black trunks maneuvers closely beside him. The players twist and turn in the water, competing for position around the object. The camera moves forward and pans to the right to follow the action of the two main players, while other participants can be seen swimming in the background.\n\n[00:27, 00:36) | Action W+A | In an underwater view of a swimming pool, two people wearing masks, snorkels, and fins are initially seen swimming near the tiled floor, playing a game resembling underwater hockey with a small orange puck. Suddenly, a large group of other players, also equipped with similar gear, rapidly swims into the frame from the right. The scene becomes a chaotic flurry of bodies and kicking fins as the swarm of players maneuvers around each other. The group then quickly swims off towards the left side of the frame, continuing their energetic underwater game.",
+    "meta": [
+      "General",
+      "Overall score: Good 0.721 / Bad 0.678",
+      "Physical: Good 64.000 / Bad 64.000",
+      "Failure source: cases.md"
+    ]
+  },
+  {
+    "id": "animal_structure",
+    "video": "assets/video/cases_from_cases_md/case_md_09_animal_structure.mp4",
+    "title": "Animal motion: unstable structure",
+    "domain": "General",
+    "reason": "Object-structure instability: the animal/body geometry changes across frames instead of preserving a stable physical form.",
+    "prompt": "[00:00, 00:13) | Action D | In an indoor arena with large banners displaying Russian text and architectural scenes, a young rhythmic gymnast in a pink sparkling leotard performs a routine with a silver ball on a white mat. She begins by bending backward to roll the ball across her chest, then stands and tosses the ball backward over her head while performing a back walkover, successfully catching it as she lands. She bends backward again, rolling the ball down her back, before leaning forward to catch it and bouncing it once on the floor between her legs.\n\n[00:13, 00:26) | Action A | Following the bounce, the gymnast continues her routine by deeply arching her back, holding the ball overhead, and placing it on the floor behind her. She smoothly executes a backward roll over the ball, securing it between her feet as she lands on her chest. Lying flat on her stomach, she allows the ball to roll down her legs and back, catching it with her hands extended forward. She then transitions into floor choreography, rolling onto her side and back while gracefully passing the silver ball around her body.\n\n[00:26, 00:39) | Action W | The gymnast transitions from the floor, spinning on her knees before standing up to toss the ball high into the air. While the ball is airborne, she spins, bends forward, and skillfully catches it on her upper back. Straightening up, she rolls the ball down her arm into her hand. Facing forward, she performs a series of balance poses, extending one leg high to the front and then to the side while elegantly holding and manipulating the ball. The camera slowly zooms in to highlight her controlled movements.\n\n[00:39, 00:51) | Action W | Continuing her routine, the gymnast walks gracefully across the mat while balancing the silver ball in her hand. She executes a deep standing backbend, straightens up, and extends her arms into a poised stance. She then tosses the ball forward into the air and performs a diving slide onto her stomach, extending her arms forward while skillfully catching the falling ball between her raised ankles behind her. The camera zooms in as she holds the prone pose briefly before sitting up with a bright smile to finish her routine.",
+    "meta": [
+      "General",
+      "Overall score: Good 0.676 / Bad 0.650",
+      "Physical: Good 64.000 / Bad 64.000",
+      "Failure source: cases.md"
+    ]
+  },
+  {
+    "id": "sports_physical_motion",
+    "video": "assets/video/cases_from_cases_md/case_md_10_sports_physical_motion.mp4",
+    "title": "Sports motion: physical trajectory",
+    "domain": "General",
+    "reason": "Physical-motion failure: the bad rollout loses the expected force, trajectory, and temporal continuity of the moving subject.",
+    "prompt": "[00:00, 00:08) | Action A | A person in a black wetsuit is windsurfing on a stormy, choppy sea, maneuvering a board with a bright green sail. The camera pans left, tracking the windsurfer as they ride swiftly from right to left over the rough, white-capped waves. In the background, large concrete tetrapods form a breakwater on the right, alongside a low rocky barrier further out. The windsurfer skillfully maintains their balance and controls the sail.\n\n[00:08, 00:24) | Action D | The windsurfer executes a turn, reversing direction to head from left to right across the choppy sea. The camera pans right to follow their movement over the rough waves. In the background, the concrete tetrapods transition into a rocky embankment topped with a wooden fence. Towards the end of the segment, the windsurfer leans back and turns the board again, shifting the bright green sail to change direction back toward the left, remaining upright and in full control.\n\n[00:24, 00:43) | Action A | Now heading from right to left again, the windsurfer continues to navigate the rough, choppy water. The camera continuously pans left to track their progress. The background features the stretch of the rocky embankment and wooden fence, with the large concrete tetrapods reappearing. The windsurfer rides the turbulent waves steadily, successfully maintaining their speed and control of the bright green sail under the overcast sky.\n\n[00:43, 00:49) | Action A | The camera continues to pan left, tracking the windsurfer as they ride from right to left across the rough water. The rocky embankment and wooden fence remain visible in the background. As they progress, the windsurfer loses their balance and falls backward into the turbulent sea. The board stops, and the bright green sail collapses onto the water's surface behind them just before the segment concludes.",
+    "meta": [
+      "General",
+      "Overall score: Good 0.716 / Bad 0.674",
+      "Physical: Good 64.000 / Bad 64.000",
+      "Failure source: cases.md"
+    ]
+  },
+  {
+    "id": "gaming_scene_instability_hunyuan",
+    "video": "assets/video/cases_from_cases_md/case_md_11_gaming_scene_instability_hunyuan.mp4",
+    "title": "Game scene: unstable environment",
+    "domain": "Gaming",
+    "reason": "Scene instability: the environment state changes abruptly, breaking long-horizon spatial continuity.",
+    "prompt": "[00:00, 00:33) | Action W | From a first-person perspective, the player slowly moves forward down a dark, rainy cobblestone street illuminated by glowing streetlamps. A horse-drawn carriage can be seen traveling away in the distance. As the player continues to walk forward, they pan their view to the right, revealing an intersecting street and a large, two-story house with a wrap-around porch enclosed by a wrought-iron fence. The wet pavement reflects the warm, yellow light from the lamps, creating a moody, atmospheric scene. No user interface elements are visible.\n\n[00:33, 00:41) | Action W+A | The player navigates a rainy, dimly lit city street at night from a first-person perspective. The environment features wet cobblestones reflecting the light from glowing gas lamps, with a horse-drawn carriage parked on the right side of the street. The player initially walks forward, then moves forward and to the left, shifting their view towards an ornate iron fence and a large, multi-story house on the left.\n\n[00:41, 00:51) | Action W+D | The scene takes place at night on a wet, cobblestone path during a rainstorm. The player moves forward and slightly to the right, following the path alongside a large, ornate house enclosed by an iron fence. Street lamps illuminate the path and the house. As the player advances and turns right around the corner of the fence, a horse-drawn carriage parked on the adjoining street comes into view.\n\n[00:51, 00:59) | Action W | The player moves forward along a wet, cobbled street at night. To the left is a large building behind an ornate metal fence, and to the right is a horse-drawn carriage parked beneath a glowing street lamp. The camera steadily approaches the carriage as the player continues to walk straight ahead. No UI elements are visible on the screen.",
+    "meta": [
+      "Gaming",
+      "Overall score: Good 0.625 / Bad 0.581",
+      "Physical: Good 64.000 / Bad 64.000",
+      "Failure source: cases.md"
+    ]
+  },
+  {
+    "id": "gaming_scene_instability_yume",
+    "video": "assets/video/cases_from_cases_md/case_md_12_gaming_scene_instability_yume.mp4",
+    "title": "Game scene: unstable world state",
+    "domain": "Gaming",
+    "reason": "Scene instability: the bad rollout cannot preserve the same game-world layout and camera path.",
+    "prompt": "[00:00, 00:06) | Action W | The player walks forward from a first-person perspective along a pedestrian pathway in a futuristic city. Various NPCs walk past or sit on benches to the right, while a prominent red vending kiosk stands to the left. As the player moves, the camera gradually tilts upwards, shifting focus from the street-level activity to the towering skyscrapers and digital advertisements looming above. A red stance icon is visible in the bottom right corner.\n\n[00:06, 00:15) | Action W | The player continues walking forward while looking up at the clear sky and massive building facades adorned with vivid digital billboards. As the forward movement progresses, the camera slowly tilts back down, returning the focus to the street level to reveal a busy pedestrian plaza and an overpass ahead.\n\n[00:15, 00:32) | Action W | The player walks forward through the bustling street for a few seconds before coming to a stop. While stationary, the player pans the camera to the left toward the red vending kiosk, then tilts the camera high upwards to gaze at a towering, brightly illuminated skyscraper and tall palm trees, observing the immense scale of the urban environment.\n\n[00:32, 00:54) | Action W | The camera pans down and to the right, and the player resumes walking forward through the busy pedestrian plaza. They navigate past numerous NPCs sitting on benches and walking around, heading straight toward a pedestrian overpass that displays a prominent 'arasaka' billboard. The player maintains a steady forward pace, eventually reaching a sidewalk next to a street intersection.\n\n[00:54, 00:59) | Action W | Continuing to walk forward steadily along the sidewalk, the player approaches the street intersection. Vehicles are seen driving on the road to the right. The camera points slightly upwards at the multi-level overpass structures and large illuminated billboards overhead as the player nears a vibrant yellow storefront situated beneath the walkway.",
+    "meta": [
+      "Gaming",
+      "Failure source: cases.md"
+    ]
+  },
+  {
+    "id": "gaming_transition_cosmos",
+    "video": "assets/video/cases_from_cases_md/case_md_13_gaming_transition_cosmos.mp4",
+    "title": "Game action: unnatural transition",
+    "domain": "Gaming",
+    "reason": "Unnatural transition: the bad rollout jumps between action states and breaks scene continuity.",
+    "prompt": "[00:00, 00:16) | Action W | The player character, dressed in a dark cloak and hat, walks steadily forward along a dirt path in a dimly lit, rural environment. The path slopes gently downhill, bordered by a field of crops on the left and low stone walls. The camera follows from a third-person perspective as the player navigates the slight curves of the trail. No UI elements are visible.\n\n[00:16, 00:23) | Action W | Maintaining a steady pace, the player continues walking forward along the dirt path. The environment features a stone wall bordering the right side of the trail and a grassy landscape rolling into the distance under the dim sky.\n\n[00:23, 00:46) | Action W | The player proceeds forward along the path, passing a terraced field on the right. As the character advances, the camera smoothly pans to the left, revealing a vibrant, glowing sunset over the distant landscape. The player continues toward a lit lantern and a stone wall ahead, eventually coming to a stop at the end of the segment.\n\n[00:46, 00:59) | Action W | The player character initially stands idle on the muddy path for several seconds, with reflective puddles on the ground and a large castle visible in the distance under the sunset. The player then resumes walking forward while panning the camera slightly to the right, approaching a wooden gate set within the stone wall on the right side of the path.",
+    "meta": [
+      "Gaming",
+      "Failure source: cases.md"
+    ]
+  },
+  {
+    "id": "gaming_instruction_cosmos",
+    "video": "assets/video/cases_from_cases_md/case_md_14_gaming_instruction_cosmos.mp4",
+    "title": "Game action: instruction following",
+    "domain": "Gaming",
+    "reason": "Instruction following failure: the requested game action is weakened or omitted despite plausible local motion.",
+    "prompt": "[00:00, 00:10) | Action W | In a third-person perspective, the player rides a brown horse forward along a rugged, stone-paved path in a snowy mountainous environment. Frost-covered vegetation and rocky cliffs surround the trail, and a compass UI is visible at the bottom center of the screen.\n\n[00:10, 00:20) | Action W | Continuing along the path, the player rides the horse steadily forward through the snowy landscape. Frost-covered pine trees and rocky outcrops flank the trail as the player ventures deeper into the wilderness, with the compass UI still visible at the bottom center.\n\n[00:20, 00:30) | Action W | The player maintains their forward momentum on the horse, navigating the snowy mountain path. Large, snow-capped mountains loom in the distance ahead. The compass UI remains visible as the player travels straight towards the distant peaks.\n\n[00:30, 00:40) | Action W | Progressing further along the snowy trail, the player steers the horse forward. To the right, a rocky cliff face adorned with large, hanging icicles comes into view, while snow-covered pine trees continue to line the path.\n\n[00:40, 00:50) | Action W | The player rides the horse forward, passing closely by the rocky cliff with hanging icicles on the right. The trail begins to slope slightly downhill, revealing frozen waterfalls in the background as the continuous forward journey progresses.\n\n[00:50, 00:59) | Action W | Riding further down the path, the player moves deeper into the snowy mountain valley. Rocky peaks and pine trees dominate the scenery ahead. The compass UI remains visible at the bottom center as the player continuously rides forward.",
+    "meta": [
+      "Gaming",
+      "Overall score: Good 0.707 / Bad 0.736",
+      "Physical: Good 64.000 / Bad 64.000",
+      "Failure source: cases.md"
+    ]
+  },
+  {
+    "id": "gaming_instruction_yume",
+    "video": "assets/video/cases_from_cases_md/case_md_15_gaming_instruction_yume.mp4",
+    "title": "Game objective: instruction following",
+    "domain": "Gaming",
+    "reason": "Instruction following failure: the bad rollout drifts from the requested objective and interaction semantics.",
+    "prompt": "[00:00, 00:13) | Action W | The player character wades forward through a shallow water channel in a grand, brightly lit environment constructed of white stone. The character progresses straight ahead, walking up a slight incline to exit the water onto a paved stone surface. The character has a bow slung across their back.\n\n[00:13, 00:59) | Action W | The player continues navigating the character forward through a bright, sunlit city featuring grand white architecture and vibrant greenery. The character walks at a steady pace, transitioning from the stone pavement onto a dirt path. Along the way, they pass by patches of red flowers and several NPCs, including one wearing a wide-brimmed hat who walks past them in the opposite direction. The camera maintains a third-person perspective, and no user interface elements are visible on screen.",
+    "meta": [
+      "Gaming",
+      "Overall score: Good 0.818 / Bad 0.835",
+      "Physical: Good 64.000 / Bad 64.000",
+      "Failure source: cases.md"
+    ]
+  }
+]
