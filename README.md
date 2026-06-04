@@ -1,2 +1,1 @@
-# WorldOlympiad
-WorldOlympiad: Can Your World Model Survive a Triathlon?
+# WorldOlympiad: Can Your World Model Survive a Triathlon?
