@@ -82,14 +82,14 @@ h2{font-family:Georgia,"Times New Roman",serif;font-size:28px;line-height:1.2}
 .desc{color:var(--muted);font-size:15px;max-width:760px}
 .tldr{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:start}
 .tldr-text p{color:#3d4652;margin-bottom:13px}
-.track-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+.track-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-column:1/-1;gap:12px;margin-top:0}
 .track-card{border:1px solid var(--faint);border-radius:8px;padding:16px;background:#fff}
 .track-card h3{font-size:14px;margin-bottom:8px}
 .track-card p{font-size:13px;color:#606975}
 .track-bar{height:4px;border-radius:99px;margin-bottom:13px}
-.media-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.media-item{border:1px solid var(--faint);border-radius:8px;overflow:hidden;background:#fff}
-.media-item video{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#111}
+.media-grid{display:grid;grid-template-columns:1fr;gap:10px;align-self:start}
+.media-item{display:grid;grid-template-columns:150px 1fr;align-items:center;border:1px solid var(--faint);border-radius:8px;overflow:hidden;background:#fff}
+.media-item video{display:block;width:150px;aspect-ratio:16/9;object-fit:cover;background:#111}
 .media-caption{padding:10px 12px}
 .media-caption b{display:block;font-size:13px;line-height:1.3}
 .media-caption span{display:block;font-size:12px;color:#737b86;margin-top:2px}
@@ -181,6 +181,7 @@ tbody tr[data-rank="3"]{background:linear-gradient(90deg,rgba(180,83,9,.11),rgba
 .diagnostics-main,.diagnostics-stack{display:contents}
 .viz-card{position:relative;display:flex;min-height:392px;flex-direction:column;border:1px solid #dfe5ec;border-radius:8px;background:#fff;overflow:hidden;box-shadow:0 16px 38px rgba(24,32,42,.045)}
 .viz-card.featured,.viz-card.wide,.viz-card.compact{min-height:392px}
+.domain-card{min-height:430px}
 .viz-head{display:block;min-height:100px;padding:15px 16px 12px;border-bottom:1px solid #edf1f5;background:linear-gradient(180deg,#fbfcfd 0%,#fff 100%)}
 .viz-head h3{font-size:15px;line-height:1.25;margin-bottom:3px}
 .viz-head p{font-size:12px;color:#66717d;line-height:1.4}
@@ -188,10 +189,12 @@ tbody tr[data-rank="3"]{background:linear-gradient(90deg,rgba(180,83,9,.11),rgba
 .viz-btn{border:1px solid #d7dee7;background:#f8fafc;border-radius:6px;padding:5px 8px;font:inherit;font-size:11px;font-weight:800;color:#405060;cursor:pointer;white-space:nowrap}
 .viz-btn.active,.viz-btn:hover{background:#243447;border-color:#243447;color:#fff}
 .viz-canvas{display:flex;align-items:center;flex:1;padding:10px 16px 12px;min-height:226px}
+.domain-card .viz-canvas{align-items:flex-start;min-height:260px}
 .viz-canvas svg{display:block;width:100%;height:auto;overflow:visible}
 .viz-axis{stroke:#d8e0e8;stroke-width:1}
 .viz-grid{stroke:#eef3f7;stroke-width:1}
 .viz-label{fill:#66727f;font-size:11px}
+.viz-domain-label{fill:#66727f;font-size:10px;font-weight:850}
 .viz-title-label{fill:#1f2937;font-size:12px;font-weight:800}
 .viz-axis-label{fill:#73808c;font-size:10px;font-weight:700}
 .viz-bar,.viz-click-target,.viz-cell-bar{cursor:pointer;transition:opacity .15s ease,filter .15s ease}
@@ -296,7 +299,8 @@ footer a{color:#4b5563;text-decoration:none;margin:0 8px}
   .stats,.track-grid,.pipeline,.data-bars,.data-showcase,.diagnostics-overview,.diagnostics-layout,.metrics-grid{grid-template-columns:1fr}
   .tldr,.case-viewer{grid-template-columns:1fr}
   .viz-card.featured,.viz-card.wide,.viz-card.compact{min-height:0}
-  .media-grid{grid-template-columns:1fr 1fr}
+  .domain-card{min-height:0}
+  .media-grid{grid-template-columns:1fr}
 }
 @media(max-width:560px){
   .container{padding:0 18px}
@@ -313,6 +317,8 @@ footer a{color:#4b5563;text-decoration:none;margin:0 8px}
   .viz-note span{display:block}
   .viz-note span+span{margin-top:4px}
   .media-grid{grid-template-columns:1fr}
+  .media-item{grid-template-columns:1fr}
+  .media-item video{width:100%}
   .finding-card{grid-template-columns:1fr}
 }
 </style>
@@ -428,40 +434,36 @@ footer a{color:#4b5563;text-decoration:none;margin:0 8px}
           <p>WorldOlympiad decomposes world-model evaluation into three complementary tracks: whether generated videos obey physical rules, preserve coherent 3D structure, and sustain controllable interactions over long horizons.</p>
           <p>The benchmark covers 400 robotics videos, 400 gaming videos, and 200 real-world videos. Each video is standardized through chunking, captioning, and refinement before model rollout and automatic evaluation.</p>
           <p class="quote">The main result is diagnostic: current models can be strong in physical regularity or interaction following, but geometric consistency and long-horizon state preservation remain unresolved.</p>
-          <div class="track-grid">
-            <div class="track-card">
-              <div class="track-bar" style="background:var(--orange)"></div>
-              <h3>Physical Faithfulness</h3>
-              <p>Rule-level judging over mechanics, thermodynamics, and material behavior.</p>
-            </div>
-            <div class="track-card">
-              <div class="track-bar" style="background:var(--violet)"></div>
-              <h3>3D Consistency</h3>
-              <p>Gaussian-splat reconstruction, meta-view quality, and camera trajectory alignment.</p>
-            </div>
-            <div class="track-card">
-              <div class="track-bar" style="background:var(--green)"></div>
-              <h3>Interaction Fidelity</h3>
-              <p>Chunk following, transition smoothness, and long-range global coherence.</p>
-            </div>
-          </div>
         </div>
         <div class="media-grid">
           <div class="media-item">
             <video autoplay loop muted playsinline preload="metadata"><source src="assets/video/gaming_lingbot_preview.mp4" type="video/mp4"></video>
-            <div class="media-caption"><b>Gaming rollout</b><span>LingBot-World preserves scene state and character motion.</span></div>
+            <div class="media-caption"><b>Gaming simulator</b></div>
           </div>
           <div class="media-item">
-            <video autoplay loop muted playsinline preload="metadata"><source src="assets/video/robotics_rolling_failure_preview.mp4" type="video/mp4"></video>
-            <div class="media-caption"><b>Robotics failure</b><span>Visual quality is high, but the no-contact instruction fails.</span></div>
+            <video autoplay loop muted playsinline preload="metadata"><source src="assets/video/robotics_triangle_bread.mp4" type="video/mp4"></video>
+            <div class="media-caption"><b>Triangle bread: target-object following</b></div>
           </div>
           <div class="media-item">
             <video autoplay loop muted playsinline preload="metadata"><source src="assets/video/general_reference_preview.mp4" type="video/mp4"></video>
-            <div class="media-caption"><b>Real-world reference</b><span>Reference motion and camera dynamics for evaluation.</span></div>
+            <div class="media-caption"><b>Real-world simulator</b></div>
           </div>
-          <div class="media-item">
-            <video autoplay loop muted playsinline preload="metadata"><source src="assets/video/general_lingbot_preview.mp4" type="video/mp4"></video>
-            <div class="media-caption"><b>Generated continuation</b><span>A compact preview from the same real-world case.</span></div>
+        </div>
+        <div class="track-grid">
+          <div class="track-card">
+            <div class="track-bar" style="background:var(--orange)"></div>
+            <h3>Physical Faithfulness</h3>
+            <p>Rule-level judging over mechanics, thermodynamics, and material behavior.</p>
+          </div>
+          <div class="track-card">
+            <div class="track-bar" style="background:var(--violet)"></div>
+            <h3>3D Consistency</h3>
+            <p>Gaussian-splat reconstruction, meta-view quality, and camera trajectory alignment.</p>
+          </div>
+          <div class="track-card">
+            <div class="track-bar" style="background:var(--green)"></div>
+            <h3>Interaction Fidelity</h3>
+            <p>Chunk following, transition smoothness, and long-range global coherence.</p>
           </div>
         </div>
       </div>
@@ -652,7 +654,7 @@ footer a{color:#4b5563;text-decoration:none;margin:0 8px}
         </div>
         <div class="diagnostic-chip">
           <b>Domain Robustness</b>
-          <span>Robotics, gaming, and general-world transfer patterns.</span>
+          <span>Fine-grained gaming, robotics, and general-world transfer patterns.</span>
         </div>
         <div class="diagnostic-chip">
           <b>Human Alignment</b>
@@ -690,17 +692,17 @@ footer a{color:#4b5563;text-decoration:none;margin:0 8px}
           </article>
         </div>
         <div class="diagnostics-stack">
-          <article class="viz-card compact">
+          <article class="viz-card compact domain-card">
             <div class="viz-head">
               <div>
                 <h3>Domain Robustness</h3>
-                <p>Domain-level heatmap for gaming, robotics, and general-world transfer.</p>
+                <p>Fine-grained domain heatmaps for physical, 3D, and interaction diagnostics.</p>
               </div>
-              <div class="viz-controls" id="domainControls" aria-label="Domain metric controls"></div>
+              <div class="viz-controls" id="domainControls" aria-label="Domain diagnostic controls"></div>
             </div>
-            <div class="viz-canvas" id="domainChart" aria-label="Interactive domain robustness heatmap"></div>
+            <div class="viz-canvas" id="domainChart" aria-label="Interactive fine-grained domain robustness heatmap"></div>
             <div class="viz-note">
-              <span id="domainNote"><span class="viz-hint">All</span> score heatmap.</span>
+              <span id="domainNote"><span class="viz-hint">Physical</span> detail heatmap.</span>
             </div>
           </article>
           <article class="viz-card compact">
@@ -819,7 +821,7 @@ footer a{color:#4b5563;text-decoration:none;margin:0 8px}
         </div>
       </div>
       <div class="ack-card">
-        <p>We thank <a href="https://github.com/OpenDCAI/OpenWorldLib?tab=readme-ov-file">OpenWorldLib</a> for providing the generation pipeline infrastructure used in our video world model rollouts, and we also acknowledge <a href="https://github.com/QwenLM/Qwen3-VL">Qwen3-VL</a>, <a href="https://github.com/bytedance-seed/depth-anything-3">Depth Anything 3</a>, and <a href="https://github.com/facebookresearch/sam3">SAM 3</a> for their foundational model capabilities that support language understanding, depth perception, and segmentation in our workflow.</p>
+        <p>We thank <a href="https://github.com/OpenDCAI/OpenWorldLib?tab=readme-ov-file">OpenWorldLib</a> for providing the generation pipeline infrastructure used in our video world model rollouts, and we also acknowledge <a href="https://github.com/QwenLM/Qwen3-VL">Qwen3-VL</a>, <a href="https://github.com/bytedance-seed/depth-anything-3">Depth Anything 3</a>, and <a href="https://github.com/facebookresearch/sam3">SAM 3</a> for their foundational model capabilities that support video understanding, 3D reconstruction, and segmentation in our workflow.</p>
       </div>
     </section>
 
@@ -1051,6 +1053,119 @@ const domainScores=[
   {domain:"General",model:"Yume-1.5",physical:.925,geometry:.302,interact:.694,clip:.302,all:.640},
   {domain:"General",model:"Hunyuan-WorldPlay",physical:.389,geometry:.219,interact:.097,clip:.235,all:.235}
 ];
+const domainDetailViews={
+  physical:{
+    label:"Physical Details",
+    note:"dimension pass rates",
+    color:"#b7791f",
+    metrics:[
+      {key:"mechanics",label:"Mechanics"},
+      {key:"thermo",label:"Thermo."},
+      {key:"material",label:"Material"}
+    ],
+    data:[
+      {domain:"Gaming",model:"Matrix-Game 2.0",mechanics:.433,thermo:.172,material:.184},
+      {domain:"Gaming",model:"LingBot-World",mechanics:.983,thermo:.450,material:.969},
+      {domain:"Gaming",model:"Cosmos-Predict-2.5",mechanics:.951,thermo:.418,material:.884},
+      {domain:"Gaming",model:"WoW",mechanics:.806,thermo:.226,material:.446},
+      {domain:"Gaming",model:"Rolling Forcing",mechanics:.941,thermo:.418,material:.854},
+      {domain:"Gaming",model:"LongLive",mechanics:.941,thermo:.377,material:.865},
+      {domain:"Gaming",model:"Yume-1.5",mechanics:.942,thermo:.365,material:.902},
+      {domain:"Gaming",model:"Hunyuan-WorldPlay",mechanics:.944,thermo:.426,material:.843},
+      {domain:"Robotics",model:"Matrix-Game 2.0",mechanics:.366,thermo:.000,material:.372},
+      {domain:"Robotics",model:"LingBot-World",mechanics:.961,thermo:.000,material:.957},
+      {domain:"Robotics",model:"Cosmos-Predict-2.5",mechanics:.939,thermo:.000,material:.968},
+      {domain:"Robotics",model:"WoW",mechanics:.798,thermo:.111,material:.788},
+      {domain:"Robotics",model:"Rolling Forcing",mechanics:.857,thermo:.000,material:.935},
+      {domain:"Robotics",model:"LongLive",mechanics:.864,thermo:.000,material:.869},
+      {domain:"Robotics",model:"Yume-1.5",mechanics:.857,thermo:.000,material:.872},
+      {domain:"Robotics",model:"Hunyuan-WorldPlay",mechanics:.577,thermo:.000,material:.810},
+      {domain:"General",model:"Matrix-Game 2.0",mechanics:.246,thermo:.097,material:.036},
+      {domain:"General",model:"LingBot-World",mechanics:1.000,thermo:.519,material:1.000},
+      {domain:"General",model:"Cosmos-Predict-2.5",mechanics:.977,thermo:.613,material:.875},
+      {domain:"General",model:"WoW",mechanics:.743,thermo:.300,material:.562},
+      {domain:"General",model:"Rolling Forcing",mechanics:.968,thermo:.581,material:.938},
+      {domain:"General",model:"LongLive",mechanics:.952,thermo:.581,material:.812},
+      {domain:"General",model:"Yume-1.5",mechanics:.979,thermo:.370,material:.906},
+      {domain:"General",model:"Hunyuan-WorldPlay",mechanics:.430,thermo:.323,material:.036}
+    ]
+  },
+  geometry:{
+    label:"3D Details",
+    note:"reconstruction, meta-view, and trajectory scores",
+    color:"#695b8f",
+    metrics:[
+      {key:"recon",label:"GS Recon."},
+      {key:"meta",label:"Meta View"},
+      {key:"traj",label:"Camera"}
+    ],
+    data:[
+      {domain:"Gaming",model:"Matrix-Game 2.0",recon:.160,meta:.159,traj:.247},
+      {domain:"Gaming",model:"LingBot-World",recon:.389,meta:.372,traj:.337},
+      {domain:"Gaming",model:"Cosmos-Predict-2.5",recon:.415,meta:.388,traj:.280},
+      {domain:"Gaming",model:"WoW",recon:.232,meta:.205,traj:.231},
+      {domain:"Gaming",model:"Rolling Forcing",recon:.324,meta:.292,traj:.250},
+      {domain:"Gaming",model:"LongLive",recon:.328,meta:.292,traj:.256},
+      {domain:"Gaming",model:"Yume-1.5",recon:.381,meta:.361,traj:.315},
+      {domain:"Gaming",model:"Hunyuan-WorldPlay",recon:.397,meta:.363,traj:.284},
+      {domain:"Robotics",model:"Matrix-Game 2.0",recon:.283,meta:.298,traj:.432},
+      {domain:"Robotics",model:"LingBot-World",recon:.416,meta:.416,traj:.348},
+      {domain:"Robotics",model:"Cosmos-Predict-2.5",recon:.451,meta:.464,traj:.523},
+      {domain:"Robotics",model:"WoW",recon:.297,meta:.289,traj:.232},
+      {domain:"Robotics",model:"Rolling Forcing",recon:.458,meta:.432,traj:.278},
+      {domain:"Robotics",model:"LongLive",recon:.476,meta:.483,traj:.458},
+      {domain:"Robotics",model:"Yume-1.5",recon:.337,meta:.340,traj:.185},
+      {domain:"Robotics",model:"Hunyuan-WorldPlay",recon:.574,meta:.566,traj:.660},
+      {domain:"General",model:"Matrix-Game 2.0",recon:.191,meta:.196,traj:.271},
+      {domain:"General",model:"LingBot-World",recon:.373,meta:.319,traj:.312},
+      {domain:"General",model:"Cosmos-Predict-2.5",recon:.341,meta:.322,traj:.288},
+      {domain:"General",model:"WoW",recon:.243,meta:.225,traj:.286},
+      {domain:"General",model:"Rolling Forcing",recon:.283,meta:.266,traj:.306},
+      {domain:"General",model:"LongLive",recon:.289,meta:.280,traj:.300},
+      {domain:"General",model:"Yume-1.5",recon:.318,meta:.306,traj:.282},
+      {domain:"General",model:"Hunyuan-WorldPlay",recon:.177,meta:.191,traj:.288}
+    ]
+  },
+  interaction:{
+    label:"Interaction Details",
+    note:"chunk, transition, global, and calibrated semantic diagnostics",
+    color:"#4f8f72",
+    metrics:[
+      {key:"chunk",label:"Chunk"},
+      {key:"transition",label:"Trans."},
+      {key:"global",label:"Global"},
+      {key:"longRange",label:"Long Range"},
+      {key:"globalText",label:"Global Text"},
+      {key:"clipAux",label:"CLIP Aux."}
+    ],
+    data:[
+      {domain:"Gaming",model:"Matrix-Game 2.0",chunk:.135,transition:.074,global:.087,longRange:.087,globalText:.087,clipAux:.150},
+      {domain:"Gaming",model:"LingBot-World",chunk:.796,transition:.767,global:.862,longRange:.875,globalText:.848,clipAux:.575},
+      {domain:"Gaming",model:"Cosmos-Predict-2.5",chunk:.704,transition:.677,global:.700,longRange:.718,globalText:.680,clipAux:.530},
+      {domain:"Gaming",model:"WoW",chunk:.267,transition:.233,global:.247,longRange:.250,globalText:.244,clipAux:.235},
+      {domain:"Gaming",model:"Rolling Forcing",chunk:.665,transition:.681,global:.704,longRange:.733,globalText:.675,clipAux:.660},
+      {domain:"Gaming",model:"LongLive",chunk:.595,transition:.444,global:.625,longRange:.640,globalText:.606,clipAux:.610},
+      {domain:"Gaming",model:"Yume-1.5",chunk:.645,transition:.727,global:.668,longRange:.702,globalText:.632,clipAux:.455},
+      {domain:"Gaming",model:"Hunyuan-WorldPlay",chunk:.483,transition:.458,global:.440,longRange:.464,globalText:.415,clipAux:.480},
+      {domain:"Robotics",model:"Matrix-Game 2.0",chunk:.136,transition:.167,global:.041,longRange:.042,globalText:.041,clipAux:.260},
+      {domain:"Robotics",model:"LingBot-World",chunk:.670,transition:.714,global:.881,longRange:.893,globalText:.869,clipAux:.570},
+      {domain:"Robotics",model:"Cosmos-Predict-2.5",chunk:.682,transition:.707,global:.896,longRange:.908,globalText:.885,clipAux:.605},
+      {domain:"Robotics",model:"WoW",chunk:.413,transition:.501,global:.472,longRange:.493,globalText:.451,clipAux:.440},
+      {domain:"Robotics",model:"Rolling Forcing",chunk:.498,transition:.600,global:.632,longRange:.661,globalText:.603,clipAux:.645},
+      {domain:"Robotics",model:"LongLive",chunk:.484,transition:.288,global:.587,longRange:.619,globalText:.556,clipAux:.635},
+      {domain:"Robotics",model:"Yume-1.5",chunk:.553,transition:.715,global:.694,longRange:.722,globalText:.667,clipAux:.560},
+      {domain:"Robotics",model:"Hunyuan-WorldPlay",chunk:.245,transition:.254,global:.134,longRange:.140,globalText:.129,clipAux:.545},
+      {domain:"General",model:"Matrix-Game 2.0",chunk:.069,transition:.064,global:.031,longRange:.031,globalText:.029,clipAux:.110},
+      {domain:"General",model:"LingBot-World",chunk:.752,transition:.819,global:.829,longRange:.838,globalText:.812,clipAux:.555},
+      {domain:"General",model:"Cosmos-Predict-2.5",chunk:.746,transition:.755,global:.764,longRange:.782,globalText:.746,clipAux:.565},
+      {domain:"General",model:"WoW",chunk:.314,transition:.294,global:.292,longRange:.293,globalText:.285,clipAux:.280},
+      {domain:"General",model:"Rolling Forcing",chunk:.620,transition:.727,global:.661,longRange:.684,globalText:.629,clipAux:.570},
+      {domain:"General",model:"LongLive",chunk:.598,transition:.520,global:.639,longRange:.661,globalText:.603,clipAux:.575},
+      {domain:"General",model:"Yume-1.5",chunk:.637,transition:.814,global:.718,longRange:.744,globalText:.684,clipAux:.510},
+      {domain:"General",model:"Hunyuan-WorldPlay",chunk:.130,transition:.030,global:.073,longRange:.073,globalText:.073,clipAux:.175}
+    ]
+  }
+};
 const alignmentScores=[
   {model:"LingBot-World",human:.721,auto:.683,humanRank:1,autoRank:1,gap:0},
   {model:"Cosmos-Predict-2.5",human:.648,auto:.671,humanRank:2,autoRank:2,gap:0},
@@ -1063,7 +1178,7 @@ const alignmentScores=[
 ];
 let activeDiagnosticModel=null;
 let activeRankMetric="all";
-let activeDomainMetric="all";
+let activeDomainMetric="physical";
 
 function metricDef(key){
   return diagnosticMetrics.find(item=>item.key===key)||diagnosticMetrics[0];
@@ -1139,6 +1254,20 @@ function renderMetricButtons(containerId,activeKey,onChange){
     const btn=event.target.closest("button");
     if(!btn)return;
     onChange(btn.dataset.metric);
+  };
+}
+
+function renderDomainButtons(){
+  const container=document.getElementById("domainControls");
+  if(!container)return;
+  container.innerHTML=Object.entries(domainDetailViews).map(([key,item])=>`
+    <button class="viz-btn${key===activeDomainMetric?" active":""}" data-domain-view="${escapeHtml(key)}" type="button">${escapeHtml(item.label)}</button>
+  `).join("");
+  container.onclick=event=>{
+    const btn=event.target.closest("button");
+    if(!btn)return;
+    activeDomainMetric=btn.dataset.domainView;
+    renderDiagnosticCharts();
   };
 }
 
@@ -1226,38 +1355,55 @@ function renderMetricChart(){
 function renderDomainChart(){
   const root=document.getElementById("domainChart");
   if(!root)return;
-  const metric=metricDef(activeDomainMetric);
+  const view=domainDetailViews[activeDomainMetric]||domainDetailViews.physical;
   const models=[...modelScores].sort((a,b)=>a.rank-b.rank);
   const domains=["Gaming","Robotics","General"];
-  const width=640,height=254;
-  const margin={top:40,right:16,bottom:16,left:82};
+  const width=760;
+  const margin={top:46,right:14,bottom:12,left:112};
+  const rowH=24;
+  const domainGap=12;
+  const groupH=view.metrics.length*rowH;
+  const height=margin.top+domains.length*groupH+(domains.length-1)*domainGap+margin.bottom;
   const cellW=(width-margin.left-margin.right)/models.length;
-  const cellH=50;
-  let svg=`<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="${escapeHtml(metric.label)} domain heatmap">`;
+  const verticalLabel=(text,x,centerY)=>{
+    return `<text class="viz-domain-label" x="${x}" y="${centerY}" text-anchor="middle" dominant-baseline="middle" transform="rotate(-90 ${x} ${centerY})">${escapeHtml(text)}</text>`;
+  };
+  let svg=`<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="${escapeHtml(view.label)} domain heatmap">`;
   models.forEach((model,index)=>{
     const x=margin.left+index*cellW+cellW/2;
-    svg+=`<text class="viz-axis-label" x="${x}" y="25" text-anchor="middle">${escapeHtml(model.short)}</text>`;
+    svg+=`<text class="viz-axis-label" x="${x}" y="28" text-anchor="middle">${escapeHtml(model.short)}</text>`;
   });
   domains.forEach((domain,domainIndex)=>{
-    const y=margin.top+domainIndex*cellH;
-    svg+=`<text class="viz-label" x="${margin.left-12}" y="${y+cellH/2+4}" text-anchor="end">${escapeHtml(domain)}</text>`;
-    models.forEach((model,index)=>{
-      const entry=domainScores.find(item=>item.domain===domain&&item.model===model.model);
-      const score=entry?entry[activeDomainMetric]:0;
-      const x=margin.left+index*cellW;
-      const muted=activeDiagnosticModel&&activeDiagnosticModel!==model.model;
-      const active=activeDiagnosticModel===model.model;
-      const fill=heatColor(score);
-      const textColor=score>.54?"#fff":"#1f2937";
-      const lines=[`${domain} ${metric.label}: ${fmtScore(score)}`,`Overall score: ${fmtScore(model.all)}`,`Category: ${model.category}`];
-      svg+=`<rect class="heat-cell${active?" active":""}" data-viz-model="${escapeHtml(model.model)}" data-viz-title="${escapeHtml(model.model)}" data-viz-lines="${escapeHtml(lines.join("|"))}" x="${x+2}" y="${y+2}" width="${cellW-4}" height="${cellH-4}" rx="7" fill="${fill}" opacity="${muted?".24":"1"}"></rect>`;
-      svg+=`<text x="${x+cellW/2}" y="${y+cellH/2+4}" text-anchor="middle" font-size="11" font-weight="800" fill="${textColor}" opacity="${muted?".35":"1"}">${fmtScore(score)}</text>`;
+    const y=margin.top+domainIndex*(groupH+domainGap);
+    svg+=verticalLabel(domain,18,y+groupH/2);
+    view.metrics.forEach((metric,metricIndex)=>{
+      const rowY=y+metricIndex*rowH;
+      svg+=`<text class="viz-axis-label" x="${margin.left-10}" y="${rowY+rowH/2+4}" text-anchor="end">${escapeHtml(metric.label)}</text>`;
+      models.forEach((model,index)=>{
+        const entry=view.data.find(item=>item.domain===domain&&item.model===model.model);
+        const aggregate=domainScores.find(item=>item.domain===domain&&item.model===model.model);
+        const score=entry?entry[metric.key]:0;
+        const x=margin.left+index*cellW;
+        const muted=activeDiagnosticModel&&activeDiagnosticModel!==model.model;
+        const active=activeDiagnosticModel===model.model;
+        const fill=heatColor(score);
+        const textColor=score>.54?"#fff":"#1f2937";
+        const lines=[`${domain} ${metric.label}: ${fmtScore(score)}`,`Domain All: ${fmtScore(aggregate?.all||0)}`,`Aggregate ${view.label}: ${fmtScore(aggregate?.[activeDomainMetric==="geometry"?"geometry":activeDomainMetric==="interaction"?"interact":"physical"]||0)}`];
+        svg+=`<rect class="heat-cell${active?" active":""}" data-viz-model="${escapeHtml(model.model)}" data-viz-title="${escapeHtml(model.model)}" data-viz-lines="${escapeHtml(lines.join("|"))}" x="${x+2}" y="${rowY+2}" width="${cellW-4}" height="${rowH-4}" rx="5" fill="${fill}" opacity="${muted?".24":"1"}"></rect>`;
+        svg+=`<text x="${x+cellW/2}" y="${rowY+rowH/2+4}" text-anchor="middle" font-size="9.8" font-weight="800" fill="${textColor}" opacity="${muted?".35":"1"}">${fmtScore(score)}</text>`;
+      });
     });
   });
   svg+=`</svg>`;
   root.innerHTML=svg;
-  const best=domainScores.reduce((max,item)=>item[activeDomainMetric]>max[activeDomainMetric]?item:max,domainScores[0]);
-  document.getElementById("domainNote").innerHTML=`<span class="viz-hint">${escapeHtml(metric.label)}</span>: ${escapeHtml(modelInfo(best.model).short)} leads ${escapeHtml(best.domain)} at ${fmtScore(best[activeDomainMetric])}.`;
+  const best=view.data.reduce((bestRow,row)=>{
+    const rowBest=Math.max(...view.metrics.map(metric=>row[metric.key]));
+    const bestScore=bestRow?Math.max(...view.metrics.map(metric=>bestRow[metric.key])):-Infinity;
+    return rowBest>bestScore?row:bestRow;
+  },null);
+  const bestMetric=view.metrics.reduce((max,metric)=>best[metric.key]>best[max.key]?metric:max,view.metrics[0]);
+  const physicalCaveat=activeDomainMetric==="physical"?" Zero-valued physical subdimensions can indicate no related phenomenon in that domain and are excluded from the reported aggregate score.":"";
+  document.getElementById("domainNote").innerHTML=`<span class="viz-hint">${escapeHtml(view.label)}</span>: ${escapeHtml(modelInfo(best.model).short)} leads ${escapeHtml(best.domain)} ${escapeHtml(bestMetric.label)} at ${fmtScore(best[bestMetric.key])}.${physicalCaveat}`;
   bindVizInteractivity(root);
 }
 
@@ -1312,10 +1458,7 @@ function renderDiagnosticCharts(){
     activeRankMetric=key;
     renderDiagnosticCharts();
   });
-  renderMetricButtons("domainControls",activeDomainMetric,key=>{
-    activeDomainMetric=key;
-    renderDiagnosticCharts();
-  });
+  renderDomainButtons();
   renderRankChart();
   renderMetricChart();
   renderDomainChart();
