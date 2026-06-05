@@ -345,6 +345,7 @@ footer a{color:#4b5563;text-decoration:none;margin:0 8px}
       <a href="#leaderboard">Leaderboard</a>
       <a href="#metrics">Metrics</a>
       <a href="#cases">Cases</a>
+      <a href="#license">License</a>
       <a href="#citation">Citation</a>
       <a href="../paper.tex">Paper</a>
       <a class="nav-btn" href="https://github.com/alibaba-damo-academy/WorldOlympiad">Code</a>
@@ -363,6 +364,7 @@ footer a{color:#4b5563;text-decoration:none;margin:0 8px}
       <a href="#metrics">Metrics</a>
       <a href="#cases">Cases</a>
       <a href="#acknowledgement">Thanks</a>
+      <a href="#license">License</a>
       <a href="#citation">Citation</a>
     </aside>
 
@@ -732,7 +734,7 @@ footer a{color:#4b5563;text-decoration:none;margin:0 8px}
       <div class="findings-list">
         <div class="finding-card">
           <div class="finding-num">1</div>
-          <p><b>Stateful simulation separates top models from visually plausible generators.</b> LingBot-World ranks first overall with strong physical faithfulness (0.942) and interaction fidelity (0.734), while Cosmos-Predict-2.5 follows closely despite a smaller 2B model scale.</p>
+          <p><b>Model scale correlates with stronger world-model performance.</b> LingBot-World is a 14B-activated model and ranks first overall, with strong physical faithfulness (0.942) and interaction fidelity (0.734). It also opens a clear aggregate gap over smaller 1.3B-scale models such as LongLive, improving the overall score from 0.584 to 0.683.</p>
         </div>
         <div class="finding-card">
           <div class="finding-num">2</div>
@@ -744,7 +746,7 @@ footer a{color:#4b5563;text-decoration:none;margin:0 8px}
         </div>
         <div class="finding-card">
           <div class="finding-num">4</div>
-          <p><b>Specialization helps only when it transfers.</b> LingBot-World and Cosmos-Predict-2.5 generalize beyond their original emphasis, while WoW is stronger on embodied videos than on gaming or general real-world videos.</p>
+          <p><b>Sustained single-domain training can support broad generalization.</b> LingBot-World and Cosmos-Predict-2.5 are specialized around gaming and robotics, yet both remain strong across all three domains, indicating that domain-focused training can learn transferable world knowledge. However, this behavior is not guaranteed: WoW reaches 0.502 on robotics videos but drops to 0.368 on gaming and 0.415 on general videos. How to reliably obtain stronger cross-domain generalization from specialized training remains an open direction.</p>
         </div>
         <div class="finding-card">
           <div class="finding-num">5</div>
@@ -822,6 +824,18 @@ footer a{color:#4b5563;text-decoration:none;margin:0 8px}
       </div>
       <div class="ack-card">
         <p>We thank <a href="https://github.com/OpenDCAI/OpenWorldLib?tab=readme-ov-file">OpenWorldLib</a> for providing the generation pipeline infrastructure used in our video world model rollouts, and we also acknowledge <a href="https://github.com/QwenLM/Qwen3-VL">Qwen3-VL</a>, <a href="https://github.com/bytedance-seed/depth-anything-3">Depth Anything 3</a>, and <a href="https://github.com/facebookresearch/sam3">SAM 3</a> for their foundational model capabilities that support video understanding, 3D reconstruction, and segmentation in our workflow.</p>
+      </div>
+    </section>
+
+    <section id="license">
+      <div class="section-head">
+        <div>
+          <h2>License</h2>
+          <p class="desc">WorldOlympiad is released under a permissive open-source license.</p>
+        </div>
+      </div>
+      <div class="ack-card">
+        <p>The WorldOlympiad project website and code are made available under the <a href="https://opensource.org/license/mit">MIT License</a>. You may use, modify, and redistribute the project materials under the terms of the MIT License.</p>
       </div>
     </section>
 
