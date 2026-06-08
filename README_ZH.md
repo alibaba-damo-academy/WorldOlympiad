@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="figure/overview.png" alt="WorldOlympiad overview" width="96%">
-</p>
-
 <h1 align="center">WorldOlympiad: Can Your World Model Survive a Triathlon?</h1>
 
 <p align="center">
@@ -69,10 +65,6 @@ WorldOlympiad 用于诊断视频世界模型，而不只评估视频是否视觉
 
 标注流程会先定位视频中的主要连续执行区间，将视频切分为连续 chunk，然后生成 action/caption 元数据，并结合整段视频上下文进行 refine。最终这些 annotations 会作为 interaction evaluator 使用的 `prompt.json`。
 
-<p align="center">
-  <img src="figure/data_composition.png" alt="WorldOlympiad data composition pipeline" width="95%">
-</p>
-
 ## 结果与诊断
 
 WorldOlympiad 的目标不只是生成一个 aggregate leaderboard，而是帮助定位不同类型的失败模式。论文中展示了 score distributions、human preference alignment、radar-style diagnostics 和 qualitative failure cases。
@@ -81,13 +73,7 @@ WorldOlympiad 的目标不只是生成一个 aggregate leaderboard，而是帮�
   <img src="figure/result_statistics.png" alt="WorldOlympiad result statistics" width="95%">
 </p>
 
-<p align="center">
-  <img src="figure/four_metric_radar.png" alt="WorldOlympiad radar diagnostics" width="58%">
-</p>
-
-<p align="center">
-  <img src="figure/human_preference_alignment.png" alt="Human preference alignment" width="95%">
-</p>
+这些统计结果展示了当前长视频生成 pipeline 在三个赛道上的整体表现。这里更关键的不是单一平均分，而是不同模型的失败位置：有些 pipeline 能保持较好的视觉观感，却会违背物理规则；有些 pipeline 能维持局部运动，却会在长时序中丢失几何一致性或交互一致性。下面的案例图用于把这些错误模式具体化，方便进一步分析模型短板。
 
 <p align="center">
   <img src="figure/failure_case_study.png" alt="WorldOlympiad failure case study" width="95%">

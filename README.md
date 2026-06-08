@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="figure/overview.png" alt="WorldOlympiad overview" width="96%">
-</p>
-
 <h1 align="center">WorldOlympiad: Can Your World Model Survive a Triathlon?</h1>
 
 <p align="center">
@@ -77,10 +73,6 @@ splits each video into contiguous chunks, generates action/caption metadata,
 and refines annotations with the full video context. These annotations are the
 `prompt.json` files used by the interaction evaluator.
 
-<p align="center">
-  <img src="figure/data_composition.png" alt="WorldOlympiad data composition pipeline" width="95%">
-</p>
-
 ## Results And Diagnostics
 
 WorldOlympiad is designed to expose failure modes rather than only produce one
@@ -91,13 +83,12 @@ preference alignment, radar-style diagnostics, and qualitative failure cases.
   <img src="figure/result_statistics.png" alt="WorldOlympiad result statistics" width="95%">
 </p>
 
-<p align="center">
-  <img src="figure/four_metric_radar.png" alt="WorldOlympiad radar diagnostics" width="58%">
-</p>
-
-<p align="center">
-  <img src="figure/human_preference_alignment.png" alt="Human preference alignment" width="95%">
-</p>
+The score statistics summarize how current pipelines behave across the three
+tracks. The important pattern is not only which model has the highest average
+score, but where each model fails: some pipelines can maintain plausible visual
+appearance while breaking physical rules, while others preserve local motion but
+lose geometry or interaction consistency over longer rollouts. The qualitative
+cases below are included to make these error modes concrete and inspectable.
 
 <p align="center">
   <img src="figure/failure_case_study.png" alt="WorldOlympiad failure case study" width="95%">
