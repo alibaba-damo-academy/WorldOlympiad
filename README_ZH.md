@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://alibaba-damo-academy.github.io/WorldOlympiad"><img src="https://img.shields.io/badge/Project%20Page-000000?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Project Page"></a>
-  <a href="../paper/paper.tex"><img src="https://img.shields.io/badge/Paper%20Source-B31B1B?style=for-the-badge&logo=latex&logoColor=white" alt="Paper Source"></a>
+  <a href="https://arxiv.org/abs/2606.11129"><img src="https://img.shields.io/badge/Paper-B31B1B?style=for-the-badge&logo=arxiv&logoColor=white" alt="Paper"></a>
   <a href="https://github.com/alibaba-damo-academy/WorldOlympiad"><img src="https://img.shields.io/badge/Code-24292F?style=for-the-badge&logo=github&logoColor=white" alt="Code"></a>
   <a href="README.md"><img src="https://img.shields.io/badge/English-1677FF?style=for-the-badge" alt="English README"></a>
 </p>
