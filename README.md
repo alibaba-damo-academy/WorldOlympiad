@@ -9,7 +9,7 @@
 
 <p align="center">
   Yuke Zhao<sup>1,*</sup> &nbsp;
-  Wangbo Zhao<sup>2,3,*</sup> &nbsp;
+  Wangbo Zhao<sup>3,*</sup> &nbsp;
   Weijie Wang<sup>1,*</sup> &nbsp;
   Zeyu Zhang<sup>2,*,&dagger;</sup> &nbsp;
   Dakai An<sup>3</sup> &nbsp;
