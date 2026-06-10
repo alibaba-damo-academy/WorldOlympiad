@@ -347,11 +347,14 @@ python worldeval/scripts/score_video_physical_3d.py \
 如果本仓库对你的研究有帮助，请引用：
 
 ```bibtex
-@misc{worldolympiad2026,
-  title  = {WorldOlympiad: Can Your World Model Survive a Triathlon?},
-  author = {Zhao, Yuke and Zhao, Wangbo and Wang, Weijie and Zhang, Zeyu and An, Dakai and Liu, Akide and Yu, Yinghao and Tang, Jiasheng and Wang, Fan and Wang, Wei and Zhuang, Bohan},
-  year   = {2026},
-  note   = {Official repository: https://github.com/alibaba-damo-academy/WorldOlympiad}
+@misc{zhao2026worldolympiad,
+  title         = {WorldOlympiad: Can Your World Model Survive a Triathlon?},
+  author        = {Zhao, Yuke and Zhao, Wangbo and Wang, Weijie and Zhang, Zeyu and An, Dakai and Liu, Akide and Yu, Yinghao and Tang, Jiasheng and Wang, Fan and Wang, Wei and Zhuang, Bohan},
+  year          = {2026},
+  eprint        = {2606.11129},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CV},
+  url           = {https://arxiv.org/abs/2606.11129}
 }
 ```
 
