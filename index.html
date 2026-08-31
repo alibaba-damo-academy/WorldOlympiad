@@ -165,6 +165,7 @@ tbody tr[data-rank="3"]{background:linear-gradient(90deg,rgba(180,83,9,.11),rgba
 .score-viz b{font-size:12px;color:#172033;font-variant-numeric:tabular-nums}
 .score-bar{height:6px;border-radius:999px;background:#eef2f7;overflow:hidden}
 .score-bar i{display:block;height:100%;width:calc(var(--score)*100%);border-radius:inherit;background:var(--bar-color,var(--blue))}
+.score-missing{color:#8b95a1;font-size:12px;font-weight:700}
 .score-strong .score-viz b{font-weight:900;color:#0f172a}
 .score-strong .score-bar{height:8px}
 .dim-physical{border-bottom:3px solid var(--orange)}
@@ -912,6 +913,7 @@ const leaderboardModelMeta=new Map(Array.from(leaderboardBody.rows).map(row=>{
     order:Number(row.dataset.rank)
   }];
 }));
+leaderboardModelMeta.set("Uranus",{model:"Uranus",logoSrc:"assets/logo/uranus.jpg",logoAlt:"Uranus logo",order:0});
 const leaderboardAllScores=Array.from(leaderboardBody.rows).map(row=>({
   ...leaderboardModelMeta.get(row.dataset.model),
   task:"all",
@@ -953,14 +955,18 @@ function rankTone(rank){
 }
 
 function scoreCell(key,value,strong=false){
+  if(value===null||value===undefined||Number.isNaN(Number(value))){
+    return `<td class="score-cell"><span class="score-missing">-</span></td>`;
+  }
   return `<td class="score-cell${strong?" score-strong":""}"><div class="score-viz" style="--score:${value};--bar-color:var(--${scoreColors[key]})"><b>${fmtScore(value)}</b><span class="score-bar"><i></i></span></div></td>`;
 }
 
 function renderLeaderboardRow(row){
+  const logo=row.logoSrc?`<img src="${escapeHtml(row.logoSrc)}" alt="${escapeHtml(row.logoAlt)}">`:"";
   return `
     <tr data-task="${escapeHtml(row.task)}" data-rank="${row.rank}" data-model="${escapeHtml(row.model)}" data-physical="${row.physical}" data-geometry="${row.geometry}" data-clip="${row.clip}" data-interact="${row.interact}" data-all="${row.all}">
       <td class="rank ${rankTone(row.rank)}"><span class="rank-badge">${row.rank}</span></td>
-      <td><div class="model-cell"><span class="model-logo"><img src="${escapeHtml(row.logoSrc)}" alt="${escapeHtml(row.logoAlt)}"></span><span><span class="model-name">${escapeHtml(row.model)}</span></span></div></td>
+      <td><div class="model-cell"><span class="model-logo"${logo?"":" aria-hidden=\"true\""}>${logo}</span><span><span class="model-name">${escapeHtml(row.model)}</span></span></div></td>
       <td><span class="category ${escapeHtml(row.task)}">${escapeHtml(row.taskLabel)}</span></td>
       ${scoreCell("physical",row.physical)}
       ${scoreCell("geometry",row.geometry)}
@@ -1049,6 +1055,7 @@ const domainScores=[
   {domain:"Gaming",model:"LongLive",physical:.851,geometry:.292,interact:.554,clip:.322,all:.566},
   {domain:"Gaming",model:"Yume-1.5",physical:.813,geometry:.352,interact:.659,clip:.291,all:.608},
   {domain:"Gaming",model:"Hunyuan-WorldPlay",physical:.852,geometry:.348,interact:.471,clip:.296,all:.557},
+  {domain:"Robotics",model:"Uranus",physical:.925,geometry:.511,interact:.730,clip:.304,all:.722},
   {domain:"Robotics",model:"Matrix-Game 2.0",physical:.364,geometry:.338,interact:.139,clip:.252,all:.280},
   {domain:"Robotics",model:"LingBot-World",physical:.949,geometry:.393,interact:.710,clip:.314,all:.684},
   {domain:"Robotics",model:"Cosmos-Predict-2.5",physical:.937,geometry:.479,interact:.721,clip:.321,all:.712},
