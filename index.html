@@ -136,6 +136,7 @@ body.modal-open{overflow:hidden}
 .seg button{border:0;background:transparent;color:#5b6470;border-radius:6px;padding:7px 12px;font:inherit;font-size:12px;font-weight:700;cursor:pointer}
 .seg button.active{background:#171717;color:#fff}
 .table-wrap{overflow-x:auto;border:1px solid #e3e7ee;border-radius:8px;background:#fff;box-shadow:0 18px 48px rgba(15,23,42,.06)}
+.leaderboard-note{margin-top:10px;color:#68717d;font-size:12px;line-height:1.5}
 table{width:100%;border-collapse:separate;border-spacing:0;min-width:920px}
 th{position:sticky;top:0;z-index:1;background:#f8fafc;color:#3d4650;font-size:11px;text-transform:uppercase;padding:12px 10px;text-align:center;border-bottom:1px solid #d9dde4;cursor:pointer;white-space:nowrap}
 th:nth-child(2),td:nth-child(2),th:nth-child(3),td:nth-child(3){text-align:left}
@@ -635,6 +636,7 @@ footer a{color:#4b5563;text-decoration:none;margin:0 8px}
           </tbody>
         </table>
       </div>
+      <p class="leaderboard-note"><b>Uranus evaluation note.</b> Uranus uses interaction data provided by its authors; the reported scores are evaluated with the WorldOlympiad judge pipeline used for this leaderboard.</p>
     </section>
 
     <section id="results">
@@ -914,6 +916,7 @@ const leaderboardModelMeta=new Map(Array.from(leaderboardBody.rows).map(row=>{
   }];
 }));
 leaderboardModelMeta.set("Uranus",{model:"Uranus",logoSrc:"assets/logo/uranus.jpg",logoAlt:"Uranus logo",order:0});
+leaderboardModelMeta.set("Thinker-WM",{model:"Thinker-WM",logoSrc:"assets/logo/thinker-wm.jpg",logoAlt:"Thinker-WM logo",order:0});
 const leaderboardAllScores=Array.from(leaderboardBody.rows).map(row=>({
   ...leaderboardModelMeta.get(row.dataset.model),
   task:"all",
@@ -1055,6 +1058,7 @@ const domainScores=[
   {domain:"Gaming",model:"LongLive",physical:.851,geometry:.292,interact:.554,clip:.322,all:.566},
   {domain:"Gaming",model:"Yume-1.5",physical:.813,geometry:.352,interact:.659,clip:.291,all:.608},
   {domain:"Gaming",model:"Hunyuan-WorldPlay",physical:.852,geometry:.348,interact:.471,clip:.296,all:.557},
+  {domain:"Robotics",model:"Thinker-WM",physical:.923,geometry:.531,interact:.765,clip:.306,all:.740},
   {domain:"Robotics",model:"Uranus",physical:.925,geometry:.511,interact:.730,clip:.304,all:.722},
   {domain:"Robotics",model:"Matrix-Game 2.0",physical:.364,geometry:.338,interact:.139,clip:.252,all:.280},
   {domain:"Robotics",model:"LingBot-World",physical:.949,geometry:.393,interact:.710,clip:.314,all:.684},
