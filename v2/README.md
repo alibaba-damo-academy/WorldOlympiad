@@ -65,7 +65,10 @@ envs/, runtime/, weights/, cache/, .secrets/, outputs/, tmp/, and logs/ are mach
 
 Chengzhi Wang developed the WOV2 evaluation source on which this candidate is based. SimerWhite prepared this portable repository and its user-facing benchmark interface. The separately bundled third-party projects retain their own authorship and license terms; their source origins are recorded in `sources.lock.json`. Git commit authorship for this packaging does not replace attribution for the underlying work.
 
-The repository contains third-party source snapshots with different license terms. Do not publish it publicly until the missing license/provenance items in the migration guide are resolved.
+This branch is public for collaborator review, but the project has not yet
+declared a license for its own code. See [the source and license inventory](THIRD_PARTY_NOTICES.md)
+for bundled third-party terms and unresolved asset provenance. Public visibility
+does not make the whole repository open source or ready for redistribution.
 
 ## User-supplied real/sim datasets
 

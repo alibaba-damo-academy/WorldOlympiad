@@ -144,4 +144,6 @@ wo.models.cosmos expects cache/official_assets/robolab/f72d39445ab699c9cfd9bf551
 4. **Resolve optional DROID USD packaging.** Either verify the USD's rights/provenance and add it to an appropriate hash-locked optional asset bundle, or keep the Cosmos path documented as requiring a separately obtained asset.
 5. **Review public-tree contents.** Confirm ignored server outputs, credentials, model weights, private configs, and machine-local files are absent; audit retained historical logs/paths and every bundled source license.
 
-No public push or release has been performed.
+The candidate has been pushed to the public `v2` branch for collaborator review.
+That push does not complete the licensing, redistribution, or deployment gates
+above. See [`THIRD_PARTY_NOTICES.md`](../THIRD_PARTY_NOTICES.md).
