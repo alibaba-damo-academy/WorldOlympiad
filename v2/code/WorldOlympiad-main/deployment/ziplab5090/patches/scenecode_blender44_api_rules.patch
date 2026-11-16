@@ -1,0 +1,42 @@
+--- a/scenecode/code_object/agent_framework/prompts/constructor_simplemanip.md
++++ b/scenecode/code_object/agent_framework/prompts/constructor_simplemanip.md
+@@ -54,6 +54,18 @@
+ ```
+ 
+ ## Code Standards
++
++### Blender 4.4 API correctness (mandatory)
++
++- Membership in `bpy_prop_collection` is string-based. Use
++  `if obj.name not in collection.objects:`; never write
++  `if obj not in collection.objects:`.
++- Before assigning a shader socket, respect its dimensionality. Color/vector
++  sockets require a tuple (RGBA for colors); scalar sockets require a float.
++  In particular, Blender 4.4 `Sheen Tint` can be a color socket, so do not
++  blindly assign `0.0` based only on the socket name.
++- Prefer the demonstrated Blender API patterns below over invented keyword
++  arguments or compatibility branches.
+ 
+ ### 1. Base shape creation
+ 
+--- a/scenecode/code_object/agent_framework/prompts/constructor_structmanip.md
++++ b/scenecode/code_object/agent_framework/prompts/constructor_structmanip.md
+@@ -55,6 +55,18 @@
+ ```
+ 
+ ## Code Standards
++
++### Blender 4.4 API correctness (mandatory)
++
++- Membership in `bpy_prop_collection` is string-based. Use
++  `if obj.name not in collection.objects:`; never write
++  `if obj not in collection.objects:`.
++- Before assigning a shader socket, respect its dimensionality. Color/vector
++  sockets require a tuple (RGBA for colors); scalar sockets require a float.
++  In particular, Blender 4.4 `Sheen Tint` can be a color socket, so do not
++  blindly assign `0.0` based only on the socket name.
++- Prefer the demonstrated Blender API patterns below over invented keyword
++  arguments or compatibility branches.
+ 
+ ### 1. Base shape creation
+ 

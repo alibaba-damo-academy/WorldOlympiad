@@ -1,0 +1,27 @@
+diff --git a/scenecode/agent_utils/asset_router/router.py b/scenecode/agent_utils/asset_router/router.py
+--- a/scenecode/agent_utils/asset_router/router.py
++++ b/scenecode/agent_utils/asset_router/router.py
+@@ -1367,7 +1367,3 @@
+-            is_final_attempt = attempt == max_retries - 1
+-            if is_final_attempt:
+-                console_logger.info(
+-                    "Code-generated final attempt accepted without validation for "
+-                    f"'{item.description}'"
+-                )
+-                return result
++            # Final Code_Object candidates remain untrusted. Exhausting retries
++            # returns None instead of publishing an unchecked mesh candidate.
++            # Every successful geometry attempt passes the validation below.
+@@ -1678,2 +1675,0 @@
+-            is_final_attempt = attempt == max_retries - 1
+-
+@@ -1689,6 +1684,3 @@
+-            if is_final_attempt:
+-                console_logger.info(
+-                    "Code-articulated rigid fallback final attempt accepted without validation for "
+-                    f"'{item.description}'"
+-                )
+-                return result
++            # Rigid fallbacks are ordinary mesh candidates. The final retry is
++            # not a validation exemption; only articulated results may defer
++            # validation to the main-thread URDF-to-SDF path above.

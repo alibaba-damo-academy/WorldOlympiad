@@ -1,0 +1,39 @@
+--- a/scenecode_pybullet_bridge/articulated.py
++++ b/scenecode_pybullet_bridge/articulated.py
+@@ -1017,10 +1017,12 @@
+             )
+             for link in self.finger_contact_links
+         }
++        from autoresearch.pybullet_frame_contract import measured_base_link_pose
++        host_root = measured_base_link_pose(p, self.host)
+         host_links: dict[str, dict[str, Any]] = {}
+         for link_index in range(-1, p.getNumJoints(self.host)):
+             if link_index == -1:
+-                position, orientation = p.getBasePositionAndOrientation(self.host)
++                position, orientation = host_root["position"], host_root["orientation_xyzw"]
+                 name = p.getBodyInfo(self.host)[0].decode("utf-8") or "base_link"
+             else:
+                 info = p.getJointInfo(self.host, link_index)
+@@ -1031,6 +1033,8 @@
+                 "position": list(position),
+                 "orientation_xyzw": list(orientation),
+                 "link_index": link_index,
++                "pose_frame": "link",
++                **(host_root if link_index == -1 else {}),
+             }
+         self.frames.append(
+             {
+@@ -1066,8 +1070,11 @@
+                     self.inputs.binding.host_object_id: {
+                         "position": list(p.getBasePositionAndOrientation(self.host)[0]),
+                         "orientation_xyzw": list(p.getBasePositionAndOrientation(self.host)[1]),
+-                        "link_position": list(p.getBasePositionAndOrientation(self.host)[0]),
+-                        "link_orientation_xyzw": list(p.getBasePositionAndOrientation(self.host)[1]),
++                        "link_position": host_root["position"],
++                        "link_orientation_xyzw": host_root["orientation_xyzw"],
++                        "link_pose_frame": "link",
++                        "base_com_position": host_root["base_com_position"],
++                        "base_com_orientation_xyzw": host_root["base_com_orientation_xyzw"],
+                         "role": "support",
+                         "link_states": host_links,
+                     }

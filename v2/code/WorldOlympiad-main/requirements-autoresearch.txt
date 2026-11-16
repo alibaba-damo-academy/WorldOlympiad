@@ -1,0 +1,9 @@
+pydantic==2.11.7
+numpy==1.26.4
+scipy==1.13.1
+trimesh==4.7.1
+pybullet==3.2.7
+opencv-python-headless==4.11.0.86
+pillow==11.3.0
+imageio-ffmpeg==0.6.0
+PyYAML==6.0.3

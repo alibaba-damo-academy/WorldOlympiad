@@ -1,0 +1,74 @@
+--- a/scenecode/manipuland_agents/tools/manipuland_tools.py
++++ b/scenecode/manipuland_agents/tools/manipuland_tools.py
+@@ -11,6 +11,7 @@
+ import numpy as np
+ import trimesh
+ 
++from autoresearch.scenecode_loop_policy import asset_support_offset
+ from agents import function_tool
+ from omegaconf import DictConfig
+ from pydrake.all import RollPitchYaw
+@@ -1131,9 +1132,9 @@
+             is_thin_covering = (
+                 original_asset.metadata.get("asset_source") == "thin_covering"
+             )
+-            z_offset = 0.0
++            z_offset = asset_support_offset(original_asset)
+             if is_thin_covering:
+-                z_offset = -self.cfg.support_surface_extraction.height.surface_offset_m
++                z_offset -= self.cfg.support_surface_extraction.height.surface_offset_m
+                 console_logger.debug(
+                     f"Thin covering detected: applying z_offset={z_offset:.3f}m"
+                 )
+@@ -1383,7 +1384,14 @@
+             current_position_2d = scene_obj.placement_info.position_2d
+             current_rotation_2d = scene_obj.placement_info.rotation_2d
+ 
+-            # Check if both position and rotation are unchanged.
++            # Recompute support height after rescaling or changing surfaces.
++            z_offset = asset_support_offset(scene_obj)
++            if scene_obj.metadata.get("asset_source") == "thin_covering":
++                z_offset -= self.cfg.support_surface_extraction.height.surface_offset_m
++            current_surface_pose = target_surface.transform.inverse() @ scene_obj.transform
++            height_unchanged = np.isclose(current_surface_pose.translation()[2], z_offset, atol=1e-6)
++            surface_unchanged = scene_obj.placement_info.parent_surface_id == target_surface.surface_id
++            # Check all placement coordinates, including the geometry support height.
+             rotation_radians = math.radians(rotation_degrees)
+             position_unchanged = np.allclose(
+                 current_position_2d, position_2d, atol=1e-6
+@@ -1392,7 +1400,7 @@
+                 current_rotation_2d, rotation_radians, atol=1e-6
+             )
+ 
+-            if position_unchanged and rotation_unchanged:
++            if position_unchanged and rotation_unchanged and height_unchanged and surface_unchanged:
+                 console_logger.info(
+                     f"Manipuland '{scene_obj.name}'/'{object_id}' is already at "
+                     f"position ({position_x:.3f}, {position_z:.3f}) and rotation "
+@@ -1416,7 +1424,7 @@
+ 
+             # Convert SE(2) on surface to SE(3) in world.
+             world_transform = target_surface.to_world_pose(
+-                position_2d=position_2d, rotation_2d=rotation_radians
++                position_2d=position_2d, rotation_2d=rotation_radians, z_offset=z_offset
+             )
+ 
+             # Apply placement noise for realistic variation.
+--- a/scenecode/agent_utils/rescale_helpers.py
++++ b/scenecode/agent_utils/rescale_helpers.py
+@@ -116,7 +116,15 @@
+ 
+         # Update all affected objects' bounding boxes and invalidate surfaces.
+         for affected_obj in affected_objects:
++            # Keep surface-placed manipulands anchored while their geometry scales.
++            anchored = object_type_name == "manipuland" and affected_obj.placement_info is not None
++            old_bounds = affected_obj.compute_world_bounds() if anchored else None
+             affected_obj.apply_scale(scale_factor)
++            new_bounds = affected_obj.compute_world_bounds() if anchored else None
++            if old_bounds is not None and new_bounds is not None:
++                position = affected_obj.transform.translation().copy()
++                position[2] += float(old_bounds[0][2] - new_bounds[0][2])
++                affected_obj.transform.set_translation(position)
+ 
+         # Update asset registry if provided (keeps registry in sync for future placements).
+         if asset_registry is not None:

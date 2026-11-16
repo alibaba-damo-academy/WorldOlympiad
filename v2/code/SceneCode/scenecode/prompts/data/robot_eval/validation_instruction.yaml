@@ -1,0 +1,39 @@
+name: "validation_instruction"
+version: "1.0"
+description: "Per-task instruction for the validation agent"
+template_variables: ["task_description"]
+
+prompt: |
+  Validate whether the following task has been completed successfully:
+
+  TASK: {{ task_description }}
+
+  Follow these steps:
+
+  1. EXTRACT REQUIREMENTS
+     - Identify ONLY the robot actions stated in the task
+     - Do NOT add implied requirements (e.g., if task says "put cup on table",
+       only check "cup on table" - do NOT check "cup is upright" unless stated)
+     - IMPORTANT: Distinguish scene references from robot actions:
+       * "place X on a plate ON THE TABLE" → only requirement is "X is on the plate"
+       * "ON THE TABLE" describes which plate (scene reference), NOT an action
+       * Only evaluate what the robot changed, not pre-existing scene conditions
+
+  2. GATHER EVIDENCE (BE EXHAUSTIVE)
+     - Use list_objects() to identify ALL candidate objects
+     - For "fruit on plate": list ALL fruits AND ALL plates (plates are often stacked!)
+     - Test EVERY candidate pair before concluding failure
+     - Use get_support() for "on" relationships, observe_objects() for "inside"
+     - Only ONE successful pair needed; ALL must fail to score "none"
+     - Use observe_scene() to visually verify
+
+  3. EVALUATE EACH REQUIREMENT
+     - Score as "full" if completely satisfied
+     - Score as "partial" if technically there but not quite right
+     - Score as "none" if not satisfied at all
+     - Provide specific evidence for each score
+
+  4. PROVIDE VALIDATION RESULT
+     - Include the original task
+     - List each requirement with its score and reasoning
+     - Summarize overall completion status

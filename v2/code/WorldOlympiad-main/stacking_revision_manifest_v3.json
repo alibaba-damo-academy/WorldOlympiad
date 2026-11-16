@@ -1,0 +1,18 @@
+{
+  "schema_version": "wo_physical_source_revision.v1",
+  "family": "stacking",
+  "source_case": "household_storage_box_stack_static_counter_dev_20261017",
+  "revision": "closed_top_v3",
+  "changed_component": "lower_food_box destination",
+  "physical_change": "replaced the rejected open-container plus overlapping center fan with a single closed rounded box shell: side wall and separate bottom/top fans; outer dimensions, material and support contract retained", 
+  "grasp_release": "retain broad lateral side-wall grasp for the smaller upper box and stable centered release onto the repaired top; validate with original expert/reference stages",
+  "old_source_immutable": true,
+  "validation": {
+    "source_sha256": "a809b95c5d86b3be5a093e7290e2f9ffefbd0057cd92ada94e1aba27d9962872",
+    "visual_export": "closed_box_v3.glb",
+    "collision_export": "closed_box_v3_collision.obj",
+    "source_mesh": {"dimensions": [1.0, 0.75, 0.4000000059604645], "vertices": 66, "faces": 96, "edge_incidence": {"2": 160}, "top_center": true},
+    "evaluated_collision_mesh": {"vertices": 258, "faces": 288, "edge_incidence": {"2": 544}, "bounds": [[-0.5, -0.375, 0.0], [0.5, 0.375, 0.4000000059604645]], "positive_support_height": 0.4000000059604645},
+    "render": "closed_box_v3_render.png"
+  }
+}

@@ -1,0 +1,96 @@
+name: "manipuland_critic_runner_instruction"
+version: "1.0"
+description: "Runner instruction for manipuland critic agent"
+template_variables: ["physics_context", "placement_style"]
+prompt: |
+  Evaluate this manipuland arrangement comprehensively. Provide both critical
+  feedback on issues AND suggestions for enhancement opportunities.
+
+  ## Evaluation Workflow
+
+  Follow your system-defined MANDATORY EVALUATION WORKFLOW exactly:
+  1. Observe the current scene (observe_scene - REQUIRED)
+  2. Get detailed scene state (get_current_scene_state - REQUIRED)
+  3. Evaluate against all four criteria (Realism, Functionality, Layout,
+     Completion)
+  4. Synthesize findings into your critique
+
+  Your system instructions provide complete workflow details and tool
+  requirements.
+
+  ## Placement Style Context:
+  This scene uses **{{ placement_style }}** placement style.
+  {% if placement_style == "natural" %}
+  - **Natural Style**: Expect slight human-like imperfections in object
+    placement.
+    * ✓ ACCEPTABLE: Objects rotated 2-15° from perfect alignment, slight
+      position variation, intentional asymmetry
+    * ✗ EXCESSIVE: Objects at random angles (books sideways), chaotic
+      placement, nonfunctional orientations
+    * CRITICAL: Natural variation must NEVER compromise function. Mugs
+      must have handles accessible, books must be upright, plates must be
+      usable. If function is broken, it's chaos not natural.
+    Only flag alignment or spacing issues if they significantly affect
+    functionality or realism.
+  {% elif placement_style == "perfect" %}
+  - **Perfect Style**: Expect precise alignment and spacing with no
+    variation.
+    Flag any noticeable misalignment, spacing inconsistencies, or
+    asymmetry that detracts from the clean, pristine aesthetic.
+  {% endif %}
+
+  Please address:
+  1. **Previous Issues**: Were prior concerns addressed successfully? Did
+     attempted fixes make the scene worse and should be reverted?
+  2. **Current Problems**: Any new functional or spatial issues that need
+     fixing?
+  3. **Enhancement Opportunities**: How could this arrangement be refined
+     further, even if currently functional?
+
+  Remember: An arrangement that "works" can still be significantly
+  improved. Consider object orientations, spatial balance, density
+  optimization, and overall composition.
+
+  ## Physics Validation:
+  {% if physics_context %}
+  The following physics violations were detected:
+  {{ physics_context }}
+
+  Please incorporate these physics issues into your critique.
+  {% else %}
+  No physics violations detected. The scene has been validated through
+  physics simulation and is collision-free.
+  {% endif %}
+
+  IMPORTANT: Visual bounding box overlap does NOT indicate collision. If
+  you observe objects that appear to overlap, but they are not listed in
+  the physics violations above, the arrangement is PHYSICALLY VALID. Always
+  trust the physics validation data over visual interpretation.
+
+  ## Manipuland Validation Guidance:
+
+  Use scene state data from get_current_scene_state() to validate:
+
+  **Object Orientations:**
+  - Books: Should be upright (rotation ~0° or ~180°) with spines visible
+  - Mugs/cups: Handles should be accessible (rotation varied for natural
+    look)
+  - Plates/utensils: Flat orientation appropriate for dining
+  - Electronics: Facing toward user position
+  - Decorative items: Facing outward for visibility
+
+  **Spatial Distribution:**
+  - Verify objects are within surface bounds (compare positions to surface
+    dimensions)
+  - Check for clustering vs. good distribution across surface
+  - Assess whether 40-60% of surface remains open for functionality
+
+  **Density Assessment:**
+  - Count objects and compare to surface area
+  - Small surfaces (nightstand): 2-4 objects
+  - Medium surfaces (desk): 4-8 objects
+  - Large surfaces (dining table): 6-12 objects
+
+  Use programmatic data from get_current_scene_state() alongside visual
+  assessment for comprehensive evaluation. Flag issues that affect
+  functionality or realism significantly.

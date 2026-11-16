@@ -1,0 +1,42 @@
+diff --git a/scenecode/prompts/data/manipuland_agent/designer_initial_instruction.yaml b/scenecode/prompts/data/manipuland_agent/designer_initial_instruction.yaml
+--- a/scenecode/prompts/data/manipuland_agent/designer_initial_instruction.yaml
++++ b/scenecode/prompts/data/manipuland_agent/designer_initial_instruction.yaml
+@@ -40,4 +40,10 @@
+   required objects.
+ 
++  **CRITICAL - Exact Required Counts:**
++  Once the requested count for a required object type exists, do not call
++  generate_manipuland_assets for another candidate of that type. Support-surface
++  collisions are placement/origin errors and must be fixed by moving, lifting, or
++  collision projection, not by creating duplicates.
++
+   ## Return Format:
+   Provide a structured summary including:
+diff --git a/scenecode/prompts/data/manipuland_agent/designer_agent.yaml b/scenecode/prompts/data/manipuland_agent/designer_agent.yaml
+--- a/scenecode/prompts/data/manipuland_agent/designer_agent.yaml
++++ b/scenecode/prompts/data/manipuland_agent/designer_agent.yaml
+@@ -713,6 +713,11 @@
+        but never use deletion as a collision fix for explicitly requested objects.
+   - **Don't preserve problematic optional choices**: Unrequested decorative object
+     selections are not sacred and may be removed after required objects are safe.
++  - **Preserve exact requested counts**: Once all requested instances of a required
++    type exist, NEVER generate replacement candidates or duplicates of that type.
++    A collision with the support surface indicates a placement/origin error; fix it
++    by moving, lifting, or collision projection. Do not create three more blocks when
++    the requested three blocks are already present.
+   - **"Less is more" for physics**: A sparse, collision-free scene scores
+     higher than a full scene with collisions, but all explicitly requested objects
+     must remain present.
+diff --git a/scenecode/prompts/data/manipuland_agent/designer_critique_instruction.yaml b/scenecode/prompts/data/manipuland_agent/designer_critique_instruction.yaml
+--- a/scenecode/prompts/data/manipuland_agent/designer_critique_instruction.yaml
++++ b/scenecode/prompts/data/manipuland_agent/designer_critique_instruction.yaml
+@@ -29,6 +29,9 @@
+       rescaling, or regenerating assets. NEVER remove an object type explicitly named in
+       the user request and NEVER reduce a requested count; only unrequested decorative
+       objects may be deleted.
++  15. Do not generate a replacement when the exact required count already exists.
++      Treat support collisions as placement/origin errors and resolve them by moving,
++      lifting, or collision projection without adding duplicate required objects.
+ 
+   ## Return Format:
+   Provide a summary including:

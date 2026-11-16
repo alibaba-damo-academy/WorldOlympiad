@@ -1,0 +1,11 @@
+--- a/cotracker/predictor.py
++++ b/cotracker/predictor.py
+@@ -167,7 +167,7 @@ class CoTrackerPredictor(torch.nn.Module):
+         if add_support_grid:
+             tracks = tracks[:, :, : -self.support_grid_size**2]
+             visibilities = visibilities[:, :, : -self.support_grid_size**2]
+-        thr = 0.9
++        thr = 0.8
+         visibilities = visibilities > thr
+ 
+         # correct query-point predictions

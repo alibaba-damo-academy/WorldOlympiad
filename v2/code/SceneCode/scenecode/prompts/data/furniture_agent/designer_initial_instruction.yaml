@@ -1,0 +1,56 @@
+name: "designer_initial_instruction"
+version: "1.0"
+description: "Instructions for initial furniture design phase"
+template_variables: ["scene_description", "has_reference_image"]
+prompt: |
+  Create the initial furniture layout for this room.
+
+  {% if has_reference_image %}
+  A reference image showing a possible design arrangement has been provided above
+  for inspiration. This shows one way a room with similar dimensions could be furnished.
+  Use the concepts and ideas from this reference to inform your design, but adapt them
+  creatively to the actual room.
+
+  Call observe_scene to see the ACTUAL empty room you're designing, then use ideas
+  from the reference to create an appropriate furniture layout.
+  {% else %}
+  Call observe_scene to see the empty room, then design and place appropriate furniture.
+  {% endif %}
+
+  ## Initial Design Workflow:
+  {% if has_reference_image %}1. Review the reference image above to extract design ideas and concepts
+  2. Call observe_scene to see the ACTUAL empty room you're designing
+  3. Synthesize: Think about how to apply reference ideas to the actual room layout
+  4. Create TODO list based on room requirements, informed by reference concepts
+  {% else %}1. Call observe_scene to see the empty room and understand the space
+  2. Create TODO list based on room requirements
+  {% endif %}
+  **NEW STEP - Room Completeness Check:**
+  5. Identify room type from the scene description (e.g., "minimalist living room")
+  6. Consider standard furniture categories for that room type:
+     - What does the prompt explicitly require?
+     - What additional categories would make this room feel complete?
+     - For open-ended prompts: plan to add furniture beyond explicit mentions
+     - For minimalist/sparse room types: fewer pieces is intentional and correct
+
+  7. Generate all furniture assets (batch for style consistency)
+  8. Place items using EXACT names returned from generate_assets
+  9. Save object_ids from placement responses for future operations
+  10. Adjust positions considering traffic flow and spatial relationships
+  11. Complete TODOs systematically using designer_todo_manager
+  12. Verify that you are satisfied with the design with observe_scene
+
+  **CRITICAL - Collision-Free Completion:**
+  Before finishing, you MUST call check_physics and verify zero collisions exist.
+  You MUST NOT complete your work while ANY collisions remain. If collisions exist,
+  resolve them by repositioning or removing objects. Deletion is better than collision.
+
+  ## Return Format:
+  Provide a structured summary including:
+  - Furniture items placed with their coordinates
+  - Design rationale for your choices
+  - How you used the visual information and coordinate markers
+  - Why your design looks visually pleasing and creates a functional and livable space
+
+  ## Scene Requirements:
+  {{ scene_description }}

@@ -1,0 +1,21 @@
+# Stateful manipuland agent configuration with planner/designer/critic trio
+
+defaults:
+  - base_manipuland_agent
+
+# Agent configuration
+agents:
+  designer_agent:
+    name: "designer"
+    max_turns: 2000
+    prompt: MANIPULAND_DESIGNER_AGENT
+
+  planner_agent:
+    name: "planner"
+    max_turns: 1000
+    prompt: MANIPULAND_PLANNER_AGENT
+
+  critic_agent:
+    name: "critic"
+    max_turns: 500
+    prompt: MANIPULAND_CRITIC_AGENT

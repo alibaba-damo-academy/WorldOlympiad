@@ -1,0 +1,17 @@
+diff --git a/scenecode/code_object/agent_framework/prompts/constructor_structmanip.md b/scenecode/code_object/agent_framework/prompts/constructor_structmanip.md
+--- a/scenecode/code_object/agent_framework/prompts/constructor_structmanip.md
++++ b/scenecode/code_object/agent_framework/prompts/constructor_structmanip.md
+@@ -473,6 +473,13 @@ if __name__ == "__main__":
+     - Inspect the generated attachment coordinates numerically before export; do not rely on smooth shading to hide disconnected geometry
+     - Boolean union is optional, but the final rigid assembly must be visibly connected from all orthographic views
+ 
++4.D **Cup-handle coordinates must be checked after applying the PartPlan position**
++    - Part geometry is expressed in local coordinates and then translated by `PartPlan.position`; test the resulting world-space endpoints against the host body's outer radius
++    - For a C-shaped handle on the +X side of a cup, each terminal must extend inward to at least `cup_center_x + cup_radius - overlap`; do not add a positive attachment inset to `handle_center_x`, because that moves both terminals away from the cup
++    - Add short connector segments at both terminals when a curve alone would stop outside the body wall; each connector must overlap the wall by at least one tube radius
++    - Before returning the script, assert numerically that both terminal AABBs overlap the cup-body AABB in X, Y, and Z
++    - Treat a disconnected handle as construction failure even when all objects share one exported root
++
+ 5. **Avoid hardcoding**
+    - Read dimensions and position from PartPlan
+    - Use variables instead of magic numbers

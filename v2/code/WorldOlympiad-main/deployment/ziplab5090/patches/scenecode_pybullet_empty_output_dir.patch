@@ -1,0 +1,26 @@
+--- a/scenecode_pybullet_bridge/droid_pick_place.py
++++ b/scenecode_pybullet_bridge/droid_pick_place.py
+@@ -194,5 +194,5 @@ def run_droid_pick_place(inputs: DroidPickPlaceInputs) -> DroidPickPlaceResult:
+     """Generate a successful reference without object-attachment constraints."""
+ 
+     output = inputs.output_dir.resolve()
+-    if output.exists():
++    if output.exists() and any(output.iterdir()):
+         raise FileExistsError(f"refusing to overwrite DROID expert rollout: {output}")
+--- a/scenecode_pybullet_bridge/droid_push.py
++++ b/scenecode_pybullet_bridge/droid_push.py
+@@ -112,5 +112,5 @@ def run_droid_push(inputs: DroidPushInputs) -> DroidPushResult:
+     """Generate a physical push reference with continuous robot contact."""
+ 
+     output = inputs.output_dir.resolve()
+-    if output.exists():
++    if output.exists() and any(output.iterdir()):
+         raise FileExistsError(f"refusing to overwrite DROID push rollout: {output}")
+--- a/scenecode_pybullet_bridge/droid_operator_graph.py
++++ b/scenecode_pybullet_bridge/droid_operator_graph.py
+@@ -185,4 +185,4 @@ def run_droid_operator_graph(
+     objects = _validate_inputs(inputs)
+     output = inputs.output_dir.resolve()
+-    if output.exists():
++    if output.exists() and any(output.iterdir()):
+         raise FileExistsError(f"refusing to overwrite operator-graph rollout: {output}")

@@ -1,0 +1,103 @@
+--- a/scenecode/code_object/agent_framework/pipeline.py
++++ b/scenecode/code_object/agent_framework/pipeline.py
+@@ -767,7 +767,7 @@
+             result = await self.blender_client.export_scene_to_glb(
+                 output_path=output_path,
+                 use_selection=False,
+-                export_apply=False,
++                export_apply=True,
+             )
+             # The Blender MCP transport can lose the small JSON response after
+             # completing a long texture-baking export.  The GLB is nevertheless
+@@ -993,56 +993,49 @@
+             self.logger.info("="*40)
+             
+             construction_result = None
+             if "construction" not in skip_stages and object_plan:
+-                cached_result = self._check_existing_construction(output_dir, object_plan)
++                if self._check_existing_construction(output_dir, object_plan) is not None:
++                    self.logger.info("Rechecking cached source through the measured per-part constructor")
+ 
+                 pipeline_cfg = self.config.get("pipeline", {})
+                 enable_part_construct = pipeline_cfg.get("enable_part_construct", True)
+-                use_cache = cached_result and enable_part_construct
+-
+-                if not use_cache:
+-                    try:
+-                        code_dir = os.path.join(output_dir, "code")
+-                        render_dir = os.path.join(output_dir, "renders", "parts")
+-                        
+-                        construction_result = await self.part_constructor.run(
+-                            object_plan=object_plan,
+-                            image_path=image_path,
+-                            text_input=text_input,
+-                            output_dir=code_dir,
+-                            render_output_dir=render_dir,
+-                            use_llm=self.llm_client is not None,
+-                            execute=self.blender_client is not None,
+-                            construct_parts=enable_part_construct
++                try:
++                    code_dir = os.path.join(output_dir, "code")
++                    render_dir = os.path.join(output_dir, "renders", "parts")
++                    construction_result = await self.part_constructor.run(
++                        object_plan=object_plan,
++                        image_path=image_path,
++                        text_input=text_input,
++                        output_dir=code_dir,
++                        render_output_dir=render_dir,
++                        use_llm=self.llm_client is not None,
++                        execute=self.blender_client is not None,
++                        construct_parts=enable_part_construct
++                    )
++                    construct_success = construction_result.get("construct_success", True)
++                    if construct_success or not enable_part_construct:
++                        stages_completed.append("construction")
++                        self.logger.info(f"Construction completed: {len(construction_result['part_results'])} parts")
++                    else:
++                        # Keep a partial assembly available for downstream
++                        # identity, framing, and physical-usability checks.
++                        # Those checks decide whether the result is usable;
++                        # a single omitted part need not discard all others.
++                        stage_errors["construction"] = f"Part construction partially failed: {construction_result.get('failed_parts', [])}"
++                        self.logger.warning(
++                            "Construction incomplete; exporting the assembled parts; failed parts: %s",
++                            construction_result.get("failed_parts", []),
+                         )
+-                        
+-                        construct_success = construction_result.get("construct_success", True)
+-                        
+-                        if construct_success or not enable_part_construct:
+-                            stages_completed.append("construction")
+-                            self.logger.info(f"Construction completed: {len(construction_result['part_results'])} parts")
+-                        else:
+-                            # Keep a partial assembly available for downstream
+-                            # identity, framing, and physical-usability checks.
+-                            # Those checks decide whether the result is usable;
+-                            # a single omitted part need not discard all others.
+-                            stage_errors["construction"] = f"Part construction partially failed: {construction_result.get('failed_parts', [])}"
+-                            self.logger.warning(
+-                                "Construction incomplete; exporting the assembled parts; failed parts: %s",
+-                                construction_result.get("failed_parts", []),
+-                            )
+-                        
+-                    except Exception as e:
+-                        self.logger.error(f"Construction failed: {e}")
+-                        stage_errors["construction"] = f"{type(e).__name__}: {e}"
+-                        stages_failed.append("construction")
+-                else:
+-                    construction_result = cached_result
+-                    stages_completed.append("construction")
+-                    self.logger.info("Using cached construction, skipping Part Constructor run")
++                except Exception as e:
++                    self.logger.error(f"Construction failed: {e}")
++                    stage_errors["construction"] = f"{type(e).__name__}: {e}"
++                    stages_failed.append("construction")
+             else:
+                 self.logger.info("Skipping construction stage")
++
++            if "construction" in stages_failed:
++                raise RuntimeError("Part construction failed validation: refusing export of an unchecked assembly")
+ 
+             # ==================== Export Part Mesh Assets ====================
+             pipeline_cfg = self.config.get("pipeline", {})
+             enable_part_obj_export = bool(

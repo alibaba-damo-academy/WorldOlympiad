@@ -1,0 +1,15 @@
+--- a/scenecode/code_object/agent_framework/agents/planner_checker.py
++++ b/scenecode/code_object/agent_framework/agents/planner_checker.py
+@@ -562,7 +562,11 @@
+             if attempt + 1 >= max_retry:
+                 break  # Never pay for a revision that cannot be checked.
+             # 如果有修正建议，应用修正（基于现有 ObjectPlan 做最小修改）
+-            if result.corrections and planner_agent:
++            actionable_issues = any(
++                issue.severity in ('error', 'warning') and (issue.description or issue.suggestion)
++                for issue in result.issues
++            )
++            if planner_agent and (result.corrections or actionable_issues):
+                 self.logger.info("Applying corrections via ObjectPlan revision (no full re-planning)...")
+                 
+                 # 构建修正上下文（仅包含摘要与问题列表，原始 JSON 由 Planner 侧注入）

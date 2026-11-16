@@ -1,0 +1,135 @@
+{
+  "schema_version": 2,
+  "audited_at": "2026-08-25",
+  "checkpoints": {
+    "nvidia/Cosmos3-Nano-Policy-DROID": {
+      "resolved_revision": "6706d7680581c255ff61e0f3bb49d90eac55c79e",
+      "tree_identity_sha256": "f4fe32f4d0efce76b4e867c4ef30b29e5ade54df32c28d3c01bcc036c87aaf07",
+      "include_paths": null,
+      "overlays": {},
+      "always_hash_lfs": []
+    },
+    "Robbyant/lingbot-va-base": {
+      "resolved_revision": "68b7bc1b35da6ddc67ea94c4ceb58d768fbb3f9c",
+      "tree_identity_sha256": "331bac46ab7e681e0c4c79ed74bd5580ca30f6c5203f95e2892ac7169f430cec",
+      "include_paths": null,
+      "overlays": {
+        "transformer/config.json": {
+          "size": 451,
+          "sha256": "814735ca2186ae717a91f19ae7d6ca3e8bd063393056e0807a881a0315a797b1"
+        }
+      },
+      "extra_files": {
+        ".worldolympiad_runtime.json": {
+          "size": 182,
+          "sha256": "1c2b80ee78b984cbfdbcfe795fb261cf8a39acb1e2c77714df4803451bdb3acf"
+        }
+      },
+      "always_hash_lfs": []
+    },
+    "Wan-AI/Wan2.2-TI2V-5B#Wan2.2_VAE.pth": {
+      "resolved_revision": "921dbaf3f1674a56f47e83fb80a34bac8a8f203e",
+      "tree_identity_sha256": "3dfd90af7296dfbbffed7d6bf9d5f404570d8b086c9fa34394f374ba6a021dd0",
+      "include_paths": [
+        "Wan2.2_VAE.pth"
+      ],
+      "overlays": {},
+      "always_hash_lfs": [
+        "Wan2.2_VAE.pth"
+      ]
+    },
+    "Robbyant/lingbot-world-v2-14b-causal-fast": {
+      "resolved_revision": "5c33dd40b213598c418fd25bff30fdbd23fd38a7",
+      "tree_identity_sha256": "ea9c2bbd284b1369023076d2bba4a15a89fec15eab47d6cc78a4cfc143f0486e",
+      "identity_scheme": "model_download_manifest_v1_sha256",
+      "download_manifest_sha256": "ea9c2bbd284b1369023076d2bba4a15a89fec15eab47d6cc78a4cfc143f0486e",
+      "config_sha256": "1b73e66e5d82858ed9cfb65b93793e3221c2e3d3fe6ecb8dca29c106b2f20930",
+      "include_paths": null,
+      "overlays": {},
+      "always_hash_lfs": []
+    }
+  },
+  "runtime_profiles": {
+    "cosmos3_nano_droid": {
+      "source_model": "nvidia/Cosmos3-Nano-Policy-DROID",
+      "checkpoint": "nvidia/Cosmos3-Nano-Policy-DROID",
+      "source_component": "cosmos_framework",
+      "runtime_tree_component": "robolab_runtime",
+      "external_artifacts": [
+        "Wan-AI/Wan2.2-TI2V-5B#Wan2.2_VAE.pth"
+      ]
+    },
+    "lingbot_va_base": {
+      "source_model": "Robbyant/lingbot-va-base",
+      "checkpoint": "Robbyant/lingbot-va-base",
+      "source_component": "lingbot_va",
+      "external_artifacts": []
+    },
+    "lingbot_world2_14b_causal_fast": {
+      "source_model": "Robbyant/lingbot-world-v2-14b-causal-fast",
+      "checkpoint": "Robbyant/lingbot-world-v2-14b-causal-fast",
+      "source_component": "lingbot_world2",
+      "protocol": "open_loop_first_frame_text_camera_video",
+      "external_artifacts": []
+    }
+  },
+  "components": {
+    "lingbot_world2": {
+      "repository": "https://github.com/Robbyant/lingbot-world-v2.git",
+      "commit": "1895d300d8ac936401689b26389f51cbd36530eb",
+      "files": {
+        "generate.py": "0c834b4c9330132874e397bd8c62bd8bf38796aa288b50d04f07afbe20fba1d2",
+        "wan/image2video.py": "eeef2a109aeb906f6a94e1acf3325d4f1fbf590e3ac160158ea0750f11cbdca3",
+        "wan/configs/wan_i2v_A14B.py": "0c2bc98fb7bcdd89cbb53536e64774e0119223770de3ceba0d2fef50edac2648"
+      },
+      "allowed_worktree_files": {}
+    },
+    "lingbot_va": {
+      "repository": "https://github.com/Robbyant/lingbot-va.git",
+      "commit": "7c6ffa9bfc4b83582cafc860fab4c82cc7deeeeb",
+      "files": {
+        "wan_va/wan_va_server.py": "9c2a427611db487fea5cf40f184b713bf2088e533990ee00fdcd020d2668b4bf",
+        "wan_va/modules/model.py": "a9374f2d063bd516b4fedb7e3e424b784a82f2e57d51e0706a0f78e4a4d9b53f",
+        "wan_va/configs/__init__.py": "089e67a9881536877a3c275ec6b8aec50c464273a3f68c5eb3a5143ef8e54df9",
+        "wan_va/configs/va_demo_cfg.py": "65707ff4c57e13c9ac66e87e3e7c2477618e26a7e80cb4a0300b238e7e2bd44c",
+        "wan_va/configs/va_demo_i2va.py": "c1133c46dedf386193a3d4654e879fe6d6453edaaa287ea963e148f13127bf7c",
+        "wan_va/configs/shared_config.py": "e7989a7c793e10ca81e1dc731aa66d55c4cdb8632f9c06a55371a567c18aa570",
+        "evaluation/robotwin/eval_polict_client_openpi.py": "35c83231527d63f63887a1f1d757d9774fe90062934849c4f549a8a09f08746e"
+      },
+      "allowed_worktree_files": {
+        "wan_va/modules/model.py": "a9374f2d063bd516b4fedb7e3e424b784a82f2e57d51e0706a0f78e4a4d9b53f"
+      }
+    },
+    "robolab": {
+      "repository": "https://github.com/NVLabs/RoboLab.git",
+      "commit": "f72d39445ab699c9cfd9bf551e8d21b6075293b9",
+      "files": {
+        "policies/cosmos3/client.py": "6c22690779922a54bf18324da975253e1a8c9f824e89e22f0a480d92d2609d4d",
+        "policies/cosmos3/run.py": "32e17dc74b4141f76238b2246dbc03c584ee25503de21db728c64852f192c2e5"
+      }
+    },
+    "cosmos_framework": {
+      "repository": "https://github.com/NVIDIA/cosmos-framework.git",
+      "commit": "ee58e41467f33c49ddde08b4d0ef4923876a95ac",
+      "files": {
+        "cosmos_framework/scripts/action_policy_server_robolab.py": "0ea7c258e5e3250ffa9e259151fc856ab767164d94a05040518409e4a7e31423"
+      },
+      "allowed_worktree_files": {}
+    },
+    "robolab_runtime": {
+      "tree_relative_root": "robolab",
+      "tree_sha256": "1ed1f38b0adf724603f2e5f32f405920fc1598668c31932c8c9d4c1d0ee916de",
+      "file_count": 246
+    },
+    "dream2flow": {
+      "repository": "https://github.com/KDharmarajanDev/Dream2Flow.git",
+      "commit": "f87be21190015f49bacf5c03b81c7192b92cc567",
+      "files": {
+        "dream2flow/flow/depth/file_depth_extractor.py": "b03f809dc949c1af023b281463a610cd6472601dc8774d2c9d53b7177ca22ad9",
+        "dream2flow/flow/depth/spatracker_depth_extractor.py": "0d1c83d8e026573745b711321ba380b50ebc606a5d107109c269068652525c72",
+        "dream2flow/flow/generators/video_flow_generator.py": "19f54304a802f9a730e2affc1bf1ad328f9efa22fb88dcdfd0afb641f888425b",
+        "dream2flow/flow/region_selectors/grounded_region_selector.py": "5a0cc42f6f16d26cfadcb460d9995a563d87244df1a20d7614509284aa567796"
+      }
+    }
+  }
+}

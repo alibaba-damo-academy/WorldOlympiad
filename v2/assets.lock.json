@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "assets": [
+    {
+      "name": "robolab_droid_franka_robotiq_2f85_f72d_2c047340_20260823_v3",
+      "path": "assets/robot_assets/robolab_droid_franka_robotiq_2f85_f72d_2c047340_20260823_v3",
+      "manifest": "locks/asset-manifests/robolab_droid_franka_robotiq_2f85_f72d_2c047340_20260823_v3.json",
+      "manifest_sha256": "da8840f997c0aff48566ea001220b6dd49bfea0043eff47afac2c3e448fd303d",
+      "tree_sha256": "6cef7db6c032bae4ed06169c2ad8bbeb3f1ce72f153d5649253dede05380583b",
+      "robot_asset_manifest_sha256": "19c14b8cbca35d1d317f3a18d9786156fe896ad7ca46ca5ba5e5278aa5c3d28f",
+      "portable_asset_sha256": "26f3c83fafcd8c49e5040472fea89df5ff37ffdfe8ba4e0cdd3da9ca6b7df01e",
+      "robolab_commit": "f72d39445ab699c9cfd9bf551e8d21b6075293b9",
+      "picknik_commit": "2c047340aeb2440f7a60e429264221aab9658707",
+      "urdf_sha256": "b0271bf14427a481ac25ff68bece71e78319d06c5c4639b08d2502bc158508e6",
+      "provenance": "Verified generated DROID robot asset bundle copied from the preserved shared runtime; no source runtime files were modified."
+    }
+  ]
+}

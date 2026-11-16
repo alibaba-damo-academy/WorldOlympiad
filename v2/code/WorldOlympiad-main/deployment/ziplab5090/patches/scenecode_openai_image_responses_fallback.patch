@@ -1,0 +1,412 @@
+--- a/scenecode/agent_utils/image_generation.py
++++ b/scenecode/agent_utils/image_generation.py
+@@ -20,6 +20,9 @@
+ from scenecode.prompts.manager import PromptManager
+ from scenecode.prompts.registry import ImageGenerationPrompts
+ from scenecode.utils.openai import create_openai_client
++from scenecode.agent_utils.openai_images_fallback import (
++    route_images_through_responses,
++)
+ 
+ console_logger = logging.getLogger(__name__)
+ 
+@@ -144,6 +147,8 @@
+                 "generation. Set it with: export OPENAI_API_KEY='your-key'"
+             )
+         self.client = client or create_openai_client(api_base=api_base)
++        # One gateway may serve an image model only through the Responses tool.
++        self.image_api = route_images_through_responses(self.client)
+         self.prompt_manager = PromptManager(prompts_dir=PROMPTS_DATA_DIR)
+         self.image_quality = quality
+         # self.model = "gpt-image-1.5"
+@@ -187,7 +192,7 @@
+                 style_prompt=style_prompt,
+             )
+             start_time = time.time()
+-            response = self.client.images.generate(
++            response = self.image_api.generate(
+                 model=self.model,
+                 prompt=prompt,
+                 size=image_size,
+@@ -288,7 +293,7 @@
+ 
+         start_time = time.time()
+         with open(reference_image_path, "rb") as image_file:
+-            response = self.client.images.edit(
++            response = self.image_api.edit(
+                 model=self.model, image=image_file, prompt=prompt, size=size
+             )
+         end_time = time.time()
+--- /dev/null
++++ b/scenecode/agent_utils/openai_images_fallback.py
+@@ -0,0 +1,370 @@
++"""Serve OpenAI image generation through the Responses API when Images fails.
++
++``OpenAIImageGenerator`` calls ``client.images.generate`` and
++``client.images.edit``.  An OpenAI-compatible deployment may advertise
++``gpt-image-*`` on ``/v1/models`` while ``POST /images/generations`` answers
++502/503 ``No available compatible accounts``: the same gateway does serve that
++model, but only through the Responses API ``image_generation`` tool.  Left
++alone, SceneCode's asset and material image generation fails and the pipeline
++degrades to text-only prompts and hand-edited assets.
++
++``route_images_through_responses(client)`` returns a facade with the Images API
++surface that prefers the native endpoint and only rewrites a request through
++``/responses`` when the Images endpoint reports that no upstream account can
++serve it.  Every answer keeps the Images response shape
++(``response.data[0].b64_json``), so call sites stay unchanged.
++
++``SCENECODE_IMAGE_API_MODE`` selects the policy: ``auto`` (default) tries the
++Images endpoint first, ``responses`` skips it entirely (one round trip saved per
++image), ``images`` never falls back.  ``SCENECODE_IMAGE_RESPONSES_MODEL`` names
++the model that carries the image tool, defaulting to the configured SceneCode
++model.
++"""
++
++from __future__ import annotations
++
++import base64
++import json
++import logging
++import os
++import urllib.error
++import urllib.request
++
++from dataclasses import dataclass, field
++from pathlib import Path
++from typing import Any
++
++console_logger = logging.getLogger(__name__)
++
++USER_AGENT = os.environ.get(
++    "SCENECODE_IMAGE_USER_AGENT", "WorldOlympiad2-SceneCodeImage/1.0"
++)
++DEFAULT_RESPONSES_MODEL = "gpt-5.6-sol"
++DEFAULT_TIMEOUT_SECONDS = 600.0
++
++_UNAVAILABLE_STATUS_CODES = frozenset({404, 405, 500, 501, 502, 503, 504})
++_UNAVAILABLE_MESSAGE_MARKERS = (
++    "no available compatible accounts",
++    "bad gateway",
++    "gateway timeout",
++    "service unavailable",
++    "upstream",
++)
++
++
++@dataclass
++class _GeneratedImage:
++    """One generated image, matching the Images API datum shape."""
++
++    b64_json: str | None = None
++    revised_prompt: str | None = None
++    url: str | None = None
++
++
++@dataclass
++class _ImagesResponse:
++    """Images API response shape consumed by ``_extract_and_save_openai_image``."""
++
++    data: list[_GeneratedImage] = field(default_factory=list)
++    created: int | None = None
++    model: str | None = None
++    usage: dict[str, Any] | None = None
++
++
++def _images_endpoint_unavailable(exc: Exception) -> bool:
++    """Report whether the Images endpoint has no upstream account for the model."""
++
++    status_code = getattr(exc, "status_code", None)
++    if status_code is None:
++        response = getattr(exc, "response", None)
++        status_code = getattr(response, "status_code", None)
++    if isinstance(status_code, int) and status_code in _UNAVAILABLE_STATUS_CODES:
++        return True
++
++    message = str(exc).lower()
++    return any(marker in message for marker in _UNAVAILABLE_MESSAGE_MARKERS)
++
++
++def _api_key(client: Any) -> str:
++    """Read the bearer token the client already uses, without touching env first."""
++
++    api_key = getattr(client, "api_key", None)
++    if not api_key:
++        raise RuntimeError(
++            "the OpenAI client carries no api_key, so image generation cannot be "
++            "routed through the Responses API"
++        )
++    return str(api_key)
++
++
++def _responses_url(client: Any) -> str:
++    """Resolve the Responses endpoint beside the client's own base URL."""
++
++    base_url = getattr(client, "base_url", None)
++    if base_url is None:
++        base_url = os.environ.get("OPENAI_API_BASE") or "https://api.openai.com/v1"
++    url = str(base_url).rstrip("/")
++    if url.endswith("/responses"):
++        return url
++    return url + "/responses"
++
++
++def _image_payload(image: Any) -> str:
++    """Turn the ``edit`` reference image into a data URL the Responses API accepts."""
++
++    if isinstance(image, (list, tuple)):
++        if not image:
++            raise ValueError("image edit requires at least one reference image")
++        return _image_payload(image[0])
++
++    if hasattr(image, "read"):
++        # A failed Images attempt may leave the stream mid-read, so rewind before
++        # consuming it and leave the handle reusable afterwards.
++        if hasattr(image, "seek"):
++            image.seek(0)
++        raw = image.read()
++        if hasattr(image, "seek"):
++            image.seek(0)
++    elif isinstance(image, (bytes, bytearray)):
++        raw = bytes(image)
++    else:
++        raw = Path(str(image)).read_bytes()
++
++    if raw[:8] == b"\x89PNG\r\n\x1a\n":
++        media_type = "image/png"
++    elif raw[:3] == b"\xff\xd8\xff":
++        media_type = "image/jpeg"
++    else:
++        media_type = "image/png"
++    return "data:" + media_type + ";base64," + base64.b64encode(raw).decode("ascii")
++
++
++def _generated_image_b64(body: dict[str, Any]) -> str:
++    """Return the first completed image tool result of a Responses answer."""
++
++    for item in body.get("output", []) or []:
++        if item.get("type") != "image_generation_call":
++            continue
++        result = item.get("result")
++        if result:
++            return str(result)
++
++    error = body.get("error") or body.get("incomplete_details") or body.get("status")
++    raise RuntimeError(
++        "the Responses image_generation tool returned no image: "
++        + json.dumps(error, ensure_ascii=False)[:400]
++    )
++
++
++class _ResponsesImageAPI:
++    """Generate and edit images with the Responses ``image_generation`` tool."""
++
++    def __init__(self, client: Any, model: str | None = None, timeout: float | None = None):
++        self._client = client
++        self._url = _responses_url(client)
++        self._model = (
++            model
++            or os.environ.get("SCENECODE_IMAGE_RESPONSES_MODEL")
++            or os.environ.get("SCENECODE_OPENAI_MODEL")
++            or DEFAULT_RESPONSES_MODEL
++        )
++        self._timeout = float(
++            timeout
++            or os.environ.get("SCENECODE_IMAGE_TIMEOUT_SECONDS", DEFAULT_TIMEOUT_SECONDS)
++        )
++
++    def _post(self, payload: dict[str, Any]) -> dict[str, Any]:
++        request = urllib.request.Request(
++            self._url,
++            data=json.dumps(payload).encode("utf-8"),
++            headers={
++                "Authorization": "Bearer " + _api_key(self._client),
++                "Content-Type": "application/json",
++                "Accept": "application/json",
++                "User-Agent": USER_AGENT,
++            },
++        )
++        try:
++            with urllib.request.urlopen(request, timeout=self._timeout) as response:
++                return json.loads(response.read().decode("utf-8"))
++        except urllib.error.HTTPError as exc:
++            detail = exc.read().decode("utf-8", "replace")[:400]
++            raise RuntimeError(
++                f"Responses image generation failed with HTTP {exc.code}: {detail}"
++            ) from exc
++
++    def _tool(self, size: Any, quality: Any, output_format: Any, background: Any, moderation: Any) -> dict[str, Any]:
++        tool: dict[str, Any] = {"type": "image_generation"}
++        for key, value in (
++            ("size", size),
++            ("quality", quality),
++            ("output_format", output_format),
++            ("background", background),
++            ("moderation", moderation),
++        ):
++            if value is not None:
++                tool[key] = value
++        return tool
++
++    def generate(
++        self,
++        *,
++        prompt: str,
++        model: Any = None,
++        size: Any = None,
++        n: Any = 1,
++        quality: Any = None,
++        output_format: Any = None,
++        background: Any = None,
++        moderation: Any = None,
++        **extra: Any,
++    ) -> _ImagesResponse:
++        tool = self._tool(size, quality, output_format, background, moderation)
++        count = max(1, int(n or 1))
++        images = [
++            _GeneratedImage(
++                b64_json=_generated_image_b64(
++                    self._post({"model": self._model, "input": prompt, "tools": [tool]})
++                )
++            )
++            for _ in range(count)
++        ]
++        return _ImagesResponse(data=images, model=self._model)
++
++    def edit(
++        self,
++        *,
++        image: Any,
++        prompt: str,
++        model: Any = None,
++        size: Any = None,
++        n: Any = 1,
++        quality: Any = None,
++        output_format: Any = None,
++        background: Any = None,
++        moderation: Any = None,
++        **extra: Any,
++    ) -> _ImagesResponse:
++        tool = self._tool(size, quality, output_format, background, moderation)
++        content = [
++            {"type": "input_text", "text": prompt},
++            {"type": "input_image", "image_url": _image_payload(image)},
++        ]
++        count = max(1, int(n or 1))
++        images = [
++            _GeneratedImage(
++                b64_json=_generated_image_b64(
++                    self._post(
++                        {
++                            "model": self._model,
++                            "input": [{"role": "user", "content": content}],
++                            "tools": [tool],
++                        }
++                    )
++                )
++            )
++            for _ in range(count)
++        ]
++        return _ImagesResponse(data=images, model=self._model)
++
++
++class ImagesFacade:
++    """The ``client.images`` surface, preferring the endpoint that can serve it."""
++
++    def __init__(
++        self,
++        client: Any,
++        model: str | None = None,
++        mode: str | None = None,
++        timeout: float | None = None,
++    ):
++        self._client = client
++        self._native = getattr(client, "images", None)
++        self._backend = _ResponsesImageAPI(client, model=model, timeout=timeout)
++        self._mode = (mode or os.environ.get("SCENECODE_IMAGE_API_MODE") or "auto").strip().lower()
++        if self._mode not in {"auto", "images", "responses"}:
++            raise ValueError(
++                "SCENECODE_IMAGE_API_MODE must be one of auto, images or responses "
++                f"(got {self._mode!r})"
++            )
++
++    @property
++    def mode(self) -> str:
++        """Return the resolved routing policy."""
++
++        return self._mode
++
++    def _call(self, operation: str, **kwargs: Any) -> _ImagesResponse:
++        if self._mode == "responses":
++            return getattr(self._backend, operation)(**kwargs)
++
++        try:
++            return getattr(self._native, operation)(**kwargs)
++        except Exception as exc:
++            if self._mode == "images" or not _images_endpoint_unavailable(exc):
++                raise
++            console_logger.warning(
++                "images.%s is unavailable on this endpoint (%s); retrying through the "
++                "Responses image_generation tool",
++                operation,
++                exc,
++            )
++            return getattr(self._backend, operation)(**kwargs)
++
++    def generate(self, **kwargs: Any) -> _ImagesResponse:
++        """Generate images, falling back to the Responses tool when needed."""
++
++        return self._call("generate", **kwargs)
++
++    def edit(self, **kwargs: Any) -> _ImagesResponse:
++        """Edit images, falling back to the Responses tool when needed."""
++
++        return self._call("edit", **kwargs)
++
++
++def route_images_through_responses(
++    client: Any, model: str | None = None, mode: str | None = None, timeout: float | None = None
++) -> ImagesFacade:
++    """Wrap an OpenAI client's image endpoint with the Responses fallback.
++
++    The client itself is left untouched: only the returned facade is used for
++    image work, so callers that assert on their own client keep working.
++    """
++
++    return ImagesFacade(client, model=model, mode=mode, timeout=timeout)
++
++
++def main() -> None:
++    """Smoke-test the routing against the configured deployment."""
++
++    import argparse
++    import sys
++
++    from scenecode.utils.openai import create_openai_client
++
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--prompt", required=True)
++    parser.add_argument("--output", type=Path, required=True)
++    parser.add_argument("--size", default="1024x1024")
++    parser.add_argument("--quality", default="low")
++    parser.add_argument("--mode", default=None)
++    parser.add_argument("--model", default=None)
++    args = parser.parse_args()
++
++    logging.basicConfig(level=logging.INFO, stream=sys.stderr)
++    images = route_images_through_responses(
++        create_openai_client(), model=args.model, mode=args.mode
++    )
++    response = images.generate(
++        model="gpt-image-2", prompt=args.prompt, size=args.size, n=1, quality=args.quality
++    )
++    payload = response.data[0].b64_json
++    if not payload:
++        raise SystemExit("no image data returned")
++    args.output.parent.mkdir(parents=True, exist_ok=True)
++    args.output.write_bytes(base64.b64decode(payload))
++    print(json.dumps({"mode": images.mode, "output": str(args.output)}))
++
++
++if __name__ == "__main__":
++    main()

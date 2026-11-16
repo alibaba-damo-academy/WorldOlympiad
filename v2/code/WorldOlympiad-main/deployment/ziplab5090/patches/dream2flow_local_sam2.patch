@@ -1,0 +1,37 @@
+diff --git a/dream2flow/flow/region_selectors/grounded_region_selector.py b/dream2flow/flow/region_selectors/grounded_region_selector.py
+--- a/dream2flow/flow/region_selectors/grounded_region_selector.py
++++ b/dream2flow/flow/region_selectors/grounded_region_selector.py
+@@ -21,5 +21,6 @@ class GroundedRegionSelector:
+         from hydra import initialize_config_module
+         from hydra.core.global_hydra import GlobalHydra
++        from sam2.build_sam import build_sam2
+         from sam2.sam2_image_predictor import SAM2ImagePredictor
+         from torchvision import transforms
+         from transformers import AutoModelForZeroShotObjectDetection, AutoProcessor
+@@ -35,8 +36,22 @@ class GroundedRegionSelector:
+ 
+         GlobalHydra.instance().clear()
+         initialize_config_module("sam2", version_base="1.2")
+-        self._sam2_image_predictor = SAM2ImagePredictor.from_pretrained(
+-            self.config.sam2_model_path,
+-            device=self.device,
+-        )
++        sam2_path = Path(self.config.sam2_model_path)
++        if sam2_path.is_dir():
++            checkpoint = sam2_path / "sam2_hiera_large.pt"
++            if not checkpoint.is_file():
++                raise FileNotFoundError(
++                    f"local SAM2 large checkpoint is missing: {checkpoint}"
++                )
++            sam2_model = build_sam2(
++                "configs/sam2/sam2_hiera_l.yaml",
++                str(checkpoint),
++                device=self.device,
++            )
++            self._sam2_image_predictor = SAM2ImagePredictor(sam2_model)
++        else:
++            self._sam2_image_predictor = SAM2ImagePredictor.from_pretrained(
++                self.config.sam2_model_path,
++                device=self.device,
++            )
+         self._torch_to_pil_image = transforms.ToPILImage()

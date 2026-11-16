@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<sdf version="1.8">
+  <model name="room_geometry">
+    <link name="room_geometry_body_link">
+      <visual name="ground">
+        <pose>0 0 -0.05 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>10 10 0.1</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse>0.1 0.07 0.05 1</diffuse>
+        </material>
+      </visual>
+      <collision name="ground">
+        <pose>0 0 -0.05 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>10 10 0.1</size>
+          </box>
+        </geometry>
+      </collision>
+    </link>
+    
+    <link name="wall_1">
+      <visual name="wall_visual">
+        <geometry>
+          <box>
+            <size>10 0.2 3</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse>1 0 0 1</diffuse>
+        </material>
+      </visual>
+      <collision name="wall_collision">
+        <geometry>
+          <box>
+            <size>10 0.2 3</size>
+          </box>
+        </geometry>
+      </collision>
+      <pose>0 5 1.5 0 0 0</pose>
+    </link>
+    
+    <link name="wall_2">
+      <visual name="wall_visual">
+        <geometry>
+          <box>
+            <size>0.2 10 3</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse>0 1 0 1</diffuse>
+        </material>
+      </visual>
+      <collision name="wall_collision">
+        <geometry>
+          <box>
+            <size>0.2 10 3</size>
+          </box>
+        </geometry>
+      </collision>
+      <pose>5 0 1.5 0 0 0</pose>
+    </link>
+  </model>
+</sdf>

@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "workspace_root": "/absolute/path/to/wov2-evaluator",
+  "agent_api": {
+    "base_url": "https://your-agent-host.example/v1",
+    "model": "your-agent-model",
+    "api_key_env": "WO_AGENT_API_KEY"
+  },
+  "tested_model": {
+    "adapter": "lingbot_va",
+    "checkpoint": "/absolute/path/to/existing/lingbot-va-posttrain-robotwin",
+    "gpu": "auto",
+    "policy_gpus": "auto",
+    "simulator_gpu": "auto",
+    "robotwin_repo": "runtime/RoboTwin",
+    "lingbot_repo": "runtime/lingbot-va",
+    "robotwin_python": "envs/robotwin/bin/python",
+    "lingbot_python": "envs/lingbot/bin/python",
+    "scenecode_source": "code/SceneCode",
+    "scenecode_runtime": "runtime/scenecode"
+  },
+  "scoring": {
+    "mode": "auto",
+    "gpu": "auto",
+    "compute_gpu": "auto"
+  }
+}

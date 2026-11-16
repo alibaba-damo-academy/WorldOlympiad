@@ -1,0 +1,281 @@
+# Base ceiling agent configuration with shared settings
+
+# Session memory management for context efficiency.
+# Trims old conversation turns by removing images and optionally summarizing text.
+session_memory:
+  enabled: true
+  # Number of recent turns to keep fully intact (with images). N=2 means two completed
+  # turns are kept and the current turn is also kept.
+  keep_last_n_turns: 1
+  # Summarize older turns via LLM (if false, just strip images).
+  enable_summarization: true
+  # Model for summarization ("agent" uses cfg.openai.model).
+  summarization_model: "gpt-5.2"
+  # Thinking effort for summarization ("none", "low", "medium", "high").
+  summarization_thinking: "low"
+  # Intra-turn observation stripping: strip images from older observe_scene outputs
+  # within the current turn while keeping the last N observations with images intact.
+  intra_turn_observation_stripping:
+    enabled: true
+    # Number of recent observe_scene outputs to keep with images.
+    # Default 2 allows comparison between current and previous state.
+    keep_last_n_observations: 2
+
+# Rendering configuration.
+rendering:
+  # Layout type for ceiling view.
+  # Options: "top_plus_sides" (1 elevated perspective + N side views)
+  layout: "top_plus_sides"
+
+  # Perspective view dimensions for elevated ceiling observation.
+  top_view_width: 512
+  top_view_height: 512
+
+  # Side views for additional context.
+  side_view_count: 2
+  side_view_width: 512
+  side_view_height: 512
+
+  background_color: [1.0, 1.0, 1.0]
+  blender_server_host: "127.0.0.1"
+  blender_server_port_range: [8000, 8250]
+  retry_count: 10
+  retry_delay: 3
+  server_startup_delay: 0.1
+  port_cleanup_delay: 0.1
+
+  # Overlay annotations configuration.
+  annotations:
+    enable_set_of_mark_labels: true
+    enable_bounding_boxes: true
+    # Ceiling objects hang down, direction arrows not essential.
+    enable_direction_arrows: false
+    # Partial walls: hide walls blocking camera view for side renders.
+    enable_partial_walls: true
+    enable_support_surface_debug: false
+    enable_convex_hull_debug: false
+    enable_wall_grid: false
+
+# Asset manager configuration
+asset_manager:
+  general_asset_source: "code_generated"
+  backend: "sam3d"
+
+  router:
+    enabled: true
+    parallel_workers: 1
+    # Max retries for VLM analysis if parsing fails (e.g., invalid object_type)
+    analysis_max_retries: 3
+    strategies:
+      code_generated:
+        enabled: true
+        max_retries: 2
+      code_articulated:
+        enabled: false
+        max_retries: 2
+      generated:
+        enabled: false
+        max_retries: 2
+      articulated:
+        enabled: false
+        max_retries: 3
+        use_lenient_validation: true
+      # Thin covering not used for ceiling typically.
+      thin_covering:
+        enabled: false
+        max_retries: 3
+        thickness_m: 0.003
+        texture_scale: 0.5  # Meters per tile for retrieved library textures (tileable)
+        generator:
+          enabled: false  # AI generation disabled for ceiling agent
+
+  # Code_Object configuration (used for the code_generated/code_articulated source/strategy)
+  code_object:
+    config_path: "agent_framework/config.yaml"
+    simple_object_config_path: "agent_framework/config_simplemanip.yaml"
+    manipuland_config_path: "agent_framework/config_structmanip.yaml"
+    blender_mcp_port_range: [9900, 9999]
+    max_concurrent_runs: 1
+    max_attempts: 3
+
+  sam3d:
+    sam3_checkpoint: ${oc.env:SAM3_CHECKPOINT,null}
+    sam3d_checkpoint: ${oc.env:SAM3D_PIPELINE_CONFIG,null}
+    mode: "foreground"
+    threshold: 0.5
+
+  hssd:
+    data_path: "data/hssd-models"
+    preprocessed_path: "data/preprocessed"
+    use_top_k: 5
+    use_lenient_validation: true  # Use lenient validation for retrieved assets
+    object_type_mapping:
+      FURNITURE: "large_objects"
+      MANIPULAND: "small_objects"
+      WALL_MOUNTED: "wall_objects"
+      CEILING_MOUNTED: "ceiling_objects"
+
+  objaverse:
+    data_path: "data/objathor-assets"
+    preprocessed_path: "data/objathor-assets/preprocessed"
+    use_top_k: 5
+    use_lenient_validation: true  # Use lenient validation for retrieved assets
+    object_type_mapping:
+      FURNITURE: "large_objects"
+      MANIPULAND: "small_objects"
+      WALL_MOUNTED: "wall_objects"
+      CEILING_MOUNTED: "ceiling_objects"
+
+  articulated:
+    enable_self_collision_filtering: true
+    use_top_k: 5
+    sources:
+      partnet_mobility:
+        enabled: false
+        data_path: "data/partnet_mobility_sdf"
+        embeddings_path: "data/partnet_mobility_sdf/embeddings"
+      artvip:
+        enabled: false # ArtVIP does not contain ceiling-mounted objects
+        data_path: "data/artvip_sdf"
+        embeddings_path: "data/artvip_sdf/embeddings"
+
+  image_generation:
+    # Backend: "flux-klein" (local FLUX.2-klein), "openai", or "gemini"
+    # flux-klein requires the dedicated env at
+    # $FLUX_PYTHON
+    backend: "openai"
+    fallback_backend: "flux-klein"
+    flux_klein:
+      python_executable: ${oc.env:FLUX_PYTHON,null}
+      model_path: ${oc.env:FLUX_MODEL_PATH,null}
+      width: 1024
+      height: 1024
+      num_inference_steps: 4
+      guidance_scale: 1.0
+      max_sequence_length: 256
+      seed: 41
+    openai:
+      quality: "low"
+    gemini:
+      aspect_ratio: "1:1"
+      image_size: "1K"
+  num_side_views_for_physics_analysis: 4
+  side_view_elevation_degrees: 0.0
+  floater_distance_threshold: 0.05
+  min_mesh_dimension_meters: 0.001
+  # Ceiling objects (pendants, chandeliers) can be vertically elongated.
+  mesh_relative_dimension_threshold: 0.01
+  # EEVEE TAA samples for asset validation renders (mesh analysis, router validation).
+  # Higher values = better quality but slower. Default 8 is a good balance.
+  validation_taa_samples: 8
+
+# Collision geometry configuration.
+collision_geometry:
+  # Decomposition method: "coacd" or "vhacd"
+  method: "vhacd"
+
+  server_port_range: [7100, 7350]
+
+  # CoACD parameters (used when method="coacd")
+  coacd:
+    threshold: 0.1
+    max_convex_hull: 32
+    preprocess_mode: "auto"
+    preprocess_resolution: 50
+    resolution: 2000
+    mcts_nodes: 20
+    mcts_iterations: 150
+    mcts_max_depth: 3
+    pca: false
+    merge: true
+    decimate: false
+    max_ch_vertex: 256
+    extrude: false
+    extrude_margin: 0.01
+    apx_mode: "ch"
+    seed: 0
+
+  # V-HACD parameters (used when method="vhacd")
+  vhacd:
+    max_convex_hulls: 16
+    resolution: 100000
+    max_recursion_depth: 10
+    max_num_vertices_per_ch: 64
+    min_volume_percent_error: 1.0
+    shrink_wrap: true
+    fill_mode: "flood"
+    min_edge_length: 2
+    find_best_plane: false
+
+# Maximum number of agent turns before stopping.
+max_turns: 1000
+
+# Maximum number of critique-and-improve rounds before stopping.
+max_critique_rounds: 1
+
+# Scene reset thresholds for detecting quality degradation.
+reset_single_category_threshold: 2
+reset_total_sum_threshold: 1
+
+# Early finish threshold - stop if ALL categories score >= this value.
+early_finish_min_score: 7
+
+# OpenAI model and reasoning configuration.
+openai:
+  model: "gpt-5.4" # gpt-5.2
+  api_base: ${openai.api_base}
+  service_tier: ${openai.service_tier}
+  vision_detail: "high"
+  reasoning_effort:
+    planner: "low"
+    designer: "high"
+    critic: "high"
+    mesh_analysis: "medium"
+    asset_analysis: "medium"
+    asset_validation: "medium"
+  verbosity:
+    planner: "medium"
+    designer: "low"
+    critic: "medium"
+    mesh_analysis: "medium"
+    asset_analysis: "medium"
+    asset_validation: "medium"
+
+# OpenAI API timeout configuration (seconds).
+api_timeout:
+  connect: 10.0
+  read: 1800
+  write: 1800
+  pool: 1800
+
+# Loop detection configuration for function tools.
+loop_detection:
+  enabled: true
+  max_repeated_attempts: 25
+  tracking_window: 30
+
+# Physics validation configuration.
+physics_validation:
+  wall_thickness: 0.05
+  floor_penetration_tolerance_m: 0.05
+  object_penetration_threshold_m: 0.001
+  manipuland_furniture_tolerance_m: 0.02
+
+# Clearance zone configuration for open connections.
+# Note: door_clearance_distance and window_clearance_distance are configured in
+# floor_plan_agent config and baked into opening data during floor plan generation.
+clearance_zones:
+  # Axis-aligned square size for open connection passability (2D floor check).
+  passage_size: 0.5
+  # Meters of clearance for approaching open connections.
+  open_connection_clearance: 0.7
+
+# Ceiling-specific placement noise (horizontal plane: x, y positions).
+placement_noise:
+  mode: "auto"
+  natural_profile:
+    position_xy_std_meters: 0.02
+    rotation_yaw_std_degrees: 0.5
+  perfect_profile:
+    position_xy_std_meters: 0.001
+    rotation_yaw_std_degrees: 0.1

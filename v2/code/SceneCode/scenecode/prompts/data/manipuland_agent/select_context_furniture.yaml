@@ -1,0 +1,79 @@
+name: "select_context_furniture"
+version: "1.0"
+description: "VLM prompt for selecting context furniture for manipuland placement"
+template_variables:
+  - furniture_with_candidates
+
+prompt: |
+  You analyze furniture arrangements to identify context objects for item placement.
+
+  <task_definition>
+  For each furniture piece, decide if nearby objects provide FUNCTIONAL context
+  for placing small items. Context furniture helps determine WHERE and HOW to
+  arrange items (e.g., chairs around a table indicate place setting positions).
+
+  IMPORTANT: Most furniture does NOT need context. Only include context when
+  nearby furniture creates a clear user interaction zone that affects item
+  placement orientation or position.
+  </task_definition>
+
+  <selection_criteria>
+  INCLUDE context ONLY when nearby furniture:
+  - Creates a user interaction zone (seating around tables -> place settings face seats)
+  - Forms functional pairs requiring orientation (desk + chair -> keyboard faces chair)
+
+  DO NOT INCLUDE context when:
+  - Furniture is storage-focused (bookshelves, cabinets, dressers, wardrobes)
+  - Items are placed for aesthetic/functional reasons independent of surroundings
+  - Nearby furniture doesn't affect WHERE or HOW items should be oriented
+  - Furniture is merely close without functional relationship
+  </selection_criteria>
+
+  <examples>
+  INCLUDE context:
+  - dining_table + [chair_0, chair_1, chair_2, chair_3] -> "Chairs indicate place setting positions"
+  - desk_0 + [office_chair_0] -> "Chair indicates user orientation for keyboard/monitor"
+  - coffee_table + [sofa_0] -> "Sofa indicates where user sits, remote should be reachable"
+  - kitchen_island + [stool_0, stool_1] -> "Stools indicate serving positions"
+  - nightstand_0 + [bed_0] -> "Bed indicates user position for lamp/phone placement"
+
+  DO NOT INCLUDE context (empty list):
+  - bookshelf_0 + [] -> "Books placed on shelves regardless of nearby furniture"
+  - dresser_0 + [] -> "Items on dresser don't depend on surroundings"
+  - cabinet_0 + [] -> "Storage furniture - placement is functional, not relational"
+  - side_table_0 + [] -> "Standalone decorative surface - no user interaction zone"
+  - entertainment_center + [] -> "Items arranged around TV, not based on seating"
+  - kitchen_counter + [] -> "Appliances placed for workflow, not user seating"
+  - wardrobe_0 + [] -> "Storage furniture - no context needed"
+  - shelf_unit_0 + [] -> "Decorative items placed aesthetically"
+  </examples>
+
+  <output_guidance>
+  - When uncertain, prefer empty context_furniture_ids
+  - Only include seating that DIRECTLY affects item orientation
+  - Most furniture should have empty context lists
+  </output_guidance>
+
+  # Furniture to Analyze
+
+  {{ furniture_with_candidates }}
+
+  # Output Format
+
+  Return a JSON object with this exact structure:
+  {
+    "context_selections": [
+      {
+        "furniture_id": "dining_table_0",
+        "context_furniture_ids": ["chair_0", "chair_1", "chair_2", "chair_3"],
+        "reasoning": "Chairs indicate place setting positions"
+      },
+      {
+        "furniture_id": "bookshelf_0",
+        "context_furniture_ids": [],
+        "reasoning": "Storage furniture - no context needed"
+      }
+    ]
+  }
+
+  Include an entry for each furniture piece. Most should have empty context lists.

@@ -1,0 +1,19 @@
+name: "asset_image_initial"
+version: "1.0"
+description: "Initial image generation for 3D asset conversion"
+template_variables: ["description", "style_prompt"]
+prompt: |
+  Generate a clean product photography image of: {{ description }}.
+  Style: {{ style_prompt }}.
+  IMPORTANT: The image must depict ONLY the requested asset as a single isolated object.
+  Do NOT include any other furniture, accessories, room context, nearby objects,
+  attached companion furniture, or scene props unless they are explicitly named
+  as part of the requested asset description.
+  The image must show ONLY the object itself against a fully
+  opaque, plain, solid-colored background that clearly contrasts with the
+  object (e.g., dark background for light/white objects, light background
+  for dark objects). The background MUST be visible and filled with a solid
+  color - NEVER use transparent or alpha channel backgrounds. No wireframes,
+  no technical drawings, no construction lines, no blueprints, no CAD
+  elements, no shadows. Just a clear, photorealistic rendering of the actual
+  object, suitable for conversion to a 3D model.

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90.07 78">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #231f20;
+      }
+
+      .cls-3 {
+        fill: #f9a87e;
+      }
+
+      .cls-4 {
+        fill: #68c0a4;
+      }
+
+      .cls-2 {
+        font-family: MyriadPro-Regular, 'Myriad Pro';
+        font-size: 20px;
+      }
+
+      .cls-5 {
+        stroke-width: 1.5px;
+      }
+
+      .cls-5, .cls-6 {
+        fill: none;
+        stroke: #231f20;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-6 {
+        stroke-width: 2px;
+      }
+
+      .cls-7 {
+        fill: #8ca0cc;
+      }
+    </style>
+  </defs>
+  <g id="Layer_2-2" data-name="Layer 2">
+    <g>
+      <polygon class="cls-4" points="45.03 2 1.73 77 45.03 52 45.03 2"/>
+      <polygon class="cls-7" points="88.33 77 45.03 2 45.03 52 88.33 77"/>
+      <polygon class="cls-3" points="45.03 52 1.73 77 88.33 77 45.03 52"/>
+      <line class="cls-5" x1="1.73" y1="77" x2="45.03" y2="52"/>
+      <text class="cls-2" transform="translate(26.12 52.1)"><tspan x="0" y="0">D</tspan></text>
+      <text class="cls-2" transform="translate(51.76 51.9)"><tspan x="0" y="0">C</tspan></text>
+      <text class="cls-2" transform="translate(38.14 72.51)"><tspan x="0" y="0">O</tspan></text>
+      <line class="cls-5" x1="88.33" y1="77" x2="45.03" y2="52"/>
+      <line class="cls-5" x1="45.03" y1="52" x2="45.03" y2="2"/>
+      <polygon class="cls-6" points="45.03 2 1.73 77 88.33 77 45.03 2"/>
+      <circle class="cls-1" cx="45.03" cy="52" r="1.79"/>
+    </g>
+  </g>
+</svg>

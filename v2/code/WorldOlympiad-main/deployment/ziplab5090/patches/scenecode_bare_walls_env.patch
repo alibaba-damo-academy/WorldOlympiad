@@ -1,0 +1,26 @@
+diff --git a/scenecode/wall_agents/stateful_wall_agent.py b/scenecode/wall_agents/stateful_wall_agent.py
+index 3f41596..c833fab 100644
+--- a/scenecode/wall_agents/stateful_wall_agent.py
++++ b/scenecode/wall_agents/stateful_wall_agent.py
+@@ -9,6 +9,7 @@ Pipeline order: floor_plan -> furniture -> wall-mounted -> ceiling-mounted -> ma
+ """
+ 
+ import logging
++import os
+ 
+ from pathlib import Path
+ from typing import Any
+@@ -423,6 +424,13 @@ class StatefulWallAgent(BaseStatefulAgent, BaseWallAgent):
+         try:
+             console_logger.info("Starting wall decoration")
+             self.scene = scene
++            if os.environ.get("SCENECODE_BARE_WALLS") == "1":
++                console_logger.info(
++                    "SCENECODE_BARE_WALLS=1: preserving the furnished scene "
++                    "without wall-mounted objects"
++                )
++                return
++
+ 
+             # Extract wall surfaces for the room.
+             room_id = scene.room_id

@@ -1,0 +1,13 @@
+--- a/scenecode/agent_utils/asset_router/router.py
++++ b/scenecode/agent_utils/asset_router/router.py
+@@ -1873,6 +1873,10 @@
+             return None
+ 
+         if image_path is not None:
++            from autoresearch.scenecode_image_evidence import prepare_articulated_image_result
++            # Project-owned export-boundary adapter; preserve the generated
++            # URDF while returning its verified link-frame derivative.
++            result = prepare_articulated_image_result(output_dir, result)
+             from autoresearch.scenecode_image_evidence import record_image_result
+             record_image_result(output_dir, result)
+         if result.status == "no_movable_parts":

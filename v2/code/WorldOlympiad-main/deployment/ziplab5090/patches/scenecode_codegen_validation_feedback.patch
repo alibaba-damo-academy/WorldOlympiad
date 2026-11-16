@@ -1,0 +1,92 @@
+--- a/scenecode/agent_utils/asset_router/router.py
++++ b/scenecode/agent_utils/asset_router/router.py
+@@ -1467,6 +1467,7 @@
+                 style_context=style_context,
+             )
+ 
++        repair_context = None
+         for attempt in range(max_retries):
+             console_logger.info(
+                 f"Code-generated attempt {attempt + 1}/{max_retries} "
+@@ -1480,6 +1481,7 @@
+                 images_dir=images_dir,
+                 code_object_dir=code_object_dir,
+                 style_context=style_context,
++                **({"repair_context": repair_context} if repair_context else {}),
+             )
+             if result is None:
+                 console_logger.warning(
+@@ -1510,6 +1512,12 @@
+                 f"Code-generated validation failed for '{item.description}': "
+                 f"{validation.reason}. Suggestions: {validation.suggestions}"
+             )
++
++            guidance = [value for value in [validation.reason, *(validation.suggestions or [])] if value]
++            repair_context = (
++                "Previous generated candidate failed validation:\n" + "\n".join(guidance)
++                + "\nRepair these issues while preserving the authored identity, dimensions and task."
++            ) if guidance else None
+ 
+         primitive_dir = (
+             code_object_dir
+@@ -1557,6 +1565,7 @@
+         images_dir: Path,
+         code_object_dir: Path,
+         style_context: str | None = None,
++        repair_context: str | None = None,
+     ) -> tuple[Path | None, Path, str | None] | None:
+         """Generate the reference image and apply any profile-specific preprocessing."""
+         timestamp = int(time.time() * 1000)
+@@ -1497,11 +1506,14 @@
+             image_path = None
+         else:
+             try:
+                 style_prompt = style_context or "Modern style"
++                native_image_prompt = item.description
++                if repair_context:
++                    native_image_prompt += "\n\n" + repair_context
+                 image_generator.generate_images(
+                     style_prompt=style_prompt,
+-                    object_descriptions=[item.description],
++                    object_descriptions=[native_image_prompt],
+                     output_paths=[image_path],
+                 )
+             except Exception as e:
+                 console_logger.warning(
+@@ -1779,6 +1790,7 @@
+         images_dir: Path,
+         code_object_dir: Path,
+         style_context: str | None = None,
++        repair_context: str | None = None,
+     ) -> GeneratedGeometry | None:
+         """Generate a single Code_Object candidate from a reference image."""
+         prepared = self._prepare_code_object_inputs(
+@@ -1787,6 +1799,7 @@
+             images_dir=images_dir,
+             code_object_dir=code_object_dir,
+             style_context=style_context,
++            **({"repair_context": repair_context} if repair_context else {}),
+         )
+         if prepared is None:
+             return None
+@@ -1798,17 +1811,18 @@
+         if image_path is not None:
+             record_image_input(output_dir, image_path, method='generate_from_image', generator=image_generator)
+ 
++        generation_description = item.description + ("\n\n" + repair_context if repair_context else "")
+         try:
+             if image_path is None:
+                 result = code_object_runner.generate_from_text(
+-                    text_input=item.description,
++                    text_input=generation_description,
+                     output_dir=output_dir,
+                     config_path_override=config_path_override,
+                 )
+             else:
+                 result = code_object_runner.generate_from_image(
+                     image_path=image_path,
+-                    object_description=item.description,
++                    object_description=generation_description,
+                     desired_dimensions=item.dimensions,
+                     output_dir=output_dir,
+                     config_path_override=config_path_override,

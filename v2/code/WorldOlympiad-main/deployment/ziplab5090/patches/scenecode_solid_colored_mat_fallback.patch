@@ -1,0 +1,11 @@
+--- a/scenecode/agent_utils/asset_router/router.py
++++ b/scenecode/agent_utils/asset_router/router.py
+@@ -91,7 +91,7 @@ TASK_MARKER_COLORS = {
+     "black": (30, 30, 30),
+     "white": (225, 225, 225),
+ }
+-TASK_MARKER_TOKENS = {"goal", "marker", "pad", "target", "zone"}
++TASK_MARKER_TOKENS = {"goal", "marker", "mat", "pad", "target", "zone"}
+ 
+ 
+ def _solid_task_marker_color(description: str) -> tuple[str, tuple[int, int, int]] | None:

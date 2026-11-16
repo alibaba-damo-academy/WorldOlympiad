@@ -1,0 +1,155 @@
+# Base floor plan agent configuration with shared settings
+
+# Floor plan mode: "room" (single room) or "house" (multi-room)
+mode: "room"
+
+# Session memory management for context efficiency.
+# Trims old conversation turns by removing images and optionally summarizing text.
+session_memory:
+  enabled: true
+  # Number of recent turns to keep fully intact (with images). N=2 means two completed
+  # turns are kept and the current turn is also kept.
+  keep_last_n_turns: 1
+  # Summarize older turns via LLM (if false, just strip images).
+  enable_summarization: true
+  # Model for summarization ("agent" uses cfg.openai.model).
+  summarization_model: "gpt-5.4"
+  # Thinking effort for summarization ("none", "low", "medium", "high").
+  summarization_thinking: "low"
+  # Intra-turn observation stripping: strip images from older observe_scene outputs
+  # within the current turn while keeping the last N observations with images intact.
+  intra_turn_observation_stripping:
+    enabled: true
+    # Number of recent observe_scene outputs to keep with images.
+    # Default 2 allows comparison between current and previous state.
+    keep_last_n_observations: 2
+
+# Rendering configuration for floor plan critique
+rendering:
+  blender_server_host: "127.0.0.1"
+  blender_server_port_range: [8000, 8050]
+  render_size: 1024  # Image size in pixels (width=height)
+
+# Materials configuration
+materials:
+  # Deprecated compatibility flag. Main scene generation uses code-generated
+  # materials and no longer starts the materials retrieval server.
+  use_retrieval_server: false
+  generator:
+    enabled: true
+    backend: "openai"
+    max_retries: 2
+    default_roughness: 128
+    texture_scale: 0.5
+  # Default materials (from materials/ directory)
+  default_wall_material: "Plaster001_1K-JPG"
+  default_floor_material: "Wood094_1K-JPG"
+
+# Image generation for code-generated floor/wall materials.
+image_generation:
+  backend: "openai"
+  fallback_backend: "flux-klein"
+  flux_klein:
+    python_executable: ${oc.env:FLUX_PYTHON,null}
+    model_path: ${oc.env:FLUX_MODEL_PATH,null}
+    width: 1024
+    height: 1024
+    num_inference_steps: 4
+    guidance_scale: 1.0
+    max_sequence_length: 256
+    seed: 41
+  openai:
+    quality: "low"
+  gemini:
+    aspect_ratio: "1:1"
+    image_size: "1K"
+
+# Room dimension constraints
+min_floor_plan_dim_m: 1.5
+max_floor_plan_dim_m: 20
+
+# Wall height constraints
+wall_height:
+  min: 2.0  # meters
+  max: 4.5  # meters
+  default: 2.5  # meters
+
+# Wall thickness in meters
+# Each room has its own walls offset inward by half this thickness.
+# Interior boundaries have two adjacent walls (total 2x thickness).
+wall_thickness: 0.05  # 5cm per wall
+
+# Floor thickness in meters
+floor_thickness: 0.1  # 10cm floor
+
+# Room placement algorithm configuration
+room_placement:
+  # Backtracking search timeout (finds optimal if completes, best-so-far otherwise).
+  timeout_seconds: 5.0
+  # Weights for global layout scoring.
+  scoring_weights:
+    compactness: 1.0    # Weight for bounding box minimization
+    stability: 1.0      # Weight for staying near previous positions
+  # Minimum gap between door and window on same wall (meters).
+  min_opening_separation: 0.5
+  # Clearance zone for exterior_walls constraint (meters).
+  # Rooms with exterior_walls specified will have this clearance enforced to
+  # prevent other rooms from blocking their exterior access.
+  exterior_wall_clearance_m: 20.0
+
+# Door constraints
+doors:
+  width_range: [0.9, 1.9]  # meters (single to double door)
+  height_range: [2.0, 2.4]  # meters (standard to tall)
+  default_width: 0.9
+  default_height: 2.1
+  # Min clearance outside exterior doors in meters (not facing another room).
+  exterior_clearance: 20.0
+
+# Window constraints
+windows:
+  width_range: [0.6, 3.0]  # meters (small to picture window)
+  height_range: [0.6, 2.0]  # meters (small to floor-to-ceiling)
+  default_width: 1.2
+  default_height: 1.2
+  default_sill_height: 0.9
+  # Margin from segment boundary when placing windows (meters).
+  segment_margin: 0.3
+
+# OpenAI model and reasoning configuration
+openai:
+  model: "gpt-5.4"
+  api_base: ${openai.api_base}
+  service_tier: ${openai.service_tier}
+  vision_detail: "high"
+  reasoning_effort:
+    planner: "low"
+    designer: "high"
+    critic: "high"
+  verbosity:
+    planner: "medium"
+    designer: "low"
+    critic: "medium"
+
+# OpenAI API timeout configuration (seconds)
+api_timeout:
+  connect: 30.0
+  read: 1800
+  write: 1800
+  pool: 1800
+
+# Maximum number of critique-and-improve rounds before stopping
+max_critique_rounds: 2
+
+# Scene reset thresholds for detecting quality degradation
+reset_single_category_threshold: 2
+reset_total_sum_threshold: 1
+
+# Early finish threshold - stop if ALL categories score >= this value
+early_finish_min_score: 8
+
+# Clearance zone configuration for doors, windows, and open connections.
+# These values are used to compute opening metadata for physics validation and labeling.
+clearance_zones:
+  door_clearance_distance: 0.8
+  window_clearance_distance: 0.5

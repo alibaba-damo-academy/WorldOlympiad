@@ -1,0 +1,33 @@
+name: "designer_critique_instruction_stateful"
+version: "1.0"
+description: "Instructions for addressing critiques in stateful agent"
+template_variables: ["instruction"]
+prompt: |
+  Address the following feedback: {{ instruction }}
+
+  ## Critique Resolution Workflow:
+  1. Review the critique instructions provided by the planner
+  2. Call observe_scene to see the current furniture arrangement
+  3. **PRIORITIZE CRITICAL ISSUES**: If the critique mentions both critical issues AND
+     optional suggestions (like "also consider angling..." or "could benefit from..."),
+     address ONLY the critical issues first. Optional refinements can wait.
+  4. Create specific fix TODOs for critical feedback only
+  5. Implement the proposed solutions exactly as specified
+  6. Use full object_ids (from get_current_scene_state) for operations
+  7. **DO NOT move furniture that is correctly placed** - if storage furniture is against
+     a wall where it belongs, leave it there even if the critique suggests repositioning
+  8. Focus only on addressing critical feedback - avoid unrelated changes
+  9. Complete TODOs systematically using designer_todo_manager
+  10. Verify that your changes addressed the feedback with observe_scene before finishing
+  11. Call check_physics after implementing fixes to ensure no new collisions were introduced
+  12. If critique mentions passage blocking or reachability issues, use check_reachability
+      to verify your fixes improved room traversability
+  13. FINAL VERIFICATION: Before completing, confirm zero collisions exist. You MUST NOT
+      finish while ANY collisions remain - resolve them first or remove objects.
+
+  ## Return Format:
+  Provide a summary including:
+  - Which issues were addressed
+  - Specific changes made (with coordinates)
+  - How the fixes improve the design
+  - How you verified that the changes addressed the feedback

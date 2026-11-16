@@ -1,0 +1,25 @@
+--- a/dream2flow/flow/generators/video_flow_generator.py
++++ b/dream2flow/flow/generators/video_flow_generator.py
+@@ -18,6 +18,7 @@ from dream2flow.camera import CameraCalibration
+ class VideoFlowGeneratorConfig:
+     save_intermediate_results: bool = True
+     particle_ratio: float = 0.01
++    min_num_particles: int = 64
+     max_num_particles: int = 1024
+     mask_erosion_kernel_size: int = 11
+     tracker: OfflineParticleTrackerConfig = field(default_factory=OfflineParticleTrackerConfig)
+@@ -105,10 +106,10 @@ class VideoFlowGenerator(ObjectFlowGenerator):
+         if object_points.shape[0] == 0:
+             raise RuntimeError("The grounded object mask is empty after erosion and depth filtering.")
+ 
+-        particle_ratio = min(
+-            self.config.particle_ratio,
+-            self.config.max_num_particles / object_points.shape[0],
+-        )
++        num_object_points = object_points.shape[0]
++        min_ratio = min(self.config.min_num_particles, num_object_points) / num_object_points
++        max_ratio = min(1.0, self.config.max_num_particles / num_object_points)
++        particle_ratio = min(max(self.config.particle_ratio, min_ratio), max_ratio)
+         kept_object_points_idx = self._fps(object_points, ratio=particle_ratio)
+         kept_object_pixel_coords = mask_pixel_coords[kept_object_points_idx]
+         return kept_object_pixel_coords, tracked_object_mask

@@ -1,0 +1,25 @@
+--- a/scenecode/agent_utils/thin_covering_generator.py
++++ b/scenecode/agent_utils/thin_covering_generator.py
+@@ -9,6 +9,7 @@
+ 
+ import logging
+ import math
++import re
+ import xml.etree.ElementTree as ET
+ 
+ from pathlib import Path
+@@ -31,11 +32,10 @@
+         description: Thin covering description text.
+ 
+     Returns:
+-        "circular" if description contains round/circular keywords,
+-        "rectangular" otherwise.
++        "circular" for whole-word round/circular, "rectangular" otherwise.
+     """
+-    desc_lower = description.lower()
+-    if "round" in desc_lower or "circular" in desc_lower:
++    words = set(re.findall(r"[a-z]+", description.lower()))
++    if words & {"round", "circular"}:
+         return "circular"
+     return "rectangular"
+ 

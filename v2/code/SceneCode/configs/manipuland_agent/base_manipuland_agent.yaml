@@ -1,0 +1,531 @@
+# Base manipuland agent configuration with shared settings
+
+# Session memory management for context efficiency.
+# Trims old conversation turns by removing images and optionally summarizing text.
+session_memory:
+  enabled: true
+  # Number of recent turns to keep fully intact (with images). N=2 means two completed
+  # turns are kept and the current turn is also kept.
+  keep_last_n_turns: 1
+  # Summarize older turns via LLM (if false, just strip images).
+  enable_summarization: true
+  # Model for summarization ("agent" uses cfg.openai.model).
+  summarization_model: "gpt-5.2"
+  # Thinking effort for summarization ("none", "low", "medium", "high").
+  summarization_thinking: "low"
+  # Intra-turn observation stripping: strip images from older observe_scene outputs
+  # within the current turn while keeping the last N observations with images intact.
+  intra_turn_observation_stripping:
+    enabled: true
+    # Number of recent observe_scene outputs to keep with images.
+    # Default 2 allows comparison between current and previous state.
+    keep_last_n_observations: 2
+
+# Rendering configuration
+rendering:
+  # Layout type for ablations.
+  # Options: "grid_3x3" (1 top + 8 sides at 45°), "single_top" (top-down only),
+  # "top_plus_sides" (1 top + N perpendicular sides)
+  layout: "top_plus_sides"
+
+  # Top-down view dimensions.
+  top_view_width: 1024
+  top_view_height: 1024
+
+  # Side views configuration (only used when layout includes sides).
+  # Set side_view_count to 0 to disable side views.
+  side_view_count: 4
+  side_view_width: 512
+  side_view_height: 512
+
+  background_color: [1.0, 1.0, 1.0]
+  blender_server_host: "127.0.0.1"
+  blender_server_port_range: [8000, 8250]
+  retry_count: 10
+  retry_delay: 3
+  # Delay after starting server subprocess to allow Blender initialization.
+  server_startup_delay: 0.1
+  # Delay after stopping server to allow OS port cleanup.
+  port_cleanup_delay: 0.1
+
+  # Overlay annotations configuration.
+  annotations:
+    # Set-of-mark labels: blue rectangular labels with object names.
+    enable_set_of_mark_labels: true
+    # Bounding boxes: blue wireframe boxes around objects.
+    enable_bounding_boxes: true
+    # Direction arrows: cyan/turquoise arrows showing object forward direction (Y-axis).
+    enable_direction_arrows: true
+    # Partial walls: hide walls blocking camera view (top=all, sides=facing camera).
+    enable_partial_walls: true
+    # Support surface debug: green wireframe bbox showing placement volume.
+    enable_support_surface_debug: false
+    # Convex hull debug: cyan outline showing surface convex hull.
+    enable_convex_hull_debug: false
+
+# Asset manager configuration
+asset_manager:
+  # Asset source: "code_generated", "code_articulated", "generated", "hssd", or "objaverse"
+  general_asset_source: "code_generated"
+
+  # 3D generation backend (only used when general_asset_source="generated")
+  backend: "sam3d"
+
+  # Asset router configuration for LLM-advised asset acquisition.
+  # Router analyzes requests and selects semantic strategies
+  # (code_generated/code_articulated/generated/articulated/thin_covering).
+  # The top-level "general_asset_source" field still controls non-router
+  # acquisition and the legacy generated strategy.
+  router:
+    # Enable LLM-based request analysis and validation
+    enabled: true
+    # Number of concurrent item generation threads (overlaps I/O-bound work)
+    parallel_workers: 1
+    # Max retries for VLM analysis if parsing fails (e.g., invalid object_type)
+    analysis_max_retries: 3
+    strategies:
+      # Primary Code_Object strategy for image-conditioned 3D generation.
+      code_generated:
+        enabled: true
+        max_retries: 3  # Retry with a new image / code generation attempt
+      # Code_Object strategy that continues with URDF -> SDF for articulated assets.
+      code_articulated:
+        enabled: true
+        max_retries: 2
+      # Legacy geometry-generation strategy.
+      generated:
+        enabled: false
+        max_retries: 2  # Retry with same prompt (randomness gives different results)
+      # Articulated objects
+      articulated:
+        enabled: false
+        max_retries: 3
+        use_lenient_validation: true  # Lenient validation for dataset objects
+      # Thin covering: flat fabric items (tablecloths, placemats, table runners).
+      thin_covering:
+        enabled: true
+        max_retries: 3
+        thickness_m: 0.002
+        texture_scale: 0.5  # Meters per tile for retrieved library textures (tileable)
+        generator:
+          enabled: true  # AI generation for custom patterns (plate settings, themed tablecloths)
+          backend: "openai"
+          max_retries: 2
+          default_roughness: 128
+          texture_scale: 0.5
+
+  # Code_Object configuration (used for the code_generated/code_articulated source/strategy)
+  code_object:
+    config_path: "agent_framework/config.yaml"
+    simple_object_config_path: "agent_framework/config_simplemanip.yaml"
+    manipuland_config_path: "agent_framework/config_structmanip.yaml"
+    blender_mcp_port_range: [9900, 9999]
+    max_concurrent_runs: 1
+    max_attempts: 3
+
+  # SAM3D backend configuration (only used when backend="sam3d")
+  sam3d:
+    # Path to SAM3 model checkpoint
+    sam3_checkpoint: ${oc.env:SAM3_CHECKPOINT,null}
+    # Path to SAM 3D Objects pipeline config
+    sam3d_checkpoint: ${oc.env:SAM3D_PIPELINE_CONFIG,null}
+    # Segmentation mode: "foreground" or "object_description"
+    # - foreground: automatic foreground detection (best for uniform backgrounds)
+    # - object_description: uses the asset description for semantic segmentation
+    mode: "foreground"
+    # Confidence threshold for mask generation (0.0-1.0)
+    threshold: 0.5
+
+  # HSSD retrieval configuration (only used when general_asset_source="hssd")
+  hssd:
+    data_path: "data/hssd-models"
+    preprocessed_path: "data/preprocessed"
+    use_top_k: 5  # Number of top CLIP candidates before size ranking
+    use_lenient_validation: true  # Use lenient validation for retrieved assets
+    object_type_mapping:
+      FURNITURE: "large_objects"
+      MANIPULAND: "small_objects"
+      WALL_MOUNTED: "wall_objects"
+      CEILING_MOUNTED: "ceiling_objects"
+
+  # Objaverse (ObjectThor) retrieval configuration (only used when general_asset_source="objaverse")
+  objaverse:
+    data_path: "data/objathor-assets"
+    preprocessed_path: "data/objathor-assets/preprocessed"
+    use_top_k: 5  # Number of top CLIP candidates before size ranking
+    use_lenient_validation: true  # Use lenient validation for retrieved assets
+    object_type_mapping:
+      FURNITURE: "large_objects"
+      MANIPULAND: "small_objects"
+      WALL_MOUNTED: "wall_objects"
+      CEILING_MOUNTED: "ceiling_objects"
+
+  # Articulated object retrieval configuration (pre-processed SDF assets)
+  # Multiple data sources can be enabled/disabled independently
+  articulated:
+    enable_self_collision_filtering: true
+    use_top_k: 5  # Number of top CLIP candidates before bbox ranking
+    sources:
+      partnet_mobility:
+        enabled: false
+        data_path: "data/partnet_mobility_sdf"
+        embeddings_path: "data/partnet_mobility_sdf/embeddings"
+      artvip:
+        enabled: true
+        data_path: "data/artvip_sdf"
+        embeddings_path: "data/artvip_sdf/embeddings"
+
+  # Image generation configuration
+  image_generation:
+    # Backend: "flux-klein" (local FLUX.2-klein), "openai", or "gemini"
+    # flux-klein requires the dedicated env at
+    # $FLUX_PYTHON
+    # OpenAI requires OPENAI_API_KEY, Gemini requires GOOGLE_API_KEY
+    backend: "openai"
+    fallback_backend: "flux-klein"
+    # FLUX.2-klein-specific settings
+    flux_klein:
+      python_executable: ${oc.env:FLUX_PYTHON,null}
+      model_path: ${oc.env:FLUX_MODEL_PATH,null}
+      width: 1024
+      height: 1024
+      num_inference_steps: 4
+      guidance_scale: 1.0
+      max_sequence_length: 256
+      seed: 41
+    # OpenAI-specific settings
+    openai:
+      # Quality parameter ("auto", "low", "medium", "high")
+      quality: "low"
+    # Gemini-specific settings
+    gemini:
+      # Aspect ratio for generated images
+      aspect_ratio: "1:1"
+      # Image resolution ("1K", "2K", "4K")
+      image_size: "1K"
+  # Number of side views to render for mesh physics analysis (mass, orientation, material)
+  # Recommended: 4 for axis-aligned views, 8 for axis-aligned + diagonals
+  num_side_views_for_physics_analysis: 4
+  # Elevation angle (degrees) for side view cameras. Cameras look down at objects from this angle.
+  # Higher values capture more of the top surface; 0 = ground level (horizontal).
+  side_view_elevation_degrees: 20.0
+  # Distance threshold for removing mesh floaters (disconnected components).
+  # Components further than this distance from the main cluster are removed.
+  # Default: 0.05 (5cm). Set to very large value (e.g., 1000.0) to keep all.
+  floater_distance_threshold: 0.05
+  # Minimum mesh dimension (meters) - rejects meshes with any dimension below this.
+  # Catches completely flat meshes that indicate generation failures.
+  # Default: 0.001 (1mm). Increase for larger-scale scenes.
+  min_mesh_dimension_meters: 0.001
+  # Relative dimension threshold - rejects meshes where smallest dimension is less
+  # than this fraction of the largest dimension.
+  # Catches near-degenerate meshes that would produce incorrect proportions when
+  # uniformly scaled.
+  mesh_relative_dimension_threshold: 0.02
+  # EEVEE TAA samples for asset validation renders (mesh analysis, router validation).
+  # Higher values = better quality but slower. Default 8 is a good balance.
+  validation_taa_samples: 8
+
+# Collision geometry configuration.
+collision_geometry:
+  # Decomposition method: "coacd" or "vhacd"
+  method: "vhacd"
+
+  # Port range for convex decomposition server (collision geometry generation).
+  server_port_range: [7100, 7350]
+
+  # CoACD parameters (used when method="coacd")
+  coacd:
+    threshold: 0.03           # Approximation threshold (0.01-0.1 typical range)
+    max_convex_hull: -1       # Max convex hulls (-1 for unlimited)
+    preprocess_mode: "auto"   # Preprocessing mode ("auto", "on", "off")
+    preprocess_resolution: 50 # Resolution for preprocessing
+    resolution: 2000          # Voxel resolution for decomposition
+    mcts_nodes: 20            # MCTS nodes for optimization
+    mcts_iterations: 150      # MCTS iterations for optimization
+    mcts_max_depth: 3         # MCTS max depth for optimization
+    pca: false                # PCA preprocessing
+    merge: true               # Merge small hulls
+    decimate: false           # Decimate mesh before decomposition
+    max_ch_vertex: 256        # Max vertices per convex hull
+    extrude: false            # Extrude thin parts
+    extrude_margin: 0.01      # Extrusion margin
+    apx_mode: "ch"            # Approximation mode ("ch" or "box")
+    seed: 0                   # Random seed for reproducibility
+
+  # V-HACD parameters (used when method="vhacd")
+  vhacd:
+    max_convex_hulls: 64          # Max number of convex hulls
+    resolution: 400000            # Voxel resolution (higher = more accurate)
+    max_recursion_depth: 10       # Max recursion depth for decomposition
+    max_num_vertices_per_ch: 64   # Max vertices per convex hull
+    min_volume_percent_error: 1.0 # Min volume error percent to stop
+    shrink_wrap: true             # Enable shrink wrap
+    fill_mode: "flood"            # Fill mode ("flood", "surface", "raycast")
+    min_edge_length: 2            # Minimum edge length
+    find_best_plane: false        # Find best plane
+
+# OpenAI model and reasoning configuration
+openai:
+  model: "gpt-5.4"
+  api_base: ${openai.api_base}
+  service_tier: ${openai.service_tier}
+  # Vision detail level for image processing
+  vision_detail: "high"
+  # How much computational effort to spend on reasoning for different tasks.
+  # Options: "minimal", "low", "medium", "high", "xhigh".
+  # Higher effort = more thorough but slower and more expensive.
+  reasoning_effort:
+    # Agent reasoning (for OpenAI Agents SDK planner/designer/critic trio).
+    planner: "low"
+    designer: "high"
+    critic: "high"
+    # VLM direct calls.
+    furniture_analysis: "medium"  # Selects furniture for manipuland placement
+    context_selection: "low"  # Selects context furniture (simple decision)
+    mesh_analysis: "medium"  # For mesh physics analysis
+    asset_analysis: "medium"  # For asset router request analysis
+    asset_validation: "medium"  # For asset router mesh validation
+  # How verbose the model's output should be.
+  # Options: "low", "medium", "high".
+  # Lower verbosity = faster and cheaper but may omit details.
+  verbosity:
+    # Agent verbosity (for OpenAI Agents SDK planner/designer/critic trio).
+    planner: "medium"  # Plans need clear communication
+    designer: "low"  # Just tool calls, concise is fine
+    critic: "medium"  # Free-form critique benefits from detail
+    # VLM direct calls.
+    furniture_analysis: "medium"
+    context_selection: "low"
+    mesh_analysis: "medium"
+    asset_analysis: "medium"
+    asset_validation: "medium"
+  # Max retries for VLM calls that return invalid JSON.
+  furniture_analysis_max_retries: 3
+  context_selection_max_retries: 2
+
+# Context furniture configuration
+# Enables manipuland agent to see nearby furniture (e.g., chairs around a table)
+# when placing objects on surfaces. This helps with orientation decisions
+# (e.g., place settings facing chairs).
+context_furniture:
+  # Enable context furniture selection
+  enabled: true
+  # Maximum edge-to-edge distance (meters) for furniture to be considered nearby
+  distance_threshold_m: 2.0
+  # Maximum number of candidate furniture to consider per target
+  max_candidates: 30
+  # Load images from furniture_selection render for visual context
+  include_images: true
+
+# OpenAI API timeout configuration (seconds).
+api_timeout:
+  connect: 10.0  # Connection establishment
+  read: 1800  # 30 minutes
+  write: 1800  # 30 minutes
+  pool: 1800  # 30 minutes
+
+# Loop detection configuration for function tools
+loop_detection:
+  enabled: true
+  max_repeated_attempts: 25  # Block after 2 identical attempts
+  tracking_window: 30  # Track last 30 calls
+
+# Maximum number of critique-and-improve rounds before stopping
+max_critique_rounds: 2
+
+# Scene reset thresholds for detecting quality degradation
+# Reset is suggested when EITHER threshold is exceeded
+reset_single_category_threshold: 2  # Max drop in any single score category (0-10 scale)
+reset_total_sum_threshold: 1  # Max drop in sum of all 5 categories (0-50 scale)
+
+# Early finish threshold - stop if ALL categories score >= this value (0-10 scale)
+early_finish_min_score: 8
+
+# Physics validation configuration
+physics_validation:
+  # Wall thickness for carpet boundary checking (meters) - carpets must not extend under walls.
+  wall_thickness: 0.05  # 5cm
+  # Tolerance for furniture-floor penetration (meters)
+  floor_penetration_tolerance_m: 0.05  # 5cm
+  # Threshold for object-object collision detection (meters)
+  object_penetration_threshold_m: 0.001  # 1mm
+  # Tolerance for manipuland-furniture surface contact (meters) - filters mild expected contact
+  manipuland_furniture_tolerance_m: 0.02  # 2cm
+  # Fallen manipuland removal during final simulation.
+  remove_fallen_manipulands: true
+  fallen_manipuland_floor_z: -1.0  # Objects below this Z definitely fell through floor
+  fallen_manipuland_near_floor_z: 0.02  # Object bottom below this Z is on floor (2cm tolerance)
+  fallen_manipuland_z_displacement: 0.3  # Z drop threshold to detect falling off furniture
+
+# Clearance zone configuration for open connections.
+# Note: door_clearance_distance and window_clearance_distance are configured in
+# floor_plan_agent config and baked into opening data during floor plan generation.
+clearance_zones:
+  # Axis-aligned square size for open connection passability (2D floor check)
+  passage_size: 0.5
+  # Meters of clearance for approaching open connections
+  open_connection_clearance: 0.7
+
+# Support surface extraction
+support_surface_extraction:
+  # HSSD surface handling
+  hssd:
+    # If true, recompute surfaces using HSM algorithm instead of loading pre-validated
+    # surfaces from JSON.
+    recompute_surfaces: false
+
+  # Face clustering parameters
+  face_clustering:
+    normal_cluster_threshold: 0.9  # Minimum dot product for face normal similarity
+    normal_adjacent_threshold: 0.95  # Minimum dot product for adjacent face similarity
+    horizontal_normal_z_min: 0.95  # Minimum Z component for horizontal surfaces
+    vertical_normal_z_max: 0.05  # Maximum Z component for vertical surfaces
+
+  # Surface filtering parameters
+  filtering:
+    min_surface_area_m2: 0.1  # 10 cm² minimum area (filters tiny surfaces)
+    min_area_ratio: 0.20  # Minimum mesh area / bbox area ratio (filters artifacts)
+    min_inscribed_radius_m: 0.10  # 10 cm minimum inscribed radius (filters slivers)
+
+  # Clearance computation and filtering
+  clearance:
+    min_clearance_m: 0.05  # 5 cm minimum clearance (filters internal surfaces)
+    max_measured_clearance_m: 5.0  # Maximum ray-casting distance (efficiency cap)
+    top_surface_clearance_m: 0.5  # 50 cm default clearance for top surfaces
+    self_intersection_threshold_m: 0.001  # 1mm threshold for ray self-hits
+    clearance_percentile: 10.0  # Percentile for clearance (filters edge effects)
+
+  # Surface height and positioning
+  height:
+    surface_offset_m: 0.01  # Offset above mesh surface for gravity settling
+    use_max_z_for_surface_height: true  # Use maximum Z instead of mean
+    max_z_percentile: 99.5  # Percentile for maximum Z (filters outliers)
+    height_tolerance_m: 0.05  # 5 cm tolerance for grouping surfaces at same level
+
+# Placement noise configuration for realistic variation
+placement_noise:
+  # Natural profile: realistic, lived-in scenes with slight imperfections
+  natural_profile:
+    position_xy_std_meters: 0.01
+    rotation_yaw_std_degrees: 3.0
+  # Perfect profile: precise, exhibition-quality placement
+  perfect_profile:
+    position_xy_std_meters: 0.001
+    rotation_yaw_std_degrees: 0.1
+
+# Placement validation configuration
+placement_validation:
+  # Top surface overlap tolerance (0.05 = 5% of object size can extend beyond boundary).
+  # Applied only to top surfaces (highest surface on furniture).
+  # Non-top surfaces (e.g., shelves) always use strict containment (0% overlap).
+  top_surface_overlap_tolerance: 0.05
+
+# Stack simulation configuration
+stack_simulation:
+  # Simulation duration in seconds (allow stack to settle).
+  simulation_time: 5.0
+  # Simulation time step in seconds (smaller = more accurate but slower).
+  simulation_time_step: 0.001
+  # Maximum position displacement for stability (meters).
+  # Objects moving more than this are considered unstable.
+  # Note that the catch surface is at z=-5m.
+  position_threshold: 1.0
+
+# Fill simulation configuration (for fill_container tool)
+fill_simulation:
+  # Max retry iterations for respawning objects that fell outside container.
+  max_iterations: 3
+  # Simulation duration in seconds (allow objects to settle).
+  simulation_time: 5.0
+  # Simulation time step in seconds.
+  simulation_time_step: 0.001
+  # Z position of catch floor (well below container).
+  catch_floor_z: -5.0
+  # Objects above this Z are considered "inside" container.
+  inside_z_threshold: -2.0
+  # Scale factor for interior spawn region (avoid container walls).
+  interior_scale: 0.85
+  # Top fraction of container height used for rim detection.
+  top_rim_height_fraction: 0.15
+  # Height above container rim to spawn fill objects (meters).
+  spawn_height_above_rim: 0.01
+  # Stagger fraction of rotated object height for Z spacing between objects.
+  # 1.0 means stagger = full rotated height, preventing overlap.
+  height_stagger_fraction: 1.0
+  # Minimum stagger between objects (meters).
+  min_height_stagger: 0.02
+  # NLP projection configuration for resolving fill object overlaps.
+  nlp_influence_distance: 0.02  # Distance threshold for collision influence (meters).
+  nlp_solver_name: "snopt"  # NLP solver ("snopt" or "ipopt").
+  # Max retries on NaN simulation errors (uses different spawn positions each retry).
+  max_nan_retries: 3
+
+# Shape analysis for circular container detection (create_arrangement tool).
+# Named snap_to_object for compatibility with shared shape_analysis.py.
+snap_to_object:
+  # Volume ratio threshold for circular detection (mesh volume / AABB volume).
+  # Cylinder has ratio pi/4 ~= 0.785. Values below this are considered circular.
+  circular_detection_volume_ratio_threshold: 0.85
+
+# Pile simulation configuration (for create_pile tool)
+pile_simulation:
+  # Simulation duration in seconds (allow objects to settle).
+  simulation_time: 5.0
+  # Simulation time step in seconds.
+  simulation_time_step: 0.001
+  # Base height above surface for first object spawn (meters).
+  spawn_height_base: 0.005
+  # Stagger fraction of bbox diagonal for Z spacing between objects.
+  # 1.0 means stagger = diagonal, preventing overlap for any rotation.
+  height_stagger_fraction: 1.0
+  # Minimum stagger between objects (meters).
+  min_height_stagger: 0.02
+  # Scale factor for spawn radius (multiplied by avg bbox diagonal).
+  spawn_radius_scale: 0.5
+  # Minimum spawn radius for random XY positions (meters).
+  min_spawn_radius: 0.05
+  # Z threshold relative to surface for "on surface" classification.
+  # Objects with final_z > surface_z + inside_z_threshold are in pile.
+  inside_z_threshold: -0.5
+
+# Per-furniture post-processing after each furniture's manipulands are placed.
+# This runs projection + simulation on smaller subproblems (one furniture at a time)
+# before the final combined post-processing pass.
+per_furniture_postprocessing:
+  enabled: true
+  projection:
+    enabled: true
+    xy_only: false
+    fix_rotation: true
+    influence_distance: 0.02
+    solver_name: "snopt"
+    iteration_limit: 10000
+    time_limit_s: 360.0
+  simulation:
+    enabled: true
+    simulation_time_s: 5.0
+    time_step_s: 1.0e-3
+    timeout_s: 300.0
+    save_html: false
+    # Fallen manipuland removal during per-furniture simulation.
+    remove_fallen_manipulands: true
+    fallen_manipuland_floor_z: -1.0
+    fallen_manipuland_near_floor_z: 0.02
+    fallen_manipuland_z_displacement: 0.3
+
+# Context image generation for manipuland placement guidance.
+# When enabled, renders the furniture (with doors/drawers open for articulated
+# objects), then uses an AI image editing API to add suggested object placement
+# on surfaces. The resulting image is provided to the designer agent as creative
+# inspiration (not ground truth).
+context_image_generation:
+  enabled: false
+
+# Penetration resolution configuration (for resolve_penetrations tool).
+# Disabled: 0% success rate in experiments - agent compensates with remove/move.
+# penetration_resolution:
+#   influence_distance: 0.02  # Collision influence distance (m)
+#   solver_name: "snopt"      # NLP solver ("snopt" or "ipopt")
+#   iteration_limit: 5000     # Max solver iterations
+#   time_limit_s: 120.0       # Max solver time (s)

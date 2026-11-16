@@ -1,0 +1,38 @@
+diff --git a/scenecode/code_object/agent_framework/pipeline.py b/scenecode/code_object/agent_framework/pipeline.py
+--- a/scenecode/code_object/agent_framework/pipeline.py
++++ b/scenecode/code_object/agent_framework/pipeline.py
+@@ -770,3 +770,31 @@
+-            if result and os.path.exists(output_path):
+-                self.logger.info("Full object exported to GLB: %s", output_path)
+-                return output_path
++            # The Blender MCP transport can lose the small JSON response after
++            # completing a long texture-baking export.  The GLB is nevertheless
++            # already atomically present on the shared filesystem.  Treat the
++            # artifact itself as authoritative only after validating its binary
++            # header and declared byte length; later multiview validation still
++            # owns geometry and semantic acceptance.
++            glb_valid = False
++            if os.path.isfile(output_path):
++                file_size = os.path.getsize(output_path)
++                with open(output_path, "rb") as glb_file:
++                    header = glb_file.read(12)
++                glb_valid = (
++                    len(header) == 12
++                    and header[:4] == b"glTF"
++                    and int.from_bytes(header[4:8], "little") == 2
++                    and int.from_bytes(header[8:12], "little") == file_size
++                )
++            if glb_valid:
++                if not result:
++                    self.logger.warning(
++                        "GLB export returned no transport acknowledgement; "
++                        "accepted validated on-disk artifact: %s",
++                        output_path,
++                    )
++                self.logger.info("Full object exported to GLB: %s", output_path)
++                return output_path
++            self.logger.error(
++                "GLB export produced no valid on-disk artifact: %s (response=%r)",
++                output_path,
++                result,
++            )

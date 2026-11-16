@@ -1,0 +1,19 @@
+--- a/env_cfg/task_config/_camera_config.yml
++++ b/env_cfg/task_config/_camera_config.yml
+@@ -23,4 +23,16 @@
+ WAM_D435:
+   fovy: 32
+   w: 960
+   h: 720
++
++# Exact LingBot-VA RoboTwin model planes. These preserve the physical D435
++# vertical FOV while avoiding a post-render resize in the formal adapter.
++LingBotVA_High:
++  fovy: 37
++  w: 320
++  h: 256
++
++LingBotVA_Wrist:
++  fovy: 37
++  w: 160
++  h: 128

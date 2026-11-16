@@ -1,0 +1,17 @@
+diff --git a/scenecode/code_object/agent_framework/prompts/constructor_structmanip.md b/scenecode/code_object/agent_framework/prompts/constructor_structmanip.md
+--- a/scenecode/code_object/agent_framework/prompts/constructor_structmanip.md
++++ b/scenecode/code_object/agent_framework/prompts/constructor_structmanip.md
+@@ -480,6 +480,13 @@ if __name__ == "__main__":
+     - Before returning the script, assert numerically that both terminal AABBs overlap the cup-body AABB in X, Y, and Z
+     - Treat a disconnected handle as construction failure even when all objects share one exported root
+ 
++4.E **PartPlan handle positions are AABB centers, not host-wall coordinates**
++    - Unless the plan explicitly says otherwise, `PartPlan.position` is the center of the requested handle bounding box. Never set `mug_wall_x = pos_x` or treat the handle center as its attachment plane
++    - For a +X handle of width `width`, its inner planned face is approximately `pos_x - width / 2`; build both terminals from that inner face toward the body, extending inward by at least one tube radius
++    - In world coordinates, both terminal AABBs must cross `host_surface_x = pos_x - width / 2`; an assertion against `pos_x` alone is invalid and must not be used
++    - Example: with `pos_x=0.46`, `width=0.24`, the inner face is `x=0.34`, not `x=0.46`; terminals beginning near `x=0.44` are detached even if their local coordinates straddle zero
++    - If the host radius is not explicitly available to the part script, use the inner planned face as the conservative wall estimate and extend farther inward rather than leaving a gap
++
+ 5. **Avoid hardcoding**
+     - Read dimensions and position from PartPlan
+     - Use variables instead of magic numbers

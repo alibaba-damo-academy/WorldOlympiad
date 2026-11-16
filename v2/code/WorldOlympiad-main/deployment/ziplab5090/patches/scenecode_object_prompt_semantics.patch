@@ -1,0 +1,31 @@
+--- a/scenecode/code_object/agent_framework/agents/planner.py
++++ b/scenecode/code_object/agent_framework/agents/planner.py
+@@ -81,8 +81,8 @@
+         }
+ 
+         common_requirements = f"""Requirements:
+-1. Identify the object category (chair/table/stool/etc.).
+-2. Decompose all visible or expected parts.
++1. Identify the actual object category in the input. This is a free-form field: a block remains a block, a bottle remains a bottle; never force a non-furniture object into chair/table/stool.
++2. Decompose only the parts needed for the requested object geometry and physical interaction.
+ 3. Estimate shape and dimensions for each part.
+ 4. Define positional and hierarchical relationships between parts.
+ 5. Assign reasonable build priority.
+@@ -107,7 +107,7 @@
+                 },
+                 {
+                     "type": "text",
+-                    "text": f"""Analyze this furniture image and generate a detailed ObjectPlan.
++                    "text": f"""Analyze this object image and generate its ObjectPlan.
+ 
+ {common_requirements}"""
+                 }
+@@ -116,7 +116,7 @@
+             user_content = [
+                 {
+                     "type": "text",
+-                    "text": f"""Generate a detailed ObjectPlan from the following furniture text description.
++                    "text": f"""Generate an ObjectPlan for the exact object in the following text description.
+ 
+ Text description:
+ {text_input}

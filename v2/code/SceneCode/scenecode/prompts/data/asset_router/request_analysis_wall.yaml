@@ -1,0 +1,184 @@
+name: "request_analysis_wall"
+version: "1.0"
+description: "Extract wall-mounted items from requests"
+template_variables: ["description", "dimensions"]
+prompt: |
+  <role>
+  You analyze wall-mounted object requests.
+  You split composite requests into individual items.
+  </role>
+
+  <definitions>
+  WALL_MOUNTED: Objects mounted on or hung from walls.
+  Examples: paintings, posters, mirrors, clocks, shelves, sconces, artwork,
+  picture frames, wall decorations, tapestries, mounted TVs.
+
+  NOT wall-mounted: Floor furniture, ceiling fixtures, manipulands on surfaces.
+  </definitions>
+
+  <task>
+  1. Composite wall items: split into individual items
+  2. Single wall item: return as single item
+  3. Non-wall items: reject with error message
+  4. Select appropriate strategy chain for each item (see strategies below)
+  5. PRESERVE original description/style EXACTLY - do NOT add extra attributes
+  </task>
+
+  <style_preservation>
+  CRITICAL: The designer has intentional style choices. Preserve them exactly.
+  - "abstract painting" -> "abstract painting" (NOT "framed abstract painting")
+  - "vintage mirror" -> "vintage mirror" (NOT "ornate vintage mirror")
+  - When splitting composites, use minimal differentiation
+  </style_preservation>
+
+  <strategies>
+  Choose strategy based on wall item type:
+  - ["code_generated"] + code_object_profile="wall_art": Artwork and print-like wall pieces.
+    Use for: artwork, paintings, posters, prints, canvas prints, murals, framed artwork,
+    and picture frames.
+    KEY: All print-like wall art should use the WallArt Code_Object profile, even when
+    unframed. The frame may be absent, thin, or prominent, but the asset is still wall art.
+    Examples: "abstract painting", "canvas wall print", "framed landscape painting",
+    "movie poster", "picture frame", "wall mural".
+  - ["thin_covering"]: Repeating wall coverings only.
+    Use for: tapestry, wallpaper sections, and other repeated textile/pattern coverings.
+    For thin_covering, also set thin_covering_type:
+    - "tileable": Pattern repeats across the surface.
+    - "single_image": Only use if the covering is a single non-repeating flat sheet.
+  - ["code_generated"] without code_object_profile: Rigid non-art wall objects with
+    real 3D structure.
+    Use for: mirrors, open wall shelves, mounted TVs, sconces, light switches,
+    wall clocks, pendulum clocks, cuckoo clocks, wall-mounted mailboxes.
+  </strategies>
+
+  <output_schema>
+  {
+    "items": [
+      {
+        "description": "string",
+        "short_name": "string (lowercase_with_underscores)",
+        "dimensions": [width, height, depth],
+        "object_type": "WALL_MOUNTED",
+        "strategies": ["code_generated"] | ["thin_covering"],
+        "thin_covering_type": "single_image|tileable|null (only for thin_covering)",
+        "code_object_profile": "wall_art|null (only for specialized code_generated assets)"
+      }
+    ],
+    "original_description": "string|null (set if split)",
+    "error": "string|null (set if request rejected)"
+  }
+  </output_schema>
+
+  <examples>
+  Input: "abstract painting", dimensions=[0.8, 0.6, 0.01]
+  Output:
+  {
+    "items": [{
+      "description": "abstract painting",
+      "short_name": "painting",
+      "dimensions": [0.8, 0.6, 0.01],
+      "object_type": "WALL_MOUNTED",
+      "strategies": ["code_generated"],
+      "code_object_profile": "wall_art"
+    }],
+    "original_description": null
+  }
+
+  Input: "canvas wall print", dimensions=[1.0, 0.7, 0.01]
+  Output:
+  {
+    "items": [{
+      "description": "canvas wall print",
+      "short_name": "wall_print",
+      "dimensions": [1.0, 0.7, 0.01],
+      "object_type": "WALL_MOUNTED",
+      "strategies": ["code_generated"],
+      "code_object_profile": "wall_art"
+    }],
+    "original_description": null
+  }
+
+  Input: "framed landscape painting", dimensions=[0.8, 0.6, 0.05]
+  Output:
+  {
+    "items": [{
+      "description": "framed landscape painting",
+      "short_name": "painting",
+      "dimensions": [0.8, 0.6, 0.05],
+      "object_type": "WALL_MOUNTED",
+      "strategies": ["code_generated"],
+      "code_object_profile": "wall_art"
+    }],
+    "original_description": null
+  }
+
+  Input: "picture frame", dimensions=[0.5, 0.4, 0.03]
+  Output:
+  {
+    "items": [{
+      "description": "picture frame",
+      "short_name": "picture_frame",
+      "dimensions": [0.5, 0.4, 0.03],
+      "object_type": "WALL_MOUNTED",
+      "strategies": ["code_generated"],
+      "code_object_profile": "wall_art"
+    }],
+    "original_description": null
+  }
+
+  Input: "wallpaper section", dimensions=[1.2, 1.0, 0.01]
+  Output:
+  {
+    "items": [{
+      "description": "wallpaper section",
+      "short_name": "wallpaper",
+      "dimensions": [1.2, 1.0, 0.01],
+      "object_type": "WALL_MOUNTED",
+      "strategies": ["thin_covering"],
+      "thin_covering_type": "tileable",
+      "code_object_profile": null
+    }],
+    "original_description": null
+  }
+
+  Input: "decorative mirror", dimensions=[0.5, 0.7, 0.03]
+  Output:
+  {
+    "items": [{
+      "description": "decorative mirror",
+      "short_name": "mirror",
+      "dimensions": [0.5, 0.7, 0.03],
+      "object_type": "WALL_MOUNTED",
+      "strategies": ["code_generated"],
+      "code_object_profile": null
+    }],
+    "original_description": null
+  }
+
+  Input: "wall clock", dimensions=[0.35, 0.35, 0.05]
+  Output:
+  {
+    "items": [{
+      "description": "wall clock",
+      "short_name": "wall_clock",
+      "dimensions": [0.35, 0.35, 0.05],
+      "object_type": "WALL_MOUNTED",
+      "strategies": ["code_generated"],
+      "code_object_profile": null
+    }],
+    "original_description": null
+  }
+
+  Input: "dining table", dimensions=[1.5, 0.9, 0.75]
+  Output:
+  {
+    "items": [],
+    "original_description": "dining table",
+    "error": "Request is for floor furniture, not a wall-mounted item."
+  }
+  </examples>
+
+  Request: {{ description }}
+  Dimensions: {{ dimensions }}
+
+  Return your response as a JSON object matching the output_schema.

@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!--
+  Mesh-free kinematic projection of RoboTwin's front-left ALOHA arm.
+
+  Joint origins, axes, and limits are copied from RoboTwin's
+  arx5_description_isaac.urdf.  The fixed base transform folds in the ALOHA
+  root pose [0, -0.65, 0, Rz(pi/2)] used by RoboTwin plus fl_base_joint, so
+  the chain and the static head camera share the RoboTwin world frame.
+-->
+<robot name="robotwin_aloha_front_left_kinematic">
+  <link name="world"/>
+  <link name="fl_base_link"/>
+  <joint name="fl_base_joint" type="fixed">
+    <origin xyz="-0.297 -0.4195 0.782" rpy="0 0 1.5907963267948966"/>
+    <parent link="world"/>
+    <child link="fl_base_link"/>
+  </joint>
+
+  <link name="fl_link1"/>
+  <joint name="fl_joint1" type="revolute">
+    <origin xyz="0 0 0.058" rpy="0 0 0"/>
+    <parent link="fl_base_link"/>
+    <child link="fl_link1"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-10" upper="10" effort="100" velocity="1000"/>
+  </joint>
+
+  <link name="fl_link2"/>
+  <joint name="fl_joint2" type="revolute">
+    <origin xyz="0.025013 0.00060169 0.042" rpy="0 0 0"/>
+    <parent link="fl_link1"/>
+    <child link="fl_link2"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-10" upper="10" effort="100" velocity="1000"/>
+  </joint>
+
+  <link name="fl_link3"/>
+  <joint name="fl_joint3" type="revolute">
+    <origin xyz="-0.26396 0.0044548 0" rpy="-3.1416 0 -0.015928"/>
+    <parent link="fl_link2"/>
+    <child link="fl_link3"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-10" upper="10" effort="100" velocity="1000"/>
+  </joint>
+
+  <link name="fl_link4"/>
+  <joint name="fl_joint4" type="revolute">
+    <origin xyz="0.246 -0.00025 -0.06" rpy="0 0 0"/>
+    <parent link="fl_link3"/>
+    <child link="fl_link4"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-10" upper="10" effort="100" velocity="1000"/>
+  </joint>
+
+  <link name="fl_link5"/>
+  <joint name="fl_joint5" type="revolute">
+    <origin xyz="0.06775 0.0015 -0.0855" rpy="0 0 -0.015928"/>
+    <parent link="fl_link4"/>
+    <child link="fl_link5"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-10" upper="10" effort="100" velocity="1000"/>
+  </joint>
+
+  <link name="fl_link6"/>
+  <joint name="fl_joint6" type="revolute">
+    <origin xyz="0.03095 0 0.0855" rpy="-3.1416 0 0"/>
+    <parent link="fl_link5"/>
+    <child link="fl_link6"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="-10" upper="10" effort="100" velocity="1000"/>
+  </joint>
+</robot>

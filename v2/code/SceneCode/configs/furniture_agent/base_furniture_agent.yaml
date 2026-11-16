@@ -1,0 +1,400 @@
+# Base furniture agent configuration with shared settings
+
+# Session memory management for context efficiency.
+# Trims old conversation turns by removing images and optionally summarizing text.
+session_memory:
+  enabled: true
+  # Number of recent turns to keep fully intact (with images). N=2 means two completed
+  # turns are kept and the current turn is also kept.
+  keep_last_n_turns: 1
+  # Summarize older turns via LLM (if false, just strip images).
+  enable_summarization: true
+  # Model for summarization ("agent" uses cfg.openai.model).
+  summarization_model: "gpt-5.2"
+  # Thinking effort for summarization ("none", "low", "medium", "high").
+  summarization_thinking: "low"
+  # Intra-turn observation stripping: strip images from older observe_scene outputs
+  # within the current turn while keeping the last N observations with images intact.
+  intra_turn_observation_stripping:
+    enabled: true
+    # Number of recent observe_scene outputs to keep with images.
+    # Default 2 allows comparison between current and previous state.
+    keep_last_n_observations: 2
+
+# Rendering configuration
+rendering:
+  # Layout type for ablations.
+  # Options: "grid_3x3" (1 top + 8 sides at 45°), "single_top" (top-down only),
+  # "top_plus_sides" (1 top + N perpendicular sides)
+  layout: "top_plus_sides"
+
+  # Top-down view dimensions.
+  top_view_width: 1024
+  top_view_height: 1024
+
+  # Side views configuration (only used when layout includes sides).
+  # Set side_view_count to 0 to disable side views.
+  side_view_count: 4
+  side_view_width: 512
+  side_view_height: 512
+
+  background_color: [1.0, 1.0, 1.0]
+  blender_server_host: "127.0.0.1"
+  blender_server_port_range: [8000, 8350]
+  retry_count: 10
+  retry_delay: 3
+  # Delay after starting server subprocess to allow Blender initialization.
+  server_startup_delay: 0.1
+  # Delay after stopping server to allow OS port cleanup.
+  port_cleanup_delay: 0.1
+
+  # EEVEE TAA (temporal anti-aliasing) samples for render quality.
+  # Higher values = better quality but slower. Default 8 is a good balance.
+  taa_samples: 8
+
+  # Overlay annotations configuration.
+  annotations:
+    # Set-of-mark labels: blue rectangular labels with object names.
+    enable_set_of_mark_labels: true
+    # Bounding boxes: blue wireframe boxes around objects.
+    enable_bounding_boxes: true
+    # Direction arrows: cyan/turquoise arrows showing object forward direction (Y-axis).
+    enable_direction_arrows: true
+    # Partial walls: hide walls blocking camera view (top=all, sides=facing camera).
+    enable_partial_walls: true
+    # Support surface debug: green wireframe bbox showing placement volume (debugging only).
+    enable_support_surface_debug: false
+    # Convex hull debug: cyan outline showing surface convex hull (debugging only).
+    enable_convex_hull_debug: false
+
+# Asset manager configuration
+asset_manager:
+  # Asset source: "code_generated", "code_articulated", "generated", "hssd", or "objaverse"
+  general_asset_source: "code_generated"
+
+  # 3D generation backend (only used when general_asset_source="generated")
+  backend: "sam3d"
+
+  # Asset router configuration for LLM-advised asset acquisition.
+  # Router analyzes requests and selects semantic strategies
+  # (code_generated/code_articulated/generated/articulated/thin_covering).
+  # The top-level "general_asset_source" field still controls non-router
+  # acquisition and the legacy generated strategy.
+  router:
+    # Enable LLM-based request analysis and validation
+    enabled: true
+    # Number of concurrent item generation threads (overlaps I/O-bound work)
+    parallel_workers: 1
+    # Max retries for VLM analysis if parsing fails (e.g., invalid object_type)
+    analysis_max_retries: 3
+    strategies:
+      # Primary Code_Object strategy for image-conditioned 3D generation.
+      code_generated:
+        enabled: true
+        max_retries: 3  # Retry with a new image / code generation attempt
+      # Code_Object strategy that continues with URDF -> SDF for articulated assets.
+      code_articulated:
+        enabled: true
+        max_retries: 2
+      # Legacy geometry-generation strategy.
+      generated:
+        enabled: false
+        max_retries: 2  # Retry with same prompt (randomness gives different results)
+      # Articulated objects
+      articulated:
+        enabled: false
+        max_retries: 3
+        use_lenient_validation: true  # Lenient validation for dataset objects
+      # Thin covering: flat floor surfaces (rugs, yoga mats, runners).
+      thin_covering:
+        enabled: true
+        max_retries: 3 # Retry with different materials if validation fails
+        thickness_m: 0.003  # 3mm default thickness
+        texture_scale: 0.5  # Meters per tile for retrieved library textures (tileable)
+        # AI material generation fallback (when library retrieval fails)
+        generator:
+          enabled: true  # Enable as fallback when all retrieval candidates fail
+          backend: "openai"  # or "gemini" (uses image_generation config)
+          max_retries: 2  # Max AI generation attempts
+          default_roughness: 128  # 0-255 grayscale for PBR roughness map
+          texture_scale: 0.5  # Meters per tile for tileable textures
+
+  # Code_Object configuration (used for the code_generated/code_articulated source/strategy)
+  code_object:
+    config_path: "agent_framework/config.yaml"
+    simple_object_config_path: "agent_framework/config_simplemanip.yaml"
+    manipuland_config_path: "agent_framework/config_structmanip.yaml"
+    blender_mcp_port_range: [9900, 9999]
+    max_concurrent_runs: 1
+    max_attempts: 3
+
+  # SAM3D backend configuration (only used when backend="sam3d")
+  sam3d:
+    # Path to SAM3 model checkpoint
+    sam3_checkpoint: ${oc.env:SAM3_CHECKPOINT,null}
+    # Path to SAM 3D Objects pipeline config
+    sam3d_checkpoint: ${oc.env:SAM3D_PIPELINE_CONFIG,null}
+    # Segmentation mode: "foreground" or "object_description"
+    # - foreground: automatic foreground detection (best for uniform backgrounds)
+    # - object_description: uses the asset description for semantic segmentation
+    mode: "foreground"
+    # Confidence threshold for mask generation (0.0-1.0)
+    threshold: 0.5
+
+  # HSSD retrieval configuration (only used when general_asset_source="hssd")
+  hssd:
+    data_path: "data/hssd-models"
+    preprocessed_path: "data/preprocessed"
+    use_top_k: 5  # Number of top CLIP candidates before size ranking
+    use_lenient_validation: true  # Use lenient validation for retrieved assets
+    object_type_mapping:
+      FURNITURE: "large_objects"
+      MANIPULAND: "small_objects"
+      WALL_MOUNTED: "wall_objects"
+      CEILING_MOUNTED: "ceiling_objects"
+
+  # Objaverse (ObjectThor) retrieval configuration (only used when general_asset_source="objaverse")
+  objaverse:
+    data_path: "data/objathor-assets"
+    preprocessed_path: "data/objathor-assets/preprocessed"
+    use_top_k: 5  # Number of top CLIP candidates before size ranking
+    use_lenient_validation: true  # Use lenient validation for retrieved assets
+    object_type_mapping:
+      FURNITURE: "large_objects"
+      MANIPULAND: "small_objects"
+      WALL_MOUNTED: "wall_objects"
+      CEILING_MOUNTED: "ceiling_objects"
+
+  # Articulated object retrieval configuration (pre-processed SDF assets)
+  # Multiple data sources can be enabled/disabled independently
+  articulated:
+    enable_self_collision_filtering: true
+    use_top_k: 5  # Number of top CLIP candidates before bbox ranking
+    sources:
+      partnet_mobility:
+        enabled: false
+        data_path: "data/partnet_mobility_sdf"
+        embeddings_path: "data/partnet_mobility_sdf/embeddings"
+      artvip:
+        enabled: true
+        data_path: "data/artvip_sdf"
+        embeddings_path: "data/artvip_sdf/embeddings"
+
+  # Image generation configuration
+  image_generation:
+    # Backend: "flux-klein" (local FLUX.2-klein), "openai", or "gemini"
+    # flux-klein requires the dedicated env at
+    # $FLUX_PYTHON
+    # OpenAI requires OPENAI_API_KEY, Gemini requires GOOGLE_API_KEY
+    backend: "openai"
+    fallback_backend: "flux-klein"
+    # FLUX.2-klein-specific settings
+    flux_klein:
+      python_executable: ${oc.env:FLUX_PYTHON,null}
+      model_path: ${oc.env:FLUX_MODEL_PATH,null}
+      width: 1024
+      height: 1024
+      num_inference_steps: 4
+      guidance_scale: 1.0
+      max_sequence_length: 256
+      seed: 41
+    # OpenAI-specific settings
+    openai:
+      # Quality parameter ("auto", "low", "medium", "high")
+      quality: "low"
+    # Gemini-specific settings
+    gemini:
+      aspect_ratio: "1:1"
+      image_size: "1K"  # "1K", "2K", "4K"
+  # Number of side views to render for mesh physics analysis (mass, orientation, material)
+  # Recommended: 4 for axis-aligned views, 8 for axis-aligned + diagonals
+  num_side_views_for_physics_analysis: 4
+  # Elevation angle (degrees) for side view cameras. Cameras look down at objects from this angle.
+  # Higher values capture more of the top surface; 0 = ground level (horizontal).
+  side_view_elevation_degrees: 20.0
+  # Distance threshold for removing mesh floaters (disconnected components).
+  # Components further than this distance from the main cluster are removed.
+  # Default: 0.05 (5cm). Set to very large value (e.g., 1000.0) to keep all.
+  floater_distance_threshold: 0.05
+  # Minimum mesh dimension (meters) - rejects meshes with any dimension below this.
+  # Catches completely flat meshes that indicate generation failures.
+  # Default: 0.001 (1mm). Increase for larger-scale scenes.
+  min_mesh_dimension_meters: 0.001
+  # Relative dimension threshold - rejects meshes where smallest dimension is less
+  # than this fraction of the largest dimension.
+  # Catches near-degenerate meshes that would produce incorrect proportions when
+  # uniformly scaled.
+  mesh_relative_dimension_threshold: 0.02
+  # EEVEE TAA samples for asset validation renders (mesh analysis, router validation).
+  # Higher values = better quality but slower. Default 8 is a good balance.
+  validation_taa_samples: 8
+
+# Collision geometry configuration.
+collision_geometry:
+  # Decomposition method: "coacd" or "vhacd"
+  method: "vhacd"
+
+  # Port range for convex decomposition server (each worker gets its own port).
+  server_port_range: [7100, 7450]
+
+  # CoACD parameters (used when method="coacd")
+  coacd:
+    threshold: 0.03           # Approximation threshold (0.01-0.1 typical range)
+    max_convex_hull: -1       # Max convex hulls (-1 for unlimited)
+    preprocess_mode: "auto"   # Preprocessing mode ("auto", "on", "off")
+    preprocess_resolution: 50 # Resolution for preprocessing
+    resolution: 2000          # Voxel resolution for decomposition
+    mcts_nodes: 20            # MCTS nodes for optimization
+    mcts_iterations: 150      # MCTS iterations for optimization
+    mcts_max_depth: 3         # MCTS max depth for optimization
+    pca: false                # PCA preprocessing
+    merge: true               # Merge small hulls
+    decimate: false           # Decimate mesh before decomposition
+    max_ch_vertex: 256        # Max vertices per convex hull
+    extrude: false            # Extrude thin parts
+    extrude_margin: 0.01      # Extrusion margin
+    apx_mode: "ch"            # Approximation mode ("ch" or "box")
+    seed: 0                   # Random seed for reproducibility
+
+  # V-HACD parameters (used when method="vhacd")
+  vhacd:
+    max_convex_hulls: 128          # Max number of convex hulls
+    resolution: 400000            # Voxel resolution (higher = more accurate)
+    max_recursion_depth: 10       # Max recursion depth for decomposition
+    max_num_vertices_per_ch: 64   # Max vertices per convex hull
+    min_volume_percent_error: 1.0 # Min volume error percent to stop
+    shrink_wrap: true             # Enable shrink wrap
+    fill_mode: "flood"            # Fill mode ("flood", "surface", "raycast")
+    min_edge_length: 2            # Minimum edge length
+    find_best_plane: false        # Find best plane
+
+# Maximum number of agent turns before stopping (applies to all agent interactions)
+max_turns: 1000
+
+# Maximum number of critique-and-improve rounds before stopping
+max_critique_rounds: 3
+
+# Scene reset thresholds for detecting quality degradation
+# Reset is suggested when EITHER threshold is exceeded
+reset_single_category_threshold: 2  # Max drop in any single score category (0-10 scale)
+reset_total_sum_threshold: 1  # Max drop in sum of all 6 categories (0-60 scale)
+
+# Early finish threshold - stop if ALL categories score >= this value (0-10 scale)
+early_finish_min_score: 9
+
+# OpenAI model and reasoning configuration
+openai:
+  model: "gpt-5.4"
+  api_base: ${openai.api_base}
+  service_tier: ${openai.service_tier}
+  # Vision detail level for image processing
+  # Options: "low" (512x512, 65 tokens), "high" (detailed processing), "auto" (default)
+  vision_detail: "high"
+  # How much computational effort to spend on reasoning for different tasks.
+  # Options: "minimal", "low", "medium", "high", "xhigh".
+  # Higher effort = more thorough but slower.
+  reasoning_effort:
+    # Agent reasoning (for OpenAI Agents SDK planner/designer/critic trio).
+    planner: "low"
+    designer: "high"
+    critic: "high"
+    # VLM direct calls.
+    mesh_analysis: "medium"  # For mesh physics analysis
+    asset_analysis: "medium"  # For asset router request analysis
+    asset_validation: "medium"  # For asset router mesh validation
+  # How verbose the model's output should be.
+  # Options: "low", "medium", "high".
+  # Lower verbosity = faster and cheaper but may omit details.
+  verbosity:
+    # Agent verbosity (for OpenAI Agents SDK planner/designer/critic trio).
+    planner: "medium"  # Plans need clear communication
+    designer: "low"  # Just tool calls, concise is fine
+    critic: "medium"  # Free-form critique benefits from detail
+    # VLM direct calls.
+    mesh_analysis: "medium"
+    asset_analysis: "medium"
+    asset_validation: "medium"
+
+# OpenAI API timeout configuration (seconds).
+api_timeout:
+  connect: 10.0  # Connection establishment
+  read: 1800  # 30 minutes
+  write: 1800  # 30 minutes
+  pool: 1800  # 30 minutes
+
+# Loop detection configuration for function tools
+loop_detection:
+  enabled: true
+  max_repeated_attempts: 25  # Block after 2 identical attempts
+  tracking_window: 30  # Track last 30 calls
+
+# Physics validation configuration
+physics_validation:
+  # Wall thickness for carpet boundary checking (meters) - carpets must not extend under walls.
+  wall_thickness: 0.05  # 5cm
+  # Tolerance for furniture-floor penetration (meters) - allows furniture to "sink" into floor slightly
+  floor_penetration_tolerance_m: 0.05  # 5cm
+  # Threshold for object-object collision detection (meters) - minimum penetration to report
+  object_penetration_threshold_m: 0.001  # 1mm
+  # Tolerance for manipuland-furniture surface contact (meters) - filters mild expected contact
+  manipuland_furniture_tolerance_m: 0.02  # 2cm
+  # Fallen furniture removal: automatically remove furniture that falls over during simulation.
+  # Uses tilt angle (deviation from upright) to detect fallen objects.
+  remove_fallen_furniture: true  # Enable automatic removal of fallen furniture
+  fallen_tilt_threshold_degrees: 45.0  # Tilt angle threshold to consider furniture "fallen"
+
+# Clearance zone configuration for open connections.
+# Note: door_clearance_distance and window_clearance_distance are configured in
+# floor_plan_agent config and baked into opening data during floor plan generation.
+clearance_zones:
+  # Axis-aligned square size for open connection passability (2D floor check)
+  passage_size: 0.5
+  # Meters of clearance for approaching open connections
+  open_connection_clearance: 0.7
+
+# Reachability checking configuration
+reachability:
+  # Side length of square robot footprint for passage width validation (meters).
+  robot_width: 0.3
+
+# Snap to object configuration
+snap_to_object:
+  # Voxel pitch for mesh downsampling (meters) - smaller = more precise but slower
+  voxel_pitch_meters: 0.03
+  # Only downsample meshes with more than this many vertices
+  min_vertices_threshold: 10000
+  # Volume ratio threshold for circular object detection (mesh_vol / aabb_vol)
+  # Objects below this threshold use bbox center for orientation (not surface).
+  # Cylinder ≈ 0.785, octagon ≈ 0.828, square = 1.0.
+  circular_detection_volume_ratio_threshold: 0.80
+  # Step size for iterative axis-constrained snapping (meters).
+  # Smaller = more precise but slower. 1cm is good balance.
+  iterative_snap_step_m: 0.01
+  # Maximum reasonable distance for snapping (meters). Safety limit to prevent runaway
+  # iterations.
+  max_snap_distance_m: 10.0
+  # Small gap to maintain between objects after snapping (meters).
+  # Prevents floating-point precision errors and collision detection mismatches.
+  snap_margin_m: 0.01
+  # Maximum vertices for mesh-to-mesh proximity queries via voxel downsampling.
+  max_sample_vertices: 2000
+
+# Placement noise configuration for realistic scene variation
+placement_noise:
+  # Mode will be resolved to natural/perfect by planner agent
+  mode: "auto"
+  # Natural profile: realistic, lived-in scenes with slight imperfections
+  natural_profile:
+    position_xy_std_meters: 0.03
+    rotation_yaw_std_degrees: 1.0
+  # Perfect profile: precise, exhibition-quality placement
+  perfect_profile:
+    position_xy_std_meters: 0.001
+    rotation_yaw_std_degrees: 0.1
+
+# Context image generation for furniture placement guidance.
+# When enabled, renders the empty room showing doors/windows, then uses an AI
+# image editing API to add suggested furniture placement. The resulting image
+# is provided to the designer agent as creative inspiration (not ground truth).
+context_image_generation:
+  enabled: false

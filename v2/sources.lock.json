@@ -1,0 +1,277 @@
+{
+  "schema_version": 3,
+  "sources": [
+    {
+      "name": "WorldOlympiad-main",
+      "kind": "bundle",
+      "role": "evaluation-pipeline-and-LingBot-VA-adapter",
+      "path": "code/WorldOlympiad-main",
+      "source_commit": null,
+      "manifest": "locks/source-manifests/WorldOlympiad-main.json",
+      "manifest_sha256": "15ed11841f72cee40f0f296175c8f7b4fca9d377d50c7453e31e6cfa00866c91",
+      "tree_sha256": "5476c81827f495f0de951f1d747931ec49385436959d87255fe378e4a277775d",
+      "required_paths": [
+        "wo/agent/launch.py",
+        "wo/agent/config.py",
+        "deployment/ziplab5090/bootstrap_worldolympiad_evaluation.sh",
+        "deployment/ziplab5090/stage_scenecode_runtime.sh",
+        "scripts/lingbot_checkpoint_contract.py"
+      ],
+      "allowed_runtime_symlinks": {
+        "weights": "weights",
+        "Depth-Anything-3": "code/Depth-Anything-3"
+      },
+      "provenance": "Recovered server-side WorldOlympiad source bundle from the preserved wov2-evaluator workspace. The source checkout had no recoverable Git commit objects (the workspace Git repository was unborn), so no commit is asserted. The previous lock declared the commit recorded in previous_lock_commit_claim; that claim could not be independently verified. The exact current bundle, including server-local changes, is pinned by the file/mode/symlink manifest.",
+      "deployment_overrides": [
+        {
+          "path": "deployment/ziplab5090/patches/scenecode_tolerant_part_export.patch",
+          "original_sha256": "e42d1c250e13631e8781554f45915310bb1927c95f9c2bdf618f5af102117ccb",
+          "sha256": "c6806c3f1d3953e9bf26504228d5b2578cc0381f128aa15377d9d6a71e5cbf1b",
+          "tested_against": "SceneCode@1c8e972d24c960a319b5df936ae552ad410beb85",
+          "reason": "The recovered hunk included stale context; the corrected hunk changes only the intended incomplete-construction admission behavior and applies cleanly to the locked SceneCode source."
+        }
+      ],
+      "local_overlays": [
+        {
+          "paths": [
+            "wo/agent/stages.py",
+            "wo/agent/tools.py"
+          ],
+          "purpose": "Automatically inject and enforce the run-scoped SceneCode profile prepared from the configured Agent model for every registered scene stage. RSI worktree bootstrapping against the portable, synthetic local Git baseline and protected runtime links.",
+          "validation": "focused test tests/test_scene_profile_binding.py; SceneCode source-profile contract checked before launcher start.; RSI worktree creation is validated by scripts/prepare_rsi_base.py."
+        },
+        {
+          "paths": [
+            "deployment/patches/robotwin_lingbot_native_camera.patch"
+          ],
+          "purpose": "Rebase the native-camera profile hunk to the exact locked RoboTwin archive, including its end-of-file marker and current D435 key names.",
+          "original_sha256": "544c3d86baf6e8939f56acd8d105d5f3c7b6a563d55557c9b6e9f393f6662bc2",
+          "sha256": "24444a43b9a7ac4ea748397009e3913ab1f4c045ec199bbad02d56afe4d06987",
+          "tested_against": "RoboTwin@ea8b21121ebb3cd201ff5b3fe361944ac94eda3f",
+          "validation": "Corrected and upstream-intrinsics patches both dry-run and apply to a forensic copy of the locked RoboTwin source; resulting camera profile keys checked."
+        },
+        {
+          "paths": [
+            "wo/agent/config.py"
+          ],
+          "purpose": "Honor WO_AGENT_ENV_FILE so the entry repository can use the user-selected private Agent/SceneCode environment file without copying credentials.",
+          "validation": "tests/test_private_env_path.py and no-secret preparation preflight."
+        },
+        {
+          "paths": [
+            "3d_metrics/reward_3d_backend.py",
+            "deployment/ziplab5090/run_scenecode_case.sh",
+            "model/qwenvl.py",
+            "model/qwenvl_server.py",
+            "wo/eval/renderer_dependency.py",
+            "wo/tests/test_episode_stage_output_lock.py",
+            "wo/tests/test_eval_case_native_videos.py",
+            "wo/tests/test_lingbot_native_trajectory.py"
+          ],
+          "purpose": "Server-recovered source deltas absent from the prior candidate manifest. Their exact content is now hash-locked; original Git history is unavailable, so no upstream attribution is asserted.",
+          "validation": "Included in the regenerated WorldOlympiad-main file/mode manifest and source verification."
+        },
+        {
+          "paths": [
+            "wo/agent/config.py",
+            "wo/agent/stages.py",
+            "wo/agent/jobs.py",
+            "wo/agent/score_stage.py",
+            "scripts/score_robotics_cases.py",
+            "wo/agent/test_scoring_gpu_topology.py",
+            "wo/agent/test_two_interface_config_scenecode_source.py",
+            "wo/agent/test_scenecode_launcher_source_profile.py",
+            "wo/tests/test_episode_stage.py",
+            "wo/tests/test_score_stage_recompute.py",
+            "tests/test_score_robotics_cases.py"
+          ],
+          "purpose": "Score Qwen-VL and physical/geometry/interaction compute on separate RTX 5090s; phase-specific fresh resource gates; no-GPU idle worker bootstrap; fail-before-queue and dry-run resource rejection.",
+          "validation": "Focused scoring/resource tests and the relevant regression suite; exact files bound by the source manifest."
+        },
+        {
+          "paths": [
+            "wo/agent/config.py",
+            "wo/agent/test_preparation_resource_gate.py"
+          ],
+          "purpose": "Separate lightweight SceneCode/reference admission from LingBot policy FSDP: one idle RTX 5090 with 8,192 MiB free, utilization <=5%, and no compute-app PID.",
+          "validation": "Focused fixture tests cover selection, rejection of busy cards, and preparation environment mapping; bundle manifest pins the promoted source tree."
+        },
+        {
+          "paths": [
+            "wo/eval/case.py",
+            "wo/tests/test_eval_case_native_videos.py"
+          ],
+          "purpose": "Restore the locked WOV2 baseline matched-camera scoring contract; mismatched native observation cameras are rejected, never relabeled or used as fallback.",
+          "validation": "Focused tests accept a nested exact-view video and reject head-only video when exterior_left is required."
+        },
+        {
+          "paths": [
+            "wo/agent/jobs.py",
+            "wo/tests/test_two_interface_config.py"
+          ],
+          "purpose": "Preserve the launcher's preparation resource-phase gate when the queue worker loads credentials and neutral runtime configuration, without probing GPUs at worker startup.",
+          "validation": "TwoInterfaceConfigTests.test_worker_preserves_the_launchers_preparation_phase; candidate resource-topology tests; fresh preparation preflight."
+        },
+        {
+          "paths": [
+            "physical/sam_process.py",
+            "scripts/score_robotics_cases.py",
+            "scripts/score_video_physical_3d.py",
+            "tests/test_lingbot_va_native_bridge_seam.py",
+            "wo/agent/test_scoring_gpu_topology.py",
+            "wo/models/lingbot_va_native_bridge.py",
+            "physical/test_sam_process_gpu.py"
+          ],
+          "purpose": "Release validation fixes for selected physical GPU scoring and bounded native LingBot rollout; exact post-fix source tree is pinned by the manifest.",
+          "validation": "Real/i2av one-command report passed; sim_rollout window forwarding and action-cap focused tests passed; full sim validation in progress."
+        },
+        {
+          "paths": [
+            "wo/render.py",
+            "wo/tests/test_render_artifact_binding.py"
+          ],
+          "purpose": "Resolve bundled ffmpeg in the renderer process so Mesa replay can encode videos without a global ffmpeg install.",
+          "validation": "Renderer environment test and render artifact tests pass; full sim benchmark rerun pending."
+        }
+      ],
+      "previous_lock_commit_claim": "2b8309c3f072ae01bafc4fcaa694475a43e25161",
+      "rsi_git_baseline": "5337b6452bb954f00c3e9699dacb29211d84d80d"
+    },
+    {
+      "name": "scenecode_pybullet_minimal",
+      "kind": "bundle",
+      "role": "DROID-reference-builder",
+      "path": "code/scenecode_pybullet_minimal",
+      "source_commit": null,
+      "manifest": "locks/source-manifests/scenecode_pybullet_minimal.json",
+      "manifest_sha256": "611d4f493307f10e5d1c560c14bcc375fa28eb5abe09bbefcb315de1d7aa5728",
+      "tree_sha256": "d4a2c896793fdc77e4fe1e357bf8d8c23aafdb881d3f01485bb29d67b4e954cf",
+      "required_files": [
+        {
+          "path": "scripts/build_robolab_droid_urdf.py",
+          "sha256": "d46198abb1f937ddae474b86f5980219b6d780f937c08eeea1b907a42f48d225"
+        }
+      ],
+      "provenance": "Recovered DROID bridge bundle associated with the server WorldOlympiad source head 2c4c927d0302dd3970b8450540c525de0f5929f6. No independent upstream URL/commit is established; exact bundled content is pinned by the file/mode manifest."
+    },
+    {
+      "name": "SceneCode",
+      "kind": "bundle",
+      "role": "scene-generation-source",
+      "path": "code/SceneCode",
+      "required_paths": [
+        "main.py",
+        "uv.lock"
+      ],
+      "provenance": "File snapshot copied from a clean server Git checkout verified at official origin https://github.com/wangpuyi/SceneCode.git, commit 1c8e972d24c960a319b5df936ae552ad410beb85; pinned by repository file/mode manifest.",
+      "source_commit": "1c8e972d24c960a319b5df936ae552ad410beb85",
+      "upstream_url": "https://github.com/wangpuyi/SceneCode.git",
+      "manifest": "locks/source-manifests/SceneCode.json",
+      "manifest_sha256": "2355f8b2c60e14bd77d7645f9b8545a76a753bd92c13dfb7dbfb93d6c44577e3",
+      "tree_sha256": "3740c2dc1196d69b362e58c1bdad05cc3925e1b46f6120c1d7312c1bd27457f6"
+    },
+    {
+      "name": "RoboTwin",
+      "kind": "bundle",
+      "role": "simulator-source",
+      "path": "code/RoboTwin",
+      "required_paths": [
+        "scripts/requirements.txt",
+        "assets/_download.py"
+      ],
+      "provenance": "Exact upstream source archive for commit ea8b21121ebb3cd201ff5b3fe361944ac94eda3f; SHA-256 verified against the server cache before materialization. The extracted source tree is pinned by this repository file/mode manifest.",
+      "source_commit": "ea8b21121ebb3cd201ff5b3fe361944ac94eda3f",
+      "upstream_url": "https://github.com/RoboTwin-Platform/RoboTwin.git",
+      "source_archive_sha256": "211f243d2e2198b58ee0c2025f4fb52dda2d95146e54666671fe2cbed388ceb6",
+      "manifest": "locks/source-manifests/RoboTwin.json",
+      "manifest_sha256": "58f0e51c7a327771b41e94d10b239b58c5289b80094df7b5e39b9c619d321a31",
+      "tree_sha256": "6df31f7120d6232ce8dc5b4ae90f186364b098cfa3af45fe8f8a67f6b30a0476",
+      "omitted_submodules": [
+        {
+          "path": "XPolicyLab",
+          "url": "https://github.com/XPolicyLab/XPolicyLab.git",
+          "status": "empty in the preserved server runtime and omitted by the locked GitHub source archive",
+          "used_by": "separate XPolicyLab policy-server workflow; not the registered native LingBot-VA adapter path"
+        }
+      ],
+      "runtime_required_paths": [
+        "assets/embodiments/aloha-agilex/config.yml",
+        "assets/objects/objaverse/list.json"
+      ],
+      "runtime_assets": {
+        "link_root": "runtime/robotwin_assets",
+        "linked_paths": [
+          "embodiments",
+          "objects"
+        ],
+        "provenance": "Reused from the existing server RoboTwin asset tree; not copied into the source bundle or downloaded."
+      }
+    },
+    {
+      "name": "LingBot-VA",
+      "kind": "bundle",
+      "role": "tested-model-runtime-source",
+      "path": "code/lingbot-va",
+      "required_paths": [
+        "wan_va/configs",
+        "wan_va/modules"
+      ],
+      "provenance": "Exact upstream source archive for commit 7c6ffa9bfc4b83582cafc860fab4c82cc7deeeeb; SHA-256 verified against the server cache before materialization. The extracted source tree is pinned by this repository file/mode manifest.",
+      "source_commit": "7c6ffa9bfc4b83582cafc860fab4c82cc7deeeeb",
+      "upstream_url": "https://github.com/Robbyant/lingbot-va.git",
+      "source_archive_sha256": "2db7aecefd3a5fa09f70242527161ed59ea0d0942f62ce6071d26029e11ad449",
+      "manifest": "locks/source-manifests/LingBot-VA.json",
+      "manifest_sha256": "d04e779985ca03a1ba403df73ccbbaa912f84d0a9586b3f4877ad0141fcc0aed",
+      "tree_sha256": "613f1ce2c3deab078b616de73653344e0c2fe625327cf5d8edc2654b8984c774"
+    },
+    {
+      "name": "cuRobo",
+      "kind": "bundle",
+      "role": "RoboTwin-CUDA-runtime-source",
+      "path": "code/curobo-0.7.8",
+      "required_paths": [
+        "setup.py",
+        "pyproject.toml"
+      ],
+      "provenance": "Exact upstream source archive for commit d64c4b005459db10c5dd867d8b30a87d5bda9bdb; SHA-256 verified against the server cache before materialization. The extracted source tree is pinned by this repository file/mode manifest.",
+      "source_commit": "d64c4b005459db10c5dd867d8b30a87d5bda9bdb",
+      "upstream_url": "https://github.com/NVlabs/curobo.git",
+      "source_archive_sha256": "2d3e9e795494c914c64ded090545cfd4d1108944e91a00495b5c0d968587626f",
+      "manifest": "locks/source-manifests/cuRobo.json",
+      "manifest_sha256": "d4437b6a9679bfcb58e6d34ac0e4248c1b027aab3dd6ea51bf08abbb6862d39b",
+      "tree_sha256": "618de6ad2ccab25870ea24ee540c50e5211d3a65f461d44fada68b77f0bd24ae",
+      "runtime_generated_artifacts": [
+        "src/curobo/curobolib/geom_cu.cpython-310-x86_64-linux-gnu.so",
+        "src/curobo/curobolib/kinematics_fused_cu.cpython-310-x86_64-linux-gnu.so",
+        "src/curobo/curobolib/lbfgs_step_cu.cpython-310-x86_64-linux-gnu.so",
+        "src/curobo/curobolib/line_search_cu.cpython-310-x86_64-linux-gnu.so",
+        "src/curobo/curobolib/tensor_step_cu.cpython-310-x86_64-linux-gnu.so"
+      ]
+    },
+    {
+      "name": "Depth-Anything-3",
+      "kind": "bundle",
+      "role": "WorldOlympiad-scoring-runtime-source",
+      "path": "code/Depth-Anything-3",
+      "required_paths": [
+        "src/depth_anything_3",
+        "pyproject.toml"
+      ],
+      "provenance": "Exact upstream source archive for commit 3d835ec1a5802d64a8b8b15f817a1ab54809bfe4; SHA-256 verified against the server cache before materialization. The extracted source tree is pinned by this repository file/mode manifest.",
+      "source_commit": "3d835ec1a5802d64a8b8b15f817a1ab54809bfe4",
+      "upstream_url": "https://github.com/ByteDance-Seed/Depth-Anything-3.git",
+      "source_archive_sha256": "98aa2dd53ab44b96cef5190ae4841c6ae51797d099b784e08e12a1a55bd3a69b",
+      "manifest": "locks/source-manifests/Depth-Anything-3.json",
+      "manifest_sha256": "c24df2a52ac17a57df3fceddd143bfbb6c44b7222d52e71e70f237377b0025b8",
+      "tree_sha256": "d6115bd6ec3fbb06f52a49dbea5b1c665bb2af56c3a631f776ad5c6b9c9ce45e",
+      "omitted_submodules": [
+        {
+          "path": "da3_streaming/loop_utils/salad",
+          "url": "https://github.com/serizba/salad.git",
+          "status": "empty in the preserved server runtime and omitted by the locked GitHub source archive",
+          "used_by": "DA3 streaming loop-detector utility; not imported by the current WOV2 user-task pipeline"
+        }
+      ]
+    }
+  ]
+}

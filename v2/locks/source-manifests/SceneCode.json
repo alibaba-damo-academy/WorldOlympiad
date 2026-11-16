@@ -1,0 +1,4866 @@
+{
+  "schema_version": 1,
+  "name": "SceneCode",
+  "source_commit": "1c8e972d24c960a319b5df936ae552ad410beb85",
+  "tree_sha256": "3740c2dc1196d69b362e58c1bdad05cc3925e1b46f6120c1d7312c1bd27457f6",
+  "entries": [
+    {
+      "path": ".env.example",
+      "type": "file",
+      "mode": 420,
+      "size": 305,
+      "sha256": "876a05606e3c8f9689d2b269db95103b1baacbcfdf70382618e1f26dd8494ea7"
+    },
+    {
+      "path": ".github/workflows/lint.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 927,
+      "sha256": "37f6e18b2d3cedb3a6adef75129fbbf69a93a29e1017f5809f9f33f44a1c54e9"
+    },
+    {
+      "path": ".github/workflows/smoke_test.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 984,
+      "sha256": "20e724f787e7424944ee083039d7a4cfe44c706e2a4ac096560c661fe4fea7be"
+    },
+    {
+      "path": ".gitignore",
+      "type": "file",
+      "mode": 420,
+      "size": 524,
+      "sha256": "bab42cecfd78959c1536b35f7f93a937f7adfd7c39b86fce2268f1e076964903"
+    },
+    {
+      "path": ".pre-commit-config.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 433,
+      "sha256": "92acdc755f4df27757d7ba91fb7fa783e3d838aa20b384197343e18444ebd8ae"
+    },
+    {
+      "path": ".python-version",
+      "type": "file",
+      "mode": 420,
+      "size": 5,
+      "sha256": "49a506dd32096b010d75205acf3430c9ae6c40351888129499e5a5e487126c93"
+    },
+    {
+      "path": "LICENSE",
+      "type": "file",
+      "mode": 420,
+      "size": 1071,
+      "sha256": "30212e735d45b5013e87107cf80a2eee4ec8e06834b7a1540f55f978f93ebf42"
+    },
+    {
+      "path": "README.md",
+      "type": "file",
+      "mode": 420,
+      "size": 9745,
+      "sha256": "ad0c76407d81d1eebef7ef7a31e3d38e63f6376679ed8bb25180f2f9375f6956"
+    },
+    {
+      "path": "assets/teaser.png",
+      "type": "file",
+      "mode": 420,
+      "size": 1576572,
+      "sha256": "9a46497de07cea24c41024c3902b36271768f950525dfdd483c6fb8bad8a80dd"
+    },
+    {
+      "path": "configs/ceiling_agent/base_ceiling_agent.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 8604,
+      "sha256": "d9f24c6ae633f1de756ee6c26c0746062b92016102273b93b50ef5b91d32b631"
+    },
+    {
+      "path": "configs/ceiling_agent/base_ceiling_agent_4.1.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 8602,
+      "sha256": "ebb377c41cfb775e5250314fcd2fb8b8411be9b103f8e94a05c7a1e931c01efc"
+    },
+    {
+      "path": "configs/ceiling_agent/stateful_ceiling_agent.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 349,
+      "sha256": "96786c660bd5b9fa8271c03d842ab345a3c90135079a80de47452b5be1707f72"
+    },
+    {
+      "path": "configs/config.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 1141,
+      "sha256": "555375b02a2a30fd6b7702db0132fdb88442b89d9d9744a25b32030f1d9949ee"
+    },
+    {
+      "path": "configs/experiment/base_experiment.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 5481,
+      "sha256": "8790f4dd3349956728084a21444b103d11d4e7da492ed3c71f88f234b588ae8f"
+    },
+    {
+      "path": "configs/experiment/indoor_scene_generation.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 86,
+      "sha256": "53b135e92c36e7db1d3702e55873f18834b192a21a011a03a03bc3fae47239fb"
+    },
+    {
+      "path": "configs/floor_plan_agent/base_floor_plan_agent.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 5003,
+      "sha256": "131f1540ca24957a5d10bb2ea44f52bcc7615035ac6ba7e2503874cba1773626"
+    },
+    {
+      "path": "configs/floor_plan_agent/stateful_floor_plan_agent.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 420,
+      "sha256": "562a947355376df6b2d572799b418f0c3131faeae46ca9332d8be39c5d432838"
+    },
+    {
+      "path": "configs/furniture_agent/base_furniture_agent.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 17688,
+      "sha256": "1b47a3016af0f39b9e9882928ef8d55fb1dfc2095514b22990902150dbcedb93"
+    },
+    {
+      "path": "configs/furniture_agent/stateful_furniture_agent.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 351,
+      "sha256": "cbab0bc4c98021aa8bb796bd677c8472aa14f46f9aac5b13acb6b72cb7d0de6f"
+    },
+    {
+      "path": "configs/manipuland_agent/base_manipuland_agent.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 23001,
+      "sha256": "da63eac6c7d7ea0c1c0a07916627c5a2df5c6a45332facbb6309838b0d209fd5"
+    },
+    {
+      "path": "configs/manipuland_agent/stateful_manipuland_agent.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 427,
+      "sha256": "5742be20828e81c2c0218548bbee48690c3f3a3d2309dce438a1cbb9d9d58868"
+    },
+    {
+      "path": "configs/wall_agent/base_wall_agent.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 9155,
+      "sha256": "4e6ca2dd9f108ede10101632c3a0973e4bef05a9436dec4411f49f5d7023c247"
+    },
+    {
+      "path": "configs/wall_agent/stateful_wall_agent.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 346,
+      "sha256": "48461a401b6a5ea0755cba315f547b02e5acd2c266fb82293ce52c162f4175b6"
+    },
+    {
+      "path": "examples/prompts.csv",
+      "type": "file",
+      "mode": 420,
+      "size": 815,
+      "sha256": "d6feed7515e2eee078b47e9f1ac69cefcbfc50e43c3035025a462b0c3a714204"
+    },
+    {
+      "path": "main.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4555,
+      "sha256": "34433638842452c17a9d3a861063f023a1ae3ac15334facec5753c857d9d466b"
+    },
+    {
+      "path": "materials/.gitignore",
+      "type": "file",
+      "mode": 420,
+      "size": 173,
+      "sha256": "d0840a5cd5c1c584bd3808d8da20e0abd9c4a0b8073a306f59a8b7c8697525d8"
+    },
+    {
+      "path": "materials/Plaster001_1K-JPG/Plaster001_1K-JPG_Color.jpg",
+      "type": "file",
+      "mode": 420,
+      "size": 828790,
+      "sha256": "d3fe43282859ab7293ad41f2fa3c29f02df077e5bc326cf90a65cc588a4ac5a4"
+    },
+    {
+      "path": "materials/Plaster001_1K-JPG/Plaster001_1K-JPG_NormalGL.jpg",
+      "type": "file",
+      "mode": 420,
+      "size": 2091491,
+      "sha256": "ea293c335a0b9243f0a825573b81304b8f99e60b2c067e493d0792adf96dfc72"
+    },
+    {
+      "path": "materials/Plaster001_1K-JPG/Plaster001_1K-JPG_Roughness.jpg",
+      "type": "file",
+      "mode": 420,
+      "size": 367391,
+      "sha256": "6028dbe3cb2ea250eacf3fb87d2c4e5ae8c2a7ff10ecad7883c27d721f2f8e88"
+    },
+    {
+      "path": "materials/Wood094_1K-JPG/Wood094_1K-JPG_Color.jpg",
+      "type": "file",
+      "mode": 420,
+      "size": 967576,
+      "sha256": "25f87429708bd1137561790253c679dcc71f447f4667064c9875d1d959a910b3"
+    },
+    {
+      "path": "materials/Wood094_1K-JPG/Wood094_1K-JPG_NormalGL.jpg",
+      "type": "file",
+      "mode": 420,
+      "size": 486237,
+      "sha256": "126d0bca8eb3dd1541b1a93c642ec696e676fc1e9e4f93f22e594db1c1e24440"
+    },
+    {
+      "path": "materials/Wood094_1K-JPG/Wood094_1K-JPG_Roughness.jpg",
+      "type": "file",
+      "mode": 420,
+      "size": 265487,
+      "sha256": "457264bb65ab75683511c59c6df503066af990d356a92af3f823493f84c2a650"
+    },
+    {
+      "path": "media/robot_eval.webp",
+      "type": "file",
+      "mode": 420,
+      "size": 1298772,
+      "sha256": "424eaae7e4cae39a58d0e3a26b2bc748b704fee21efe444e5ee03488a752386a"
+    },
+    {
+      "path": "media/symbol.svg",
+      "type": "file",
+      "mode": 420,
+      "size": 1600,
+      "sha256": "d728feaa0ef91ef91ec8f74d75c2e21c8b94f6bfea5b54a7e2a95308a381c4ca"
+    },
+    {
+      "path": "media/teaser.webp",
+      "type": "file",
+      "mode": 420,
+      "size": 1400500,
+      "sha256": "5fb629dddad1b4a6cc92968c1053e123a4260d65aa587d03363c31abeea68093"
+    },
+    {
+      "path": "pyproject.toml",
+      "type": "file",
+      "mode": 420,
+      "size": 2090,
+      "sha256": "355c8f5d5fc3d4cc305cfa9dd91aa3e0f76dd89a66613d4abc1ff81089bb833e"
+    },
+    {
+      "path": "scenecode/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "scenecode/agent_utils/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "scenecode/agent_utils/action_logger.py",
+      "type": "file",
+      "mode": 420,
+      "size": 11664,
+      "sha256": "0ba5b7c7964d998b325f781f51c7d67abf27734abc917be93fa691d3dedf342a"
+    },
+    {
+      "path": "scenecode/agent_utils/articulated_physics_analyzer.py",
+      "type": "file",
+      "mode": 420,
+      "size": 17300,
+      "sha256": "569ab21600349bf3917f41bfe7ca4292aa21de5d18ffbbb595f8b672b01419e7"
+    },
+    {
+      "path": "scenecode/agent_utils/articulated_retrieval_server/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1691,
+      "sha256": "e60b11e9048a28698a11b3bdd1418f035d6b6af63386078da7d30d4fdb80e0fb"
+    },
+    {
+      "path": "scenecode/agent_utils/articulated_retrieval_server/client.py",
+      "type": "file",
+      "mode": 420,
+      "size": 8556,
+      "sha256": "fb2e04f87082822f84e645011a039a97a75879e50964ce580f4b97e877e8cea5"
+    },
+    {
+      "path": "scenecode/agent_utils/articulated_retrieval_server/config.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3668,
+      "sha256": "6f5028d0c84aae86cba31a1ebb33d572ff420fbf502c1e8e286563e38d4584ef"
+    },
+    {
+      "path": "scenecode/agent_utils/articulated_retrieval_server/data_loader.py",
+      "type": "file",
+      "mode": 420,
+      "size": 11132,
+      "sha256": "36b3d9ec255c09388b0e32b269fdd28f8bfd9e3fa36ba65da18b7448f86f0c27"
+    },
+    {
+      "path": "scenecode/agent_utils/articulated_retrieval_server/dataclasses.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6440,
+      "sha256": "9cbb7b4c78ba0ae592c6559a1e77ed7df33c6ffe2c3b4474eb1db3704e9e9791"
+    },
+    {
+      "path": "scenecode/agent_utils/articulated_retrieval_server/retrieval.py",
+      "type": "file",
+      "mode": 420,
+      "size": 8190,
+      "sha256": "9e3f582bd9a88d4d5b9cf0eac9f0becf295f58407b921ff8768f282762fb4d2e"
+    },
+    {
+      "path": "scenecode/agent_utils/articulated_retrieval_server/server_app.py",
+      "type": "file",
+      "mode": 420,
+      "size": 18332,
+      "sha256": "b2b8034d29b1ed815c0a0040058e2fbee0f7569dc873da0c1a6f55cf564b0663"
+    },
+    {
+      "path": "scenecode/agent_utils/articulated_retrieval_server/server_manager.py",
+      "type": "file",
+      "mode": 420,
+      "size": 8700,
+      "sha256": "1bcbd7c70e591441bae194a58df85bd948c86f944873cf393a62453f4d0152f6"
+    },
+    {
+      "path": "scenecode/agent_utils/articulated_retrieval_server/standalone_server.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5449,
+      "sha256": "0ada2956219db7340ddc7bc6e87057376c76d79784530e29585fbe0ff8264a4c"
+    },
+    {
+      "path": "scenecode/agent_utils/asset_manager.py",
+      "type": "file",
+      "mode": 420,
+      "size": 117625,
+      "sha256": "5fdd41eaa1400ba1fd5de935ce9dd175ba47449c8ac2fdc6cbc7ff0362be1425"
+    },
+    {
+      "path": "scenecode/agent_utils/asset_registry.py",
+      "type": "file",
+      "mode": 420,
+      "size": 9459,
+      "sha256": "e751a5c893df3219af20f2555fa83c91a686052ccbfa2957011bbf8d784fcede"
+    },
+    {
+      "path": "scenecode/agent_utils/asset_router/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 482,
+      "sha256": "4150fc61436fdc81f5bae923be811373573a2d8235b0d2206bb1a3df0b5fc9b0"
+    },
+    {
+      "path": "scenecode/agent_utils/asset_router/dataclasses.py",
+      "type": "file",
+      "mode": 420,
+      "size": 7241,
+      "sha256": "bc3ab474bc6497561ec2000abcff351633e371b3b5c246684591757f3ea24070"
+    },
+    {
+      "path": "scenecode/agent_utils/asset_router/router.py",
+      "type": "file",
+      "mode": 420,
+      "size": 86816,
+      "sha256": "a9bbfc35e91315665c6190193fe4b07650d0868d5a07c5ee4dc76dd51e658101"
+    },
+    {
+      "path": "scenecode/agent_utils/base_stateful_agent.py",
+      "type": "file",
+      "mode": 420,
+      "size": 40188,
+      "sha256": "99f6420500be2d7292258566cac1c41f9ce260721230ff13a2178e9a061b8833"
+    },
+    {
+      "path": "scenecode/agent_utils/blender/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 238,
+      "sha256": "7109b05d5042bded545a802de69fbe6585fff006fbb0a6b360ab3336c8033509"
+    },
+    {
+      "path": "scenecode/agent_utils/blender/annotations.py",
+      "type": "file",
+      "mode": 420,
+      "size": 48407,
+      "sha256": "0b931750994b95df4389890524f3e060b3ccd2181c04f5317408964a5cd14c90"
+    },
+    {
+      "path": "scenecode/agent_utils/blender/camera_utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5297,
+      "sha256": "d4d88e1d73690a74b64bf3c4ec60e2399e29a1a268061e6d9cf24fad3384bebc"
+    },
+    {
+      "path": "scenecode/agent_utils/blender/canonicalization.py",
+      "type": "file",
+      "mode": 420,
+      "size": 9804,
+      "sha256": "8b680d4dbfbf169e8876aeff2200a7b6f48e8a34e342a9d62cab36e52a419858"
+    },
+    {
+      "path": "scenecode/agent_utils/blender/coordinate_frame.py",
+      "type": "file",
+      "mode": 420,
+      "size": 18242,
+      "sha256": "9eb0f7965c29bc848cd23d2665171a261355a7b3e8762329356fa6aadec510ed"
+    },
+    {
+      "path": "scenecode/agent_utils/blender/coordinate_grid_mixin.py",
+      "type": "file",
+      "mode": 420,
+      "size": 13538,
+      "sha256": "f8ab39abfdf34b6ac167edfa4f4559305ec6e963fef376cdcbfd9b6eb058b434"
+    },
+    {
+      "path": "scenecode/agent_utils/blender/image_overlays.py",
+      "type": "file",
+      "mode": 420,
+      "size": 8328,
+      "sha256": "c8fcc555e55ae60d121050d0ec2baca845fb550eee65d165f5a2a3a1774ff118"
+    },
+    {
+      "path": "scenecode/agent_utils/blender/mesh_conversion.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3207,
+      "sha256": "ad47a394b0d2346c583b87170fed62cd7913c6d38e772aca67650e879ffcb7e2"
+    },
+    {
+      "path": "scenecode/agent_utils/blender/params.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2142,
+      "sha256": "ed7bb4977ec93430316b8a148a85108b72c8b50ec4126fb1edfe1f28f3d18288"
+    },
+    {
+      "path": "scenecode/agent_utils/blender/render_dataclasses.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1561,
+      "sha256": "550136b679f18547ac63bc564bd9d09dfba2437a3226004e38c40c07dbb961b4"
+    },
+    {
+      "path": "scenecode/agent_utils/blender/render_settings.py",
+      "type": "file",
+      "mode": 420,
+      "size": 9272,
+      "sha256": "e6bb62829c7af37cef570332886300046a7e43ca47ca03b417676d8fd55c9903"
+    },
+    {
+      "path": "scenecode/agent_utils/blender/renderer.py",
+      "type": "file",
+      "mode": 420,
+      "size": 123112,
+      "sha256": "c68e407cbe788d4f892231f205a0c80610153ac75f0a0c7006b975180664e715"
+    },
+    {
+      "path": "scenecode/agent_utils/blender/request_lock.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6014,
+      "sha256": "4642c95efa6b037adc0c34b7ed791e5ea756b66c4fc9aef6fa8a15ed8ea25112"
+    },
+    {
+      "path": "scenecode/agent_utils/blender/scene_setup_mixin.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4274,
+      "sha256": "87ad59a822056aa0f44538799436753c236caaaadc0ce2a821a4ad3ca072da1f"
+    },
+    {
+      "path": "scenecode/agent_utils/blender/scene_utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3669,
+      "sha256": "48ff2d79368a2367ddd066514e83044d8cc302a5d3792c26847f0d698bae58ed"
+    },
+    {
+      "path": "scenecode/agent_utils/blender/server_app.py",
+      "type": "file",
+      "mode": 420,
+      "size": 40250,
+      "sha256": "0eea7dcb433f6ff55e635122ea180c78cc164fdd7ace26379899be51b434ce65"
+    },
+    {
+      "path": "scenecode/agent_utils/blender/server_manager.py",
+      "type": "file",
+      "mode": 420,
+      "size": 33871,
+      "sha256": "367da7e22d050aaa4f9e06c6f1ddef8fded65f980ef89384540fa637cb4a4975"
+    },
+    {
+      "path": "scenecode/agent_utils/blender/standalone_server.py",
+      "type": "file",
+      "mode": 420,
+      "size": 7593,
+      "sha256": "5ddcf3c6e36a3f1cb1ac60a0f2ca96370ce6423b33b4921bb37b88a1ddc89c58"
+    },
+    {
+      "path": "scenecode/agent_utils/blender/surface_rendering_mixin.py",
+      "type": "file",
+      "mode": 420,
+      "size": 23065,
+      "sha256": "7a3590ddae0b894b0d958646850c416bd9e5ea9f22d67da0e4853eb5f9a27ce4"
+    },
+    {
+      "path": "scenecode/agent_utils/blender/surface_utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 18858,
+      "sha256": "d9664f3081ab02463fe75dcb740399ff57649b7a3adcf72f0ffc014d51630999"
+    },
+    {
+      "path": "scenecode/agent_utils/blender/view_generation_mixin.py",
+      "type": "file",
+      "mode": 420,
+      "size": 11419,
+      "sha256": "ca94e8b7378205935dd151ac1ebbd948052180258cd23ec1df0ee2cf316d6f9a"
+    },
+    {
+      "path": "scenecode/agent_utils/blender/wall_utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6218,
+      "sha256": "a01a1ae7aa122af7738f6492ff17f7414447d3ae41d936c6fa38fff33c80014b"
+    },
+    {
+      "path": "scenecode/agent_utils/checkpoint_state.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3094,
+      "sha256": "eaa7daa84ee35780f112c7f03c9a8a9ff45b53b32fd4c0cfcec2c2ecdad1843c"
+    },
+    {
+      "path": "scenecode/agent_utils/clearance_zones.py",
+      "type": "file",
+      "mode": 420,
+      "size": 26550,
+      "sha256": "285ad3d4c6f4db51a95fa0c669084da83a1a6ff8af3a0386deaa6cf567a6b9e3"
+    },
+    {
+      "path": "scenecode/agent_utils/clip_embeddings.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6326,
+      "sha256": "196a856ee3841057f79b0d9abe73d091459981738931565729a0e7aac38b3425"
+    },
+    {
+      "path": "scenecode/agent_utils/code_articulated_conversion.py",
+      "type": "file",
+      "mode": 420,
+      "size": 10546,
+      "sha256": "e7667cb9f20e9db030b7f2c46040684d2f8fd914e94a4b0254ef77a6512b8cf2"
+    },
+    {
+      "path": "scenecode/agent_utils/code_object_generation.py",
+      "type": "file",
+      "mode": 420,
+      "size": 20177,
+      "sha256": "b0c68732240c5766846d4c3752abb68d40172039fea6a70b8e1bc290bf7f4799"
+    },
+    {
+      "path": "scenecode/agent_utils/convex_decomposition_server/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1341,
+      "sha256": "21f1b4859b005f0a85c3b9b355eb6477c277ad46068ebd6739b0331d7204fbf7"
+    },
+    {
+      "path": "scenecode/agent_utils/convex_decomposition_server/client.py",
+      "type": "file",
+      "mode": 420,
+      "size": 8442,
+      "sha256": "bf2308cf65cc38ee38375b25d15767b7e7bd9e7f566380942d86069a76771afb"
+    },
+    {
+      "path": "scenecode/agent_utils/convex_decomposition_server/models.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2052,
+      "sha256": "a17dd902bcecf62f63e89bf458c269097fd0a23424d013eac811e3361d1a50e7"
+    },
+    {
+      "path": "scenecode/agent_utils/convex_decomposition_server/server_app.py",
+      "type": "file",
+      "mode": 420,
+      "size": 11200,
+      "sha256": "0199a0479245bce0ea17570f7b0cfad280f5e00d61899001d5481b376308ad26"
+    },
+    {
+      "path": "scenecode/agent_utils/convex_decomposition_server/server_manager.py",
+      "type": "file",
+      "mode": 420,
+      "size": 10998,
+      "sha256": "5d2491d503060e96aa0947fa1103fd518251b59fe6778f9a513e7b2a5117657e"
+    },
+    {
+      "path": "scenecode/agent_utils/convex_decomposition_server/standalone_server.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3075,
+      "sha256": "160ca9433b0df41918c85327226d49034f44f8dfbbdba0f43c7f821ff7066482"
+    },
+    {
+      "path": "scenecode/agent_utils/coordinate_utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2986,
+      "sha256": "53c6ae25fc6d2140d18ad55ec2b06f960af567d6a6ec406d728f5d8201f6a54b"
+    },
+    {
+      "path": "scenecode/agent_utils/data/materials.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 1685,
+      "sha256": "dafebaab30ca6eb171e6c90dabe24fa0b5ca8bed4ad533b0e825b785ff2ce035"
+    },
+    {
+      "path": "scenecode/agent_utils/drake_utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 12729,
+      "sha256": "a2e49b1cd27d61df6ee587bb42780786782a1fa184dc72a268720483384fe713"
+    },
+    {
+      "path": "scenecode/agent_utils/flux_klein_worker.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4732,
+      "sha256": "b283d91d0c9f106d9681c0abffe0aff6f4c5e71849beeda3eac62be11ec9ed6e"
+    },
+    {
+      "path": "scenecode/agent_utils/geometry_generation_server/README.md",
+      "type": "file",
+      "mode": 420,
+      "size": 5346,
+      "sha256": "a09f587166cb45d2419d734cd5ec8e5f1c2d6abbd1b2975c6eb851ae7d881932"
+    },
+    {
+      "path": "scenecode/agent_utils/geometry_generation_server/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2108,
+      "sha256": "65337ee0c5aabb29c069b9fc354d9eb65da3672eb392af40c69ca6ac8bef4bfd"
+    },
+    {
+      "path": "scenecode/agent_utils/geometry_generation_server/client.py",
+      "type": "file",
+      "mode": 420,
+      "size": 8386,
+      "sha256": "4f00f9360d793cf79f71030ae937e7840521715204a0112ac977eca6f533e30a"
+    },
+    {
+      "path": "scenecode/agent_utils/geometry_generation_server/cuda_env_setup.py",
+      "type": "file",
+      "mode": 420,
+      "size": 10325,
+      "sha256": "ed85ba2e4562a1eb8a1c8ac0ba9b33c99545faca5cac3642ad7190ba2d25f693"
+    },
+    {
+      "path": "scenecode/agent_utils/geometry_generation_server/dataclasses.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4271,
+      "sha256": "3418e73b1e9716acd903e4157fd88b23b31b29fafaf7952873e4f4f2772c80b2"
+    },
+    {
+      "path": "scenecode/agent_utils/geometry_generation_server/geometry_generation.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5807,
+      "sha256": "a9f247089db9fff603b6b91d41f7e3f4f3c6fb4106992d9836fe802cf57c08bb"
+    },
+    {
+      "path": "scenecode/agent_utils/geometry_generation_server/gpu_worker.py",
+      "type": "file",
+      "mode": 420,
+      "size": 12545,
+      "sha256": "91e824dde47a910592ee92ec0fc00781144dabd702f13873a1d81c2251683968"
+    },
+    {
+      "path": "scenecode/agent_utils/geometry_generation_server/hunyuan3d_pipeline_manager.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5115,
+      "sha256": "96666a924763be241e3d7e81285a6a88518e85fd05be67d0d7da9119ee428daa"
+    },
+    {
+      "path": "scenecode/agent_utils/geometry_generation_server/sam3d_pipeline_manager.py",
+      "type": "file",
+      "mode": 420,
+      "size": 21981,
+      "sha256": "2d00e0636b18fb53833f0386b7402eb76282717eb6613f23dfbe3602b7ee3dc7"
+    },
+    {
+      "path": "scenecode/agent_utils/geometry_generation_server/server_app.py",
+      "type": "file",
+      "mode": 420,
+      "size": 12215,
+      "sha256": "df453e88556feb45636551305776455542b96ff615b62060b26858925cbac2d1"
+    },
+    {
+      "path": "scenecode/agent_utils/geometry_generation_server/server_manager.py",
+      "type": "file",
+      "mode": 420,
+      "size": 11041,
+      "sha256": "e4c2799a62e1bca1e7f6329ba28db845e68e1a371c2a6f465db50e7d23bc4b28"
+    },
+    {
+      "path": "scenecode/agent_utils/geometry_generation_server/standalone_server.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5616,
+      "sha256": "3556e68a9e60d625c817e4a4a62c7123e7936cc22e08ecc076f16c1c3a2f3756"
+    },
+    {
+      "path": "scenecode/agent_utils/geometry_generation_server/worker_pool.py",
+      "type": "file",
+      "mode": 420,
+      "size": 21915,
+      "sha256": "d883ad0f310e5536f3e244c799214a763e7aaff42ed0e13f54a131402ae3fff1"
+    },
+    {
+      "path": "scenecode/agent_utils/gpu_diagnostics.py",
+      "type": "file",
+      "mode": 420,
+      "size": 8249,
+      "sha256": "83f198b60994eb463f97fb87806768131d5d36d5627d443344362c963170b2fe"
+    },
+    {
+      "path": "scenecode/agent_utils/house.py",
+      "type": "file",
+      "mode": 420,
+      "size": 53593,
+      "sha256": "fb7455c19fdda02777072ab4db0b22b757c18eee9e2944d29e2af7264092fba8"
+    },
+    {
+      "path": "scenecode/agent_utils/hssd_retrieval/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 294,
+      "sha256": "d2bdf5c19edb955ff22c8d425783072caf1c81a91f37d2bc5e90740cf1da8b53"
+    },
+    {
+      "path": "scenecode/agent_utils/hssd_retrieval/alignment.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3835,
+      "sha256": "85af94f5c457547791f86fff32a253be393097de694c10bc6d67d10a88baf5a4"
+    },
+    {
+      "path": "scenecode/agent_utils/hssd_retrieval/clip_similarity.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3347,
+      "sha256": "48d20201ee8475cab3439bd0abebaf163df0f1795213aac4e4c10cb59aa09928"
+    },
+    {
+      "path": "scenecode/agent_utils/hssd_retrieval/config.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2232,
+      "sha256": "8b990574fc688b6c1eb4406a7708c0fef3b425fbb9353d3a8e939c3b54954307"
+    },
+    {
+      "path": "scenecode/agent_utils/hssd_retrieval/data_loader.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6320,
+      "sha256": "10cd7e0dd3c94936d515e678dc0ef928fab01a9a792ffd15add8f2320922bbec"
+    },
+    {
+      "path": "scenecode/agent_utils/hssd_retrieval/retrieval.py",
+      "type": "file",
+      "mode": 420,
+      "size": 9285,
+      "sha256": "9e43070a93407a424e133310e3f94c487d73aba0202b861d9d79d172b690bdee"
+    },
+    {
+      "path": "scenecode/agent_utils/hssd_retrieval/support_surface_loader.py",
+      "type": "file",
+      "mode": 420,
+      "size": 18651,
+      "sha256": "607e9ee0dc8268f57fbf8e317ea1eed3fdb98750dbf59b5d8411733fcacc88d2"
+    },
+    {
+      "path": "scenecode/agent_utils/hssd_retrieval_server/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 556,
+      "sha256": "61de5b70cf1fa3db4e44c6fdee404bd726ab9c30b18ed07612abf69d7c44299a"
+    },
+    {
+      "path": "scenecode/agent_utils/hssd_retrieval_server/client.py",
+      "type": "file",
+      "mode": 420,
+      "size": 8188,
+      "sha256": "6c75d402f3da7b28f6c0bbcc8911dcac5538251b4b248de5b09f23bf2dc0d0ad"
+    },
+    {
+      "path": "scenecode/agent_utils/hssd_retrieval_server/dataclasses.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5861,
+      "sha256": "ea4d31206e9afb5f1b008c8124bcf7285bb65abf0674816c70bb25a59f844a14"
+    },
+    {
+      "path": "scenecode/agent_utils/hssd_retrieval_server/server_app.py",
+      "type": "file",
+      "mode": 420,
+      "size": 16434,
+      "sha256": "d68761b380d9f66eca0445165329287e253365c18aee74eb1af700b238578980"
+    },
+    {
+      "path": "scenecode/agent_utils/hssd_retrieval_server/server_manager.py",
+      "type": "file",
+      "mode": 420,
+      "size": 8952,
+      "sha256": "ff2e89d06dbffb26b9310410b9fa1a726cf86202cea9fb8fb463a6ebaf2e0d2b"
+    },
+    {
+      "path": "scenecode/agent_utils/hssd_retrieval_server/standalone_server.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4393,
+      "sha256": "c2f18107ba37668728d1f9c5e089754c4009a1fe20519fefc19413172bd8b663"
+    },
+    {
+      "path": "scenecode/agent_utils/image_generation.py",
+      "type": "file",
+      "mode": 420,
+      "size": 37171,
+      "sha256": "f1fcea4539b3bf213af8b8730f16e26a05905e7f9f166496838e32dac39e23aa"
+    },
+    {
+      "path": "scenecode/agent_utils/intra_turn_image_filter.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6295,
+      "sha256": "c3b201eaae4e81629ace0042cf8b766077322788b74bc09a05a74b662595c862"
+    },
+    {
+      "path": "scenecode/agent_utils/loop_detector.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5450,
+      "sha256": "6f4d9c3f670fc266a998bf43dd0f1df1ab9480905838c4506b67d4c10447ac00"
+    },
+    {
+      "path": "scenecode/agent_utils/material_generator.py",
+      "type": "file",
+      "mode": 420,
+      "size": 12738,
+      "sha256": "9361045f747741c4118a6109743b7711212fa6d412558731e559bd1e7d46003b"
+    },
+    {
+      "path": "scenecode/agent_utils/materials.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2193,
+      "sha256": "79896bbdd532c19bee58f3ff055c80dd8ec8cbaa71958ba6380f80c0be13d795"
+    },
+    {
+      "path": "scenecode/agent_utils/materials_retrieval_server/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1593,
+      "sha256": "e50e19747105e77e961a0bc9f1640eaf207fb1a74fdf0deaa5cb1a385f2f4ff0"
+    },
+    {
+      "path": "scenecode/agent_utils/materials_retrieval_server/client.py",
+      "type": "file",
+      "mode": 420,
+      "size": 8363,
+      "sha256": "5bebd6c2ffaa8e423ffc1c8c0234be559bb1155a96be19452f0babf840e38ea9"
+    },
+    {
+      "path": "scenecode/agent_utils/materials_retrieval_server/config.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3211,
+      "sha256": "88bcc48fc50cfb4936ba1061630a96063fae7d3b22b60bdbc335c3ce52c6638f"
+    },
+    {
+      "path": "scenecode/agent_utils/materials_retrieval_server/data_loader.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3776,
+      "sha256": "fee81315d12896e7aac22dc1d39a576e60e89e343b35f2cd8dacf36760af27ed"
+    },
+    {
+      "path": "scenecode/agent_utils/materials_retrieval_server/dataclasses.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5321,
+      "sha256": "fb866f54eef7b722c67b10d1be215d84bcef35b36321b88512b61dd3ed9069e1"
+    },
+    {
+      "path": "scenecode/agent_utils/materials_retrieval_server/retrieval.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5080,
+      "sha256": "53a644eca6bf9620bf2c3e294bbd4d7ca4cc8f45b80080c3b74e2eaae517a727"
+    },
+    {
+      "path": "scenecode/agent_utils/materials_retrieval_server/server_app.py",
+      "type": "file",
+      "mode": 420,
+      "size": 17450,
+      "sha256": "c23601725f33cfdf82dc1f2f64fde4314495d14e234cfe8fb55364ec422920ba"
+    },
+    {
+      "path": "scenecode/agent_utils/materials_retrieval_server/server_manager.py",
+      "type": "file",
+      "mode": 420,
+      "size": 8549,
+      "sha256": "4dfc5ff5ae32ad902e5ba33acae7a12e1fc0bc09a47e436ae5bff4a5dcc874fd"
+    },
+    {
+      "path": "scenecode/agent_utils/materials_retrieval_server/standalone_server.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5206,
+      "sha256": "50c73235aca43dec8b3c8ec0b25f5a53a7a6cdca3cb159bc04e4e19675745347"
+    },
+    {
+      "path": "scenecode/agent_utils/mesh_canonicalization.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2832,
+      "sha256": "52ffd6f88541c58548a2600f346e4ed52acf260b707890e905b8c8ff68a3c2ac"
+    },
+    {
+      "path": "scenecode/agent_utils/mesh_physics_analyzer.py",
+      "type": "file",
+      "mode": 420,
+      "size": 12879,
+      "sha256": "4bdf501fb55b819dbe43a931ac2eae0b1f737fb7cc0e792cd393e148981eb8e1"
+    },
+    {
+      "path": "scenecode/agent_utils/mesh_utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 25692,
+      "sha256": "2d4f6bb00510d66b5b6b19a689a4742841516d181534128f754f7871938c61e9"
+    },
+    {
+      "path": "scenecode/agent_utils/objaverse_retrieval/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 397,
+      "sha256": "c11171712ca190085839f4c5683ce18ff2554240057dd3dc9290d2e8ca49a47a"
+    },
+    {
+      "path": "scenecode/agent_utils/objaverse_retrieval/clip_similarity.py",
+      "type": "file",
+      "mode": 420,
+      "size": 7147,
+      "sha256": "9e17488590f4d2cc28a2144334a209c7539b882c9c5f9b9c9d944027db57d7a3"
+    },
+    {
+      "path": "scenecode/agent_utils/objaverse_retrieval/config.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2420,
+      "sha256": "32811772b47aa9cf9351dac194951772d80272e06aeae4cee6f73177a51c6aae"
+    },
+    {
+      "path": "scenecode/agent_utils/objaverse_retrieval/data_loader.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6588,
+      "sha256": "83bb966ce8a9055df05e90006239b1eeb7e159f26247c4f8c7b4e9f194293d5a"
+    },
+    {
+      "path": "scenecode/agent_utils/objaverse_retrieval/retrieval.py",
+      "type": "file",
+      "mode": 420,
+      "size": 8728,
+      "sha256": "36c57779f0a7a83686e438319f1ea610279c84671b9c153f20b6bbc21bfcdf11"
+    },
+    {
+      "path": "scenecode/agent_utils/objaverse_retrieval_server/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 616,
+      "sha256": "64c2233d43b6d843053af5ba0a06eeea59ad20e44818d68773e29909b29ed1a6"
+    },
+    {
+      "path": "scenecode/agent_utils/objaverse_retrieval_server/client.py",
+      "type": "file",
+      "mode": 420,
+      "size": 8332,
+      "sha256": "097c71d19af0fb14e41cc16e7c6cc27c7ca7745725c4f2a6d6ccef88057a1966"
+    },
+    {
+      "path": "scenecode/agent_utils/objaverse_retrieval_server/dataclasses.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5988,
+      "sha256": "f5d5258b3d674dd4b28007db0245051ca8ec8c747b1c9466686e202490042ed9"
+    },
+    {
+      "path": "scenecode/agent_utils/objaverse_retrieval_server/server_app.py",
+      "type": "file",
+      "mode": 420,
+      "size": 16831,
+      "sha256": "2bf8341f68512c807b13cab772086b2d5b5e0886df87fa0a91a3b5e9b52b5846"
+    },
+    {
+      "path": "scenecode/agent_utils/objaverse_retrieval_server/server_manager.py",
+      "type": "file",
+      "mode": 420,
+      "size": 9229,
+      "sha256": "ddc00c7fd11131a94855576cbebff622d6cf1cf10a0db058f7c593c199d2c8ed"
+    },
+    {
+      "path": "scenecode/agent_utils/objaverse_retrieval_server/standalone_server.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4547,
+      "sha256": "acaadfc1a74c7b3b2299e7f62b1e3b7b251562853e9b39fccc6d13ccc01c9977"
+    },
+    {
+      "path": "scenecode/agent_utils/physical_feasibility.py",
+      "type": "file",
+      "mode": 420,
+      "size": 75331,
+      "sha256": "9df7dfc56a504fb0119d2afbd7fb7ca3d8fb842063129bd50dbe93fb730b19c3"
+    },
+    {
+      "path": "scenecode/agent_utils/physics_tools.py",
+      "type": "file",
+      "mode": 420,
+      "size": 16326,
+      "sha256": "b7e785d7ad63f05cbd4e325aa4998d696ff500fba02ede356b91046fe864c15e"
+    },
+    {
+      "path": "scenecode/agent_utils/physics_validation.py",
+      "type": "file",
+      "mode": 420,
+      "size": 52604,
+      "sha256": "f3022c11d6caea9c9c5c9d19c6a470ee042b68ea214131b3629a41d1594e6141"
+    },
+    {
+      "path": "scenecode/agent_utils/placement_noise.py",
+      "type": "file",
+      "mode": 420,
+      "size": 7403,
+      "sha256": "4af22622a5cff0b4fb945c2f81ec29b242d67d703cb52f7da9f60d1b4da732dd"
+    },
+    {
+      "path": "scenecode/agent_utils/reachability.py",
+      "type": "file",
+      "mode": 420,
+      "size": 9358,
+      "sha256": "95d3acd1b31e6eec4d3c769c84c5e0d12cebdf1eea7b4e3405d5f97f35a87647"
+    },
+    {
+      "path": "scenecode/agent_utils/rendering.py",
+      "type": "file",
+      "mode": 420,
+      "size": 62412,
+      "sha256": "4d5c022a62a1dff967f564da8a312039583332de6211af414ab7cf78f304c581"
+    },
+    {
+      "path": "scenecode/agent_utils/rendering_manager.py",
+      "type": "file",
+      "mode": 420,
+      "size": 14411,
+      "sha256": "4a1d1ebdfa6da33b86a9c3c825dd60b615bba89a396e10bdc8c8bb72429410dc"
+    },
+    {
+      "path": "scenecode/agent_utils/rescale_helpers.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5916,
+      "sha256": "5c1642adca9b015a4f5e7349d3413782502ed3a576f83eb9108e09d123f0ec15"
+    },
+    {
+      "path": "scenecode/agent_utils/rescale_result.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1983,
+      "sha256": "6adbfa792e800a3de342899a1dcb7d1095e7120d4cccea18bf63b4b6ac610e3a"
+    },
+    {
+      "path": "scenecode/agent_utils/response_datatypes.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5568,
+      "sha256": "62f4d33c94cefbee17dbd9eef68f6f235ecc3e319f557fbbeb76766221707737"
+    },
+    {
+      "path": "scenecode/agent_utils/room.py",
+      "type": "file",
+      "mode": 420,
+      "size": 82019,
+      "sha256": "c57fbdc7b1bc3bd10f1b039d20f0e0ff699df6e77f474df5b336043c4833237b"
+    },
+    {
+      "path": "scenecode/agent_utils/scene_analyzer.py",
+      "type": "file",
+      "mode": 420,
+      "size": 23428,
+      "sha256": "fe2724e3ff201b5d95ab9a07c8f84df14e93cefb3c72f7ef9f3e34cc38d35469"
+    },
+    {
+      "path": "scenecode/agent_utils/sceneeval_exporter.py",
+      "type": "file",
+      "mode": 420,
+      "size": 31323,
+      "sha256": "667741581510e5ee79c91e6923f4cdc537ef5efdbfa4f3f0956fa3d56e04c453"
+    },
+    {
+      "path": "scenecode/agent_utils/scheduler.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6165,
+      "sha256": "dfc0326503149f5113df463ee7f2aba4f5496e3db29c82656bf736eb3bf83509"
+    },
+    {
+      "path": "scenecode/agent_utils/scoring.py",
+      "type": "file",
+      "mode": 420,
+      "size": 11234,
+      "sha256": "95ece09d72bd9b02fac44808086e035d6732f621c432195c9d6fa50f975213ab"
+    },
+    {
+      "path": "scenecode/agent_utils/sdf_generator.py",
+      "type": "file",
+      "mode": 420,
+      "size": 18640,
+      "sha256": "e7d6b515078028bddfb0636ebca5be6c021dc678dd3d1551b092efe4424798ba"
+    },
+    {
+      "path": "scenecode/agent_utils/sdf_mesh_utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 13534,
+      "sha256": "ad7c5febb9e88d6df64a8c403e223ef9917dc2947c1c955cd8745019ed159e1a"
+    },
+    {
+      "path": "scenecode/agent_utils/support_surface_extraction.py",
+      "type": "file",
+      "mode": 420,
+      "size": 54247,
+      "sha256": "945f543ad5bf9603394e45bb58bbd277e4cd5d3add426a8663b3f4b75e7e88f4"
+    },
+    {
+      "path": "scenecode/agent_utils/support_surface_filters.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3454,
+      "sha256": "f62848194c8f929d478e5420dd9833a54d8d08a0ffab67035708ee98bb90d3e2"
+    },
+    {
+      "path": "scenecode/agent_utils/thin_covering_generator.py",
+      "type": "file",
+      "mode": 420,
+      "size": 29431,
+      "sha256": "e5011e7a81dcfb1d1fe480a0cad23e81f817130993f8b00a49b5a04834d18125"
+    },
+    {
+      "path": "scenecode/agent_utils/turn_trimming_session.py",
+      "type": "file",
+      "mode": 420,
+      "size": 22108,
+      "sha256": "eda34bc2c1524ad88cdbcea99cd6f2ca439e98d9dd76375740d611d9ae5b0794"
+    },
+    {
+      "path": "scenecode/agent_utils/urdf_to_sdf.py",
+      "type": "file",
+      "mode": 420,
+      "size": 62625,
+      "sha256": "579d6f3767b9ff17d7e3729c3a4fb3c824b7de3ec7ffb88acf81d92eef473890"
+    },
+    {
+      "path": "scenecode/agent_utils/vlm_service.py",
+      "type": "file",
+      "mode": 420,
+      "size": 9220,
+      "sha256": "cc8261b2a98909bd2bff5aba567901218dd2b8c3e7b181bb5a2ff1d5562f1f7d"
+    },
+    {
+      "path": "scenecode/agent_utils/wall_art_preprocess.py",
+      "type": "file",
+      "mode": 420,
+      "size": 8852,
+      "sha256": "f7e01960016e82305347a42968ed46dbf6d63009e5ddb37ffa9e42c51019980a"
+    },
+    {
+      "path": "scenecode/agent_utils/workflow_tools.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6002,
+      "sha256": "aa8a0ccfee478bf25e5fd3ffa300cbbd4956a8cc19933e4cafbc468c143777b9"
+    },
+    {
+      "path": "scenecode/agent_utils/wsgi_server_lifecycle.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1681,
+      "sha256": "9079e7762959045032b703891f4484118f35b56302502a303028dcab002c742f"
+    },
+    {
+      "path": "scenecode/ceiling_agents/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 258,
+      "sha256": "24b89045043985adbcc7add53109a525810fd8077ebe2538082fe5736d5f5b46"
+    },
+    {
+      "path": "scenecode/ceiling_agents/base_ceiling_agent.py",
+      "type": "file",
+      "mode": 420,
+      "size": 8552,
+      "sha256": "7c28938ae5903be080db09e9cc66c4155793aa5fafa6f29fd9b87fa24fd49a9a"
+    },
+    {
+      "path": "scenecode/ceiling_agents/stateful_ceiling_agent.py",
+      "type": "file",
+      "mode": 420,
+      "size": 17826,
+      "sha256": "7bd2b6cba039c32ef009afe22734a2230d169cba45b1485b697b313588691086"
+    },
+    {
+      "path": "scenecode/ceiling_agents/tools/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 50,
+      "sha256": "970527adcb4f27c66618c4ce41ca9c0226634333d78131b4406456b096efd41b"
+    },
+    {
+      "path": "scenecode/ceiling_agents/tools/ceiling_tools.py",
+      "type": "file",
+      "mode": 420,
+      "size": 30839,
+      "sha256": "28ae86bdd73e5daa3315ea93c649660aad576977dc26c5ada1945b1f411fd763"
+    },
+    {
+      "path": "scenecode/ceiling_agents/tools/response_dataclasses.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4321,
+      "sha256": "5588edc82581f7aabe83e92cfb536bcc249c6577993bbcb5106e8a77b094d765"
+    },
+    {
+      "path": "scenecode/ceiling_agents/tools/vision_tools.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6694,
+      "sha256": "dc429e0e919805c3a43909684967b364bb80744fa306afc36be7610e39902140"
+    },
+    {
+      "path": "scenecode/code_object/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 64,
+      "sha256": "2fa417eb96305b33e6729afcbeb22593b49b4d40be4ee956e2cdbb0819f3a3f2"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1442,
+      "sha256": "74a77959ebf58c795a7267cfe38cc1ce35f3344aeeb9d0990ba30cafb3be3643"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/agents/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 312,
+      "sha256": "89bd59c9e5d38b94e358eddf9b7dbbf9d24231579573a636bad4ac6e48a6e584"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/agents/base_agent.py",
+      "type": "file",
+      "mode": 420,
+      "size": 9256,
+      "sha256": "2d13762a99b0d9800def173f7510c2c50e540eace68488ebfee9cc3b67b6d99c"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/agents/part_constructor.py",
+      "type": "file",
+      "mode": 420,
+      "size": 28956,
+      "sha256": "3de153fe01814654e47922518fd7589b16aca8ef74148bfacb692218af9cb901"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/agents/planner.py",
+      "type": "file",
+      "mode": 420,
+      "size": 24477,
+      "sha256": "088a9460eb794f0b050a051a5b5cb83eea6e6097884e914a7dbb640cb243bdb4"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/agents/planner_checker.py",
+      "type": "file",
+      "mode": 420,
+      "size": 22558,
+      "sha256": "38b64035dc2518c8a06cc99da93c6c0bb16897b0b807da6f2fd89decb733f217"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/blender/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 207,
+      "sha256": "4c12016b6852f72842e20bfa14a85d2b3fefd4b9a0c2f0bb2ef53692c16ffd62"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/blender/addon.py",
+      "type": "file",
+      "mode": 493,
+      "size": 126822,
+      "sha256": "7c2dc64be1771f7055d61d98ddcf67abe055f67b0230140034b016387ae0740e"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/blender/backend_manager.py",
+      "type": "file",
+      "mode": 420,
+      "size": 8801,
+      "sha256": "2a7ab5848ed11c8ce58b45204d751f3f5a09b42034b451722403a8cb376c586e"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/blender/headless_server.py",
+      "type": "file",
+      "mode": 420,
+      "size": 49638,
+      "sha256": "764a7a0496b03e9caf915ebbd37ebdc95ebd6a115c90455171120b0f0035b92c"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/blender/mcp_client.py",
+      "type": "file",
+      "mode": 420,
+      "size": 32942,
+      "sha256": "702bc4aac1b63417c2914ff836365b99baf3e0a3099dee5735539c8235a7f48e"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/blender/request_lock.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2809,
+      "sha256": "f7d3344ad0676ad3ae2901f15b12d5d0f2882cc1bb7fc1c4926d4bb6eae7b059"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/code_articulated_pipeline.py",
+      "type": "file",
+      "mode": 420,
+      "size": 8234,
+      "sha256": "2e4c78dcaaffbd57a5fb02cb811b3e2ff196859fb2db75cf06a231ac230ac850"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/complex_image/bear.png",
+      "type": "file",
+      "mode": 420,
+      "size": 1399637,
+      "sha256": "1678021f1511df8a69959e89e92418bffde422ce7ab290e6f51e90b92941c5d3"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/complex_image/plant.png",
+      "type": "file",
+      "mode": 420,
+      "size": 1602207,
+      "sha256": "2c516d463bf48ca414fd1a954e6658a592460f526090a2699c462b2ac160c329"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/complex_image/shoe.png",
+      "type": "file",
+      "mode": 420,
+      "size": 1445894,
+      "sha256": "fa91c180032250168ac3d70efe1ebeffd4a11bcd533615c1944b455db2e45388"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/config.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 4070,
+      "sha256": "614fd9470f85e8350769889b42eb865f9bb08f47aaea92c91583fa79d5e2f404"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/config_WallArt.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 1681,
+      "sha256": "49aa3cab560aaa8c01074b19d491655f17ec0881353a5cc8fd89c65f3c3e7708"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/config_simplemanip.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 4064,
+      "sha256": "6f0ecb04dc43dc7e27562e5f256ed800384eddbfacf49a9894e0a97035505285"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/config_structmanip.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 4064,
+      "sha256": "5bf8992c162e6d3a468fdbe82d6c01edbb4119ff345355400a0ebeab2843da53"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/pipeline.py",
+      "type": "file",
+      "mode": 420,
+      "size": 50974,
+      "sha256": "606528ec75e4d785a16def61de9aab1641fe54f5753decb79093d62fa9c3d0cb"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/pipeline_batch.py",
+      "type": "file",
+      "mode": 420,
+      "size": 53308,
+      "sha256": "95b1ed6b4b4ec07945dbcf82e8a5f40e05b2887144da5777d7c5c853f05f1ff6"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/postprocess_pipeline_v1.py",
+      "type": "file",
+      "mode": 420,
+      "size": 22633,
+      "sha256": "6fb9b0356847b1f563b1a2818676e702c0e24d271a3d2abf2ce22e77c866e73e"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/prompts/checker.md",
+      "type": "file",
+      "mode": 420,
+      "size": 4501,
+      "sha256": "245bbc1667a972ec46bbaf2668694db6519fa76c7c25f40f24e26179c02b6fd5"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/prompts/checker_simplemanip.md",
+      "type": "file",
+      "mode": 420,
+      "size": 3642,
+      "sha256": "d95c6333137473498f4d607cc5e2fb43bd295e6550d9a3ae4e049cbbad275f76"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/prompts/checker_structmanip.md",
+      "type": "file",
+      "mode": 420,
+      "size": 3994,
+      "sha256": "856289f834b874209d24de2b361bd9c890d033ee37e2465dac6e46627ed64d5f"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/prompts/checker_wall_art.md",
+      "type": "file",
+      "mode": 420,
+      "size": 3922,
+      "sha256": "ce33bc69ee6f8fdc23d4d52028a75275fe486750595891f8ce2eeb7ac94c5c54"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/prompts/constructor.md",
+      "type": "file",
+      "mode": 420,
+      "size": 29780,
+      "sha256": "27ae87fffac989917e102a77671900a057ac8fcdb7f8147de90dbbb44bb12329"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/prompts/constructor_plate.md",
+      "type": "file",
+      "mode": 420,
+      "size": 17274,
+      "sha256": "19b739ddbddead026efec47ad23bd3cc7ac636f7058d3f2f230292f2a2847b4e"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/prompts/constructor_simplemanip.md",
+      "type": "file",
+      "mode": 420,
+      "size": 16636,
+      "sha256": "02bd19c8c174d73b04dcff14306de9113ba8a70dcfdb543d8f620f660c5bb16f"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/prompts/constructor_structmanip.md",
+      "type": "file",
+      "mode": 420,
+      "size": 21384,
+      "sha256": "737ec21cddcd7f70d71a39a16be42c363fdcb05a0136cb5e2f4a0726a5b32d9b"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/prompts/constructor_wall_art.md",
+      "type": "file",
+      "mode": 420,
+      "size": 23403,
+      "sha256": "b754ceba511952d80110857b25abd6a6d6f48133799d860945c6fc488fdc0a52"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/prompts/planner.md",
+      "type": "file",
+      "mode": 420,
+      "size": 20829,
+      "sha256": "ee10d3488b3515212f49fa4f2b5d34327200582cbb8e78a06b162a284ad6da90"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/prompts/planner_simplemanip.md",
+      "type": "file",
+      "mode": 420,
+      "size": 6325,
+      "sha256": "8108075ef16918e228b4cf976c937ea980f85ade77c4799aadb2be199e895790"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/prompts/planner_structmanip.md",
+      "type": "file",
+      "mode": 420,
+      "size": 14094,
+      "sha256": "c5ee8eae0a36a388f55cc3137b2455ed04242c534dec8dda5102d62abc8e75f0"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/prompts/planner_wall_art.md",
+      "type": "file",
+      "mode": 420,
+      "size": 12291,
+      "sha256": "ba80d86ac14733ac0a82110139f742d450103b529b20bb53c83a9dd07860ae23"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/prompts/urdf.md",
+      "type": "file",
+      "mode": 420,
+      "size": 4425,
+      "sha256": "95f46f845db056f33686a227808575fa8cc9dba592159bdebc1da69c26a2026e"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/readme_generation.md",
+      "type": "file",
+      "mode": 420,
+      "size": 2858,
+      "sha256": "4ec6fa3df485f06098bd105f38d4886235b489e6382f417a2221e40e364ee305"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/schemas/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 510,
+      "sha256": "2494f61533aaa9055548acbcec4118085587b2634b4f8296a77874b572134d36"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/schemas/object_plan.py",
+      "type": "file",
+      "mode": 420,
+      "size": 13031,
+      "sha256": "5fcc08962a4023067d971522304a727e5f9859bafcdbbb5bb16e233ef29111ef"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/urdf_pipeline_v1.py",
+      "type": "file",
+      "mode": 420,
+      "size": 22633,
+      "sha256": "6fb9b0356847b1f563b1a2818676e702c0e24d271a3d2abf2ce22e77c866e73e"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/utils/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 363,
+      "sha256": "bfa8613063cd6f965a9192bc8f082b3bbcea8355929e1477152cb4ad57802517"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/utils/code_naming.py",
+      "type": "file",
+      "mode": 420,
+      "size": 985,
+      "sha256": "30d72a82ebd36e3a7cc0bde1da25277a2e36ebbb4edb8ba10a86284ed34ea181"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/utils/gpu_diagnostics.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2127,
+      "sha256": "a0b990b6cce0c4e8dca2004762ddc99053ab697de1675dc3ead671a60d0299ba"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/utils/image_utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3834,
+      "sha256": "9a74145c8797f1469f310bec9faf5a0b9519e99463697b3d44cc6df45a9aca7d"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/utils/llm_client.py",
+      "type": "file",
+      "mode": 420,
+      "size": 20045,
+      "sha256": "ae3ab849c7b43597ce5ae7c1e235b1e258231c696e904315112436088f65d244"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/utils/run_blender_background.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3938,
+      "sha256": "742cd1b36251a7c6a1cdf07755a1734acf5e6ac0383973e5945cbaa4cf3fa8a8"
+    },
+    {
+      "path": "scenecode/code_object/agent_framework/utils/sum_token_usage.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1355,
+      "sha256": "2b1a988d470d99500c0e8d7007f91f845e81bb91560c02e085d114a2c3c6c7d0"
+    },
+    {
+      "path": "scenecode/experiments/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 946,
+      "sha256": "cf1781bca9998dcbe342977351b6231e72aaf32d38c95ec31ad9675aac86e666"
+    },
+    {
+      "path": "scenecode/experiments/base_experiment.py",
+      "type": "file",
+      "mode": 420,
+      "size": 16456,
+      "sha256": "5cb3127d9a646775b500dd682f9c027b2e4da2a7fa8ad4ee8ef5ad5c7f1fce15"
+    },
+    {
+      "path": "scenecode/experiments/indoor_scene_generation.py",
+      "type": "file",
+      "mode": 420,
+      "size": 82383,
+      "sha256": "c1fac351e14acaf9108bcc01d5ed83b0fe5050fce0dfaebfb11d215689421619"
+    },
+    {
+      "path": "scenecode/floor_plan_agents/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 319,
+      "sha256": "f426a1c2811bd3d145d1271993e35a3fa3d2f681efd09843045e9fba80a77b33"
+    },
+    {
+      "path": "scenecode/floor_plan_agents/base_floor_plan_agent.py",
+      "type": "file",
+      "mode": 420,
+      "size": 7899,
+      "sha256": "9036bd7f6ae1d05116ecff654cdb1b481c356de8d5b45b7772e7ac3dddf1d139"
+    },
+    {
+      "path": "scenecode/floor_plan_agents/stateful_floor_plan_agent.py",
+      "type": "file",
+      "mode": 420,
+      "size": 66315,
+      "sha256": "6dd349c5a89bbc809130692307470a3a2f5806084caaecc5885c82ef72a9f309"
+    },
+    {
+      "path": "scenecode/floor_plan_agents/tools/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 248,
+      "sha256": "28b392b7bc333cf25b2b0833fe85ed7fcda48047c1844f6e00a71cb243e91fd1"
+    },
+    {
+      "path": "scenecode/floor_plan_agents/tools/ascii_generator.py",
+      "type": "file",
+      "mode": 420,
+      "size": 25598,
+      "sha256": "f49ffbbd4c775b78c4a289b327f39e7cb4c941a35af883db281d6a4edae15466"
+    },
+    {
+      "path": "scenecode/floor_plan_agents/tools/door_window_mixin.py",
+      "type": "file",
+      "mode": 420,
+      "size": 34759,
+      "sha256": "4d168bf78eb2d809f4dbeddc0c36dd7e536d5024198b2938a65ec97b8f8c53b8"
+    },
+    {
+      "path": "scenecode/floor_plan_agents/tools/floor_plan_tools.py",
+      "type": "file",
+      "mode": 420,
+      "size": 49803,
+      "sha256": "08a0d5160aa3d86d7d87776b7a75ba00d911262a5e202856089fca1cd94fdae7"
+    },
+    {
+      "path": "scenecode/floor_plan_agents/tools/geometry_cache.py",
+      "type": "file",
+      "mode": 420,
+      "size": 9939,
+      "sha256": "470d1d5f1630752adb902df2f68a1ac87a7751f8728410543c9a6bec2012729c"
+    },
+    {
+      "path": "scenecode/floor_plan_agents/tools/materials_resolver.py",
+      "type": "file",
+      "mode": 420,
+      "size": 9297,
+      "sha256": "4d31da97088ea21bf2aa0ee2dd7b8654efcc040428792f338af8bff080923b3e"
+    },
+    {
+      "path": "scenecode/floor_plan_agents/tools/open_plan_mixin.py",
+      "type": "file",
+      "mode": 420,
+      "size": 28998,
+      "sha256": "c56b95b192263d8d5a0b743e9619f206059e4419319b5715bb213773cd60e0e6"
+    },
+    {
+      "path": "scenecode/floor_plan_agents/tools/room_placement.py",
+      "type": "file",
+      "mode": 420,
+      "size": 53673,
+      "sha256": "9eb55239883acc81ac748ce5573da00daa3222c7e10c81985bfe9421ccd22e97"
+    },
+    {
+      "path": "scenecode/floor_plan_agents/tools/vision_tools.py",
+      "type": "file",
+      "mode": 420,
+      "size": 28144,
+      "sha256": "917d7eb262603e92d4810ef203df686512dec13260ff802512bae2c814f357a2"
+    },
+    {
+      "path": "scenecode/floor_plan_agents/tools/wall_geometry.py",
+      "type": "file",
+      "mode": 420,
+      "size": 12536,
+      "sha256": "495fcd177585af491390acffa3cba29eb05ef068eaf6322ac04b471bcd9a3a5b"
+    },
+    {
+      "path": "scenecode/floor_plan_agents/tools/window_geometry.py",
+      "type": "file",
+      "mode": 420,
+      "size": 7022,
+      "sha256": "c55ae404a4e81de392eb77300d3b4daf06536a18004d8578762cda8339bcf6c5"
+    },
+    {
+      "path": "scenecode/furniture_agents/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "scenecode/furniture_agents/base_furniture_agent.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6810,
+      "sha256": "ece7056c02b6683a76fac4e00a5c3b92295f5bea12a778476f0d88bc221cced7"
+    },
+    {
+      "path": "scenecode/furniture_agents/stateful_furniture_agent.py",
+      "type": "file",
+      "mode": 420,
+      "size": 15950,
+      "sha256": "d7fa4c3be850fd756e33eb799ad044fce69ba5367e56737633d892d5414a11cc"
+    },
+    {
+      "path": "scenecode/furniture_agents/tools/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "scenecode/furniture_agents/tools/furniture_tools.py",
+      "type": "file",
+      "mode": 420,
+      "size": 40515,
+      "sha256": "e5cf46e51a2ea428e10be4b83d9402dc604c080a7056b97ce7ab3a57e52e07e9"
+    },
+    {
+      "path": "scenecode/furniture_agents/tools/response_dataclasses.py",
+      "type": "file",
+      "mode": 420,
+      "size": 14986,
+      "sha256": "79c7397fa55b8fe08b171efd95fcac2de000986c1e0c46c85b251d5054216437"
+    },
+    {
+      "path": "scenecode/furniture_agents/tools/scene_tools.py",
+      "type": "file",
+      "mode": 420,
+      "size": 28464,
+      "sha256": "625536516ec60d7b83ba922a8d2c84fb5f8915183fd94efda19b69cab7fd28f0"
+    },
+    {
+      "path": "scenecode/furniture_agents/tools/snapping_helpers.py",
+      "type": "file",
+      "mode": 420,
+      "size": 35919,
+      "sha256": "99deb11d3ace06b03248d7b3f6a4f55b522cbba7c75284712d274877114ef254"
+    },
+    {
+      "path": "scenecode/furniture_agents/tools/vision_tools.py",
+      "type": "file",
+      "mode": 420,
+      "size": 7440,
+      "sha256": "069ce974882aa9553dc94f0ab799e4bd91baba81b7d37e810ca89c0167fcdcd0"
+    },
+    {
+      "path": "scenecode/manipuland_agents/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "scenecode/manipuland_agents/base_manipuland_agent.py",
+      "type": "file",
+      "mode": 420,
+      "size": 7312,
+      "sha256": "16df3d242de60941b62328ffd0a3010ceb3dfcd23ef5f7b714d1ebb623a47e8e"
+    },
+    {
+      "path": "scenecode/manipuland_agents/stateful_manipuland_agent.py",
+      "type": "file",
+      "mode": 420,
+      "size": 36544,
+      "sha256": "0118f8c9161077fbee2fc3a55b17cabe63a0eaa3fa799c03ef9e9459817d0082"
+    },
+    {
+      "path": "scenecode/manipuland_agents/tools/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 45,
+      "sha256": "3caea91fe199b3a5825af03a29844c8bc7004e823ea671d2fb255df7d4d66eae"
+    },
+    {
+      "path": "scenecode/manipuland_agents/tools/arrangement_tools.py",
+      "type": "file",
+      "mode": 420,
+      "size": 28885,
+      "sha256": "199bd1d96257be1394530991408f74f777243f40ea4e9dde359bb221aab9a21d"
+    },
+    {
+      "path": "scenecode/manipuland_agents/tools/fill_container.py",
+      "type": "file",
+      "mode": 420,
+      "size": 48988,
+      "sha256": "7a19982d72ce83c2fab019d8db9cd924f5b96de5314cc4d44766c4751dea28a2"
+    },
+    {
+      "path": "scenecode/manipuland_agents/tools/fill_tools.py",
+      "type": "file",
+      "mode": 420,
+      "size": 25755,
+      "sha256": "52e1d2c61e17e169501d24e82a9230671f04a41061189a7a2a0555d64eaad82f"
+    },
+    {
+      "path": "scenecode/manipuland_agents/tools/manipuland_tools.py",
+      "type": "file",
+      "mode": 420,
+      "size": 95445,
+      "sha256": "fe2bf190576dae133d44e4054d21b088c1bafd52df00990feff01e8774d57d4f"
+    },
+    {
+      "path": "scenecode/manipuland_agents/tools/physics_utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1879,
+      "sha256": "08d9c1ac38a07433a1a5867638025797022a73c2c90cbb35f4c316d931ee51c6"
+    },
+    {
+      "path": "scenecode/manipuland_agents/tools/pile_tools.py",
+      "type": "file",
+      "mode": 420,
+      "size": 29828,
+      "sha256": "7d5773fcb101b7b40d68f1affb225397708485b1cde93dadc80da03703c26830"
+    },
+    {
+      "path": "scenecode/manipuland_agents/tools/response_dataclasses.py",
+      "type": "file",
+      "mode": 420,
+      "size": 12449,
+      "sha256": "068bee09abb7da82a4b5fa087798d63fd75fdbb72b1076715b00ec0459259cd7"
+    },
+    {
+      "path": "scenecode/manipuland_agents/tools/stack_tools.py",
+      "type": "file",
+      "mode": 420,
+      "size": 16446,
+      "sha256": "62cd16d21d83bae5d3b5bda0a2f9336c63bf976d7f088d0316f9f34a048d055c"
+    },
+    {
+      "path": "scenecode/manipuland_agents/tools/stacking.py",
+      "type": "file",
+      "mode": 420,
+      "size": 16071,
+      "sha256": "c96dba46df4663429c9974c17c2e8b22280fd607a322e038e0f00ea82a74ce21"
+    },
+    {
+      "path": "scenecode/manipuland_agents/tools/vision_tools.py",
+      "type": "file",
+      "mode": 420,
+      "size": 10948,
+      "sha256": "025694f9679d2c1ec2ba6b1b1bd022b3e1a3391ad7e228cdcaa98cdff8d5e162"
+    },
+    {
+      "path": "scenecode/metrics/COL.py",
+      "type": "file",
+      "mode": 420,
+      "size": 13263,
+      "sha256": "4cd57dd1492b59e4380d469f23d0a759d51d2d9e434b27ffa7694b18ef48b70b"
+    },
+    {
+      "path": "scenecode/metrics/STB.py",
+      "type": "file",
+      "mode": 420,
+      "size": 14591,
+      "sha256": "8a3e8a203a2f30a19dd95210c8c43296b312cd27bc5a02584bff41b756718104"
+    },
+    {
+      "path": "scenecode/metrics/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 67,
+      "sha256": "02c2308085a41d570e5d7b6530e14e9b22a060f819b05c358a6333fa16f7995b"
+    },
+    {
+      "path": "scenecode/prompts/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 844,
+      "sha256": "34c0adec6a6b1affffde2b65b64968f19b68bcd4176e04fa038b8e42f85a4c85"
+    },
+    {
+      "path": "scenecode/prompts/data/asset_router/asset_validation.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 17992,
+      "sha256": "3743d9cded8558018e076d32e745c2bbd492e73f584a6f462f9a3eab5b9906a1"
+    },
+    {
+      "path": "scenecode/prompts/data/asset_router/asset_validation_lenient.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 2731,
+      "sha256": "3f84ee76b0968a34573f8d2e010b5c137960572c93d5d9529ce62b121b8e0b24"
+    },
+    {
+      "path": "scenecode/prompts/data/asset_router/request_analysis_ceiling.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 4082,
+      "sha256": "79ae406aeb87e379af24f302fcbb1b6b18de2c3abc0a8fc1a1bb8e19a09ea304"
+    },
+    {
+      "path": "scenecode/prompts/data/asset_router/request_analysis_furniture.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 16364,
+      "sha256": "a621da71bc0dc8ef19856247628b3350c91bf8ce5187d61b0579fc02d80fe1e1"
+    },
+    {
+      "path": "scenecode/prompts/data/asset_router/request_analysis_manipuland.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 14949,
+      "sha256": "cc1b8ad9eba06de8c4c0b6c14371c35531496f84f6417fddf85360644baea5ba"
+    },
+    {
+      "path": "scenecode/prompts/data/asset_router/request_analysis_wall.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 5976,
+      "sha256": "d5c8d984e783a9a09740a94da59b3c117ee9ddabfcd7f587cbb16d57056837d1"
+    },
+    {
+      "path": "scenecode/prompts/data/asset_router/thin_covering_validation.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 3599,
+      "sha256": "3c7e1f7da7e85b403e021a9ee97bfa1db20a62c80ec3c14a5f51c2b247c7e07c"
+    },
+    {
+      "path": "scenecode/prompts/data/ceiling_agent/designer_agent.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 7098,
+      "sha256": "dbe9c76b1a7130eab0d348a9ab6cf224566275b668915891bc566371a21868ce"
+    },
+    {
+      "path": "scenecode/prompts/data/ceiling_agent/designer_critique_instruction.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 1872,
+      "sha256": "8c6baa8fa798ab18bd25c9d1eb78e2e7afdb23a93a3781ceec4d89f6945e6c5b"
+    },
+    {
+      "path": "scenecode/prompts/data/ceiling_agent/designer_initial_instruction.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 2065,
+      "sha256": "845174f6ff56b298988d26fc272a18c8b6bdff556c1c7d7be64c75103f56ee27"
+    },
+    {
+      "path": "scenecode/prompts/data/ceiling_agent/stateful_critic_agent.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 13602,
+      "sha256": "8601eb2d88a900d959823fb859f1bd39976b298889ce33598c0488a3986a8b98"
+    },
+    {
+      "path": "scenecode/prompts/data/ceiling_agent/stateful_critic_runner_instruction.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 2080,
+      "sha256": "76c91b5591cb78ab568ab05cbca6679631cbb99d895de73db70410bfddfe0daa"
+    },
+    {
+      "path": "scenecode/prompts/data/ceiling_agent/stateful_planner_agent.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 7272,
+      "sha256": "b4dfa15a6bb5715686ec7a20b691e1d56a505b9fd1b4008414bdd09fcc4b48d9"
+    },
+    {
+      "path": "scenecode/prompts/data/ceiling_agent/stateful_planner_runner_instruction.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 888,
+      "sha256": "f4594151c6fd365bf68c77ab3f2e426582c5ecd959b651ebd8e78b4a3518eb38"
+    },
+    {
+      "path": "scenecode/prompts/data/floor_plan_agent/critic_agent.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 18358,
+      "sha256": "60ed7590857679aee1ef8e81e0e4627fe33920f6492847033c7e3457b46f1f4d"
+    },
+    {
+      "path": "scenecode/prompts/data/floor_plan_agent/critic_runner_instruction.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 1856,
+      "sha256": "b8e79394356a79ab6a501d64f6f815cbc11321addb7b0582fff1fe0864c60650"
+    },
+    {
+      "path": "scenecode/prompts/data/floor_plan_agent/designer_agent.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 15768,
+      "sha256": "e132a8d211a161c684136ab0076e19b986c3b7d886f57db0645802ad40aa7f16"
+    },
+    {
+      "path": "scenecode/prompts/data/floor_plan_agent/designer_critique_instruction.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 617,
+      "sha256": "2369b4124195f3973097f68d74db56164af772aff90e5dceddff9ed40615150c"
+    },
+    {
+      "path": "scenecode/prompts/data/floor_plan_agent/designer_initial_instruction.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 716,
+      "sha256": "0d9ba7967f92eaabc8e8f4f13c8edeb492982e4b3e46e70c7a088c3404d165e1"
+    },
+    {
+      "path": "scenecode/prompts/data/floor_plan_agent/planner_agent.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 5839,
+      "sha256": "ef25b889efd78e5da859d418b492e78a550428cb29cb2d096ec61e88b8758c17"
+    },
+    {
+      "path": "scenecode/prompts/data/floor_plan_agent/planner_runner_instruction.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 375,
+      "sha256": "3270e5dc27eb7f57a3d021200ddac7e695d8778098c1f9b311d97c63f6e7916e"
+    },
+    {
+      "path": "scenecode/prompts/data/furniture_agent/designer_agent.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 38640,
+      "sha256": "0d82967fcffe52bcc1fa91d37a2060c44f67e7b0d2b3f2af1eced21224315029"
+    },
+    {
+      "path": "scenecode/prompts/data/furniture_agent/designer_critique_instruction_stateful.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 1877,
+      "sha256": "ac428e59950d23a2798d71965fecb1a16d12d360dc2249e208656f6f07031f7b"
+    },
+    {
+      "path": "scenecode/prompts/data/furniture_agent/designer_initial_instruction.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 2870,
+      "sha256": "05d7d6e00bf89518da6133edcc2c80d040647e59508cd96abb59d89b8850dbbb"
+    },
+    {
+      "path": "scenecode/prompts/data/furniture_agent/stateful_critic_agent.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 35688,
+      "sha256": "9c917b9f510b3271ae6ce3a7b8312c3a06c32e622cf58258d8eac488739f0fe6"
+    },
+    {
+      "path": "scenecode/prompts/data/furniture_agent/stateful_critic_runner_instruction.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 4694,
+      "sha256": "2328c4896a5d93db8fffa1a7b1e47f4e04975a7fa7ace969f20bb2aaa6a6c6f2"
+    },
+    {
+      "path": "scenecode/prompts/data/furniture_agent/stateful_planner_agent.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 6624,
+      "sha256": "cc13c02c7438b7a5d0bc42c77e8c2e15eba149fb96443ef5a1eaddcd6c38ef41"
+    },
+    {
+      "path": "scenecode/prompts/data/furniture_agent/stateful_planner_runner_instruction.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 704,
+      "sha256": "f81b2b735964d90b051b8c8befcf0287a57157169994ca7262435136311c05e8"
+    },
+    {
+      "path": "scenecode/prompts/data/image_generation/asset_image_continuation.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 346,
+      "sha256": "1bf65e29a0edab6b3699fac25d260118de35554934f967cd24920e74653e2e08"
+    },
+    {
+      "path": "scenecode/prompts/data/image_generation/asset_image_initial.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 1120,
+      "sha256": "509a84a94f40a1b69fc764e84396c921ba0b5b239e350813c76faae61d3d5c5e"
+    },
+    {
+      "path": "scenecode/prompts/data/image_generation/furniture_context_image.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 521,
+      "sha256": "42eb692f257e3a5d36a84a7f30586d05fdc3367811d3111811e93dca6143bce1"
+    },
+    {
+      "path": "scenecode/prompts/data/image_generation/manipuland_context_image.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 817,
+      "sha256": "2b3d46fa4ce3404917654f9d1e7ec9d84fdce9177febd88db629d908f223ddab"
+    },
+    {
+      "path": "scenecode/prompts/data/manipuland_agent/analyze_furniture_for_placement.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 6486,
+      "sha256": "7a7b3ada3e1714887d50ae23bd7cbeb3b3850b448448fe86371919855b34e125"
+    },
+    {
+      "path": "scenecode/prompts/data/manipuland_agent/critic_agent.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 26707,
+      "sha256": "9bb5abee19c4b6d22862baa167eec8280b07df367e2896b91cf842e446682604"
+    },
+    {
+      "path": "scenecode/prompts/data/manipuland_agent/critic_runner_instruction.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 4060,
+      "sha256": "601112531742fb995c89fe54bf24268862b27920ecc157226d33138eba617c41"
+    },
+    {
+      "path": "scenecode/prompts/data/manipuland_agent/designer_agent.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 32662,
+      "sha256": "517278cba67b1ef116025b7e16ad37434064bdb5c17fcd68678de85c1165d81d"
+    },
+    {
+      "path": "scenecode/prompts/data/manipuland_agent/designer_critique_instruction.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 1954,
+      "sha256": "546af41b8ec66c28c8612b3b46297be008ac04bf3a38a65f0bd32e58c03ef596"
+    },
+    {
+      "path": "scenecode/prompts/data/manipuland_agent/designer_initial_instruction.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 2344,
+      "sha256": "e4fba81ab2d2300e5847d9f4787162f33b8cc9b56ec3ef2f142536e714924dec"
+    },
+    {
+      "path": "scenecode/prompts/data/manipuland_agent/planner_agent.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 8106,
+      "sha256": "e2fa9b5464704e1cf08094bc23204c8f4e23267b400c71ea68f74f85a6f44996"
+    },
+    {
+      "path": "scenecode/prompts/data/manipuland_agent/planner_runner_instruction.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 1018,
+      "sha256": "2a086383338b855e0c1c2bd16cef444ae3efb8ebb767708c67682c051da7c6c2"
+    },
+    {
+      "path": "scenecode/prompts/data/manipuland_agent/select_context_furniture.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 3310,
+      "sha256": "7b3ac730703a36c5ce2815af04dd32099084529e3ac5151b1a674259b9f47253"
+    },
+    {
+      "path": "scenecode/prompts/data/material_generation/artwork_image.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 1015,
+      "sha256": "b52c2d59386d2af9d900ba2b91bd7098cb7439c193b2915a37c33c7f29817244"
+    },
+    {
+      "path": "scenecode/prompts/data/material_generation/seamless_texture.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 698,
+      "sha256": "b08d6e20bc9396927c04e91e73a36f8cffda9098a12b1acdcbd210a313fa6d9c"
+    },
+    {
+      "path": "scenecode/prompts/data/mesh_physics/articulated.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 10301,
+      "sha256": "5d2e50269e010aee564623853b1b74bde71b35f2f4cbd95b63407a01bfe2dc12"
+    },
+    {
+      "path": "scenecode/prompts/data/mesh_physics/generated.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 6833,
+      "sha256": "82882967224bb57d191c3a1f0164be78ea1779f8bb975399ce1185e2896eb634"
+    },
+    {
+      "path": "scenecode/prompts/data/mesh_physics/hssd.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 5311,
+      "sha256": "c5e00685fa0cb4ac837bbe4ba6cc70f49d52f384d5bf8a4a3c703c2275cd53b6"
+    },
+    {
+      "path": "scenecode/prompts/data/robot_eval/policy_agent.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 9041,
+      "sha256": "256d042c6b6b6741d67b21c1fc386b23e2fbe321e236885eeebcf9c16502a273"
+    },
+    {
+      "path": "scenecode/prompts/data/robot_eval/scene_prompt_generator.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 8454,
+      "sha256": "2a8dbdfd3db7e38e4e1f195eb8cfe7d5a9ec1bb7e43330731fb6de315431eb1c"
+    },
+    {
+      "path": "scenecode/prompts/data/robot_eval/success_validator.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 5478,
+      "sha256": "d16e6d85a882bbccc3cae5938065731ebd5f2b62ddef104d3d919560624ce384"
+    },
+    {
+      "path": "scenecode/prompts/data/robot_eval/validation_instruction.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 1691,
+      "sha256": "6b0faf82bc6ea6ff6d36852f6b5f0b4a11cd21f651ce8820e58255b1d9cb871e"
+    },
+    {
+      "path": "scenecode/prompts/data/session_memory/turn_summarization.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 454,
+      "sha256": "899c6cae83f2de251ebb8b793685fc6d64803a9f0580c1f934416d7a33391527"
+    },
+    {
+      "path": "scenecode/prompts/data/wall_agent/designer_agent.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 15660,
+      "sha256": "e506ed04073fb293b166853bd669ae6acef813398672c5d292f684c8c4a3c886"
+    },
+    {
+      "path": "scenecode/prompts/data/wall_agent/designer_critique_instruction.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 1867,
+      "sha256": "9d7ec375060d8d9bcbd4b360815fbdc3dabe8427867070079123641dd755788e"
+    },
+    {
+      "path": "scenecode/prompts/data/wall_agent/designer_initial_instruction.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 1876,
+      "sha256": "abd18ef450d62b25c493dd7035a705b5a12a8dd9d91ff70c3c80c618dc7be958"
+    },
+    {
+      "path": "scenecode/prompts/data/wall_agent/stateful_critic_agent.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 17302,
+      "sha256": "f09afb2a0a4d5c28fb1248ef1ff7df9bfc7a57b57308a27abde6f7b0bafd47c5"
+    },
+    {
+      "path": "scenecode/prompts/data/wall_agent/stateful_critic_runner_instruction.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 2027,
+      "sha256": "7f7f9cf4bd64ec730168e151312e2a6ad8b13d41546f93be338016f09880e7a8"
+    },
+    {
+      "path": "scenecode/prompts/data/wall_agent/stateful_planner_agent.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 7170,
+      "sha256": "f20d17da4bf8f24379378feb42414da4f758e66cac46096e5cad1064a7857511"
+    },
+    {
+      "path": "scenecode/prompts/data/wall_agent/stateful_planner_runner_instruction.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 773,
+      "sha256": "617375f57a00f62e753b460c47ee3e8621d7e371683c35533cef188ac2acaa44"
+    },
+    {
+      "path": "scenecode/prompts/manager.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4943,
+      "sha256": "5e5818c14ad6372ba6180c1da14038915af6103e726e264a47ea55338b637f41"
+    },
+    {
+      "path": "scenecode/prompts/registry.py",
+      "type": "file",
+      "mode": 420,
+      "size": 9924,
+      "sha256": "65c1ac822691b262dbf77f12ba014c7e5f885fdac1e68308ae18233948fafd4f"
+    },
+    {
+      "path": "scenecode/robot_eval/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1966,
+      "sha256": "a4e013d703095e646455083a8bd5075a78d1935b9e6f4e03bb3d946a00f8527c"
+    },
+    {
+      "path": "scenecode/robot_eval/dmd_scene.py",
+      "type": "file",
+      "mode": 420,
+      "size": 21174,
+      "sha256": "ecab42b41973ba03a1ff36bfabf2bd5211a25b5459fa04e166f93cdee5ee4c4f"
+    },
+    {
+      "path": "scenecode/robot_eval/llm_utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2743,
+      "sha256": "559794d66f5254889bf592f85eb1590034795c3a8f5359db8f89a0d7a53d7d69"
+    },
+    {
+      "path": "scenecode/robot_eval/policy_interface/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1080,
+      "sha256": "be04517785bed964775e82ea791fa315104967e866e680274cfc7147c1575a34"
+    },
+    {
+      "path": "scenecode/robot_eval/policy_interface/policy_agent.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5918,
+      "sha256": "acd97d83b1f4d3f777bd23a87eeb2a148f92024109937ccf91630614cf4e81aa"
+    },
+    {
+      "path": "scenecode/robot_eval/policy_interface/predicate_resolver.py",
+      "type": "file",
+      "mode": 420,
+      "size": 14005,
+      "sha256": "46c9dedb1f385b7995a79e07306c527a5bc819419225799e6bd87e18a301d5ce"
+    },
+    {
+      "path": "scenecode/robot_eval/success_validation/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 256,
+      "sha256": "837d7b76a5387d55df0d920b186dc398ceaaf9d74e5a9b6c1829d48693fc941c"
+    },
+    {
+      "path": "scenecode/robot_eval/success_validation/validator_agent.py",
+      "type": "file",
+      "mode": 420,
+      "size": 8330,
+      "sha256": "4cd2680f1f14cc330869578e4b0468630c93771dede78f39203a64bbe8dc9451"
+    },
+    {
+      "path": "scenecode/robot_eval/task_generation/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 132,
+      "sha256": "578c8902d2fffb567b4234c644233c41fd9d561394e8d936b37e6eb400c58e6d"
+    },
+    {
+      "path": "scenecode/robot_eval/task_generation/scene_prompt_generator.py",
+      "type": "file",
+      "mode": 420,
+      "size": 7240,
+      "sha256": "407b3b972bd98131031812e9255c9946d7c6474f776110a23eb55ff2b69ff399"
+    },
+    {
+      "path": "scenecode/robot_eval/tools/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 377,
+      "sha256": "4a761f420ec52b20613648a405db120d7d5b5124e3106d2673c638d16594f3d1"
+    },
+    {
+      "path": "scenecode/robot_eval/tools/response_dataclasses.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3376,
+      "sha256": "9a7892dd40205e336f519692048753c42959cee3b8c1de211741c906d51a701a"
+    },
+    {
+      "path": "scenecode/robot_eval/tools/state_tools.py",
+      "type": "file",
+      "mode": 420,
+      "size": 20327,
+      "sha256": "2f489513e8441094ba0bfe7c779279b9eac4536a53a62e483718951e6f2b206b"
+    },
+    {
+      "path": "scenecode/robot_eval/tools/vision_tools.py",
+      "type": "file",
+      "mode": 420,
+      "size": 14748,
+      "sha256": "abb97df01e7db1cc3da48687cc4cb4a365988d58fff0429f8ee92cf17b616434"
+    },
+    {
+      "path": "scenecode/utils/collision_utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 7897,
+      "sha256": "a2a48c91a4a8a2d8435f75335d26284bbc2840b768c9ba6eec9df524d42130f6"
+    },
+    {
+      "path": "scenecode/utils/geometry_utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 12432,
+      "sha256": "799ac9fb872f546bb4a2d1bc926153506375c8c6cf11837642072f715840a28c"
+    },
+    {
+      "path": "scenecode/utils/gltf_generation.py",
+      "type": "file",
+      "mode": 420,
+      "size": 25453,
+      "sha256": "7de950d4d41b18520415c10fe4b3a36c1bc538f13ca867dd046b6d4334da733d"
+    },
+    {
+      "path": "scenecode/utils/inertia_utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5158,
+      "sha256": "30ae785da0ed08f390bb5059dfe2a44f595e832a24585e09e96ada54aa6fa745"
+    },
+    {
+      "path": "scenecode/utils/logging.py",
+      "type": "file",
+      "mode": 420,
+      "size": 14321,
+      "sha256": "8324f7295dba7cc2864668485c3af212fb6878da20d8257542f5017f0e1c89da"
+    },
+    {
+      "path": "scenecode/utils/material.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4417,
+      "sha256": "bf315c1c67bd9f9f117769ffeaaa147d0afe1d8a880f2309adc533d09886d7c4"
+    },
+    {
+      "path": "scenecode/utils/mesh_loading.py",
+      "type": "file",
+      "mode": 420,
+      "size": 7746,
+      "sha256": "d3ec0ef80f88bc1325728062412cb5d4ec036365c5fa6fcdb4a9502fdc1c155f"
+    },
+    {
+      "path": "scenecode/utils/network_utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1376,
+      "sha256": "60ce36461fd348426d08679af202f565465ad2453ce2f4e58fe787b7aff6fe3e"
+    },
+    {
+      "path": "scenecode/utils/omegaconf.py",
+      "type": "file",
+      "mode": 420,
+      "size": 377,
+      "sha256": "a8679a0d8c018718c64e4c0db0855e029896a695284e66021c5d5d8c95feb87e"
+    },
+    {
+      "path": "scenecode/utils/openai.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6553,
+      "sha256": "18797946eadf8ae146c7d544e397d8b67539f7f7cbdbb7b87b835ff3a522d9b3"
+    },
+    {
+      "path": "scenecode/utils/package_utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1143,
+      "sha256": "aee23d0e409b29af741bc02632a8b393aeb9dba35bac358712337f1587a429ee"
+    },
+    {
+      "path": "scenecode/utils/parallel.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5756,
+      "sha256": "03d54c14917d5e60222c4f0405f64f07d4329bddea4300e6ffca2d29eb188dc7"
+    },
+    {
+      "path": "scenecode/utils/path_utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 769,
+      "sha256": "f63edc9418d449a1d5d8bf32b9718b9482384d4ead2feec053ae3f6d3335c661"
+    },
+    {
+      "path": "scenecode/utils/print_utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2208,
+      "sha256": "2ea18a620b04c6ea9975d4ce61dff3ebd157ad5631a0026dd107ca677e64fb3c"
+    },
+    {
+      "path": "scenecode/utils/sdf_utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 8320,
+      "sha256": "f306ef56d28e282ea3fc116b6568cfe3b2ac00c7071ee71c058f559314d62482"
+    },
+    {
+      "path": "scenecode/utils/shape_analysis.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4712,
+      "sha256": "3380047f04383d304d2a43d8a258fa030e9921813eae22ffe3003035b7360105"
+    },
+    {
+      "path": "scenecode/wall_agents/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 231,
+      "sha256": "c13ae8119ec45602ce4d15d535ae7a1dece655ab84bfd5954a56efbf067ce712"
+    },
+    {
+      "path": "scenecode/wall_agents/base_wall_agent.py",
+      "type": "file",
+      "mode": 420,
+      "size": 8490,
+      "sha256": "343c7e563e0cc4ec1d7de5a6d26f0fb6023ed6714cf31748f19ad69f64c9a0b4"
+    },
+    {
+      "path": "scenecode/wall_agents/stateful_wall_agent.py",
+      "type": "file",
+      "mode": 420,
+      "size": 17665,
+      "sha256": "62b3541a81d6fde9f864d12f1c44fc1fd9e01ab97bff3b63fab71b7c4d02119f"
+    },
+    {
+      "path": "scenecode/wall_agents/tools/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "scenecode/wall_agents/tools/response_dataclasses.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5329,
+      "sha256": "c113873489de9bc904cda5517f807857465958558f04ab086399630d7709f691"
+    },
+    {
+      "path": "scenecode/wall_agents/tools/vision_tools.py",
+      "type": "file",
+      "mode": 420,
+      "size": 13695,
+      "sha256": "20331ecd06b8f6d763065598935f9b2fcbc72574ee52cf9f4b795c7aee732e63"
+    },
+    {
+      "path": "scenecode/wall_agents/tools/wall_surface.py",
+      "type": "file",
+      "mode": 420,
+      "size": 24963,
+      "sha256": "289d5b03464541f4f7b6d33e974ec0d478bda508e41d64f9001e3f429e056974"
+    },
+    {
+      "path": "scenecode/wall_agents/tools/wall_tools.py",
+      "type": "file",
+      "mode": 420,
+      "size": 36167,
+      "sha256": "1314e5432b3d2bdb5df5894c8ff7276cf76c141519b5a43c69f6743213c56d79"
+    },
+    {
+      "path": "scripts/clean_scene_output.py",
+      "type": "file",
+      "mode": 420,
+      "size": 26707,
+      "sha256": "a6c0c76414a322f81ac666e1c4fbd584e99002b028c4a9ce83e45ec8531207f3"
+    },
+    {
+      "path": "scripts/compute_ambientcg_embeddings.py",
+      "type": "file",
+      "mode": 420,
+      "size": 12744,
+      "sha256": "2c5d3b356bc3b517a614c8a2236d81852b4a950c2a87884e090a4b5c20fc84f6"
+    },
+    {
+      "path": "scripts/compute_articulated_embeddings.py",
+      "type": "file",
+      "mode": 420,
+      "size": 15157,
+      "sha256": "87ecacf25242b8e5a3c1ebe0c6f97146ed979b02434b5118e783a4db00d03633"
+    },
+    {
+      "path": "scripts/convert_dmd_welding.py",
+      "type": "file",
+      "mode": 493,
+      "size": 32008,
+      "sha256": "e0907b65ce45d8ff67b1efe0bd39ce080e19b5f19118e1ae4894c28e5958689e"
+    },
+    {
+      "path": "scripts/convert_partnet_mobility.py",
+      "type": "file",
+      "mode": 420,
+      "size": 22727,
+      "sha256": "2838c95f6fab45060236fed103cf2a63225512deef5138001109b97c84576848"
+    },
+    {
+      "path": "scripts/convert_partnet_parallel.sh",
+      "type": "file",
+      "mode": 493,
+      "size": 3768,
+      "sha256": "3e1a31cc395d30f1183e6d000f0e4807c0c4ec152369b9bc04357e8f61dae0ea"
+    },
+    {
+      "path": "scripts/convert_urdf_to_sdf.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4218,
+      "sha256": "f54f49c9c22569a37075c5d04dc02e811b6be229b7d09c2f33da8f4a30b56469"
+    },
+    {
+      "path": "scripts/download_ambientcg.py",
+      "type": "file",
+      "mode": 420,
+      "size": 11341,
+      "sha256": "94b9bd8417ce721fe4474f5cc7c493d754236428ec673919846861ae2e835b43"
+    },
+    {
+      "path": "scripts/download_hssd_data.sh",
+      "type": "file",
+      "mode": 493,
+      "size": 3423,
+      "sha256": "d0651df452a2296ce93c6704f3f41bfed888e857ad79103da5a755273c615eaf"
+    },
+    {
+      "path": "scripts/download_objaverse_data.sh",
+      "type": "file",
+      "mode": 493,
+      "size": 2765,
+      "sha256": "e57d37ec7a7ae46b03dbf635c132bb1a75cf4f0e1951d03f151da472fb807ad9"
+    },
+    {
+      "path": "scripts/export_scene_to_mujoco.py",
+      "type": "file",
+      "mode": 420,
+      "size": 87710,
+      "sha256": "61766edb28ec46ee7ee4a40e5bf4822980f1c8ed473d5814c5192ba074745535"
+    },
+    {
+      "path": "scripts/fix_artvip_joint_poses.py",
+      "type": "file",
+      "mode": 420,
+      "size": 7021,
+      "sha256": "1326566590e880732617cb79eee45d89ef71e5cc1719b737d55ea14e00928375"
+    },
+    {
+      "path": "scripts/fix_usd_isaac_sim.py",
+      "type": "file",
+      "mode": 420,
+      "size": 32440,
+      "sha256": "2b3b6a8a2a5123cfcf959723e7e44cb69680c273fe5797e0999d19c9528ce76e"
+    },
+    {
+      "path": "scripts/install_hunyuan3d.sh",
+      "type": "file",
+      "mode": 493,
+      "size": 347,
+      "sha256": "2a40ca0910b67fe0b6e9b31a4edc94018a1042618855172f2b01a2a5e12dabcf"
+    },
+    {
+      "path": "scripts/install_sam3d.sh",
+      "type": "file",
+      "mode": 493,
+      "size": 11785,
+      "sha256": "d62f912a3b1c2d5f30b2565c2bb3fdf0b2766fb66bd7d891c61213d5058f6775"
+    },
+    {
+      "path": "scripts/install_sam3d_docker.sh",
+      "type": "file",
+      "mode": 493,
+      "size": 3921,
+      "sha256": "5f14c8f097eab300e6f6c44a3b18a17c6307464d203041ebaae34bcde2cdad99"
+    },
+    {
+      "path": "scripts/prepare_objaverse.py",
+      "type": "file",
+      "mode": 493,
+      "size": 10360,
+      "sha256": "30e8f44d752ec7f5f44b7b62fb01e69d71dbba0b59c740df838fd82193c44f72"
+    },
+    {
+      "path": "scripts/requirements-mujoco-export.txt",
+      "type": "file",
+      "mode": 420,
+      "size": 540,
+      "sha256": "fba2c495312e06f52cab1c03c6b6371d5d80068e20ce85c1fb8099fcbd40b79a"
+    },
+    {
+      "path": "scripts/robot_eval/generate_prompts.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2625,
+      "sha256": "52dc98463b3af48bfd675f2fbeb907739896e8d2df92466fb9fe1baf067dec9e"
+    },
+    {
+      "path": "scripts/robot_eval/policy_interface.py",
+      "type": "file",
+      "mode": 420,
+      "size": 13113,
+      "sha256": "a306c50cd714b1fbc3c4816e1ca244c5f01b141b0f13d564be98d2ddc670ce15"
+    },
+    {
+      "path": "scripts/robot_eval/validate.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3828,
+      "sha256": "a579780e382cb9e8cf3b4a0efc9cef096eb0c1770085e936cd81744823b41fd5"
+    },
+    {
+      "path": "scripts/run_subset_sequential.py",
+      "type": "file",
+      "mode": 420,
+      "size": 15200,
+      "sha256": "ffba3d83cb08230de0095a2332d2365f98d3d53c5d5ebe995b981f8c6a6235fa"
+    },
+    {
+      "path": "scripts/setup_mujoco_export.sh",
+      "type": "file",
+      "mode": 493,
+      "size": 1254,
+      "sha256": "5c648a78cd7ae92bcb726e3c15fdbc15d1329564cc44d962e1a05efc38ca8bb4"
+    },
+    {
+      "path": "scripts/test_asset_retrieval.py",
+      "type": "file",
+      "mode": 493,
+      "size": 21863,
+      "sha256": "73651b9c98f3887c4dad3d34eb22c424ac0fd42924e03dbfc247918ed1048478"
+    },
+    {
+      "path": "scripts/test_material_retrieval.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5525,
+      "sha256": "17c46fa8f0e20b8237a3fe41883bcd8ff19935527de94e52d720f1bb6ae9e5ab"
+    },
+    {
+      "path": "tests/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tests/apptainer_server/client.py",
+      "type": "file",
+      "mode": 420,
+      "size": 629,
+      "sha256": "6d6d2860b8b4ecd7ee8b7dfb7d0ea4a1f1889210b7bf29ab4ce13045dca5a942"
+    },
+    {
+      "path": "tests/apptainer_server/server.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1378,
+      "sha256": "896bb9cde58ab5e2fc07b45fbb5810a9e3c399f31d3437e104309062f2f59307"
+    },
+    {
+      "path": "tests/conftest.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1328,
+      "sha256": "53b106378c478163c1f035cbb12faf41d3e7b31a0779cd2964eaeaa989c06f9d"
+    },
+    {
+      "path": "tests/integration/.gitignore",
+      "type": "file",
+      "mode": 420,
+      "size": 14,
+      "sha256": "f4e77bac635eaca9337b7c725dc64d5b76a71bc022b4c4bf51a6db805afd1794"
+    },
+    {
+      "path": "tests/integration/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tests/integration/common.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1093,
+      "sha256": "f3911584f77e4d94539cbccfd2d2c6f07cab877be13db52e93394e8d11e1f6b8"
+    },
+    {
+      "path": "tests/integration/reference_renders/furniture_overlay_side_2.png",
+      "type": "file",
+      "mode": 420,
+      "size": 131389,
+      "sha256": "1da738f2685abf263d2b73fafbb1ce89d005cdaec5b9852580d5de08ea65b301"
+    },
+    {
+      "path": "tests/integration/reference_renders/furniture_overlay_top.png",
+      "type": "file",
+      "mode": 420,
+      "size": 826807,
+      "sha256": "7699fc4888540904fde101ab2bd96fa08fdd1c4e339b7e5c7da6e0991b3d23af"
+    },
+    {
+      "path": "tests/integration/reference_renders/manipuland_overlay_side_2.png",
+      "type": "file",
+      "mode": 420,
+      "size": 92914,
+      "sha256": "dd1b42ccd7c251ed5a2144788b932a9d5749b606414977ff2ca613b63e211348"
+    },
+    {
+      "path": "tests/integration/reference_renders/manipuland_overlay_top.png",
+      "type": "file",
+      "mode": 420,
+      "size": 372717,
+      "sha256": "d5638428b938724c94700be845a9133b53598ef2033ac87138d0bca13b69ffb3"
+    },
+    {
+      "path": "tests/integration/reference_renders/multi_surface_overlay_side_1.png",
+      "type": "file",
+      "mode": 420,
+      "size": 116864,
+      "sha256": "c2d484b348cf98ea6b75b413d96cc13fd2d8ab52d6eb86b413104292af0e354b"
+    },
+    {
+      "path": "tests/integration/reference_renders/multi_surface_overlay_side_2_back.png",
+      "type": "file",
+      "mode": 420,
+      "size": 85376,
+      "sha256": "fb037dc59eaad8231ad32dcb2541d386d15119fbff7369148d4d2ec4e12c332a"
+    },
+    {
+      "path": "tests/integration/reference_renders/multi_surface_overlay_top_S_2.png",
+      "type": "file",
+      "mode": 420,
+      "size": 358227,
+      "sha256": "9cf47e87c222db6af1b94568a11ff3be279e4b9fc753070fb03f146715baa931"
+    },
+    {
+      "path": "tests/integration/test_asset_generation.py",
+      "type": "file",
+      "mode": 420,
+      "size": 11484,
+      "sha256": "ca00587bfceb857b7196a420f9178145a6246216dc6b5d32cb7e14c90ab14751"
+    },
+    {
+      "path": "tests/integration/test_asset_validation.py",
+      "type": "file",
+      "mode": 420,
+      "size": 10239,
+      "sha256": "622f99aba87625dbd996fe22799bfa23861bf44e09962dd95d16c1ea1b1ef705"
+    },
+    {
+      "path": "tests/integration/test_blender.py",
+      "type": "file",
+      "mode": 420,
+      "size": 13921,
+      "sha256": "f61f90cb81931566ec72804b942e2e4e7d9c4778d992ab3e4e98b83046357876"
+    },
+    {
+      "path": "tests/integration/test_furniture_agent.py",
+      "type": "file",
+      "mode": 420,
+      "size": 7643,
+      "sha256": "0094d72d3f139f6864831e672b7a620fd1d04219821e913b1773212a777d8282"
+    },
+    {
+      "path": "tests/integration/test_generated_material_experiment.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6471,
+      "sha256": "eb6daed79409421c5de52ceef3089a0d3846d65386d2cff709e00eb52bf68fe6"
+    },
+    {
+      "path": "tests/integration/test_image_persistence.py",
+      "type": "file",
+      "mode": 420,
+      "size": 10818,
+      "sha256": "c1021049d87d2023e672f28c761d36d0a73a05a12df8095ae97de925a4a13ad2"
+    },
+    {
+      "path": "tests/integration/test_manipuland_placement.py",
+      "type": "file",
+      "mode": 420,
+      "size": 34360,
+      "sha256": "77f42a5643f278e69fa5606dc1f451a66c9a9194de3c0d2d81df37dca4499298"
+    },
+    {
+      "path": "tests/integration/test_mesh_processing_pipeline.py",
+      "type": "file",
+      "mode": 420,
+      "size": 15024,
+      "sha256": "3f7c7672bed47a4eead4e94ce0a52598c0c5ab67d2ea0df2c631447f5db4d9f6"
+    },
+    {
+      "path": "tests/integration/test_parallel_scene_generation.py",
+      "type": "file",
+      "mode": 420,
+      "size": 12185,
+      "sha256": "cfb2c14b379205e94c07559dcfa59386ee8e9743ee9309593d2596fcf504e6c3"
+    },
+    {
+      "path": "tests/integration/test_rendering_overlays.py",
+      "type": "file",
+      "mode": 420,
+      "size": 16791,
+      "sha256": "204c4ffcc73a0e7490f8d1275255172c680aa9e01105b1c55c19709fca57e2ba"
+    },
+    {
+      "path": "tests/integration/test_sam3d_pipeline.py",
+      "type": "file",
+      "mode": 420,
+      "size": 11208,
+      "sha256": "f4ae00bd01d23eead771f827d56c97aec446f8fc54c2b13cef2f616a6638dbc6"
+    },
+    {
+      "path": "tests/integration/test_snapping.py",
+      "type": "file",
+      "mode": 420,
+      "size": 26478,
+      "sha256": "d2e2d82e506f3bf10beef78b65d169d06f893f5bdac8c72c633a954bbd799600"
+    },
+    {
+      "path": "tests/integration/test_turn_trimming_session.py",
+      "type": "file",
+      "mode": 420,
+      "size": 11430,
+      "sha256": "7bc72d61a245439019b38a91be1fc515abe693ed6407500531a71a99631ab2dc"
+    },
+    {
+      "path": "tests/integration/test_usd_export_pipeline.py",
+      "type": "file",
+      "mode": 420,
+      "size": 23720,
+      "sha256": "fdc4399603f6d7a0cb34ff5421e553c7ba80cdae79f76678cd5b7feef3583da4"
+    },
+    {
+      "path": "tests/integration/usd_diagnostics.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4247,
+      "sha256": "e82729b7e39d98f262f903cbe3f5280e361c0f4cea0b92266283425cc8acd227"
+    },
+    {
+      "path": "tests/test_data/multi_collision_object.sdf",
+      "type": "file",
+      "mode": 420,
+      "size": 1015,
+      "sha256": "e0fce9d051b0c223f5dbbc26a57c56408af51f4ae2cbf7ce10fa7a02e779f980"
+    },
+    {
+      "path": "tests/test_data/office_shelf.png",
+      "type": "file",
+      "mode": 420,
+      "size": 1641100,
+      "sha256": "a69065c31da63e6604a76c4baba486718292df4bd3edadaba08a93e2a8fb09e7"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/manipulands/sdf/coffee_mug_1762992163/Image_0.jpg",
+      "type": "file",
+      "mode": 420,
+      "size": 91301,
+      "sha256": "996020dc13ead2ded559c770f0e1100f1af85cd6c81b5644949ce794407f2a49"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/manipulands/sdf/coffee_mug_1762992163/coffee_mug.gltf",
+      "type": "file",
+      "mode": 420,
+      "size": 2633,
+      "sha256": "b815753d07d9269d6e0e34711166f94e24e72ee8e3f5fca59fa8a47c21e8a061"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/manipulands/sdf/coffee_mug_1762992163/coffee_mug.sdf",
+      "type": "file",
+      "mode": 420,
+      "size": 7799,
+      "sha256": "286ad5770c7a22bfa3391a51593c01fb7626d464ca9fc6c7429539832e1d860e"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/manipulands/sdf/coffee_mug_1762992163/coffee_mug_collision_0.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 132399,
+      "sha256": "2fcc309441b3a47ba83f41fb8b3a304f21a22aec629356a7bc831e279d1c3bc5"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/manipulands/sdf/coffee_mug_1762992163/coffee_mug_collision_1.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 18242,
+      "sha256": "0afdd4c2e7f770ec4a34b620ef2f90d3bdf294df90cc2947e878c46c0d97dcb5"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/manipulands/sdf/coffee_mug_1762992163/coffee_mug_collision_10.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 11097,
+      "sha256": "58cc958030addffeb480118f4dfce69f97708d4e2ca4a2eba3cef03217192dac"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/manipulands/sdf/coffee_mug_1762992163/coffee_mug_collision_11.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 8132,
+      "sha256": "d28ae92f887fd65cc42fe5201db396be112ca8125153f9e9d1b9fbe961aa5f46"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/manipulands/sdf/coffee_mug_1762992163/coffee_mug_collision_12.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 8814,
+      "sha256": "03af2ec474759223944e55c4c9d04052a36f7d18c719e02a2bafd185229aafc2"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/manipulands/sdf/coffee_mug_1762992163/coffee_mug_collision_13.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 14054,
+      "sha256": "4d28c4e519e7f7c216c957452b0ca43df36d918ccd2f3dbc58667bfda8e04aba"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/manipulands/sdf/coffee_mug_1762992163/coffee_mug_collision_14.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 31170,
+      "sha256": "56446f3ab4b55a7ce08fad8dfdb51d883e9b919374dde5a34a5a165a4b4fc65f"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/manipulands/sdf/coffee_mug_1762992163/coffee_mug_collision_15.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 10191,
+      "sha256": "9a312985fed71e991cb40a1689ce28d77b05ab26a25835486c83da059e58ad35"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/manipulands/sdf/coffee_mug_1762992163/coffee_mug_collision_16.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 43033,
+      "sha256": "d98d21ba1b772048c7269f7d81ec00ad53680a11c9617fa680dd337ce83a1830"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/manipulands/sdf/coffee_mug_1762992163/coffee_mug_collision_17.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 50623,
+      "sha256": "5dbd1b44cbdf728bb72d04d51b6549a585e2c15e9f2e47a7532d34acd4bdd468"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/manipulands/sdf/coffee_mug_1762992163/coffee_mug_collision_18.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 24686,
+      "sha256": "c8e975a967cc369198224bcfb482b5a7d4f2b06cf3683d4d122113aeb6e7f002"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/manipulands/sdf/coffee_mug_1762992163/coffee_mug_collision_19.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 13055,
+      "sha256": "ae6d88830a6d02c4268ec8811c9d1aab5c5e253251bdec887160906737063d59"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/manipulands/sdf/coffee_mug_1762992163/coffee_mug_collision_2.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 29519,
+      "sha256": "52e3a0ec3fd9a1821c32edc2b591fd2b8206db4c7be8516c76761f6177bcb8e5"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/manipulands/sdf/coffee_mug_1762992163/coffee_mug_collision_3.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 23769,
+      "sha256": "6eb19643d7a74ce274e2a6e1d0dac76c0c57f2fa97d31a2cf9aca78aecb95cc8"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/manipulands/sdf/coffee_mug_1762992163/coffee_mug_collision_4.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 40710,
+      "sha256": "1f65465af1103efc3c5ae947ebdc6c2ce597693b1a1f9bcb2c41fbc2bdeee354"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/manipulands/sdf/coffee_mug_1762992163/coffee_mug_collision_5.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 39971,
+      "sha256": "ea8639942aabe80b693c8f83f6e763c4952599a53fd1c491b190049a8c226321"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/manipulands/sdf/coffee_mug_1762992163/coffee_mug_collision_6.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 52678,
+      "sha256": "79b3a0dd55dbf33e799c9716103dbdac15c082570e0f8574d1f8fb92abb39324"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/manipulands/sdf/coffee_mug_1762992163/coffee_mug_collision_7.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 58310,
+      "sha256": "a6dcb0116a702fc35c809746e0e6614ef6927f0549fc0d285ea44c730ab2c425"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/manipulands/sdf/coffee_mug_1762992163/coffee_mug_collision_8.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 13788,
+      "sha256": "bbfa45a0947346a2c6426cabdd79983f2586bae94499754f6768b0e33680d734"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/manipulands/sdf/coffee_mug_1762992163/coffee_mug_collision_9.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 2205,
+      "sha256": "5b4b8a6b009a9373225a417447c0c01c0a14badaaf9b92edb4263423fe600821"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/manipulands/sdf/coffee_mug_1762992163/gltf_buffer_0.bin",
+      "type": "file",
+      "mode": 420,
+      "size": 480000,
+      "sha256": "f3cd928af45128d1f2972f69517fb6f3a2d58269632c1ae6be9aadc35415523a"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/manipulands/sdf/coffee_mug_1762992163/gltf_buffer_1.bin",
+      "type": "file",
+      "mode": 420,
+      "size": 1438032,
+      "sha256": "406c3ef3928a0d1e293a14b897b1156518303c4a04777bfbb3a38b014b223a07"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/manipulands/sdf/coffee_mug_1762992163/gltf_buffer_2.bin",
+      "type": "file",
+      "mode": 420,
+      "size": 1033788,
+      "sha256": "96935b88ac6b2de979176bd02a3de20a201f12b1fe1a3604a2af0778db75a51a"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/manipulands/sdf/coffee_mug_1762992163/gltf_buffer_3.bin",
+      "type": "file",
+      "mode": 420,
+      "size": 958688,
+      "sha256": "23efb2e066fe8f58c225254e4435d1bf4d680ad2351f99b7daae07a06d042251"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/king_bed_1761578419/Image_0.jpg",
+      "type": "file",
+      "mode": 420,
+      "size": 14850,
+      "sha256": "086cc4398ff9be3c3cb8c34474a9b57fa84a2297be1484dd6a1d8099fd0750fe"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/king_bed_1761578419/gltf_buffer_0.bin",
+      "type": "file",
+      "mode": 420,
+      "size": 480000,
+      "sha256": "49c77922cc108f7b5c5525212105944d1866060feeb555d378ae6d21a31acb4c"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/king_bed_1761578419/gltf_buffer_1.bin",
+      "type": "file",
+      "mode": 420,
+      "size": 1429428,
+      "sha256": "67c974356712b3e939a7d2552cd83f5bcdce5044e7a17d535c7dc6cd2db01ef3"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/king_bed_1761578419/gltf_buffer_2.bin",
+      "type": "file",
+      "mode": 420,
+      "size": 2012204,
+      "sha256": "81ee82a0af0192d6d5459e41793eab4138eccb4583682d69a40c8ed55d141c5c"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/king_bed_1761578419/gltf_buffer_3.bin",
+      "type": "file",
+      "mode": 420,
+      "size": 952952,
+      "sha256": "4f22425c74377cafbff926a8065cdcf2e8d8c024e186e91dd555697a14a07cd8"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/king_bed_1761578419/king_bed.bin",
+      "type": "file",
+      "mode": 420,
+      "size": 4291808,
+      "sha256": "d7ba09842fcb1e54740d69fd3c9ec8cd3641f554f3469e867f5d7875e2ea81a4"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/king_bed_1761578419/king_bed.gltf",
+      "type": "file",
+      "mode": 420,
+      "size": 1508,
+      "sha256": "5ae55abc9951f1d4a02b285081056a7e95167c7a3c70f2adaf2447a5e57c6aa8"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/king_bed_1761578419/king_bed.sdf",
+      "type": "file",
+      "mode": 420,
+      "size": 3127,
+      "sha256": "6d29952e608c54e62198b0d3a70ea9789d1e4474f6cde1b8297ea984364fbed9"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/king_bed_1761578419/king_bed_collision_0.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 31151,
+      "sha256": "a89593ad1da54ebd6d0ce632c5f6eda1380707a66ce39cda73315c496f968d9a"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/king_bed_1761578419/king_bed_collision_1.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 48006,
+      "sha256": "2f4446537b3351db27ec74ac92e55e3203b881ef15a708f0a2323b355fdc336d"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/king_bed_1761578419/king_bed_collision_2.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 50939,
+      "sha256": "a20c54fcd2ac4c9816b168a104d26447e2e8595926e30ee2621b82d6de9bfa7f"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/king_bed_1761578419/king_bed_collision_3.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 49011,
+      "sha256": "b9ab8b7755dcc6b80cc77f446f8727fc236b88b30cc66ef0da98218576f29065"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/king_bed_1761578419/king_bed_collision_4.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 108354,
+      "sha256": "965d6355cb2f65ae2f4f613bdb4747b49c182e108d2325405013afca18a33d02"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/king_bed_1761578419/king_bed_collision_5.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 1733,
+      "sha256": "1bea058ea6e37d42f91c982586a6d575c76eccf535d50d2580d99533c43243f8"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/king_bed_1761578419/king_bed_collision_6.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 1587,
+      "sha256": "1c1294a2971877eded5ec44bdbaff789f873cec5968dcabe000b2bb9f4dbffc6"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/office_chair_1761578426/Image_0.jpg",
+      "type": "file",
+      "mode": 420,
+      "size": 26178,
+      "sha256": "2bc4ddd8aa294dbb2e1faf4d21a40dccf0d1326bc998191466043e69aef60ab9"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/office_chair_1761578426/gltf_buffer_0.bin",
+      "type": "file",
+      "mode": 420,
+      "size": 480000,
+      "sha256": "9d6bec1e321b0594bf0a86996131f697a8d81afce3fb52328f55c7bcbf078d8d"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/office_chair_1761578426/gltf_buffer_1.bin",
+      "type": "file",
+      "mode": 420,
+      "size": 1439568,
+      "sha256": "6be5f8bf8f38b8e54a0d0d53c3fec8fc49ed63161426836ba7bc6815b1034119"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/office_chair_1761578426/gltf_buffer_2.bin",
+      "type": "file",
+      "mode": 420,
+      "size": 2716652,
+      "sha256": "02df83d8d6c803f7f8d609819d7ca3a266c737a30a814356676a36118dcc134f"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/office_chair_1761578426/gltf_buffer_3.bin",
+      "type": "file",
+      "mode": 420,
+      "size": 959712,
+      "sha256": "8c70c61401a64a444d17ccbb78cbb549b3de019258d89a57a295c5543040c035"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/office_chair_1761578426/office_chair.bin",
+      "type": "file",
+      "mode": 420,
+      "size": 4318848,
+      "sha256": "a20f92cf2393337b4f9b8b554dde02c40d199a835f91a6c4b0339f19f3b43038"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/office_chair_1761578426/office_chair.gltf",
+      "type": "file",
+      "mode": 420,
+      "size": 1537,
+      "sha256": "bca49bd7e2e6f27f3604aba1ba1f9eb6f4c7137ca934e4621d36c19159878092"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/office_chair_1761578426/office_chair.sdf",
+      "type": "file",
+      "mode": 420,
+      "size": 7848,
+      "sha256": "9c2663881d8a2b1f506b8c0cf4d84bee5c7b96987920568d312e9221b59a01b0"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/office_chair_1761578426/office_chair_collision_0.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 31945,
+      "sha256": "fbd934d1fde0308cd9029c638f9090432f59d7f0a2a9710fe4fb064a219e1d88"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/office_chair_1761578426/office_chair_collision_1.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 13415,
+      "sha256": "67851143e446e50da7d891debb0428ffc82bdfe5529fd9c6114a2d85ecb19daa"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/office_chair_1761578426/office_chair_collision_10.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 11665,
+      "sha256": "d66a1bae277974dae9626aa3c7c17387ddfa208626aa8013da7362be69a28a42"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/office_chair_1761578426/office_chair_collision_11.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 10927,
+      "sha256": "bd5a2249f3d4db205452222d9745928ea77a7163a3275041ec1c39d926d99f12"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/office_chair_1761578426/office_chair_collision_12.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 7278,
+      "sha256": "95a781a92bf488a682735b6077b1b0fa953371621e8c170084cc493e2395e457"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/office_chair_1761578426/office_chair_collision_13.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 5245,
+      "sha256": "e547c18c7622800764e77a7bd5318acdf055458117038464a32b753de1c2f6c6"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/office_chair_1761578426/office_chair_collision_14.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 12587,
+      "sha256": "349cca7158927ed1aca20a4d11a0fd2aa55324feaec926e7aca5ae57bc475944"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/office_chair_1761578426/office_chair_collision_15.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 40840,
+      "sha256": "ab4e0861030ba1bb87c127fd4eb557b57a29a31bdad880fcfc6bef2f6ad40502"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/office_chair_1761578426/office_chair_collision_16.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 13902,
+      "sha256": "2b1edabec28873b2b37c60c7dcfe32f17b8652d0b340e348b21df223f32f7659"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/office_chair_1761578426/office_chair_collision_17.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 8166,
+      "sha256": "ede0bbba40ec2fecf3fd492ad2dba1ab00b5206fbc2940cc0ece8741b6ea78b5"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/office_chair_1761578426/office_chair_collision_18.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 43109,
+      "sha256": "9b5c055db05dacd89bece2f0158331a22f62e1140bc1a3037e1f98661ca83a51"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/office_chair_1761578426/office_chair_collision_19.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 10274,
+      "sha256": "1f23bc5982c70531a1e06e92c5b272c9243a3b068f024444a5c38af70a8de6a7"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/office_chair_1761578426/office_chair_collision_2.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 12869,
+      "sha256": "8a8a3b7ae6e6fd626c613c9dabe867708a0e0f825ea3c10e0638535a08b4d2f5"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/office_chair_1761578426/office_chair_collision_3.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 7313,
+      "sha256": "d2516f171e2fedaf0b61698e1669f90741975b6196546cdfec5677a688e1dd62"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/office_chair_1761578426/office_chair_collision_4.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 6434,
+      "sha256": "0ff35c77cb85b44247a56b61b260db6d63851942fcda95554132602bb90d745f"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/office_chair_1761578426/office_chair_collision_5.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 4810,
+      "sha256": "3bcca8512c0052feb9f94a08248cf174aab5d1d58dfe4d18f0d59ddc07f6b45c"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/office_chair_1761578426/office_chair_collision_6.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 10490,
+      "sha256": "978f14980784124fca877704d539baae35298c526652242923f29cd5efc0c443"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/office_chair_1761578426/office_chair_collision_7.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 95936,
+      "sha256": "209110278887ed5278f91e208e8c9c3af2bf008b76bda63a387cf0c8ae2dc820"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/office_chair_1761578426/office_chair_collision_8.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 13698,
+      "sha256": "7d8212c7230f47f566bea9a978f49c40209568d687dcd6d315c4f32d111060ce"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/office_chair_1761578426/office_chair_collision_9.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 10497,
+      "sha256": "3cc7cd97ff0208c5a1154c1ba5a3c2e91d9c2ace830b3466255a8853c0b3ca55"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/printer_1761578426/Image_0.jpg",
+      "type": "file",
+      "mode": 420,
+      "size": 25418,
+      "sha256": "519247c880c9b7ee597a2a62374c286507195c8c3871bc64a2fc9c632a90dc6c"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/printer_1761578426/gltf_buffer_0.bin",
+      "type": "file",
+      "mode": 420,
+      "size": 480000,
+      "sha256": "3ac0385543ddb444b83149891b20dcb886b48b8c1b51d4e5fae4ffd633ed8799"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/printer_1761578426/gltf_buffer_1.bin",
+      "type": "file",
+      "mode": 420,
+      "size": 1437300,
+      "sha256": "c4a5d9c75f04a6186cb57966a5fa4d555fc363b2190088d50c65a3cbdeea26de"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/printer_1761578426/gltf_buffer_2.bin",
+      "type": "file",
+      "mode": 420,
+      "size": 2061264,
+      "sha256": "85365c6da005b776f45172aab6cefe6ea0640b5cbf2c2b1dcd6ead511e28f459"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/printer_1761578426/gltf_buffer_3.bin",
+      "type": "file",
+      "mode": 420,
+      "size": 958200,
+      "sha256": "3416f06e10aafe14d8a16e6827997e723924808f2d8efc18639f278fe50514b1"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/printer_1761578426/printer.bin",
+      "type": "file",
+      "mode": 420,
+      "size": 4312800,
+      "sha256": "6c71193bf25597744ef504d060c06f5ddad283a40ec5c06660e49615072a2cb9"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/printer_1761578426/printer.gltf",
+      "type": "file",
+      "mode": 420,
+      "size": 1539,
+      "sha256": "b62443d24090fed488ec968e7e3843e503f0f12d02e3b931c7dea52b12541dfc"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/printer_1761578426/printer.sdf",
+      "type": "file",
+      "mode": 420,
+      "size": 8092,
+      "sha256": "840e5d4502946735e3868ff805910306e10d1b85959b0975cec4d4035a11909f"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/printer_1761578426/printer_collision_0.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 36459,
+      "sha256": "0869b7f3787de0199c106edcc1afd5b09386728113decf58b54ff9ddd71b7000"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/printer_1761578426/printer_collision_1.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 6431,
+      "sha256": "3ed6deb3b539c30a1f04751296c7583c071d83818a3cd4c9aa8c9e80ae1277a8"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/printer_1761578426/printer_collision_10.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 856,
+      "sha256": "25fcf08818ea5934773f511c7ef7f2e0861ba2818fd8b5b323fb61ee9e20bc35"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/printer_1761578426/printer_collision_11.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 10827,
+      "sha256": "84f5c00177d7c207ac42dc358a0ab83514bdc62161882a8cf76963568041f22a"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/printer_1761578426/printer_collision_12.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 5151,
+      "sha256": "674feba960124c5845d9ce7a65892392aa7156cddee6e5ca0512b16e1bd0b1a2"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/printer_1761578426/printer_collision_13.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 7235,
+      "sha256": "3ac52fb51206ae8daeda150803bd1985089e0b60c8e28affff5188a7fe920560"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/printer_1761578426/printer_collision_14.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 9609,
+      "sha256": "d738f4dec222c402feaab572c365f26c08a98b0ab1dd193fff0e0c886e0bbd3a"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/printer_1761578426/printer_collision_15.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 8759,
+      "sha256": "f1e374b5f9e20cb3db5298cbb062969aa76ca10fc33ad51f1b6a25f77b16d3bf"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/printer_1761578426/printer_collision_16.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 9313,
+      "sha256": "14d00ad26bea555601b06c892c2321c75ad93e36534a47da345482cb34e387e9"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/printer_1761578426/printer_collision_17.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 13094,
+      "sha256": "50055bf5ac8dd07772f9120f44d28b23cf827a9ca3e0df82a76fcfaccd04666e"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/printer_1761578426/printer_collision_18.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 3043,
+      "sha256": "fb85fd93e00fcd63c58f2b73336454a881f1173e16fbc08732074026e540f158"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/printer_1761578426/printer_collision_19.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 11919,
+      "sha256": "9b7a4db2ee5124c080dd828663ef486bb3a1bcee7e0f8ddbaaeee063cc8b17b3"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/printer_1761578426/printer_collision_2.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 15747,
+      "sha256": "6ae43c811fbf426dd8fbee290c836b4dd5ada24cf993ed5ba0577fbfedc7af24"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/printer_1761578426/printer_collision_20.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 13948,
+      "sha256": "0e634a086afd2900765622409d1f06735c73f0866001dc91ee46008be770be63"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/printer_1761578426/printer_collision_3.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 5241,
+      "sha256": "136ac08db3fc8f38a083f5912ecc486fe073c324ccca352cd7c65a83f3b9962c"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/printer_1761578426/printer_collision_4.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 5692,
+      "sha256": "7f18e5278a46c5f27bf456d3616c36df82d15dc3995a66bc3135c4d1a63784df"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/printer_1761578426/printer_collision_5.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 23329,
+      "sha256": "e49043f6f2368557f62827c93d05f556df0093cbb979ce6d7d18c3bf3c3ec9aa"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/printer_1761578426/printer_collision_6.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 5565,
+      "sha256": "a3b60a0cf53744ab1301ba9fea385aceb89db491be11021c75dafa812060d262"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/printer_1761578426/printer_collision_7.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 112399,
+      "sha256": "25c6ab78eb6635fb7c9668b493fe84de4d70cd280ae9c91ae14031ea2607719b"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/printer_1761578426/printer_collision_8.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 12638,
+      "sha256": "0bf49c99746767ecc4748f3fee1c10f6754743404325a116b6eca752cd3596a1"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/printer_1761578426/printer_collision_9.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 35155,
+      "sha256": "f0d09fa9c4c9e1048e0a2fc11c3cb959b9ea1b042536c267b79741c486d3c8c6"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/work_desk_1761578426/Image_0.jpg",
+      "type": "file",
+      "mode": 420,
+      "size": 43501,
+      "sha256": "203b4e44c46ae62110a96d564f0319c615328e78292d24dacfe4eb568ad73f56"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/work_desk_1761578426/gltf_buffer_0.bin",
+      "type": "file",
+      "mode": 420,
+      "size": 480000,
+      "sha256": "36a298c1e92da4d99b58ad58ba30e26c228764676d051a2c991b0bb5ffefcfa8"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/work_desk_1761578426/gltf_buffer_1.bin",
+      "type": "file",
+      "mode": 420,
+      "size": 1424592,
+      "sha256": "0c590710ae54bba8089c972de258d9dd2ec71872912a03129783e7793421ca0d"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/work_desk_1761578426/gltf_buffer_2.bin",
+      "type": "file",
+      "mode": 420,
+      "size": 1771492,
+      "sha256": "15faf086f9833a2a5be5e67dca59620f289056ff457467cc493369c95ea00402"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/work_desk_1761578426/gltf_buffer_3.bin",
+      "type": "file",
+      "mode": 420,
+      "size": 949728,
+      "sha256": "dfffe6cf76c27c4b8fba619a01085927e9029c1c4841d3fe6454b06a8e4606ee"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/work_desk_1761578426/work_desk.bin",
+      "type": "file",
+      "mode": 420,
+      "size": 4278912,
+      "sha256": "9d1b27ddfbbb4833187075f01a6b999ec1cc9867fac07c7839f75b557a7a1eb9"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/work_desk_1761578426/work_desk.gltf",
+      "type": "file",
+      "mode": 420,
+      "size": 1539,
+      "sha256": "4eb3e41c867f8d2b667ee3589bb209b319b52f6236496eb041167d6f2f0dc150"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/work_desk_1761578426/work_desk.sdf",
+      "type": "file",
+      "mode": 420,
+      "size": 3131,
+      "sha256": "9e6cebe7c8bf68d0272dda33f1bb1f32a79347f91a1f6ca958eb1a1d9458ea3c"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/work_desk_1761578426/work_desk_collision_0.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 11256,
+      "sha256": "a6b17f0e7af4e73465313af6319e5202b52ff417235346a47a984dd038ccc8dc"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/work_desk_1761578426/work_desk_collision_1.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 10754,
+      "sha256": "16fc4cdb1383121659cfe1e24e3bf9b2d144552e4c918475977f93c9c839fb97"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/work_desk_1761578426/work_desk_collision_2.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 9431,
+      "sha256": "3e9ba6ae678b2402f7675f643c253c6b29d2beca761be19378742d413099dc7d"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/work_desk_1761578426/work_desk_collision_3.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 13227,
+      "sha256": "a16495a8bae32568b89d72443ad4007578d139ad5aea36d7cdcd4668b49fde05"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/work_desk_1761578426/work_desk_collision_4.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 15560,
+      "sha256": "42276ae2c33e6c7c9282c7db7d70bbae5f7e03f17df605138e1be1c5f4f6dcd2"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/work_desk_1761578426/work_desk_collision_5.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 11979,
+      "sha256": "949897a819a3b74ab7d55b528d317d8c9bf4ee903fe3ba3cea717786a83b9ee3"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/generated_assets/sdf/work_desk_1761578426/work_desk_collision_6.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 13997,
+      "sha256": "4cf78139c56684b7c63028f96f80821c76f0f9a331726dcd81fd58d52f92ec4e"
+    },
+    {
+      "path": "tests/test_data/realistic_scene/room_geometry.sdf",
+      "type": "file",
+      "mode": 420,
+      "size": 2358,
+      "sha256": "d102bcb750eeb653ad65c6475f51170d91e85fca341b00d02bb6e1f13fde9289"
+    },
+    {
+      "path": "tests/test_data/simple_box.sdf",
+      "type": "file",
+      "mode": 420,
+      "size": 694,
+      "sha256": "9b2a13a4a630cbee5782331ea6f50695c46165f3ba5fc7cf8704dfc7c3456cac"
+    },
+    {
+      "path": "tests/test_data/simple_room_geometry.sdf",
+      "type": "file",
+      "mode": 420,
+      "size": 1557,
+      "sha256": "ddabfade89743cf801d505757f57c28a6b72fcaca3a57c70a8fbb8550d327d21"
+    },
+    {
+      "path": "tests/test_data/simple_sphere.sdf",
+      "type": "file",
+      "mode": 420,
+      "size": 702,
+      "sha256": "69a26f7c23e0cd6d003163c4d514642aa3a21031af15b89fc846690347b96d96"
+    },
+    {
+      "path": "tests/test_data/stacking_assets/bread_plate/bread_plate_2.sdf",
+      "type": "file",
+      "mode": 420,
+      "size": 13328,
+      "sha256": "3d342c5d2f5c484f3e47e9642ed4d48fc5e4c2bfcb6fac105f2ddde61ba926e4"
+    },
+    {
+      "path": "tests/test_data/stacking_assets/bread_plate/bread_plate_2_collision_0.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 46363,
+      "sha256": "df98d9c9a0183e68f8f4bcbfaa54d10e130e207a1560a84a43aa5b5ff78c1c7f"
+    },
+    {
+      "path": "tests/test_data/stacking_assets/bread_plate/bread_plate_2_collision_1.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 51984,
+      "sha256": "aea56417cab2b379fd8beb311feae7b332335e73d7d99e919aab9babf2e0c3a7"
+    },
+    {
+      "path": "tests/test_data/stacking_assets/bread_plate/bread_plate_2_collision_10.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 7324,
+      "sha256": "aa7477d1f7ecc326dc17212a808a5d86a531f68ff2a6757321e33bcdd728e679"
+    },
+    {
+      "path": "tests/test_data/stacking_assets/bread_plate/bread_plate_2_collision_11.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 3613,
+      "sha256": "ceb6561665b41df52cf061545244509fa90f761feee6bb63a11aa9c1815dd5e6"
+    },
+    {
+      "path": "tests/test_data/stacking_assets/bread_plate/bread_plate_2_collision_12.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 4921,
+      "sha256": "c7579f10cec0de1bf71cd73de8ac31c7915394318136824cfae329f1e3a70286"
+    },
+    {
+      "path": "tests/test_data/stacking_assets/bread_plate/bread_plate_2_collision_13.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 12791,
+      "sha256": "3a781948f284c6c5ed0623a53be0d38c88153c9c21041f94bb21525c7e6c4918"
+    },
+    {
+      "path": "tests/test_data/stacking_assets/bread_plate/bread_plate_2_collision_14.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 3492,
+      "sha256": "067b304735d4f9e56dac0c282a3df6bfb87757cad513da1d4950366a6befdad9"
+    },
+    {
+      "path": "tests/test_data/stacking_assets/bread_plate/bread_plate_2_collision_15.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 4665,
+      "sha256": "29512714bb6a48ee09d9173af1635db43a4fd65be75b717503f01cb69b94c4d1"
+    },
+    {
+      "path": "tests/test_data/stacking_assets/bread_plate/bread_plate_2_collision_16.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 10574,
+      "sha256": "c7aac9ccc6d246116414a385ca5417e0254603fb5b6858a899bbf25b9ab95afa"
+    },
+    {
+      "path": "tests/test_data/stacking_assets/bread_plate/bread_plate_2_collision_17.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 3734,
+      "sha256": "d87ac46ccb8b5ab6b4714971a90a3272d3f65dc5d0e12abda0c94337e0c95b7b"
+    },
+    {
+      "path": "tests/test_data/stacking_assets/bread_plate/bread_plate_2_collision_18.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 9516,
+      "sha256": "9b3fe0bb6e411e426c8e44e85fe7a2340666b0a3013c5c530be60704a2e73cd2"
+    },
+    {
+      "path": "tests/test_data/stacking_assets/bread_plate/bread_plate_2_collision_19.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 10235,
+      "sha256": "b20e757f2d660dc001718944652defd17c111b7911298ddaaa0a0dc5ca4ea187"
+    },
+    {
+      "path": "tests/test_data/stacking_assets/bread_plate/bread_plate_2_collision_2.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 49543,
+      "sha256": "6d57104f8ebcc7339687f01f4c13a8e5d81ad928e387cd441cae753751d3f7f8"
+    },
+    {
+      "path": "tests/test_data/stacking_assets/bread_plate/bread_plate_2_collision_20.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 5797,
+      "sha256": "94f4cb90d54f64d75e3383b9f12fd990d387de7c482c3e03242fbdf6bca06b08"
+    },
+    {
+      "path": "tests/test_data/stacking_assets/bread_plate/bread_plate_2_collision_21.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 4959,
+      "sha256": "3fadc003b63504f3a29e8dd563f3d465fd51def38edae4dfc16b18060f230779"
+    },
+    {
+      "path": "tests/test_data/stacking_assets/bread_plate/bread_plate_2_collision_22.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 8810,
+      "sha256": "f4dc532c6846567710fc430e777aa743b0041bf2cf618bb2c7cfb418e84e83d1"
+    },
+    {
+      "path": "tests/test_data/stacking_assets/bread_plate/bread_plate_2_collision_23.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 9439,
+      "sha256": "e0b962a2bebcaf2daa0f2af01695b284653a9f70ea469ae112a99c6975743ea3"
+    },
+    {
+      "path": "tests/test_data/stacking_assets/bread_plate/bread_plate_2_collision_24.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 4296,
+      "sha256": "bae7067c7cf74d873c55bd0e35bbb87067c12ec5bbce84337dd12d141ef497ce"
+    },
+    {
+      "path": "tests/test_data/stacking_assets/bread_plate/bread_plate_2_collision_25.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 8804,
+      "sha256": "2ef5d2fe2b5b92d0217d1155686a803cabe58625ad7cca7d0f174586c20fa6b6"
+    },
+    {
+      "path": "tests/test_data/stacking_assets/bread_plate/bread_plate_2_collision_26.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 15340,
+      "sha256": "fe5753bdabaae10994ff76907fa3501ed0e5fc4470dca388f272463f4c46869b"
+    },
+    {
+      "path": "tests/test_data/stacking_assets/bread_plate/bread_plate_2_collision_27.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 7945,
+      "sha256": "d84ff030dedacd2c7f9a10c9485fd43d2647eb5e35da4f851e47c3c1b864a55a"
+    },
+    {
+      "path": "tests/test_data/stacking_assets/bread_plate/bread_plate_2_collision_28.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 5488,
+      "sha256": "64123f3220226eae117ba5191d74851786066cdd1fcdb02f83253eb9f949f50a"
+    },
+    {
+      "path": "tests/test_data/stacking_assets/bread_plate/bread_plate_2_collision_29.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 19406,
+      "sha256": "e5ceb3fd43c0c4906275edd17e9f3cc5a6cfe8021c1693efa9c061c28d43b943"
+    },
+    {
+      "path": "tests/test_data/stacking_assets/bread_plate/bread_plate_2_collision_3.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 52414,
+      "sha256": "c99eb67e0228f3b6e7f37366a8cebd38618c411393477be5b08814c152027fa9"
+    },
+    {
+      "path": "tests/test_data/stacking_assets/bread_plate/bread_plate_2_collision_30.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 9657,
+      "sha256": "5b3f908081cf0bdc834081e5d149686d622c0e2b31f15a257b85165acc1a962a"
+    },
+    {
+      "path": "tests/test_data/stacking_assets/bread_plate/bread_plate_2_collision_31.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 10198,
+      "sha256": "08948d84d3c4fac2e26eee083349ee822a2bf11132b8004c2d7733b6595f2c01"
+    },
+    {
+      "path": "tests/test_data/stacking_assets/bread_plate/bread_plate_2_collision_32.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 9677,
+      "sha256": "baf28e60a861e5032695d650ac822e7e585ca67d7eb0fbd6628b6bf8cac66449"
+    },
+    {
+      "path": "tests/test_data/stacking_assets/bread_plate/bread_plate_2_collision_33.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 4393,
+      "sha256": "2ce204908225c9e146400a12093a291a96ccae650042cdfc2575b30487ed0447"
+    },
+    {
+      "path": "tests/test_data/stacking_assets/bread_plate/bread_plate_2_collision_34.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 4083,
+      "sha256": "a34beb53d9004c01c26b9eca620c25f849e9367a0ac766fad942c5ea2a18c10c"
+    },
+    {
+      "path": "tests/test_data/stacking_assets/bread_plate/bread_plate_2_collision_4.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 14828,
+      "sha256": "db22732d62b5efcc01441a247c2b458e1a579888cd1beb0b2ccfb332ff6081cd"
+    },
+    {
+      "path": "tests/test_data/stacking_assets/bread_plate/bread_plate_2_collision_5.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 16708,
+      "sha256": "c845dafe37c555e54111c22f00d59d204ec7402623c7a8d97d681f633f0daefa"
+    },
+    {
+      "path": "tests/test_data/stacking_assets/bread_plate/bread_plate_2_collision_6.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 3842,
+      "sha256": "2fb115202f0380e6b72aaf0841ec4d87a6578d19c5488451ae29330c31cef72a"
+    },
+    {
+      "path": "tests/test_data/stacking_assets/bread_plate/bread_plate_2_collision_7.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 3216,
+      "sha256": "c5867dcd988e119b6ffe32a0f842f50ac4b3cc854ba9221422c990c72eb6efea"
+    },
+    {
+      "path": "tests/test_data/stacking_assets/bread_plate/bread_plate_2_collision_8.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 8953,
+      "sha256": "0a2e9680aa1d7a9649db38e8dfa4a52e1ff3f8101ffe7d0917bf0bda322c936f"
+    },
+    {
+      "path": "tests/test_data/stacking_assets/bread_plate/bread_plate_2_collision_9.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 10716,
+      "sha256": "d21137a6127cf89741b959a0c27927ab0d03b8268e84a5382182d910ed256d8b"
+    },
+    {
+      "path": "tests/test_data/stacking_assets/bread_plate/bread_plate_2_scaled.sdf",
+      "type": "file",
+      "mode": 420,
+      "size": 14732,
+      "sha256": "0d6643b3ea7711b17756252515c7875432ce977ff6845401b2c95ce9c75e2f5f"
+    },
+    {
+      "path": "tests/test_data/stacking_assets/bread_plate/bread_plate_2_visual.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 517698,
+      "sha256": "d55e496db0faf3515094419fc2640c314d6d1d51b0226add36e1ca59944d9de7"
+    },
+    {
+      "path": "tests/test_data/support_surface_algorithm/artistic_shelf_canonical.bin",
+      "type": "file",
+      "mode": 420,
+      "size": 3762284,
+      "sha256": "59a5efbd06dccdcaa829f1e52c9ebce72817222d974c7d82a48917c153859d00"
+    },
+    {
+      "path": "tests/test_data/support_surface_algorithm/artistic_shelf_canonical.gltf",
+      "type": "file",
+      "mode": 420,
+      "size": 2109,
+      "sha256": "a3c8bdb15e343192e55b81a37e96bcf80438ad74e04f6bba9116fc21124e11e7"
+    },
+    {
+      "path": "tests/test_data/support_surface_algorithm/round_table_canonical.bin",
+      "type": "file",
+      "mode": 420,
+      "size": 4267616,
+      "sha256": "cad4a8e3e5b6e7d00e4b484c707e63be939fb99ebba3cdb43304a680125cede5"
+    },
+    {
+      "path": "tests/test_data/support_surface_algorithm/round_table_canonical.gltf",
+      "type": "file",
+      "mode": 420,
+      "size": 2013,
+      "sha256": "2d9a1312fb2315bf9f57bff1178996a730491fbb7d6d7d7c5b2ff8b0476b0ffd"
+    },
+    {
+      "path": "tests/test_data/support_surface_algorithm/shelf_3x3_canonical.bin",
+      "type": "file",
+      "mode": 420,
+      "size": 4268384,
+      "sha256": "949cca7ee36e6f9f25c6d684112a14ca033c993cc9af0390d3ca1615f396cffd"
+    },
+    {
+      "path": "tests/test_data/support_surface_algorithm/shelf_3x3_canonical.gltf",
+      "type": "file",
+      "mode": 420,
+      "size": 1942,
+      "sha256": "56356ec82169653547534053cab958a8fd1ea2724254ec020db9909f2420e312"
+    },
+    {
+      "path": "tests/test_data/usd_export_pipeline/articulated_cabinet.sdf",
+      "type": "file",
+      "mode": 420,
+      "size": 3497,
+      "sha256": "8eb3de587004a8db3295a6d7d9aeaf9fb8868846ca1a6825d3e3978f30678253"
+    },
+    {
+      "path": "tests/test_data/usd_export_pipeline/cube.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 227,
+      "sha256": "749385151dd39978c9538fb0625eebea519455e841071ab0cad541e24455bd1f"
+    },
+    {
+      "path": "tests/unit/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 306,
+      "sha256": "1522ae290b7729c8095319901c398d5ec605b2bc03dd7c4eb52d8017c561c033"
+    },
+    {
+      "path": "tests/unit/glb_test_material.py",
+      "type": "file",
+      "mode": 420,
+      "size": 7424,
+      "sha256": "8ce6367fa1a05cc1f18207d5b827b1c2f63258536bbcd83375f662dd449c2a13"
+    },
+    {
+      "path": "tests/unit/gltf_test_material.py",
+      "type": "file",
+      "mode": 420,
+      "size": 7578,
+      "sha256": "35c0385738f110e6708d65ada851749897927a7d0e302a185a98a94a958eb924"
+    },
+    {
+      "path": "tests/unit/gpt_image_generation.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1405,
+      "sha256": "06f829fcd3286c3e58ec1443e4542a080c31ade3df3c16d38412a1571d444f66"
+    },
+    {
+      "path": "tests/unit/mock_utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 517,
+      "sha256": "13a08b6c2117b539b7ff34b493934d8f2df238c6fbe4b0e20937c793e9629f9f"
+    },
+    {
+      "path": "tests/unit/test_action_logger.py",
+      "type": "file",
+      "mode": 420,
+      "size": 16200,
+      "sha256": "e999e49aa5f11984b8df87dd817d6ebd0ea757ed57854392691446a6d0977309"
+    },
+    {
+      "path": "tests/unit/test_arrangement_tools.py",
+      "type": "file",
+      "mode": 420,
+      "size": 8714,
+      "sha256": "899189593b89bcf3fc22ab05fa6db89504fd7cae185cbc1f18d90a7064616332"
+    },
+    {
+      "path": "tests/unit/test_articulated_physics_analyzer.py",
+      "type": "file",
+      "mode": 420,
+      "size": 10007,
+      "sha256": "b8bf5a0b2008bfa24f8658b073cacc2939395398046b34e12564d7f50107cf2f"
+    },
+    {
+      "path": "tests/unit/test_asset_generation.py",
+      "type": "file",
+      "mode": 420,
+      "size": 31140,
+      "sha256": "b2bda8b0fef3b8778afb4e42c2926f05c5e380b1c1fa497a6bf9a652ffb5ac4c"
+    },
+    {
+      "path": "tests/unit/test_asset_manager.py",
+      "type": "file",
+      "mode": 420,
+      "size": 67042,
+      "sha256": "06ff041b61d60fe96d1cb8726b4841798a36d97d69a864f7bc1eabd58af23443"
+    },
+    {
+      "path": "tests/unit/test_asset_registry.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3546,
+      "sha256": "540ba6764143b6e0f360bfba063bd4dfc9cc2b44f29441b5ea6e6563a804825d"
+    },
+    {
+      "path": "tests/unit/test_asset_registry_autosave.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5180,
+      "sha256": "65c24402397169f23489242a77ca7bd4531d2a622958d7dc9a7bda74b1ee918a"
+    },
+    {
+      "path": "tests/unit/test_asset_router.py",
+      "type": "file",
+      "mode": 420,
+      "size": 21069,
+      "sha256": "62577c2d09561b431ac84ae1e7eb074becb870f619ca730e95d9e125bc405e4f"
+    },
+    {
+      "path": "tests/unit/test_base_stateful_agent.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3843,
+      "sha256": "be815ab1248c358bcb90b7808cec8b82de9da071e6203c073dd66aa19ebfc18c"
+    },
+    {
+      "path": "tests/unit/test_blender.py",
+      "type": "file",
+      "mode": 420,
+      "size": 37856,
+      "sha256": "2abfa5f334e9767a6c6569ba74d66f8083d6bdd380d9b55ac94d31bfe7fc15ba"
+    },
+    {
+      "path": "tests/unit/test_blender_request_lock.py",
+      "type": "file",
+      "mode": 420,
+      "size": 25745,
+      "sha256": "e9de35077f52548d4d67680a28b20bc05ba070808911b22a91cc36aabbe35054"
+    },
+    {
+      "path": "tests/unit/test_blender_server_retry.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5941,
+      "sha256": "85117b4ec0bf401e037d11838156fa9ba88d76b64b81df06c4c5a3a064208753"
+    },
+    {
+      "path": "tests/unit/test_ceiling_tools.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2939,
+      "sha256": "8ddf540fae9531e365cfb4ac69d9aee47a9ccb3da416befb60282dee12a8e5d4"
+    },
+    {
+      "path": "tests/unit/test_clearance_zones.py",
+      "type": "file",
+      "mode": 420,
+      "size": 10114,
+      "sha256": "3ce54f7933f9d71fc55c34206911e8605f9baf67adc9cab86a43792715a27b85"
+    },
+    {
+      "path": "tests/unit/test_clip_embeddings.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2162,
+      "sha256": "aab23f19d9e61c2206f84854fa6069851772a90a1f233502331130cf0815729d"
+    },
+    {
+      "path": "tests/unit/test_code_articulated_conversion.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5717,
+      "sha256": "2db653ba50984ccf4183f1a98f5ee13f812a47e67c2f1c5e4582c9da1409d561"
+    },
+    {
+      "path": "tests/unit/test_code_object_generation.py",
+      "type": "file",
+      "mode": 420,
+      "size": 46035,
+      "sha256": "2ae7eb7cf15d725d999dd759d3b3d17ccb59f1b8c6943181a31b219bf10e012a"
+    },
+    {
+      "path": "tests/unit/test_collision_utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5560,
+      "sha256": "8e900561d39398535b941cd1960ea4dea7ad35c8e285ae3c31fc75f76feb495d"
+    },
+    {
+      "path": "tests/unit/test_context_furniture.py",
+      "type": "file",
+      "mode": 420,
+      "size": 7324,
+      "sha256": "199720c629458f651f29cb2e073d3c75d58ac4e1c46fa788ac310b889395d928"
+    },
+    {
+      "path": "tests/unit/test_convert_dmd_welding.py",
+      "type": "file",
+      "mode": 420,
+      "size": 22401,
+      "sha256": "44f6c3bd90cceb059be3d57426051ab4c83c9cd476c41a8c616ee28baac77749"
+    },
+    {
+      "path": "tests/unit/test_convert_urdf_to_sdf.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6285,
+      "sha256": "3d64d236e4a00ebc50038987d596653465c9708993c68905a4f47320d871cda1"
+    },
+    {
+      "path": "tests/unit/test_default_asset_strategy_config.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6621,
+      "sha256": "84a25cdc00fb326702ed90616e42816ce7ff4544ceb41d158e632e57f594c2fe"
+    },
+    {
+      "path": "tests/unit/test_fill_container.py",
+      "type": "file",
+      "mode": 420,
+      "size": 21724,
+      "sha256": "c9b1c9082c1b980d1f131053b5b692036864665567a335efaac962a546ea5000"
+    },
+    {
+      "path": "tests/unit/test_finalize_scene_reset.py",
+      "type": "file",
+      "mode": 420,
+      "size": 10720,
+      "sha256": "f942d6c6ffccb6635bc5018aa96abaa68cd53868741242f29d5f8b33c39c4ab8"
+    },
+    {
+      "path": "tests/unit/test_floor_plan_materials_config.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6403,
+      "sha256": "2c2becc81a11821705c0eff0fc169acf8952f77d6061b7bb57b7ac6d61d06b67"
+    },
+    {
+      "path": "tests/unit/test_floor_plan_tools.py",
+      "type": "file",
+      "mode": 420,
+      "size": 41797,
+      "sha256": "776c33d374a67abd750b968da9f37a55b1db5e2dbeec2427875e7b11df62b07c"
+    },
+    {
+      "path": "tests/unit/test_flux-dev_from_prompt.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3474,
+      "sha256": "512fee3a027146eca123a56b88ac4dd898a26ac63ebf0d3b920e8d65011fac46"
+    },
+    {
+      "path": "tests/unit/test_flux-dev_image_edit.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3887,
+      "sha256": "92763cd1c178afa1a44ebaf53c111ee3932059d4df514ffd12220762b8a8f13d"
+    },
+    {
+      "path": "tests/unit/test_flux-klein_from_prompt.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3601,
+      "sha256": "447585982fc2c348598836fcb5c5da60a6326c8cd144f229cd485ff25dfa2cf3"
+    },
+    {
+      "path": "tests/unit/test_flux-klein_image_edit.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3974,
+      "sha256": "cb037014f9e183f3cdaba852b7eded68812e694da457fc3aeef394e1bd1df4ce"
+    },
+    {
+      "path": "tests/unit/test_flux_klein_worker.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3471,
+      "sha256": "011ac7063b85c441b92ac967407636ee3619e71ab3fc1fb82a3197f2ec0f6ec8"
+    },
+    {
+      "path": "tests/unit/test_furniture_agent.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6259,
+      "sha256": "b12a4322576251ce04e38d9a9003a95468ac663ca36cf7071485e3d41e809383"
+    },
+    {
+      "path": "tests/unit/test_furniture_agent_tools.py",
+      "type": "file",
+      "mode": 420,
+      "size": 50913,
+      "sha256": "aa46eadb1560c6e2bfd4fef01011f47fdd152301069b3079b05bfdc0972c4a93"
+    },
+    {
+      "path": "tests/unit/test_furniture_checkpoint.py",
+      "type": "file",
+      "mode": 420,
+      "size": 14916,
+      "sha256": "783c89aa416278f982a0b4980cd02309b87fd391dbcb24e47e4b5ffd708e3dd8"
+    },
+    {
+      "path": "tests/unit/test_geometry_cache.py",
+      "type": "file",
+      "mode": 420,
+      "size": 14952,
+      "sha256": "bb2e1a3e3e8d9c59086d0a2a4ff46de20adfc8dfa453e58bd55869cc52cd80c7"
+    },
+    {
+      "path": "tests/unit/test_geometry_generation_client.py",
+      "type": "file",
+      "mode": 420,
+      "size": 9310,
+      "sha256": "4f42e66e153ac01b374a007d06b1c5c69256a3703a9929ca39f180d17f083490"
+    },
+    {
+      "path": "tests/unit/test_glb_export.py",
+      "type": "file",
+      "mode": 420,
+      "size": 8988,
+      "sha256": "c2102514c325090294abd35aa46828e59be6423b19c699423c864d2ed1557762"
+    },
+    {
+      "path": "tests/unit/test_gpu_diagnostics.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2996,
+      "sha256": "939f0fa87a6260cc09bacf86386173761fa97f00f77ff94517764992b6b44290"
+    },
+    {
+      "path": "tests/unit/test_house.py",
+      "type": "file",
+      "mode": 420,
+      "size": 10635,
+      "sha256": "b33a0ebc1e4a499b86548bf8a5f78fca2c1ba6be1d9458edd18d6faf5b1f20e7"
+    },
+    {
+      "path": "tests/unit/test_hssd_retrieval.py",
+      "type": "file",
+      "mode": 420,
+      "size": 10849,
+      "sha256": "774c6665b8db5f61d5299020918dda7ac6a8200f646c64695a5825ee170c97ba"
+    },
+    {
+      "path": "tests/unit/test_hssd_retrieval_client.py",
+      "type": "file",
+      "mode": 420,
+      "size": 9403,
+      "sha256": "c0d94b1631a86b4d2194a669f16b96e7d164d813db6b48c503f7497c358b70e4"
+    },
+    {
+      "path": "tests/unit/test_image_generation.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3838,
+      "sha256": "04fd6c48e0ead0a81527879bd7d851df3af0704e77ee11c2d05e9898df70d029"
+    },
+    {
+      "path": "tests/unit/test_image_generation_config_defaults.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1051,
+      "sha256": "78ef98a30fe1db54483bfa8fbb6d3100c7ea73f93cbd776df7c6d78f83f8c4a0"
+    },
+    {
+      "path": "tests/unit/test_inertia_utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5648,
+      "sha256": "6e440888f051aecda0941f103cd8344d0cf1b672140417ec793598eb57087577"
+    },
+    {
+      "path": "tests/unit/test_intra_turn_image_filter.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6910,
+      "sha256": "cb1a47067d5eff8dc48310e3eace134ecef7467c927e4f35fc5a016edaf5c086"
+    },
+    {
+      "path": "tests/unit/test_logging.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5000,
+      "sha256": "c08a3726e312bc921c5cabae9230e1ea43e693a8c2fb3a742753d1cddb48e211"
+    },
+    {
+      "path": "tests/unit/test_manipuland_agent.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5316,
+      "sha256": "db2b0e873966f29f9e0546d4f035b16356bf6d55487a970508968d9a5d2acfdd"
+    },
+    {
+      "path": "tests/unit/test_manipuland_tools.py",
+      "type": "file",
+      "mode": 420,
+      "size": 21872,
+      "sha256": "d3b7804cd541b946acd3aed4a932e46e6d52626756eb6898e2713bfee1c02d4e"
+    },
+    {
+      "path": "tests/unit/test_material_generator.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6683,
+      "sha256": "247bf81bfd4ced6bbed4e8ed39f2516ff646759e2caf9a94722dce52a4e6fdc3"
+    },
+    {
+      "path": "tests/unit/test_materials_retrieval.py",
+      "type": "file",
+      "mode": 420,
+      "size": 9812,
+      "sha256": "6629755372ebc8431a80c2dc622f2aa4ed98555ae2dea2dbb01edeaa4add3cdb"
+    },
+    {
+      "path": "tests/unit/test_mesh_physics_analyzer.py",
+      "type": "file",
+      "mode": 420,
+      "size": 18933,
+      "sha256": "14e6d6cf5b2aea22a755935612e439960c97862204eba2cd8128e72feae672ef"
+    },
+    {
+      "path": "tests/unit/test_mesh_utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 18321,
+      "sha256": "b9d7109282210221e1e45a9e66141d57e185c3a768a7a2ada272998d923cba39"
+    },
+    {
+      "path": "tests/unit/test_network_utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5649,
+      "sha256": "0d7c31b906c6e33922cfc6b651b004b61adb2ee196ead3b608f565e9e2d71209"
+    },
+    {
+      "path": "tests/unit/test_objaverse_retrieval.py",
+      "type": "file",
+      "mode": 420,
+      "size": 11487,
+      "sha256": "869c5ce448146682daf980e64fc55aef262814ab94e135b9bc3b1b8153bced58"
+    },
+    {
+      "path": "tests/unit/test_openai_utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4806,
+      "sha256": "eb2c010da361f740ac6b23e378052c3470863e57a4be6c9a754f5a9fe638cd9a"
+    },
+    {
+      "path": "tests/unit/test_parallel.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5534,
+      "sha256": "262b47838a71b83d7dd5170a25143bcbf6df964309120806128aa36257ecc463"
+    },
+    {
+      "path": "tests/unit/test_penetration_resolution.py",
+      "type": "file",
+      "mode": 420,
+      "size": 25808,
+      "sha256": "045cf1e80864fd84f193c49514b3d6dbc215e694a8decf9c3169ce77f88a0d3d"
+    },
+    {
+      "path": "tests/unit/test_physical_feasibility.py",
+      "type": "file",
+      "mode": 420,
+      "size": 58965,
+      "sha256": "3982ba6eb25c246c7f434a296c08674d25c1da8e84f2b1b488ccd82019da12a5"
+    },
+    {
+      "path": "tests/unit/test_physical_metrics.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4000,
+      "sha256": "25fb82e14dad285098f30fe2757de9ac60f8d2dc217292324156d32aa45a904f"
+    },
+    {
+      "path": "tests/unit/test_physics_validation.py",
+      "type": "file",
+      "mode": 420,
+      "size": 54818,
+      "sha256": "c9376ab7aecc9fbd01c8494bb9a5a4b6b002fa1f5fc34fcea33ee475cee54e3f"
+    },
+    {
+      "path": "tests/unit/test_pile.py",
+      "type": "file",
+      "mode": 420,
+      "size": 12395,
+      "sha256": "7b4a593630afb28c3a20702652d61b9b5c6777ab296d4e97632a1a911c0145fc"
+    },
+    {
+      "path": "tests/unit/test_placement_noise.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3102,
+      "sha256": "5b9c6e965e862289dfa82f632360d1fd1f7bd8351ab20979398f54c72c16c387"
+    },
+    {
+      "path": "tests/unit/test_policy_interface.py",
+      "type": "file",
+      "mode": 420,
+      "size": 11361,
+      "sha256": "8e19d0b74d8f394f5435ebcc8961c13c8161d18ca020b095bf3dee14e783435c"
+    },
+    {
+      "path": "tests/unit/test_prompts.py",
+      "type": "file",
+      "mode": 420,
+      "size": 13845,
+      "sha256": "6a828159a83c7a2f7547d03edafb5866776dff73fd2d61f2c88f560ec27294ca"
+    },
+    {
+      "path": "tests/unit/test_reachability.py",
+      "type": "file",
+      "mode": 420,
+      "size": 18835,
+      "sha256": "20a07ba1c6b4df0419fef8703fd647813176bf763817b813dfcf9b6149cce530"
+    },
+    {
+      "path": "tests/unit/test_rendering.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3482,
+      "sha256": "b18792df07a38ff65437deef0f9a27ddb5f28073c90b2bcc997336e0e35b5a14"
+    },
+    {
+      "path": "tests/unit/test_rendering_manager.py",
+      "type": "file",
+      "mode": 420,
+      "size": 13478,
+      "sha256": "3e4246225b6b7d79247036cf6ba29b35a5f2ecff9a77102277057256db30e9aa"
+    },
+    {
+      "path": "tests/unit/test_robot_eval_llm_utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3500,
+      "sha256": "14764f1987d4150632a1804c2ece6ab6c104119119eea1b5918b178f68180328"
+    },
+    {
+      "path": "tests/unit/test_room_placement.py",
+      "type": "file",
+      "mode": 420,
+      "size": 31904,
+      "sha256": "6b194e4000cd5b83655e760f40101fef4764e94d3f4d4e3ec63086ff952da78b"
+    },
+    {
+      "path": "tests/unit/test_run_subset_sequential.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6193,
+      "sha256": "dc626ab346b01217564ee476fd95f434eda5a9d755e966cab85b7dda52362fa1"
+    },
+    {
+      "path": "tests/unit/test_sam3d_generation.py",
+      "type": "file",
+      "mode": 420,
+      "size": 9209,
+      "sha256": "6205f12c9602683368a2712b2e5495284a19176e910d595fca5ca66654e3756f"
+    },
+    {
+      "path": "tests/unit/test_scene.py",
+      "type": "file",
+      "mode": 420,
+      "size": 50051,
+      "sha256": "e550a7a5eac803f78b9c4769e670a6c522a13c2824350ed2cee374a135d1e6a8"
+    },
+    {
+      "path": "tests/unit/test_scene_analyzer.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2656,
+      "sha256": "d46d0a31234343b2a8ecb25314983b3e9a8a5174fed02476a138e3f61e503497"
+    },
+    {
+      "path": "tests/unit/test_scene_primitives.py",
+      "type": "file",
+      "mode": 420,
+      "size": 32771,
+      "sha256": "ebc6950e3218c0f8f4f91895bb59650564482ac2507daa19ea5d32b3417ed9b4"
+    },
+    {
+      "path": "tests/unit/test_scene_prompt_generator.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1681,
+      "sha256": "1df0a49724e3d8d1d5393c5db376b2cb79ef9e219ffa1d43f68c76492e2cbf69"
+    },
+    {
+      "path": "tests/unit/test_scene_reset.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4340,
+      "sha256": "47aa49feda0f0e384b03aee39486034c264bc3dd09292772b51aef35b8623e05"
+    },
+    {
+      "path": "tests/unit/test_scene_tools.py",
+      "type": "file",
+      "mode": 420,
+      "size": 17084,
+      "sha256": "5534fc22ff653953d636eb5f1f6042ec01e8b7f55819f8e84f9a06917f50d1e5"
+    },
+    {
+      "path": "tests/unit/test_sceneeval_exporter.py",
+      "type": "file",
+      "mode": 420,
+      "size": 24444,
+      "sha256": "21807be5b37b28110354e54b3cb496403c651e1f2fb4e647e5bd41cd2696a483"
+    },
+    {
+      "path": "tests/unit/test_sdf_generator.py",
+      "type": "file",
+      "mode": 420,
+      "size": 19351,
+      "sha256": "705ce8497fc3133300ab5535e092f17e7d34a1ab9e1a3e6cc12ed65cd9675d3b"
+    },
+    {
+      "path": "tests/unit/test_sdf_mesh_utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3755,
+      "sha256": "35fe2fa34b1bde3124886a031d0d7f85add48d0e57af3c2ae6c7c228329c0500"
+    },
+    {
+      "path": "tests/unit/test_sdf_scale.py",
+      "type": "file",
+      "mode": 420,
+      "size": 17918,
+      "sha256": "3b2c4f0f0ee1eb6634a51bb9eea0b63e483e1416814b2a4701ea35fe7ad4d416"
+    },
+    {
+      "path": "tests/unit/test_server_shutdown_lifecycle.py",
+      "type": "file",
+      "mode": 420,
+      "size": 18089,
+      "sha256": "ec86e1e64b0dc3dda179c86caa019b69c1028e9d254239bd434056983f5c4a1f"
+    },
+    {
+      "path": "tests/unit/test_stacking.py",
+      "type": "file",
+      "mode": 420,
+      "size": 18975,
+      "sha256": "28a3c0c6b3463e21474edb5cff22775c17250626f7dc607611ad689034dad699"
+    },
+    {
+      "path": "tests/unit/test_strict_round_robin_scheduler.py",
+      "type": "file",
+      "mode": 420,
+      "size": 11910,
+      "sha256": "783cea9b2133394c3e550141beeb6dfb5dd91293144713cd5a0f5525e3701953"
+    },
+    {
+      "path": "tests/unit/test_support_surface_extraction.py",
+      "type": "file",
+      "mode": 420,
+      "size": 15593,
+      "sha256": "4cdb34a211d0b68f7df772bc9c67e54bcae69e21863e4295434582631a42b54a"
+    },
+    {
+      "path": "tests/unit/test_support_surface_scaling.py",
+      "type": "file",
+      "mode": 420,
+      "size": 8498,
+      "sha256": "0a5c9992e2fa7c7c30df80fd1629dfd1c6edf18358026d987251d8a1d53f5e96"
+    },
+    {
+      "path": "tests/unit/test_surface_occlusion.py",
+      "type": "file",
+      "mode": 420,
+      "size": 8289,
+      "sha256": "e168a2c84363199b93fc4793fffbc071c58f0e0aabbdabdd7738da5d8be2e843"
+    },
+    {
+      "path": "tests/unit/test_turn_trimming_session.py",
+      "type": "file",
+      "mode": 420,
+      "size": 27572,
+      "sha256": "3667e16bb596974b030c8fcc285358d35d8ffc2a36e6bd475447ef8444af578b"
+    },
+    {
+      "path": "tests/unit/test_vision_tools.py",
+      "type": "file",
+      "mode": 420,
+      "size": 11252,
+      "sha256": "dcde53e966cc180651c94bfbf06b75d7b21350a7f7c04c0cd1d10253586b08f6"
+    },
+    {
+      "path": "tests/unit/test_vlm_service.py",
+      "type": "file",
+      "mode": 420,
+      "size": 17458,
+      "sha256": "b953994b785ad263dcfad80f7794a14f31348be0b034be163fc628a0207314a9"
+    },
+    {
+      "path": "tests/unit/test_wall_geometry.py",
+      "type": "file",
+      "mode": 420,
+      "size": 12076,
+      "sha256": "d143138aa9e232c48ea9eb02e1d982ac713eced89855c57977ce7d904b111715"
+    },
+    {
+      "path": "tests/unit/test_wall_surface.py",
+      "type": "file",
+      "mode": 420,
+      "size": 18428,
+      "sha256": "144e0fcf11cf13c849f026f9128859f6913ea859cc56b70865000f4878b250ba"
+    },
+    {
+      "path": "tests/unit/test_wall_tools.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3191,
+      "sha256": "3ed219ae474b54e2b30f23baa88390081ed4743dbcc61a8fd879647334900a47"
+    },
+    {
+      "path": "tests/unit/test_window_geometry.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6173,
+      "sha256": "56a732c0d7b47f54c432a5547d9fb64dfc629837824d85185ef4b3c35ce3b564"
+    },
+    {
+      "path": "tests/unit/test_worker_pool.py",
+      "type": "file",
+      "mode": 420,
+      "size": 12069,
+      "sha256": "b1dd16dc8ae4b7a3db5cb015f3f5223622d00a3fda7ebb226765fa31925b8d17"
+    },
+    {
+      "path": "tests/unit/test_wsgi_server_lifecycle.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2050,
+      "sha256": "209f273bbe9007a1507fb002b425ef8ef98e3836a4f6302e2942f36786d94d51"
+    },
+    {
+      "path": "uv.lock",
+      "type": "file",
+      "mode": 420,
+      "size": 263966,
+      "sha256": "cb99652bc938d27581ded27560e859ea81999999ea10dbea34fe22fcbad5deab"
+    }
+  ]
+}

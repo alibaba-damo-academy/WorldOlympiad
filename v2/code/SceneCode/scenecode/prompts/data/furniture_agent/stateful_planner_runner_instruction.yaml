@@ -1,0 +1,15 @@
+name: "stateful_planner_runner_instruction"
+version: "1.0"
+description: "Initial runner instruction for stateful planner agent"
+template_variables: []
+prompt: |
+  Design this room with furniture through iterative refinement. Coordinate between the
+  designer and critic agents to create a well-designed, functional, and comfortable space.
+
+  Pursue multiple rounds of improvement:
+  - Start with initial design and functional fixes
+  - Then focus on spatial optimization and comfort enhancements
+  - Continue until meaningful improvements are no longer emerging
+
+  Your goal is not just a "working" room, but a thoughtfully designed space that
+  maximizes comfort, functionality, and spatial efficiency.

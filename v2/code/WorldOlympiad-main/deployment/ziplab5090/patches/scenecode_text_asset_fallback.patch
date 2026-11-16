@@ -1,0 +1,239 @@
+--- a/scenecode/agent_utils/code_object_generation.py
++++ b/scenecode/agent_utils/code_object_generation.py
+@@ -290,8 +290,150 @@
+         raise RuntimeError(
+             f"Code_Object articulated pipeline failed for {image_path} after "
+             f"{self._max_attempts} attempt(s): {'; '.join(attempt_summaries)}"
++        )
++
++    def generate_from_text(
++        self,
++        *,
++        text_input: str,
++        output_dir: Path,
++        config_path_override: str | Path | None = None,
++    ) -> CodeObjectGenerationResult:
++        """Run the vendored Code_Object text-conditioned pipeline.
++
++        SceneCode normally synthesizes a reference image first, although the
++        vendored pipeline natively accepts text. This entry point preserves the
++        same retry/resume contract when a compatible deployment does not offer
++        an image-generation model.
++        """
++        if not text_input.strip():
++            raise ValueError("Code_Object text input must be non-empty")
++
++        output_dir.mkdir(parents=True, exist_ok=True)
++        active_config_path = (
++            self._resolve_config_path(str(config_path_override))
++            if config_path_override is not None
++            else self._config_path
++        )
++        port = self._reserve_port()
++        attempt_summaries: list[str] = []
++        try:
++            pipeline_cls = self._load_pipeline_class()
++            for attempt in range(1, self._max_attempts + 1):
++                resume_state = self._detect_resume_state(output_dir)
++                console_logger.info(
++                    "Code_Object text attempt %d/%d for %r "
++                    "(has_existing_plan=%s, has_existing_parts=%s, skip_stages=%s)",
++                    attempt,
++                    self._max_attempts,
++                    text_input,
++                    resume_state.has_existing_plan,
++                    resume_state.has_existing_parts,
++                    list(resume_state.skip_stages),
++                )
++                pipeline = pipeline_cls(
++                    config_path=str(active_config_path), use_mock=False, port=port
++                )
++                result = asyncio.run(
++                    pipeline.run(
++                        text_input=text_input,
++                        output_dir=str(output_dir),
++                        skip_stages=list(resume_state.skip_stages),
++                    )
++                )
++                if getattr(result, "success", False):
++                    mesh_path = self._resolve_mesh_path(
++                        result=result, output_dir=output_dir
++                    )
++                    if mesh_path is not None and mesh_path.exists():
++                        return self._build_generation_result(
++                            output_dir=output_dir, mesh_path=mesh_path
++                        )
++                    failure_summary = (
++                        "pipeline reported success but did not produce a GLB export"
++                    )
++                else:
++                    failure_summary = self._summarize_pipeline_failure(result)
++                attempt_summaries.append(
++                    f"attempt {attempt}/{self._max_attempts}: {failure_summary}"
++                )
++                console_logger.warning(
++                    "Code_Object text attempt %d/%d failed for %r: %s",
++                    attempt,
++                    self._max_attempts,
++                    text_input,
++                    failure_summary,
++                )
++        finally:
++            self._release_port(port)
++
++        raise RuntimeError(
++            f"Code_Object text pipeline failed after {self._max_attempts} "
++            f"attempt(s): {'; '.join(attempt_summaries)}"
+         )
+ 
++    def generate_articulated_from_text(
++        self,
++        *,
++        text_input: str,
++        output_dir: Path,
++        config_path_override: str | Path | None = None,
++    ) -> CodeObjectGenerationResult:
++        """Run the articulated Code_Object pipeline from text input."""
++        if not text_input.strip():
++            raise ValueError("Code_Object text input must be non-empty")
++        output_dir.mkdir(parents=True, exist_ok=True)
++        active_config_path = (
++            self._resolve_config_path(str(config_path_override))
++            if config_path_override is not None
++            else self._config_path
++        )
++        port = self._reserve_port()
++        attempt_summaries: list[str] = []
++        try:
++            pipeline_cls = self._load_pipeline_class("CodeArticulatedPipeline")
++            for attempt in range(1, self._max_attempts + 1):
++                resume_state = self._detect_resume_state(output_dir)
++                pipeline = pipeline_cls(
++                    config_path=str(active_config_path), use_mock=False, port=port
++                )
++                result = asyncio.run(
++                    pipeline.run(
++                        text_input=text_input,
++                        output_dir=str(output_dir),
++                        skip_stages=list(resume_state.skip_stages),
++                    )
++                )
++                if getattr(result, "success", False):
++                    mesh_path = self._resolve_mesh_path(
++                        result=result, output_dir=output_dir
++                    )
++                    status = getattr(result, "status", "generated")
++                    urdf_raw = getattr(result, "urdf_path", None)
++                    urdf_path = Path(urdf_raw) if urdf_raw else None
++                    valid_urdf = status != "generated" or (
++                        urdf_path is not None and urdf_path.exists()
++                    )
++                    if mesh_path is not None and mesh_path.exists() and valid_urdf:
++                        return self._build_generation_result(
++                            output_dir=output_dir,
++                            mesh_path=mesh_path,
++                            status=status,
++                            urdf_path=urdf_path,
++                        )
++                    failure_summary = "pipeline output was missing GLB or required URDF"
++                else:
++                    failure_summary = self._summarize_pipeline_failure(result)
++                attempt_summaries.append(
++                    f"attempt {attempt}/{self._max_attempts}: {failure_summary}"
++                )
++        finally:
++            self._release_port(port)
++        raise RuntimeError(
++            f"Code_Object articulated text pipeline failed after {self._max_attempts} "
++            f"attempt(s): {'; '.join(attempt_summaries)}"
++        )
++
+     def _resolve_code_object_root(self, configured_root: str | None) -> Path:
+         """Resolve the vendored Code_Object root directory."""
+         candidates: list[Path] = []
+--- a/scenecode/agent_utils/asset_router/router.py
++++ b/scenecode/agent_utils/asset_router/router.py
+@@ -1398,7 +1398,7 @@
+         images_dir: Path,
+         code_object_dir: Path,
+         style_context: str | None = None,
+-    ) -> tuple[Path, Path, str | None] | None:
++    ) -> tuple[Path | None, Path, str | None] | None:
+         """Generate the reference image and apply any profile-specific preprocessing."""
+         timestamp = int(time.time() * 1000)
+         base_name = f"{item.short_name}_{timestamp}"
+@@ -1414,10 +1414,11 @@
+                 output_paths=[image_path],
+             )
+         except Exception as e:
+-            console_logger.error(
+-                f"Image generation failed for Code_Object '{item.description}': {e}"
++            console_logger.warning(
++                f"Image generation failed for Code_Object '{item.description}'; "
++                f"using the vendored text-conditioned pipeline: {e}"
+             )
+-            return None
++            image_path = None
+ 
+         code_object_cfg = self.cfg.asset_manager.get("code_object", {})
+         profile_config_keys = {
+@@ -1427,6 +1428,11 @@
+         }
+         config_path_override = None
+         if item.code_object_profile == "wall_art":
++            if image_path is None:
++                console_logger.warning(
++                    "wall_art preprocessing requires a reference image; no text fallback"
++                )
++                return None
+             from scenecode.agent_utils.wall_art_preprocess import (
+                 DEFAULT_FRAME_PROMPTS,
+                 prepare_wall_art_reference_assets,
+@@ -1508,11 +1514,18 @@
+         image_path, output_dir, config_path_override = prepared
+ 
+         try:
+-            result = code_object_runner.generate_from_image(
+-                image_path=image_path,
+-                output_dir=output_dir,
+-                config_path_override=config_path_override,
+-            )
++            if image_path is None:
++                result = code_object_runner.generate_from_text(
++                    text_input=item.description,
++                    output_dir=output_dir,
++                    config_path_override=config_path_override,
++                )
++            else:
++                result = code_object_runner.generate_from_image(
++                    image_path=image_path,
++                    output_dir=output_dir,
++                    config_path_override=config_path_override,
++                )
+         except Exception as e:
+             console_logger.error(
+                 f"Code_Object generation failed for '{item.description}': {e}"
+@@ -1549,11 +1562,18 @@
+         image_path, output_dir, config_path_override = prepared
+ 
+         try:
+-            result = code_object_runner.generate_articulated_from_image(
+-                image_path=image_path,
+-                output_dir=output_dir,
+-                config_path_override=config_path_override,
+-            )
++            if image_path is None:
++                result = code_object_runner.generate_articulated_from_text(
++                    text_input=item.description,
++                    output_dir=output_dir,
++                    config_path_override=config_path_override,
++                )
++            else:
++                result = code_object_runner.generate_articulated_from_image(
++                    image_path=image_path,
++                    output_dir=output_dir,
++                    config_path_override=config_path_override,
++                )
+         except Exception as e:
+             console_logger.error(
+                 f"Code_Object articulated generation failed for '{item.description}': {e}"

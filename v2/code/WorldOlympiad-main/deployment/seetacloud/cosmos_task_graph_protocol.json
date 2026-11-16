@@ -1,0 +1,13 @@
+{
+  "schema_version": "cosmos_task_graph_protocol.v1",
+  "episode_length_s": 60,
+  "control_hz": 15,
+  "stable_duration_s": 0.5,
+  "stationary_speed_m_s": 0.02,
+  "stationary_angular_speed_rad_s": 0.5,
+  "minimum_lift_m": 0.01,
+  "minimum_tilt_rad": 0.05,
+  "minimum_impact_speed_m_s": 0.05,
+  "geometry_tolerance_m": 0.002,
+  "policy": "shared native episode budget; never derived from reference duration"
+}

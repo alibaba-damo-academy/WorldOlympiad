@@ -1,0 +1,8 @@
+name: "asset_image_continuation"
+version: "1.0"
+description: "Continuation image generation for consistent 3D asset style"
+template_variables: ["description"]
+prompt: |
+  Now generate a clean product photography image of: {{ description }}.
+  Same style and lighting as before - no shadows, solid opaque contrasting
+  plain background as before.

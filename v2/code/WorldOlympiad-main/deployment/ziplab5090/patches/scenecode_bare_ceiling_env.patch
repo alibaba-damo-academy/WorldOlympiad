@@ -1,0 +1,26 @@
+diff --git a/scenecode/ceiling_agents/stateful_ceiling_agent.py b/scenecode/ceiling_agents/stateful_ceiling_agent.py
+index f844d41..6a6162c 100644
+--- a/scenecode/ceiling_agents/stateful_ceiling_agent.py
++++ b/scenecode/ceiling_agents/stateful_ceiling_agent.py
+@@ -9,6 +9,7 @@ Pipeline order: floor_plan -> furniture -> wall-mounted -> ceiling-mounted -> ma
+ """
+ 
+ import logging
++import os
+ 
+ from pathlib import Path
+ from typing import Any
+@@ -423,6 +424,13 @@ class StatefulCeilingAgent(BaseStatefulAgent, BaseCeilingAgent):
+         try:
+             console_logger.info("Starting ceiling decoration")
+             self.scene = scene
++            if os.environ.get("SCENECODE_BARE_CEILING") == "1":
++                console_logger.info(
++                    "SCENECODE_BARE_CEILING=1: preserving the scene without "
++                    "ceiling-mounted objects"
++                )
++                return
++
+ 
+             # Extract room bounds.
+             self.room_bounds = self._extract_room_bounds(scene=scene)

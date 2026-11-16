@@ -1,0 +1,11 @@
+--- a/scenecode/agent_utils/urdf_to_sdf.py
++++ b/scenecode/agent_utils/urdf_to_sdf.py
+@@ -483,6 +483,8 @@
+         )
+         if sdf_geometry is not None:
+             sdf_visual.append(sdf_geometry)
++            from autoresearch.scenecode_mesh_frame_conversion import bind_visual_frame
++            bind_visual_frame(urdf_visual, sdf_visual, urdf_dir)
+         else:
+             return None
+ 

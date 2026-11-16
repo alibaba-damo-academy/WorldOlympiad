@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "name": "robolab_droid_franka_robotiq_2f85_f72d_2c047340_20260823_v3",
+  "entries": [
+    {
+      "path": "PICKNIK_LICENSE",
+      "type": "file",
+      "mode": 420,
+      "size": 1524,
+      "sha256": "a47544ef0ad645c587e46348dc10e68b89c3e74732bd124c005cfcd8ede3b3b8"
+    },
+    {
+      "path": "collision_meshes/left_finger.obj",
+      "type": "file",
+      "mode": 436,
+      "size": 13539,
+      "sha256": "534ed37faf49d6f7f8a94692c454d0b3731d3ccaabd10277a7c2037d6c0ac6a2"
+    },
+    {
+      "path": "collision_meshes/left_finger_tip.obj",
+      "type": "file",
+      "mode": 436,
+      "size": 7643,
+      "sha256": "e2b2de44ce66ac85e83de1405ab66c0ec9b80bd85b0db03a74221129c815ef58"
+    },
+    {
+      "path": "collision_meshes/left_inner_knuckle.obj",
+      "type": "file",
+      "mode": 436,
+      "size": 12114,
+      "sha256": "840963f4e86f960d7ae2d7903905604e5514bd6cd1a76e8ee2c329ff5e0e2e7c"
+    },
+    {
+      "path": "collision_meshes/left_knuckle.obj",
+      "type": "file",
+      "mode": 436,
+      "size": 3056,
+      "sha256": "bdf5b0719713a3cf3229be58afed1d726708285036a58a35989572dbbe82d95a"
+    },
+    {
+      "path": "collision_meshes/right_finger.obj",
+      "type": "file",
+      "mode": 436,
+      "size": 13570,
+      "sha256": "9d25c617d7b1df6213e93c1578fc9257de5233555292280db1607c72957f28ff"
+    },
+    {
+      "path": "collision_meshes/right_finger_tip.obj",
+      "type": "file",
+      "mode": 436,
+      "size": 7581,
+      "sha256": "09f0d2491ef37dec5728effae764719ea96aeb7b7c79af1d5c1d99c5accc69ef"
+    },
+    {
+      "path": "collision_meshes/right_inner_knuckle.obj",
+      "type": "file",
+      "mode": 436,
+      "size": 12169,
+      "sha256": "3e11ba689efe0756463e0daa6a818257ed842e82e7443d5bcab6e9f7135befda"
+    },
+    {
+      "path": "collision_meshes/right_knuckle.obj",
+      "type": "file",
+      "mode": 436,
+      "size": 3066,
+      "sha256": "9f0e02bac14fcd70b9af0e632655acddc1516506a6ca8d9fc0f46774b3cf1f65"
+    },
+    {
+      "path": "collision_meshes/robotiq_base.obj",
+      "type": "file",
+      "mode": 436,
+      "size": 13725,
+      "sha256": "acb089012048661226450120ca3dc89665fc07c091cfeb79860a7bd6e23f3695"
+    },
+    {
+      "path": "franka_robotiq_2f_85.urdf",
+      "type": "file",
+      "mode": 436,
+      "size": 18479,
+      "sha256": "b0271bf14427a481ac25ff68bece71e78319d06c5c4639b08d2502bc158508e6"
+    },
+    {
+      "path": "robot_asset_manifest.json",
+      "type": "file",
+      "mode": 436,
+      "size": 22667,
+      "sha256": "19c14b8cbca35d1d317f3a18d9786156fe896ad7ca46ca5ba5e5278aa5c3d28f"
+    },
+    {
+      "path": "visual_meshes/left_finger.mtl",
+      "type": "file",
+      "mode": 436,
+      "size": 408,
+      "sha256": "6414310fd0ca65ef943f55b9ab215e29034616a366786797a1a3044497860f9e"
+    },
+    {
+      "path": "visual_meshes/left_finger.obj",
+      "type": "file",
+      "mode": 436,
+      "size": 161927,
+      "sha256": "7f9a8b2a5bbf1e51ec19deb69d15530998dc83bac52bbe5b9b9b2c0764c16216"
+    },
+    {
+      "path": "visual_meshes/left_finger_tip.mtl",
+      "type": "file",
+      "mode": 436,
+      "size": 408,
+      "sha256": "6414310fd0ca65ef943f55b9ab215e29034616a366786797a1a3044497860f9e"
+    },
+    {
+      "path": "visual_meshes/left_finger_tip.obj",
+      "type": "file",
+      "mode": 436,
+      "size": 146495,
+      "sha256": "1e0fe98f1069a8add42446d0b7c124ca87aa37f6cfe4216d61f8c587e98cca99"
+    },
+    {
+      "path": "visual_meshes/left_inner_knuckle.mtl",
+      "type": "file",
+      "mode": 436,
+      "size": 408,
+      "sha256": "6414310fd0ca65ef943f55b9ab215e29034616a366786797a1a3044497860f9e"
+    },
+    {
+      "path": "visual_meshes/left_inner_knuckle.obj",
+      "type": "file",
+      "mode": 436,
+      "size": 97010,
+      "sha256": "3cf237484a9cc20c18ff609b18c502b7cdb246cdfb042f9053efc1d3d66f4cb4"
+    },
+    {
+      "path": "visual_meshes/left_knuckle.mtl",
+      "type": "file",
+      "mode": 436,
+      "size": 229,
+      "sha256": "27b0ded6b15315e599020ad7d2fb3187fb0191521e575b26bd96b44492d0d42b"
+    },
+    {
+      "path": "visual_meshes/left_knuckle.obj",
+      "type": "file",
+      "mode": 436,
+      "size": 67280,
+      "sha256": "9695c456953ebff44d276267c931e94dfbd9e7b773c5a007b3943e82a5eb40f9"
+    },
+    {
+      "path": "visual_meshes/right_finger.mtl",
+      "type": "file",
+      "mode": 436,
+      "size": 408,
+      "sha256": "6414310fd0ca65ef943f55b9ab215e29034616a366786797a1a3044497860f9e"
+    },
+    {
+      "path": "visual_meshes/right_finger.obj",
+      "type": "file",
+      "mode": 436,
+      "size": 161844,
+      "sha256": "b7e2811f1484a259412b77c956de2270b65620c34e682be5aef53e8f7bf36cbb"
+    },
+    {
+      "path": "visual_meshes/right_finger_tip.mtl",
+      "type": "file",
+      "mode": 436,
+      "size": 408,
+      "sha256": "6414310fd0ca65ef943f55b9ab215e29034616a366786797a1a3044497860f9e"
+    },
+    {
+      "path": "visual_meshes/right_finger_tip.obj",
+      "type": "file",
+      "mode": 436,
+      "size": 147217,
+      "sha256": "53498accf66de297a4c07ee116a71e53a205c90b149948cc25a7c0c6d3bdd357"
+    },
+    {
+      "path": "visual_meshes/right_inner_knuckle.mtl",
+      "type": "file",
+      "mode": 436,
+      "size": 408,
+      "sha256": "6414310fd0ca65ef943f55b9ab215e29034616a366786797a1a3044497860f9e"
+    },
+    {
+      "path": "visual_meshes/right_inner_knuckle.obj",
+      "type": "file",
+      "mode": 436,
+      "size": 96556,
+      "sha256": "1e0e2f0d08a25c07d135390e6f280eb160d3ab9f9577f04263493ffbca3149b5"
+    },
+    {
+      "path": "visual_meshes/right_knuckle.mtl",
+      "type": "file",
+      "mode": 436,
+      "size": 229,
+      "sha256": "27b0ded6b15315e599020ad7d2fb3187fb0191521e575b26bd96b44492d0d42b"
+    },
+    {
+      "path": "visual_meshes/right_knuckle.obj",
+      "type": "file",
+      "mode": 436,
+      "size": 66999,
+      "sha256": "0a978534a68809c824b8f15ce03fa787ed024be4466a4acaa1818be6c7bfc4fe"
+    },
+    {
+      "path": "visual_meshes/robotiq_base.mtl",
+      "type": "file",
+      "mode": 436,
+      "size": 408,
+      "sha256": "6414310fd0ca65ef943f55b9ab215e29034616a366786797a1a3044497860f9e"
+    },
+    {
+      "path": "visual_meshes/robotiq_base.obj",
+      "type": "file",
+      "mode": 436,
+      "size": 2073315,
+      "sha256": "ea3a559906276adeca93c790ca1121ec37e91dce30dc94993f57e8bd8fd79899"
+    }
+  ],
+  "tree_sha256": "6cef7db6c032bae4ed06169c2ad8bbeb3f1ce72f153d5649253dede05380583b"
+}

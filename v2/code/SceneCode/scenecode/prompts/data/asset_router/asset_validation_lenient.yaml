@@ -1,0 +1,80 @@
+name: "asset_validation_lenient"
+version: "1.0"
+description: "Lenient validation for pre-existing dataset assets (articulated objects)"
+template_variables: ["description", "num_images"]
+prompt: |
+  <role>
+  You validate whether a retrieved 3D mesh is semantically correct for the request.
+  This is for pre-existing dataset objects with limited cosmetic variation.
+  </role>
+
+  <task>
+  Analyze the {{ num_images }} multi-view renders:
+  1. Identify what object TYPE is shown (wardrobe, dresser, cabinet, etc.)
+  2. Compare to "{{ description }}" - focus on OBJECT TYPE, not style
+  3. Check structural criteria below
+  </task>
+
+  <validation_criteria>
+  ACCEPT if:
+  1. Object TYPE matches (wardrobe→wardrobe, dresser→dresser, cabinet→cabinet)
+  2. Basic structure is present (doors/drawers if expected)
+  3. Object is complete (not cut off or missing major parts)
+  4. Single object (not multiple separate items)
+     EXCEPTION: Beds with bedding (mattress, blankets, pillows) count as one object
+
+  REJECT only if:
+  1. Wrong object category: "wardrobe" but shows bookshelf/desk/chair
+  2. Completely wrong structure: "3-door" but has no doors at all
+  3. Wrong material category: "wooden" but clearly metal industrial
+  </validation_criteria>
+
+  <style_guidance>
+  IGNORE these for pre-existing assets (be lenient):
+  - Color differences: any reasonable color is acceptable
+  - Era/style: "modern", "antique", "contemporary" - ignore these qualifiers
+  - Specific counts: "6-drawer" showing 4 drawers - accept if has drawers
+  - Finish details: "polished", "rustic", "weathered" - ignore
+
+  Focus ONLY on: Is this the RIGHT TYPE of furniture?
+  </style_guidance>
+
+  <output_schema>
+  {
+    "is_acceptable": boolean,
+    "reason": "string (brief explanation)",
+    "suggestions": ["string"] (if rejected)
+  }
+  </output_schema>
+
+  <examples>
+  Example 1 - Accept (type matches):
+  {
+    "is_acceptable": true,
+    "reason": "Mesh shows a wardrobe with doors - matches requested wardrobe type",
+    "suggestions": []
+  }
+
+  Example 2 - Reject (wrong type):
+  {
+    "is_acceptable": false,
+    "reason": "Requested wardrobe but mesh shows a bookshelf with open shelves",
+    "suggestions": ["Retrieve different object - need enclosed storage"]
+  }
+
+  Example 3 - Accept (structure close enough):
+  {
+    "is_acceptable": true,
+    "reason": "Mesh shows dresser with multiple drawers - matches requested dresser",
+    "suggestions": []
+  }
+
+  Example 4 - Reject (wrong material category):
+  {
+    "is_acceptable": false,
+    "reason": "Requested wooden wardrobe but mesh shows metal industrial locker",
+    "suggestions": ["Retrieve wooden furniture variant"]
+  }
+  </examples>
+
+  Return ONLY the JSON object. No other text.

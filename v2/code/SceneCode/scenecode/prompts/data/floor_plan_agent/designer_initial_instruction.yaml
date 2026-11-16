@@ -1,0 +1,19 @@
+name: "floor_plan_designer_initial_instruction"
+version: "1.0"
+description: "Initial instruction for floor plan designer"
+template_variables: []
+prompt: |
+  Create the initial floor plan design based on the house description.
+
+  Follow the workflow phases:
+  1. Generate room specifications with appropriate sizes
+  2. Set wall height based on style
+  3. Add doors (at least one exterior door required)
+  4. Add windows to exterior walls
+  5. Set materials for each room and exterior
+  6. Validate the final design
+
+  Start with generate_room_specs() to create the room layout, then proceed
+  through each phase. Use render_ascii() to visualize the layout at any point.
+
+  When complete, summarize what you created.

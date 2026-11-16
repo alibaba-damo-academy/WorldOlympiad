@@ -1,0 +1,36 @@
+diff --git a/scenecode/agent_utils/turn_trimming_session.py b/scenecode/agent_utils/turn_trimming_session.py
+--- a/scenecode/agent_utils/turn_trimming_session.py
++++ b/scenecode/agent_utils/turn_trimming_session.py
+@@ -398,7 +398,7 @@ class TurnTrimmingSession(SessionABC):
+             return
+ 
+         try:
+-            await client.aclose()
++            await client.close()
+         except Exception as exc:
+             console_logger.warning(
+                 "Failed to close TurnTrimmingSession OpenAI client for %s: %s",
+diff --git a/scenecode/robot_eval/llm_utils.py b/scenecode/robot_eval/llm_utils.py
+--- a/scenecode/robot_eval/llm_utils.py
++++ b/scenecode/robot_eval/llm_utils.py
+@@ -38,7 +38,7 @@ async def close_cached_openai_clients() -> None:
+ 
+     for client in cached_clients:
+         try:
+-            await client.aclose()
++            await client.close()
+         except Exception as exc:
+             console_logger.warning(
+                 "Failed to close cached robot_eval OpenAI client during cleanup: %s",
+diff --git a/scenecode/utils/openai.py b/scenecode/utils/openai.py
+--- a/scenecode/utils/openai.py
++++ b/scenecode/utils/openai.py
+@@ -89,7 +89,7 @@ async def close_cached_async_openai_clients() -> None:
+ 
+     for client in cached_clients:
+         try:
+-            await client.aclose()
++            await client.close()
+         except Exception as exc:
+             console_logger.warning(
+                 "Failed to close cached async OpenAI client during cleanup: %s", exc

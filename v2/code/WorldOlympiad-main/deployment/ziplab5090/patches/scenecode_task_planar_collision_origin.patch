@@ -1,0 +1,118 @@
+--- a/scenecode/agent_utils/asset_manager.py
++++ b/scenecode/agent_utils/asset_manager.py
+@@ -1608,12 +1608,12 @@
+         config.sdf_dir.mkdir(parents=True, exist_ok=True)
+ 
+         # Thin coverings use simplified conversion: no VLM analysis.
+-        # Wall thin coverings (paintings, posters) get collision geometry.
++        # Wall coverings and physical task surfaces get collision geometry.
+         if generated.asset_source == "thin_covering":
+             is_wall_covering = request.object_type == ObjectType.WALL_MOUNTED
+             is_task_planar_covering = request.object_type == ObjectType.MANIPULAND
+ 
+-            # Only add collision for wall coverings (paintings, posters).
++            # Decorative floor coverings remain collision-free.
+             collision_dims = None
+             collision_shape = "rectangular"
+             if (is_wall_covering or is_task_planar_covering) and item.dimensions:
+@@ -1634,6 +1634,7 @@
+                     config=config,
+                     collision_dims=collision_dims,
+                     collision_shape=collision_shape,
++                    is_wall=is_wall_covering,
+                 )
+             )
+             initial_scale = 1.0  # Thin coverings don't scale the mesh.
+@@ -2568,16 +2569,17 @@
+         config: AssetPathConfig,
+         collision_dims: tuple[float, float, float] | None = None,
+         collision_shape: str = "rectangular",
++        is_wall: bool = True,
+     ) -> tuple[Path, Path, np.ndarray, np.ndarray]:
+         """Convert thin covering mesh to Drake SDF (simplified pipeline).
+ 
+         Thin coverings are static decorative objects that don't require:
+         - VLM orientation analysis (already correctly oriented)
+         - Canonicalization (already in correct pose)
+-        - Collision geometry for floor/manipuland coverings (decorative only)
+-
+-        Wall thin coverings (paintings, posters) DO get collision geometry so
+-        Drake can detect furniture collisions.
++        - Collision geometry for decorative floor coverings
++
++        Walls and physical task surfaces get collision geometry in their native
++        surface orientation.
+ 
+         Pipeline:
+         - Convert GLB → GLTF with separate textures (for Drake)
+@@ -2613,6 +2615,7 @@
+             model_name=config.short_name,
+             collision_dims=collision_dims,
+             collision_shape=collision_shape,
++            is_wall=is_wall,
+         )
+ 
+         # Load mesh for bounding box calculation.
+--- a/scenecode/agent_utils/thin_covering_generator.py
++++ b/scenecode/agent_utils/thin_covering_generator.py
+@@ -686,22 +686,22 @@
+     model_name: str | None = None,
+     collision_dims: tuple[float, float, float] | None = None,
+     collision_shape: str = "rectangular",
++    is_wall: bool = True,
+ ) -> Path:
+-    """Generate Drake SDF file for a static thin covering.
+-
+-    For floor/manipuland thin coverings (rugs, tablecloths), no collision
+-    geometry is included - they are purely decorative. For wall thin coverings
+-    (paintings, posters), collision geometry is added so Drake can detect
+-    furniture collisions.
++    """Generate Drake SDF for a thin covering with optional collision.
++
++    Decorative floor coverings omit collision. Wall coverings and physical
++    task surfaces use collision_dims with their corresponding orientation.
+ 
+     Args:
+         visual_mesh_path: Path to the thin covering GLTF mesh file.
+         output_path: Path where SDF file will be saved.
+         model_name: Optional name for the model (defaults to mesh stem).
+         collision_dims: Optional (width, depth, height) for collision primitive.
+-            If provided, adds collision geometry. Used for wall coverings.
++            If provided, adds collision geometry for a wall or floor task surface.
+         collision_shape: Shape of collision primitive ("rectangular" or "circular").
+             Only used when collision_dims is provided.
++        is_wall: Preserve wall coordinates by default; floor task coverings use False.
+ 
+     Returns:
+         Path to the generated SDF file.
+@@ -754,20 +754,24 @@
+             # Cylinder for circular wall coverings (round paintings/mirrors).
+             # Default SDF cylinder axis is Z. For wall covering, axis should be Y
+             # (thin direction perpendicular to wall). Rotate 90° around X.
+-            roll = math.pi / 2  # Rotate Z-axis to Y-axis.
+-            collision_pose.text = f"0 {depth / 2:.6f} {height / 2:.6f} {roll:.6f} 0 0"
++            roll = math.pi / 2 if is_wall else 0.0
++            y_center = depth / 2 if is_wall else 0.0
++            collision_pose.text = f"0 {y_center:.6f} {height / 2:.6f} {roll:.6f} 0 0"
+ 
+             cylinder = ET.SubElement(collision_geom, "cylinder")
+             radius_elem = ET.SubElement(cylinder, "radius")
+-            radius_elem.text = f"{width / 2:.6f}"
++            radius = width / 2 if is_wall else min(width, depth) / 2
++            radius_elem.text = f"{radius:.6f}"
+             length_elem = ET.SubElement(cylinder, "length")
+-            length_elem.text = f"{depth:.6f}"  # Thickness along rotated axis.
++            length = depth if is_wall else height
++            length_elem.text = f"{length:.6f}"
+             console_logger.debug(
+-                f"Added cylinder collision: r={width / 2:.3f}m, len={depth:.3f}m"
++                f"Added cylinder collision: r={radius:.3f}m, len={length:.3f}m"
+             )
+         else:
+             # Box for rectangular wall coverings.
+-            collision_pose.text = f"0 {depth / 2:.6f} {height / 2:.6f} 0 0 0"
++            y_center = depth / 2 if is_wall else 0.0
++            collision_pose.text = f"0 {y_center:.6f} {height / 2:.6f} 0 0 0"
+ 
+             box = ET.SubElement(collision_geom, "box")
+             size_elem = ET.SubElement(box, "size")

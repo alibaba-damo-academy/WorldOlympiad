@@ -1,0 +1,34 @@
+diff --git a/wan_va/modules/model.py b/wan_va/modules/model.py
+--- a/wan_va/modules/model.py
++++ b/wan_va/modules/model.py
+@@ -27,9 +27,12 @@
+ from functools import partial
+ 
+ try:
+     from flash_attn_interface import flash_attn_func
+-except:
+-    from flash_attn import flash_attn_func
++except ImportError:
++    try:
++        from flash_attn import flash_attn_func
++    except ImportError:
++        flash_attn_func = None
+ 
+ __all__ = ['WanTransformer3DModel']
+ 
+@@ -299,13 +302,15 @@ class WanAttention(torch.nn.Module):
+         attn_mode='torch',
+     ):
+         super().__init__()
+         if attn_mode == 'torch':
+             self.attn_op = custom_sdpa
+         elif attn_mode == 'flashattn':
++            if flash_attn_func is None:
++                raise ImportError("attn_mode='flashattn' requires flash-attn")
+             self.attn_op = flash_attn_func
+         elif attn_mode == 'flex':
+             self.attn_op = FlexAttnFunc(cross_attention_dim_head is not None)
+         else:
+             raise ValueError(
+                 f"Unsupported attention mode: {attn_mode}, only support torch and flashattn"
+             )

@@ -1,0 +1,50 @@
+name: "critic_runner_instruction"
+version: "1.0"
+description: "Runner instruction for ceiling critic agent evaluation"
+template_variables: ["physics_context", "placement_style"]
+prompt: |
+  Evaluate this ceiling fixture arrangement comprehensively. Provide both critical
+  feedback on issues AND suggestions for enhancement opportunities.
+
+  ## Evaluation Workflow
+
+  Follow your system-defined MANDATORY EVALUATION WORKFLOW exactly:
+  1. Observe ceiling (observe_scene - REQUIRED for visual context)
+  2. Get exact object data (get_current_scene_state - REQUIRED)
+  3. Evaluate placement quality for each fixture
+  4. Assess lighting coverage and distribution
+  5. Synthesize findings into your critique
+
+  Your system instructions provide complete workflow details.
+
+  ## Placement Style Context:
+  This scene uses **{{ placement_style }}** placement style.
+  {% if placement_style == "natural" %}
+  - **Natural Style**: Expect subtle human-like imperfections in placement.
+    Fixtures may be slightly off-center or have small position variations.
+    This is intentional to create a lived-in feel.
+
+  {% elif placement_style == "perfect" %}
+  - **Perfect Style**: Expect precise alignment and spacing.
+    Fixtures should be perfectly centered, level, and evenly distributed.
+    Gallery-style precision is the goal.
+  {% endif %}
+
+  Please address:
+  1. **Previous Issues**: Were prior concerns addressed successfully?
+  2. **Current Problems**: Any new placement, collision, or coverage issues that need fixing?
+  3. **Enhancement Opportunities**: How could the ceiling fixtures be refined further?
+
+  Remember: Ceilings with fixtures can still be significantly improved.
+  Consider fixture positioning, lighting coverage, relationship to furniture below,
+  and overall visual balance.
+
+  ## Physics Validation:
+  {% if physics_context %}
+  The following physics violations were detected:
+  {{ physics_context }}
+
+  Please incorporate these physics issues into your critique.
+  {% else %}
+  No physics violations detected. Ceiling fixtures are collision-free.
+  {% endif %}

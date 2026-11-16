@@ -1,0 +1,19 @@
+--- a/scenecode/code_object/agent_framework/utils/llm_client.py
++++ b/scenecode/code_object/agent_framework/utils/llm_client.py
+@@ -286,7 +286,15 @@
+         if "tool_choice" in kwargs:
+             create_kwargs["tool_choice"] = kwargs["tool_choice"]
+ 
+-        response = await client.chat.completions.create(**create_kwargs)
++        # Stream long Code_Object requests through the existing gateway.
++        use_stream = kwargs.get(
++            "stream", os.getenv("SCENECODE_CODE_OBJECT_STREAM", "1") != "0"
++        )
++        if use_stream:
++            from autoresearch.scenecode_openai_stream import collect_chat_completion
++            response = await collect_chat_completion(client, create_kwargs)
++        else:
++            response = await client.chat.completions.create(**create_kwargs)
+ 
+         if self.usage_tracker and getattr(response, "usage", None):
+             u = response.usage

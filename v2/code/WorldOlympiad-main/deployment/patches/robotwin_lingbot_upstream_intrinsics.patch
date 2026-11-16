@@ -1,0 +1,43 @@
+--- a/envs/camera/camera.py
++++ b/envs/camera/camera.py
+@@ -117,6 +117,9 @@
+                 near=near,
+                 far=far,
+             )
++            if "upstream_resize_source_wh" in camera_config:
++                from autoresearch.robotwin_camera_alignment import apply_upstream_camera_intrinsics
++                apply_upstream_camera_intrinsics(camera, camera_config, near, far)
+             camera.entity.set_pose(sapien.Pose(mat44))
+ 
+             # ========================= sensor camera =========================
+@@ -149,6 +152,11 @@
+                 near=near,
+                 far=far,
+             )
++
++            if "upstream_resize_source_wh" in wrist_camera_config:
++                from autoresearch.robotwin_camera_alignment import apply_upstream_camera_intrinsics
++                for camera in (self.left_camera, self.right_camera):
++                    apply_upstream_camera_intrinsics(camera, wrist_camera_config, near, far)
+ 
+         # ================================= sensor camera =================================
+         # sensor_config = StereoDepthSensorConfig()
+--- a/env_cfg/task_config/_camera_config.yml
++++ b/env_cfg/task_config/_camera_config.yml
+@@ -36,3 +36,16 @@
+   fovy: 37
+   w: 160
+   h: 128
++
++# Preserve rays of official D435 -> LingBot bilinear preprocessing.
++LingBotVA_D435Aligned_High:
++  fovy: 37
++  w: 320
++  h: 256
++  upstream_resize_source_wh: [320, 240]
++
++LingBotVA_D435Aligned_Wrist:
++  fovy: 37
++  w: 160
++  h: 128
++  upstream_resize_source_wh: [320, 240]

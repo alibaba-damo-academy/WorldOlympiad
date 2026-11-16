@@ -1,0 +1,102 @@
+name: "stateful_critic_runner_instruction"
+version: "1.0"
+description: "Runner instruction for stateful critic agent evaluation"
+template_variables: ["physics_context", "placement_style", "reachability_context", "robot_width"]
+prompt: |
+  Evaluate this furniture arrangement comprehensively. Provide both critical feedback on
+  issues AND suggestions for enhancement opportunities.
+
+  ## Evaluation Workflow
+
+  Follow your system-defined MANDATORY EVALUATION WORKFLOW exactly:
+  1. Observe the scene (observe_scene - REQUIRED for visual context)
+  2. Get exact object IDs (get_current_scene_state - REQUIRED)
+  3. Validate ALL orientation-dependent furniture (check_facing_tool - REQUIRED)
+  4. Perform visual analysis of spacing and design
+  5. Synthesize findings into your critique
+
+  Your system instructions provide complete workflow details and tool requirements.
+
+  ## Placement Style Context:
+  This scene uses **{{ placement_style }}** placement style.
+  {% if placement_style == "natural" %}
+  - **Natural Style**: Expect subtle human-like imperfections, NOT chaos.
+
+    **The Key Test:** Would a visitor notice the imperfection? If yes, it's too much.
+    Natural variation should be barely perceptible - the kind that makes a room
+    feel lived-in rather than staged, without drawing attention.
+
+    **Examples:**
+    * ✓ NATURAL: Dining chairs slightly varied in angle, but all clearly facing table
+    * ✓ NATURAL: Sofa with barely noticeable rotation, still facing conversation area
+    * ✗ CHAOS: Sofa at obvious angle creating awkward viewing experience
+    * ✗ CHAOS: Chairs at random angles that don't serve their function
+
+    **Evaluation Principle:** Natural = correct function + subtle imperfection.
+    Chaos = broken function disguised as "casual." If furniture looks WRONG rather
+    than subtly imperfect, score functionality low regardless of "natural" style.
+
+  {% elif placement_style == "perfect" %}
+  - **Perfect Style**: Expect precise alignment and spacing.
+
+    **Placement System Tolerances (UNFIXABLE - do NOT flag):**
+    - Rotations ≤0.5° from intended angle
+    - Position offsets ≤5mm from intended location
+
+    These micro-deviations are inherent to the placement system. Only flag
+    alignment issues that are clearly visible without checking exact coordinates.
+  {% endif %}
+
+  Please address:
+  1. **Previous Issues**: Were prior concerns addressed successfully? Did attempted
+     fixes make the scene worse and should be reverted?
+  2. **Current Problems**: Any new functional or spatial issues that need fixing?
+  3. **Enhancement Opportunities**: How could this space be refined further, even if
+     currently functional?
+
+  Remember: A room that "works" can still be significantly improved. Consider traffic
+  flow optimization, conversation area enhancement, spatial efficiency, and overall
+  comfort.
+
+  ## Physics Validation:
+  {% if physics_context %}
+  The following physics violations were detected:
+  {{ physics_context }}
+
+  Please incorporate these physics issues into your critique.
+  {% else %}
+  No physics violations detected. The scene has been validated through physics simulation
+  and is collision-free.
+  {% endif %}
+
+  IMPORTANT: Visual bounding box overlap does NOT indicate collision. If you observe
+  objects that appear to overlap (such as chairs tucked under tables), but they are not
+  listed in the physics violations above, the arrangement is PHYSICALLY VALID. Always
+  trust the physics validation data over visual interpretation.
+
+  ## Reachability Validation (minimum passage: {{ robot_width }}m):
+  {% if reachability_context %}
+  The following reachability issues were detected:
+  {{ reachability_context }}
+
+  Your reachability score MUST reflect this data:
+  - If disconnected regions exist → score ≤ 6
+  - If blocking furniture is identified → mention specific IDs and suggest fixes
+  {% else %}
+  No reachability issues - all areas of the room are accessible.
+  {% endif %}
+
+  ## Orientation Validation:
+
+  You MUST use check_facing_tool to programmatically validate orientation for all
+  furniture with directional facing requirements (appliances, seating, wardrobes,
+  storage, TVs, beds).
+
+  IMPORTANT: DO NOT assess orientation from images alone. Camera angles and
+  perspectives in rendered images create optical illusions that make incorrect
+  orientations appear correct. If you observe furniture that appears correctly
+  oriented but have not validated it with check_facing_tool, your assessment is
+  INVALID. Always trust tool validation over visual interpretation.
+
+  Major facing issues (furniture unusable due to orientation) must result in
+  functionality scores ≤3/10.

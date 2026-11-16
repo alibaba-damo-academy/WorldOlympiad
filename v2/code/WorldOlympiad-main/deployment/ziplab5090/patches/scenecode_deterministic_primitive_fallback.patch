@@ -1,0 +1,52 @@
+--- a/scenecode/agent_utils/asset_router/router.py
++++ b/scenecode/agent_utils/asset_router/router.py
+@@ -17,6 +17,7 @@ from autoresearch.scenecode_structure import (
+     failed_structure_reason,
+     validate_mesh_structure,
+ )
++from autoresearch.scenecode_primitives import create_solid_primitive_glb
+ from scenecode.agent_utils.articulated_retrieval_server import (
+     ArticulatedRetrievalClient,
+     ArticulatedRetrievalServerRequest,
+@@ -1505,4 +1506,41 @@ class AssetRouter:
+                 f"{validation.reason}. Suggestions: {validation.suggestions}"
+             )
+ 
++        primitive_dir = (
++            code_object_dir
++            / f"{item.short_name}_deterministic_primitive_{int(time.time() * 1000)}"
++        )
++        primitive = create_solid_primitive_glb(
++            description=item.description,
++            dimensions=list(item.dimensions),
++            output_dir=primitive_dir,
++        )
++        if primitive is not None:
++            primitive_path, primitive_kind = primitive
++            result = GeneratedGeometry(
++                geometry_path=primitive_path,
++                item=item,
++                asset_source="deterministic_primitive",
++            )
++            validation_dir = debug_dir / f"{item.short_name}_primitive_validation"
++            validation = self.validate_asset(
++                mesh_path=result.geometry_path,
++                description=item.description,
++                output_dir=validation_dir,
++                use_lenient=False,
++            )
++            if validation.is_acceptable:
++                console_logger.info(
++                    "Accepted deterministic solid %s fallback for '%s': %s",
++                    primitive_kind,
++                    item.description,
++                    validation.reason,
++                )
++                return result
++            console_logger.warning(
++                "Deterministic solid %s fallback failed validation for '%s': %s",
++                primitive_kind,
++                item.description,
++                validation.reason,
++            )
+         return None

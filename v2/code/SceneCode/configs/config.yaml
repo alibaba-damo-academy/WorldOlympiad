@@ -1,0 +1,19 @@
+# Configuration parsing starts here.
+
+# Global OpenAI settings (propagated to all agents via Hydra interpolation).
+openai:
+  api_base: ${oc.env:OPENAI_API_BASE,https://api.openai.com/v1}
+  # Service tier for API processing. Valid values:
+  #   null       - Don't pass parameter (uses project default)
+  #   "default"  - Standard pricing and performance
+  #   "flex"     - Lower cost, slower processing (Batch API rates)
+  #   "priority" - Lower latency, premium pricing
+  service_tier: "default"
+
+defaults:
+  - experiment: indoor_scene_generation # Experiment yaml file name in configs/experiment folder
+  - floor_plan_agent: stateful_floor_plan_agent # Floor plan agent config in configs/floor_plan_agent folder
+  - furniture_agent: stateful_furniture_agent # Furniture agent yaml file name in configs/furniture_agent folder
+  - wall_agent: stateful_wall_agent # Wall agent yaml file name in configs/wall_agent folder
+  - ceiling_agent: stateful_ceiling_agent # Ceiling agent yaml file name in configs/ceiling_agent folder
+  - manipuland_agent: stateful_manipuland_agent # Manipuland agent yaml file name in configs/manipuland_agent folder

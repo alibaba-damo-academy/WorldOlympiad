@@ -1,0 +1,35 @@
+diff --git a/scenecode/utils/openai.py b/scenecode/utils/openai.py
+--- a/scenecode/utils/openai.py
++++ b/scenecode/utils/openai.py
+@@ -18,5 +18,8 @@ DEFAULT_OPENAI_API_BASE = os.environ.get(
+     "OPENAI_API_BASE", "https://api.openai.com/v1"
+ )
++DEFAULT_OPENAI_MAX_RETRIES = max(
++    0, int(os.environ.get("SCENECODE_OPENAI_MAX_RETRIES", "6"))
++)
+ _DEFAULT_ASYNC_CLIENTS: dict[str, AsyncOpenAI] = {}
+ console_logger = logging.getLogger(__name__)
+ 
+@@ -58,14 +61,20 @@ def create_openai_client(
+     cfg: Any | None = None, api_base: str | None = None
+ ) -> OpenAI:
+     """Create a synchronous OpenAI client pinned to the configured API base."""
+-    return OpenAI(base_url=get_openai_api_base(cfg=cfg, api_base=api_base))
++    return OpenAI(
++        base_url=get_openai_api_base(cfg=cfg, api_base=api_base),
++        max_retries=DEFAULT_OPENAI_MAX_RETRIES,
++    )
+ 
+ 
+ def create_async_openai_client(
+     cfg: Any | None = None, api_base: str | None = None
+ ) -> AsyncOpenAI:
+     """Create an async OpenAI client pinned to the configured API base."""
+-    return AsyncOpenAI(base_url=get_openai_api_base(cfg=cfg, api_base=api_base))
++    return AsyncOpenAI(
++        base_url=get_openai_api_base(cfg=cfg, api_base=api_base),
++        max_retries=DEFAULT_OPENAI_MAX_RETRIES,
++    )
+ 
+ 
+ def create_run_config(

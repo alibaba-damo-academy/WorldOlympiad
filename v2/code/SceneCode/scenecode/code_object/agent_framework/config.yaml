@@ -1,0 +1,162 @@
+# Agent Framework Configuration
+# 用于 3D 家具对象生成的配置文件
+
+# ==================== 模型配置 ====================
+model:
+  # 主 LLM 模型（默认配置，作为未单独配置阶段的回退）
+  llm:
+    provider: "openai"  # openai, anthropic, local
+    # model_name: "gemini-3-pro-preview"
+    # model_name: "claude-opus-4-5-20251101"
+    # model_name: "claude-sonnet-4-5-20250929"
+    # model_name: "gpt-4o-mini"
+    model_name: "gemini-3.1-pro-preview"
+    # temperature: 0.7
+    api_base: null  # 如果使用本地模型，设置 API 地址
+
+  # ObjectPlan 生成阶段模型（Planner + PlannerChecker 使用）
+  planner_llm:
+    provider: "openai"
+    # model_name: "gpt-4o-mini"  # 模型 A：用于生成 ObjectPlan
+    model_name: "gemini-3.1-pro-preview"
+    # model_name: "claude-opus-4-5-20251101"
+    api_base: null
+    # temperature: 0.7
+
+  # Part 构造阶段模型（PartConstructor 使用）
+  constructor_llm:
+    provider: "openai"
+    # model_name: "claude-opus-4-5-20251101"  # 模型 B：用于 Part 构造
+    model_name: "gemini-3.1-pro-preview"
+    # model_name: "claude-sonnet-4-5-20250929"
+    api_base: null
+    # temperature: 0.7
+
+  # 视觉模型（用于图像对比）
+  vision:
+    provider: "openai"
+    model_name: "gemini-3.1-pro-preview"
+
+# ==================== Prompt 配置 ====================
+prompts:
+  planner: "planner"
+  constructor: "constructor"
+  checker: "checker"
+    
+# ==================== 路径配置 ====================
+paths:
+  # 输入路径
+  input_dir: "./dataset_in"
+  
+  # 输出路径
+  output_dir: "./dataset_out"
+  
+  # 临时文件路径
+  temp_dir: "./temp"
+  
+  # 日志路径
+  log_dir: "./logs"
+
+# ==================== Blender MCP 配置 ====================
+blender:
+  # MCP 服务器配置
+  mcp_server:
+    host: "127.0.0.1"
+    port: 9676
+
+  # Headless backend 生命周期配置（每次 pipeline 启动/关闭一个 Blender 后端）
+  runtime:
+    command: "blender"
+    startup_timeout: 45.0
+    stop_timeout: 10.0
+    
+  # 渲染设置
+  render:
+    engine: "EEVEE"  # CYCLES, EEVEE
+    samples: 32
+    # engine: "EEVEE"
+    # samples: 32
+    resolution_x: 336
+    resolution_y: 336
+    file_format: "PNG"
+    
+  # 场景设置
+  scene:
+    background_color: [0.9, 0.9, 0.9, 1.0]
+    # 相机位置（x, y, z），如果未配置则使用默认值 [1.4, -1.4, 1.0]
+    camera_position: [1.4, -1.4, 1.0]
+    light_energy: 1000
+    
+# ==================== Agent 参数 ====================
+agents:
+  # Planner Agent
+  planner:
+    max_parts: 20  # 最大部件数量
+    min_parts: 1   # 最小部件数量
+    
+  # Planner Checker
+  planner_checker:
+    max_retry: 5  # 最大重试次数
+    
+  # Part Constructor
+  part_constructor:
+    max_retry: 5  # 每个部件最大重试次数
+    save_action_trace: true  # 是否保存操作日志
+    
+# ==================== Pipeline 配置 ====================
+pipeline:
+  # 是否启用各阶段
+  enable_planner_check: true
+  
+  # Part 构造（仅 generation）
+  enable_part_construct: true   # false = 部件代码已存在，仅加载并生成主文件
+  
+
+  # 是否导出最终单文件 GLB
+  enable_glb_export: true
+
+  # 是否导出每个部件/实例的 OBJ 和 GLTF
+  enable_part_obj_export: true
+  enable_part_gltf_export: true
+  
+  # 是否保存中间结果
+  save_intermediate: true
+  
+  # 并行配置
+  parallel_parts: false  # 是否并行构建部件（实验性）
+  max_workers: 4
+  
+# ==================== 日志配置 ====================
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  save_to_file: true
+
+
+# ==================== 部件模板 ====================
+part_templates:
+  chair:
+    required:
+      - seat
+      - legs
+    optional:
+      - backrest
+      - armrest
+      - crossbar
+      
+  table:
+    required:
+      - tabletop
+      - legs
+    optional:
+      - shelf
+      - crossbar
+      - drawer
+      
+  stool:
+    required:
+      - seat
+      - legs
+    optional:
+      - footrest
+      - crossbar

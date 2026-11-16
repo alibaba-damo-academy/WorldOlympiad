@@ -1,0 +1,5 @@
+--- a/scenecode/utils/parallel.py
++++ b/scenecode/utils/parallel.py
+@@ -107,1 +107,1 @@
+-    context = multiprocessing.get_context("spawn")
++    context = multiprocessing.get_context("forkserver")

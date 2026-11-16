@@ -1,0 +1,11 @@
+--- a/dream2flow/flow/generators/video_flow_generator.py
++++ b/dream2flow/flow/generators/video_flow_generator.py
+@@ -190,7 +190,7 @@ class VideoFlowGenerator(ObjectFlowGenerator):
+             depth_valid_mask=depth_valid_mask,
+         )
+ 
+-        restructured_video_frames = video_frames.float().permute(0, 3, 1, 2)
++        restructured_video_frames = (video_frames.float() * 255.0).permute(0, 3, 1, 2)
+         tracking_result = self._particle_tracker.track_particles(
+             output_dir=output_dir,
+             camera=camera,

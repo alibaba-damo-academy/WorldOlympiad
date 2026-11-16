@@ -1,0 +1,32 @@
+--- a/scenecode/manipuland_agents/stateful_manipuland_agent.py
++++ b/scenecode/manipuland_agents/stateful_manipuland_agent.py
+@@ -785,9 +785,26 @@
+                     hsm_config = SupportSurfaceExtractionConfig.from_config(
+                         cfg=self.cfg.support_surface_extraction
+                     )
+-                    surfaces = extract_and_propagate_support_surfaces(
+-                        scene=self.scene, furniture_object=furniture, config=hsm_config
+-                    )
++                    try:
++                        surfaces = extract_and_propagate_support_surfaces(
++                            scene=self.scene,
++                            furniture_object=furniture,
++                            config=hsm_config,
++                        )
++                    except FileNotFoundError as exc:
++                        # A recovered SceneCode checkpoint can contain a valid
++                        # visual/SDF furniture asset without the per-link mesh
++                        # layout required only for placing optional decor on it.
++                        # Never skip the benchmark worktable; optional context
++                        # furniture may remain unpopulated instead of aborting
++                        # an otherwise complete robotics scene.
++                        protected = ("worktable", "work_table", "tabletop")
++                        if any(token in furniture_id.lower() for token in protected):
++                            raise
++                        console_logger.warning(
++                            f"Skipping optional furniture {furniture_id}: {exc}"
++                        )
++                        continue
+ 
+                     console_logger.info(
+                         f"Extracted {len(surfaces)} support surface(s) for {furniture_id}"

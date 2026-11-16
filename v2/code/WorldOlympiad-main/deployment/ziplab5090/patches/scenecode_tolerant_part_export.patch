@@ -1,0 +1,13 @@
+--- a/scenecode/code_object/agent_framework/pipeline.py
++++ b/scenecode/code_object/agent_framework/pipeline.py
+@@ -968,2 +968,8 @@
+-                            stages_failed.append("construction")
+-                            self.logger.warning(f"Construction partially failed: {construction_result.get('failed_parts', [])}")
++                            # Keep a partial assembly available for downstream
++                            # identity, framing, and physical-usability checks.
++                            # Those checks decide whether the result is usable;
++                            # a single omitted part need not discard all others.
++                            self.logger.warning(
++                                "Construction incomplete; exporting the assembled parts; failed parts: %s",
++                                construction_result.get("failed_parts", []),
++                            )

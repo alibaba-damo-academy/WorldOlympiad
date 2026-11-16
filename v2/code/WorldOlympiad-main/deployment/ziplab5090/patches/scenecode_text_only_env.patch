@@ -1,0 +1,60 @@
+--- a/scenecode/agent_utils/asset_router/router.py
++++ b/scenecode/agent_utils/asset_router/router.py
+@@ -2,6 +2,8 @@
+ 
+ import json
+ import logging
++import os
++import shutil
+ import tempfile
+ import time
+ 
+@@ -1406,18 +1407,36 @@
+         output_dir = code_object_dir / base_name
+         output_dir.mkdir(parents=True, exist_ok=True)
+ 
+-        try:
+-            style_prompt = style_context or "Modern style"
+-            image_generator.generate_images(
+-                style_prompt=style_prompt,
+-                object_descriptions=[item.description],
+-                output_paths=[image_path],
+-            )
+-        except Exception as e:
+-            console_logger.warning(
+-                f"Image generation failed for Code_Object '{item.description}'; "
+-                f"using the vendored text-conditioned pipeline: {e}"
++        external_reference = os.environ.get("SCENECODE_CODE_OBJECT_REFERENCE_IMAGE")
++        if external_reference:
++            reference = Path(external_reference).expanduser().resolve()
++            if not reference.is_file():
++                raise FileNotFoundError(
++                    f"SCENECODE_CODE_OBJECT_REFERENCE_IMAGE is missing: {reference}"
++                )
++            shutil.copy2(reference, image_path)
++            console_logger.info(
++                "Using external reference image for Code_Object: %s", reference
++            )
++        elif os.environ.get("SCENECODE_CODE_OBJECT_TEXT_ONLY") == "1":
++            console_logger.info(
++                "Skipping unavailable image backend for Code_Object; using the "
++                "vendored text-conditioned pipeline"
+             )
+             image_path = None
++        else:
++            try:
++                style_prompt = style_context or "Modern style"
++                image_generator.generate_images(
++                    style_prompt=style_prompt,
++                    object_descriptions=[item.description],
++                    output_paths=[image_path],
++                )
++            except Exception as e:
++                console_logger.warning(
++                    f"Image generation failed for Code_Object '{item.description}'; "
++                    f"using the vendored text-conditioned pipeline: {e}"
++                )
++                image_path = None
+ 
+         code_object_cfg = self.cfg.asset_manager.get("code_object", {})
+         profile_config_keys = {

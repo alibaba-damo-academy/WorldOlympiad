@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "source_of_truth": "the bootstrap scripts and requirement locks in the exact WorldOlympiad-main commit in sources.lock.json",
+  "environments": {
+    "autoresearch": {
+      "path": "envs/autoresearch",
+      "python": "3.11",
+      "bootstrap": "code/WorldOlympiad-main/deployment/ziplab5090/bootstrap_autoresearch.sh",
+      "bootstrap_inputs": {
+        "python_archive_sha256": "b9fff092374acebc451bb881156afe6a58991213d25386358742fee296128909",
+        "requirements": "code/WorldOlympiad-main/requirements-autoresearch.txt",
+        "wheel_cache": "cache/bootstrap/autoresearch/wheels"
+      },
+      "purpose": "RSI agent, registered jobs worker, focused tests and project tools",
+      "entrypoint_requirements": "requirements-agent-runtime.txt"
+    },
+    "worldeval": {
+      "path": "envs/worldeval",
+      "python": "3.11",
+      "bootstrap": "code/WorldOlympiad-main/deployment/ziplab5090/bootstrap_worldolympiad_evaluation.sh",
+      "requirements": [
+        "code/WorldOlympiad-main/requirements-worldeval-torch-cu128.txt",
+        "code/WorldOlympiad-main/requirements-worldeval.txt"
+      ],
+      "torch": "2.7.1+cu128",
+      "cuda_toolkit": "12.8",
+      "purpose": "WorldOlympiad evaluator and scoring dependencies"
+    },
+    "scenecode": {
+      "path": "envs/scenecode",
+      "python": "3.11",
+      "bootstrap": "code/WorldOlympiad-main/deployment/ziplab5090/bootstrap_scenecode.sh",
+      "lock": "code/SceneCode/uv.lock",
+      "bpy": "4.5.4",
+      "blender": {
+        "version": "4.4.3",
+        "url": "https://download.blender.org/release/Blender4.4/blender-4.4.3-linux-x64.tar.xz",
+        "sha256": "8d3be07d2bc412b502c6bfe3cfe3e22195a4164076867da987ce148d73c27946"
+      },
+      "purpose": "SceneCode source execution and rendering",
+      "source_path": "code/SceneCode",
+      "runtime_overlay": "runtime/scenecode"
+    },
+    "robotwin": {
+      "path": "envs/robotwin",
+      "python": "3.10",
+      "bootstrap": "code/WorldOlympiad-main/deployment/ziplab5090/bootstrap_robotwin_runtime.sh",
+      "direct_overrides": {
+        "torch": "2.9.0+cu128",
+        "torchvision": "0.24.0",
+        "warp-lang": "1.12.0",
+        "curobo_source": "code/curobo-0.7.8"
+      },
+      "purpose": "RoboTwin simulator and robot-control stack",
+      "source_path": "code/RoboTwin",
+      "runtime_overlay": "runtime/RoboTwin",
+      "assets": {
+        "path": "runtime/robotwin_assets",
+        "server_reuse_source": "runtime/RoboTwin/assets under an operator-supplied compatible server root (host-specific)",
+        "required_paths": [
+          "embodiments/aloha-agilex/config.yml",
+          "objects/objaverse/list.json"
+        ],
+        "fresh_user_action": "Run the official RoboTwin asset download flow after obtaining Hugging Face access; asset download is explicit and separate from setup."
+      }
+    },
+    "lingbot": {
+      "path": "envs/lingbot",
+      "python": "3.10",
+      "bootstrap": "scripts/setup_runtime.sh (project-local uv venv + pinned direct requirements)",
+      "direct_requirements": {
+        "torch": "2.9.0+cu128",
+        "torchvision": "0.24.0+cu128",
+        "torchaudio": "2.9.0+cu128",
+        "diffusers": "0.36.0",
+        "transformers": "4.55.2",
+        "numpy": "1.26.4"
+      },
+      "source_patch": "code/WorldOlympiad-main/deployment/ziplab5090/lingbot_torch_attention.patch",
+      "purpose": "Local LingBot-VA adapter inference server; kept separate from RoboTwin",
+      "source_path": "code/lingbot-va",
+      "runtime_overlay": "runtime/lingbot-va"
+    }
+  },
+  "pinned_build_sources": {
+    "gsplat": {
+      "url": "https://github.com/nerfstudio-project/gsplat.git",
+      "commit": "0b4dddf04cb687367602c01196913cde6a743d70"
+    },
+    "glm": {
+      "url": "https://github.com/g-truc/glm.git",
+      "commit": "33b4a621a697a305bc3a7610d290677b96beb181"
+    },
+    "clip": {
+      "url": "https://github.com/ultralytics/CLIP.git",
+      "commit": "7ffa84b3bfa40c42ecc1c77147a855e69cb2dd40",
+      "archive_sha256": "9127949b86956637550c4d6f07d08dfd4c388672feb52eddc20f755acd8b230e",
+      "purpose": "WorldEval scoring tokenizer source"
+    }
+  },
+  "weight_contracts": {
+    "auxiliary": "code/WorldOlympiad-main/deployment/ziplab5090/download_worldolympiad_weights.sh --check",
+    "tested_model": "code/WorldOlympiad-main/scripts/lingbot_checkpoint_contract.py",
+    "tested_model_policy": "reuse configured checkpoint in place; never download or replace it"
+  },
+  "runtime_copies": {
+    "RoboTwin": {
+      "source": "code/RoboTwin",
+      "destination": "runtime/RoboTwin",
+      "patches": [
+        "deployment/ziplab5090/patches/robotwin_lingbot_native_camera.patch",
+        "deployment/ziplab5090/patches/robotwin_lingbot_upstream_intrinsics.patch"
+      ]
+    },
+    "LingBot-VA": {
+      "source": "code/lingbot-va",
+      "destination": "runtime/lingbot-va",
+      "patches": [
+        "deployment/ziplab5090/lingbot_torch_attention.patch"
+      ]
+    },
+    "DROID bridge": {
+      "source": "code/scenecode_pybullet_minimal",
+      "destination": "runtime/scenecode_pybullet_minimal",
+      "patches": [],
+      "bundle_manifest": "locks/source-manifests/scenecode_pybullet_minimal.json",
+      "provenance": "Already includes the compatible place-on-region, empty-output-directory, and host-link-frame behavior. Runtime staging copies and verifies this immutable bundle; it does not reapply patches."
+    },
+    "SceneCode": {
+      "source": "code/SceneCode",
+      "destination": "runtime/scenecode",
+      "patch_bootstrap": "deployment/ziplab5090/stage_scenecode_runtime.sh"
+    }
+  },
+  "gpu_topologies": {
+    "preparation": {
+      "cards": 1,
+      "requirements": "one idle allowlisted NVIDIA GPU with >=8,192 MiB free; utilization <=5%; zero compute-app PIDs",
+      "memory_floor_mib": 8192,
+      "allowlist_environment": "WOV2_GPU_ALLOWLIST"
+    },
+    "lingbot_episode": {
+      "cards": 3,
+      "policy_cards": 2,
+      "policy_min_free_mib_each": 30720,
+      "simulator_cards": 1,
+      "simulator_min_free_mib": 25600,
+      "distinct": true,
+      "max_utilization_percent": 5,
+      "compute_pids_allowed": 0,
+      "allowlist_environment": "WOV2_GPU_ALLOWLIST"
+    },
+    "split_scoring": {
+      "cards": 2,
+      "vlm_min_free_mib": 25600,
+      "compute_min_free_mib": 25600,
+      "distinct": true,
+      "max_utilization_percent": 5,
+      "compute_pids_allowed": 0,
+      "layout": "Qwen-VL service on VLM card; physical/interaction/geometry and CLIP/SAM/DA compute on the second card",
+      "allowlist_environment": "WOV2_GPU_ALLOWLIST"
+    },
+    "report": {
+      "cards": 0,
+      "requirements": "CPU-only report-v3 generation after required scoring tracks are complete"
+    }
+  },
+  "gpu_policy": {
+    "backend": "NVIDIA CUDA",
+    "allowlist_environment": "WOV2_GPU_ALLOWLIST",
+    "device_indices": "local nvidia-smi indices",
+    "query_scope": "query and use only explicitly allowlisted devices",
+    "cuda_architecture_policy": "validate the selected GPU against installed PyTorch; compile native extensions for the selected visible GPU unless TORCH_CUDA_ARCH_LIST is explicitly set",
+    "renderer_policy": {
+      "backend": "host EGL; prefer NVIDIA when its vendor JSON is readable",
+      "device_selection": "host-configured EGL default; independent of the CUDA allowlist",
+      "vendor_json_environment": "WOV2_EGL_VENDOR_JSON",
+      "default_vendor_json": "/usr/share/glvnd/egl_vendor.d/10_nvidia.json",
+      "host_validation": "run as the evaluator user; smoke-test Blender and record the actual renderer on each host"
+    }
+  }
+}

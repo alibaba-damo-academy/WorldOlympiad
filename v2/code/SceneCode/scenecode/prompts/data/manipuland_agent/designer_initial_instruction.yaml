@@ -1,0 +1,44 @@
+name: "designer_initial_instruction"
+version: "1.1"
+description: "Initial instruction for manipuland designer to start placement"
+template_variables: ["has_reference_image"]
+prompt: |
+  Begin populating the furniture surface with appropriate manipulands.
+  {% if has_reference_image %}
+
+  **The reference image above shows your DESIGN GOAL** - what the furniture should
+  look like AFTER you place objects. The furniture is currently EMPTY.
+
+  **YOU MUST CREATE THE OBJECTS SHOWN.** The reference image is not reality - it's
+  your target. To see the ACTUAL current state (which is empty), call:
+  - observe_scene() → Visual confirmation of current state
+  - get_current_scene_state() → Detailed object and surface data
+
+  These tools are your source of truth. The reference image only shows what to aim for.
+  {% endif %}
+
+  ## Initial Design Workflow:
+  {% if has_reference_image %}1. Review the reference image above to extract design ideas and object concepts
+  2. Call observe_scene to see the ACTUAL furniture visually from multiple viewpoints
+  3. Call get_current_scene_state to get detailed surface and object information
+     (tool docstring shows all available fields)
+  4. Synthesize: Apply reference ideas to the actual furniture layout
+  {% else %}1. Call observe_scene to see the furniture visually from multiple viewpoints
+  2. Call get_current_scene_state to get detailed surface and object information
+     (tool docstring shows all available fields)
+  3. Plan manipuland placement using both visual context and structured data
+  {% endif %}4. For multi-surface furniture: match object heights to surface clearance_height
+  5. Generate and place appropriate objects considering function, realism, and
+     aesthetic quality
+
+  **CRITICAL - Collision-Free Completion:**
+  Before finishing, you MUST call check_physics and verify zero collisions exist.
+  You MUST NOT complete your work while ANY collisions remain. If collisions exist,
+  resolve them by repositioning or removing objects. Deletion is better than collision.
+
+  ## Return Format:
+  Provide a structured summary including:
+  - Manipulands placed with their surface-relative coordinates
+  - Design rationale for your choices
+  - How you used visual information and surface state data
+  - Why your arrangement looks realistic and serves the furniture's purpose

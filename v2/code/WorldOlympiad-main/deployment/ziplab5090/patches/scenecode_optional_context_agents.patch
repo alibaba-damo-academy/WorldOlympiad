@@ -1,0 +1,90 @@
+diff --git a/scenecode/prompts/data/wall_agent/stateful_planner_runner_instruction.yaml b/scenecode/prompts/data/wall_agent/stateful_planner_runner_instruction.yaml
+index 09b4f50..669e772 100644
+--- a/scenecode/prompts/data/wall_agent/stateful_planner_runner_instruction.yaml
++++ b/scenecode/prompts/data/wall_agent/stateful_planner_runner_instruction.yaml
+@@ -7,6 +7,15 @@ prompt: |
+ 
+   First, consider whether this room type typically has wall decoration in real life.
+   Utilitarian spaces may need no decoration at all - that's a valid outcome.
++  The authored room description is authoritative: when it explicitly says wall
++  context is optional, restrained, or must not be added merely to make the room
++  look fuller, and it names no required wall-mounted object, finish immediately
++  with no wall objects. Empty walls are the desired completed result in that case,
++  not an incomplete design. Do not ask the designer to invent decoration.
++
++  Optional background assets have a fail-open omission policy. If an optional
++  wall asset cannot be acquired or fails validation, omit it; do not rephrase it,
++  substitute another decoration, or start another generation batch to fill space.
+ 
+   If decoration is appropriate:
+   - Start with initial placement
+diff --git a/scenecode/prompts/data/wall_agent/stateful_planner_agent.yaml b/scenecode/prompts/data/wall_agent/stateful_planner_agent.yaml
+index a962b2f..f7300ab 100644
+--- a/scenecode/prompts/data/wall_agent/stateful_planner_agent.yaml
++++ b/scenecode/prompts/data/wall_agent/stateful_planner_agent.yaml
+@@ -27,6 +27,20 @@ prompt: |
+   - Objects cannot overlap excluded regions (doors/windows)
+   - Designer can control X (position along wall), Z (height), and rotation
+ 
++  # Authored Optional-Context Policy (takes priority over the generic workflow)
++  Inspect the room description before calling any agent. If it explicitly makes
++  wall context optional/restrained or forbids decoration added only to make the
++  room fuller, and it does not explicitly require a wall-mounted object, complete
++  this stage immediately with an empty wall-object set. Do not run the mandatory
++  placement workflow below merely because generic interior decoration often uses
++  clocks, shelves, boards, mirrors, or artwork.
++
++  If an optional background object is appropriate in another room, one failed
++  acquisition or validation means omit that object. Do not retry it under a
++  simplified description, replace it with a different decoration, or create a
++  new batch to achieve generic visual balance. Required authored wall objects are
++  not optional and keep their normal correction workflow.
++
+   # Room Context
+   {{ room_description }}
+ 
+diff --git a/scenecode/prompts/data/ceiling_agent/stateful_planner_runner_instruction.yaml b/scenecode/prompts/data/ceiling_agent/stateful_planner_runner_instruction.yaml
+index 78ded5f..2f3f0ad 100644
+--- a/scenecode/prompts/data/ceiling_agent/stateful_planner_runner_instruction.yaml
++++ b/scenecode/prompts/data/ceiling_agent/stateful_planner_runner_instruction.yaml
+@@ -7,6 +7,15 @@ prompt: |
+ 
+   First, consider whether this room type typically has ceiling fixtures in real life.
+   Some spaces may need minimal or no ceiling decoration - that's a valid outcome.
++  The authored room description is authoritative: when it explicitly says ceiling
++  context is optional, restrained, or must not be added merely to make the room
++  look fuller, and it names no required ceiling-mounted object, finish immediately
++  with no ceiling objects. Existing scene illumination does not require a visible
++  decorative fixture unless the authored description says so.
++
++  Optional background assets have a fail-open omission policy. If an optional
++  ceiling asset cannot be acquired or fails validation, omit it; do not rephrase
++  it, substitute another fixture, or start another batch to fill space.
+ 
+   If ceiling fixtures are appropriate:
+   - Start with primary lighting (ceiling lights, pendants, chandeliers)
+diff --git a/scenecode/prompts/data/ceiling_agent/stateful_planner_agent.yaml b/scenecode/prompts/data/ceiling_agent/stateful_planner_agent.yaml
+index be59dad..1d4d2f1 100644
+--- a/scenecode/prompts/data/ceiling_agent/stateful_planner_agent.yaml
++++ b/scenecode/prompts/data/ceiling_agent/stateful_planner_agent.yaml
+@@ -30,6 +30,20 @@ prompt: |
+   - Objects hang from ceiling at {{ ceiling_height }}m height
+   - Designer can control X, Y (horizontal position), and rotation around vertical axis
+ 
++  # Authored Optional-Context Policy (takes priority over the generic workflow)
++  Inspect the room description before calling any agent. If it explicitly makes
++  ceiling context optional/restrained or forbids decoration added only to make the
++  room fuller, and it does not explicitly require a ceiling-mounted object, complete
++  this stage immediately with an empty ceiling-object set. Do not run the mandatory
++  placement workflow below merely because generic rooms often contain visible lights,
++  fans, pendants, or detectors; the renderer already provides scene illumination.
++
++  If an optional background object is appropriate in another room, one failed
++  acquisition or validation means omit that object. Do not retry it under a
++  simplified description, replace it with a different fixture, or create a new
++  batch to achieve generic visual balance. Required authored ceiling objects are
++  not optional and keep their normal correction workflow.
++
+   # Room Context
+   {{ room_description }}
+ 

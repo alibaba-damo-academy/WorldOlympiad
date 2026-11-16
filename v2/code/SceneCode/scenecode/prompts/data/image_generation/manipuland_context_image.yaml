@@ -1,0 +1,31 @@
+name: "manipuland_context_image"
+version: "1.0"
+description: "Edit a Blender render of furniture to show objects placed on surfaces"
+template_variables: [
+  "furniture_description",
+  "furniture_dimensions",
+  "suggested_items",
+  "prompt_constraints",
+  "style_notes"
+]
+prompt: |
+  Edit this image of a {{ furniture_description }} by adding realistic objects on its surfaces.
+
+  FURNITURE DIMENSIONS (for scale reference):
+  {{ furniture_dimensions }}
+
+  OBJECTS TO ADD:
+  {{ suggested_items }}
+
+  REQUIREMENTS:
+  {{ prompt_constraints }}
+
+  STYLE:
+  {{ style_notes }}
+
+  INSTRUCTIONS:
+  - Keep furniture EXACTLY as shown
+  - Add only specified objects, naturally placed
+  - Scale objects realistically relative to furniture dimensions
+  - Objects resting on surfaces (not floating)
+  - Maintain consistent lighting

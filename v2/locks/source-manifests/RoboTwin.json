@@ -1,0 +1,5272 @@
+{
+  "schema_version": 1,
+  "name": "RoboTwin",
+  "source_commit": "ea8b21121ebb3cd201ff5b3fe361944ac94eda3f",
+  "tree_sha256": "6df31f7120d6232ce8dc5b4ae90f186364b098cfa3af45fe8f8a67f6b30a0476",
+  "entries": [
+    {
+      "path": ".gitignore",
+      "type": "file",
+      "mode": 420,
+      "size": 332,
+      "sha256": "1f3ecc08e1650c3d566223cc48c090bce38b21cdf688879e88033dccd066c13a"
+    },
+    {
+      "path": ".gitmodules",
+      "type": "file",
+      "mode": 420,
+      "size": 111,
+      "sha256": "0c5a43bb9e9eb87e5080014bdebce30a46a1838c26991b6e82139277832748b5"
+    },
+    {
+      "path": "LICENSE",
+      "type": "file",
+      "mode": 420,
+      "size": 1081,
+      "sha256": "c695d421718e54e6f3a60858f0c601125c3ecc60c199332c15947360561e2a9f"
+    },
+    {
+      "path": "README.md",
+      "type": "file",
+      "mode": 420,
+      "size": 18509,
+      "sha256": "08bd114a0de29a5b797a80cd993b6689211df86531612e4121fc057a9a8f3114"
+    },
+    {
+      "path": "assets/_download.py",
+      "type": "file",
+      "mode": 420,
+      "size": 259,
+      "sha256": "4dd3a8f46902056903a58df7c5b56805420145c42d8e7a474fe1af9d98970cb4"
+    },
+    {
+      "path": "assets/files/50_tasks.gif",
+      "type": "file",
+      "mode": 420,
+      "size": 3248187,
+      "sha256": "fc32c16795fddf5c22422028d46105af5c5fb869aeb72466e0961d84bd9f56ac"
+    },
+    {
+      "path": "assets/files/domain_randomization.png",
+      "type": "file",
+      "mode": 420,
+      "size": 2802402,
+      "sha256": "e150e1b57175dc89fc5cf3b98fdcc7e230eca7260dad9a858ad59afbf6b260d6"
+    },
+    {
+      "path": "code_gen/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 566,
+      "sha256": "2967c64709d8fe62763c6a3722c7409ddd155fa586f5f47c968dda7b0728f463"
+    },
+    {
+      "path": "code_gen/gpt_agent.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1022,
+      "sha256": "1b3ebbceeb372b6ebe996e7973ff195eef4a304d8fa89c991f1e1fdaa19d690f"
+    },
+    {
+      "path": "code_gen/observation_agent.py",
+      "type": "file",
+      "mode": 420,
+      "size": 9309,
+      "sha256": "8a3eab0ac2d07e3449cbbe0a14a30afc56577ec32084314295117bb871c2ceaa"
+    },
+    {
+      "path": "code_gen/prompt.py",
+      "type": "file",
+      "mode": 420,
+      "size": 16570,
+      "sha256": "6b7b38de8575ec77d1ffed948b67190b612fda1ac2c0b64c2e5acacc08c49197"
+    },
+    {
+      "path": "code_gen/run_code.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3623,
+      "sha256": "50c6c685d06804af8c888e19144690e57b07fdc1f54530e88d98c923298a8b85"
+    },
+    {
+      "path": "code_gen/task_generation.py",
+      "type": "file",
+      "mode": 420,
+      "size": 8684,
+      "sha256": "9cf432fea2b9d7f886760a363bb1766cca0d28bd41a912856cd303aefb5dff46"
+    },
+    {
+      "path": "code_gen/task_generation_mm.py",
+      "type": "file",
+      "mode": 420,
+      "size": 13893,
+      "sha256": "bcdb7c1f1f286ee1296b1296651cd8c49f98eeb8069e566ea3444b4776141887"
+    },
+    {
+      "path": "code_gen/task_generation_simple.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3002,
+      "sha256": "75fae91bfd8475ee132f45cfb4b7b16dfcc41b016cfcf857bb24158a846e573b"
+    },
+    {
+      "path": "code_gen/task_info.py",
+      "type": "file",
+      "mode": 420,
+      "size": 62024,
+      "sha256": "5324e2c825360370f870d46bbdab13d94b8082d48e016980563afa7ba3686ea8"
+    },
+    {
+      "path": "code_gen/test_gen_code.py",
+      "type": "file",
+      "mode": 420,
+      "size": 11235,
+      "sha256": "173b46f8f332c98c059dccb428f0d29a203a2b0254a49128e66da1292f7a89d3"
+    },
+    {
+      "path": "collect_data.sh",
+      "type": "file",
+      "mode": 420,
+      "size": 371,
+      "sha256": "e30a9e687d58fe73544046ff37bdfd6fe866a5ffe413848524612cc19437aa44"
+    },
+    {
+      "path": "data/decode_image_bit.py",
+      "type": "file",
+      "mode": 420,
+      "size": 17675,
+      "sha256": "90df99c52d3f127a09f5960680113f17e8b3e25b2e3cb9117abdeb249d7a337e"
+    },
+    {
+      "path": "data/process_stuck.py",
+      "type": "file",
+      "mode": 420,
+      "size": 893,
+      "sha256": "1b38aff2810ed5e922ba3429f8fbb698b527ec16ca4c35d791b480dd5c907071"
+    },
+    {
+      "path": "description/_generate_object_prompt.txt",
+      "type": "file",
+      "mode": 420,
+      "size": 2005,
+      "sha256": "b123e5d412f45e0de6e71704430cca156536b391abe1c4c9ce616fb12d655ce2"
+    },
+    {
+      "path": "description/_generate_task_prompt.txt",
+      "type": "file",
+      "mode": 420,
+      "size": 796,
+      "sha256": "809d07a25c5f058e7e08ebe2a14dc670564e7e92f81a92132eabe3839ff7d33c"
+    },
+    {
+      "path": "description/_generate_task_prompt_schema.txt",
+      "type": "file",
+      "mode": 420,
+      "size": 418,
+      "sha256": "dda2dee2aef51aaa93fb794b62f398353f77805486a8c8790ae4e5ae54c75827"
+    },
+    {
+      "path": "description/gen_episode_instructions.sh",
+      "type": "file",
+      "mode": 420,
+      "size": 117,
+      "sha256": "bb1f0dcfc15e963746eb78054ce271fe3114d1148ebe83774bea422066a76d02"
+    },
+    {
+      "path": "description/gen_object_descriptions.sh",
+      "type": "file",
+      "mode": 420,
+      "size": 566,
+      "sha256": "fcbba2a62360d834e95b3fd8b5075d3e3eb4df7c164d1e7c1628f059fa9e18eb"
+    },
+    {
+      "path": "description/gen_task_instruction_templates.sh",
+      "type": "file",
+      "mode": 420,
+      "size": 106,
+      "sha256": "414158a7605ff70c900680f4713dca7f1ed286ffb4de7014e496c3af6c38b431"
+    },
+    {
+      "path": "description/objects_description/001_bottle/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 634,
+      "sha256": "4927366c88ece99e61bb06c4ae78303825e97011b01e0f164a0b346f8ebb6049"
+    },
+    {
+      "path": "description/objects_description/001_bottle/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 618,
+      "sha256": "a983d35344e69c2a723f14c48940340855d678809b9b3d2f6a5c5bb208a8343a"
+    },
+    {
+      "path": "description/objects_description/001_bottle/base10.json",
+      "type": "file",
+      "mode": 420,
+      "size": 745,
+      "sha256": "b1d2a1d2f9bbf3420d4c570bb58cee5bd09b7bc090ba242696c0bfd8d7815200"
+    },
+    {
+      "path": "description/objects_description/001_bottle/base11.json",
+      "type": "file",
+      "mode": 420,
+      "size": 692,
+      "sha256": "931e15d76717f420cceb94ec693500ab4d4e7b63bd2a0cb4afefb74768860bca"
+    },
+    {
+      "path": "description/objects_description/001_bottle/base12.json",
+      "type": "file",
+      "mode": 420,
+      "size": 696,
+      "sha256": "bcd691a0d6cc3e9fe643e858f66d1bda402cde9275db1ce84f1a64d14a52bc51"
+    },
+    {
+      "path": "description/objects_description/001_bottle/base13.json",
+      "type": "file",
+      "mode": 420,
+      "size": 590,
+      "sha256": "49da9966fd4e19adaaea661f76c9e70bd6d876b81ae027b5fceb8365b9be7544"
+    },
+    {
+      "path": "description/objects_description/001_bottle/base14.json",
+      "type": "file",
+      "mode": 420,
+      "size": 572,
+      "sha256": "13bbd355a3aad2aaad23c652589a49f5b33b51edc1967249858f679d0c67af93"
+    },
+    {
+      "path": "description/objects_description/001_bottle/base15.json",
+      "type": "file",
+      "mode": 420,
+      "size": 696,
+      "sha256": "7d9b9506ef0e9f4907f120948f258e4bc9027538a93dd0ed034471f79f8c3d1d"
+    },
+    {
+      "path": "description/objects_description/001_bottle/base16.json",
+      "type": "file",
+      "mode": 420,
+      "size": 634,
+      "sha256": "d9d44cf675f0d6f6253447de31f29ecb0eed829a365adc1af2f9bf54e42015a5"
+    },
+    {
+      "path": "description/objects_description/001_bottle/base17.json",
+      "type": "file",
+      "mode": 420,
+      "size": 616,
+      "sha256": "8fd5f1fba205322d28d60a282e79999def98c842a54ea18b6ee605b9deebbaba"
+    },
+    {
+      "path": "description/objects_description/001_bottle/base18.json",
+      "type": "file",
+      "mode": 420,
+      "size": 698,
+      "sha256": "4b9263e19a00accb3b4cc9f56502d8938cdc2a3010c594bb8786b22aba0cb3c2"
+    },
+    {
+      "path": "description/objects_description/001_bottle/base19.json",
+      "type": "file",
+      "mode": 420,
+      "size": 685,
+      "sha256": "43fbb4b53560eca8d170fe541e119b639be27ee40a3ddec35da0fd39b547f5c9"
+    },
+    {
+      "path": "description/objects_description/001_bottle/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 725,
+      "sha256": "adbd5b0e14e2ea67e841f2d1716b20367802ee59dea1bc94e2182e0129898d3d"
+    },
+    {
+      "path": "description/objects_description/001_bottle/base20.json",
+      "type": "file",
+      "mode": 420,
+      "size": 718,
+      "sha256": "4d5779917bb88f245d9216528e23496bddcb9ce1232fcb2029666749c3289fe5"
+    },
+    {
+      "path": "description/objects_description/001_bottle/base21.json",
+      "type": "file",
+      "mode": 420,
+      "size": 591,
+      "sha256": "45f26d6372df9190621e897154d4fbaa9ae33889fa1bfd849b6345aa52a6cd33"
+    },
+    {
+      "path": "description/objects_description/001_bottle/base22.json",
+      "type": "file",
+      "mode": 420,
+      "size": 706,
+      "sha256": "4cbd73bb645c30a942947025a49b9ef7c23fb08ec20487b88a94823c88d5c201"
+    },
+    {
+      "path": "description/objects_description/001_bottle/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 594,
+      "sha256": "dbaee62ec1b04e8046dcd70e97b79273ada76cbad3c5168dd3e8dee11dcb2c87"
+    },
+    {
+      "path": "description/objects_description/001_bottle/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 658,
+      "sha256": "b260cd25881b1dcdf8402602f434acfb639e63337ae1584a3fa7ea38642bb9ec"
+    },
+    {
+      "path": "description/objects_description/001_bottle/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 651,
+      "sha256": "d5b8d6563bec2f4d8fb0cc834aeec613721a6398faa157fdb83ca0940cfda9cb"
+    },
+    {
+      "path": "description/objects_description/001_bottle/base6.json",
+      "type": "file",
+      "mode": 420,
+      "size": 632,
+      "sha256": "7408422fdb5626ae9048bb5018d7407123779a08fa8c98f6c8ee0f70bbf26c73"
+    },
+    {
+      "path": "description/objects_description/001_bottle/base7.json",
+      "type": "file",
+      "mode": 420,
+      "size": 731,
+      "sha256": "6068368b228990ff6733e015b7a2f1dc97392c622e20ea2966db2f1692ab8c1d"
+    },
+    {
+      "path": "description/objects_description/001_bottle/base8.json",
+      "type": "file",
+      "mode": 420,
+      "size": 649,
+      "sha256": "3737b823ad0d39e9fd52f009c0416e992e2e5916b9bdfde67c604253ca0d8f0e"
+    },
+    {
+      "path": "description/objects_description/001_bottle/base9.json",
+      "type": "file",
+      "mode": 420,
+      "size": 697,
+      "sha256": "53f23e1da33b59807e01b77e352562f1d39ee8a872096e2ff19c365a42d80987"
+    },
+    {
+      "path": "description/objects_description/002_bowl/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 635,
+      "sha256": "a461506c3cdde85d65741f48fa328b40a19efcd00a78f9cdb102b067fcdf90b5"
+    },
+    {
+      "path": "description/objects_description/002_bowl/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 539,
+      "sha256": "c472aa632c96cc860be385639264a6c0f34f03d3287044679e4f8c224f4882b4"
+    },
+    {
+      "path": "description/objects_description/002_bowl/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 674,
+      "sha256": "a4bc8e44fbc5dd8b4e587616f3a49836ee724ef4f575253e6f916c34d8a537a6"
+    },
+    {
+      "path": "description/objects_description/002_bowl/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 708,
+      "sha256": "ce909cfa9fe26d45b15c744a3cd5831ee98ac997af420c5086ba39d0fe7d814c"
+    },
+    {
+      "path": "description/objects_description/002_bowl/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 567,
+      "sha256": "0762da82f2565c9c31136c5d536e0ecb09fe2e8182cb5a2813e36de7f801b5a4"
+    },
+    {
+      "path": "description/objects_description/002_bowl/base6.json",
+      "type": "file",
+      "mode": 420,
+      "size": 581,
+      "sha256": "48fe58be2a830e78e2c4a943e99a5d91a6b980c18472212a2288075164942450"
+    },
+    {
+      "path": "description/objects_description/002_bowl/base7.json",
+      "type": "file",
+      "mode": 420,
+      "size": 638,
+      "sha256": "a5f6d377e6051b5b5786b2c5f92966d21562301301bc0fdb8b502d77fdfc4350"
+    },
+    {
+      "path": "description/objects_description/003_plate/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 592,
+      "sha256": "05d34419fe51711e909366a92cd42d205853e7ab554e189675767d1c50d9f2ac"
+    },
+    {
+      "path": "description/objects_description/004_fluted-block/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 664,
+      "sha256": "56169e500a0c55c7a60be467550a3d008b4d82a5ea0848b012b0ee8ca1427a78"
+    },
+    {
+      "path": "description/objects_description/004_fluted-block/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 650,
+      "sha256": "83751bc1924bb7bd7c465ae03c83abbdb8b61e256c372919740ae3ef8d007f2a"
+    },
+    {
+      "path": "description/objects_description/005_french-fries/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 664,
+      "sha256": "905f8dd06c8b431593dd4d17285799a9376677e6e185ad21a9c4681ff4a0ab6c"
+    },
+    {
+      "path": "description/objects_description/005_french-fries/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 736,
+      "sha256": "e5bb0d443db56ddb8411d0d7816b3998651b1d2d4cf89133ddee2dae178e909f"
+    },
+    {
+      "path": "description/objects_description/005_french-fries/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 613,
+      "sha256": "992ec3256cd537bcbb24153ccbe41b0a5493be250ec2294691fecdaa2f6bbe7b"
+    },
+    {
+      "path": "description/objects_description/005_french-fries/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 647,
+      "sha256": "a0be54b413ec41c410b82564be236f96ec8fb40cce2ee65762ccfe9a068b5525"
+    },
+    {
+      "path": "description/objects_description/006_hamburg/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 590,
+      "sha256": "b081491b665d6f1a38ba99c6dec74c216ce3f849bd6a5209961aeb903f4e8433"
+    },
+    {
+      "path": "description/objects_description/006_hamburg/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 692,
+      "sha256": "c1c3755b017791ba4582cd19ffff5e74ea4c4587ef710ff5d33703afa528edf6"
+    },
+    {
+      "path": "description/objects_description/006_hamburg/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 767,
+      "sha256": "28c2d0d6f53098d771be05cfa9d68d66bcc5f98c866f24aa36e12e2b8933ac62"
+    },
+    {
+      "path": "description/objects_description/006_hamburg/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 701,
+      "sha256": "23bc716fe5a8d376a33ab7e0241f96fb2076e1d5a03520bc41d48bdecce504c3"
+    },
+    {
+      "path": "description/objects_description/006_hamburg/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 730,
+      "sha256": "ff96bc88b413e9d0c1417b659d21b370e7a24196aa927cdef7cb4ec1742e07c4"
+    },
+    {
+      "path": "description/objects_description/006_hamburg/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 637,
+      "sha256": "520b5c42253154fa47d408432bac10515ff69b6d1b85fb9e6a80878f0f0d6fd4"
+    },
+    {
+      "path": "description/objects_description/007_shoe-box/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 677,
+      "sha256": "3b2a0a80a933cc28dac128e12f88c16c1a47e28ff275c2b4d547093a8005a6ca"
+    },
+    {
+      "path": "description/objects_description/008_tray/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 659,
+      "sha256": "941c2a96fa537778b2ece6b005f47a6bde1293ed0c464afc9c217ba44f4d1472"
+    },
+    {
+      "path": "description/objects_description/008_tray/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 683,
+      "sha256": "46419cb23b620c2ef522b3190c32b63cb8dc3f2f2197b4a0809e8333495da811"
+    },
+    {
+      "path": "description/objects_description/008_tray/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 619,
+      "sha256": "639b97dec38cc74bdf820973e60529aeed395dcb8622551f8751aa788d234ecf"
+    },
+    {
+      "path": "description/objects_description/008_tray/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 600,
+      "sha256": "b4f344626bf4c637723405bc2bf36df548edac865d6f21100571472f08184a03"
+    },
+    {
+      "path": "description/objects_description/009_kettle/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 651,
+      "sha256": "2398de8b407503f1dffca087a028c14be858d8bf390c98ac631ca28002b5f3b6"
+    },
+    {
+      "path": "description/objects_description/009_kettle/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 627,
+      "sha256": "0624c64065fb30fd877d77b234b1993e384ab1e977202b704c1b724abc43e42d"
+    },
+    {
+      "path": "description/objects_description/009_kettle/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 640,
+      "sha256": "7695c68c2dbcb86cf60e022c6b1e20132e26527ccf65e7e2afa52b0733ce4ab1"
+    },
+    {
+      "path": "description/objects_description/011_dustbin/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 606,
+      "sha256": "ae877d8f5b005f227ac13d121304d04c5c97dd1c3c197f72d7c93626cb62fcf9"
+    },
+    {
+      "path": "description/objects_description/012_plant-pot/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 674,
+      "sha256": "d92c0c8744708c4dd48250728f21e93e6c9abab766b3bec405faeb6b2be8408b"
+    },
+    {
+      "path": "description/objects_description/012_plant-pot/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 658,
+      "sha256": "44a3bbcfe9f735937ca17e2ffb6b0482e1f0e3bd6a867d20af5eb2a378ddab39"
+    },
+    {
+      "path": "description/objects_description/012_plant-pot/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 707,
+      "sha256": "f72708484ddeb7b23b7ecc053ad89141247172ba18efbb694b3e5b7f1eb67d01"
+    },
+    {
+      "path": "description/objects_description/012_plant-pot/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 721,
+      "sha256": "73465ed6bff65ce2ed4188de67260f784b7904bbdf25d5b4a56997157deb9304"
+    },
+    {
+      "path": "description/objects_description/012_plant-pot/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 615,
+      "sha256": "c1df2d8270cf7e47ca093107ff65b03a4c5f01d33325cf83f14ad39d90eb598d"
+    },
+    {
+      "path": "description/objects_description/013_dumbbell-rack/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 644,
+      "sha256": "0dad6ab002a5765c50162e07cfe0012638fdf84942cb55cb147cbd58340a75c4"
+    },
+    {
+      "path": "description/objects_description/013_dumbbell-rack/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 635,
+      "sha256": "ba6b9b45bfc625766c683de7bd2d8d62f9867a9d5f7765e652d9af76ca7e8993"
+    },
+    {
+      "path": "description/objects_description/013_dumbbell-rack/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 641,
+      "sha256": "5a177ae091717a30e1d7ca00a45a9a8d21987a61f585b858a170faadb1491599"
+    },
+    {
+      "path": "description/objects_description/013_dumbbell-rack/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 652,
+      "sha256": "0ed4da4c60f1176bca57c0c4a637d0bc689f831f9eb24ded46be9110dfe4899c"
+    },
+    {
+      "path": "description/objects_description/014_bookcase/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 722,
+      "sha256": "effb930bc4302f2187abc63b4de2bb2f9057a72d08541b2b6a0d4789f2f6be32"
+    },
+    {
+      "path": "description/objects_description/014_bookcase/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 805,
+      "sha256": "acbd7fc85fb528a6ad1f4eaf40afcf425ff6eb11813a438d2a72c646a48814d0"
+    },
+    {
+      "path": "description/objects_description/014_bookcase/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 734,
+      "sha256": "b0c7807620528f513c68845f9c455a65331553c3779cd3fd14ba6c915d395a10"
+    },
+    {
+      "path": "description/objects_description/014_bookcase/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 692,
+      "sha256": "1c876c10b678e430832ad602fbf43935d1131cad12e22548a300ac74b9aa548e"
+    },
+    {
+      "path": "description/objects_description/015_laptop/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 679,
+      "sha256": "8e38094da1190b3aa6f6c87bb4e2deeba8aff8d73aac0325a39bfce651f4a47e"
+    },
+    {
+      "path": "description/objects_description/015_laptop/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 621,
+      "sha256": "d2c2eeb5a079eec0a394185117be4ba661d8c8ac26327ce887aeee4216fa94ad"
+    },
+    {
+      "path": "description/objects_description/015_laptop/base10.json",
+      "type": "file",
+      "mode": 420,
+      "size": 621,
+      "sha256": "13497eb1c2a8abd19b7a734fbe91fc973d79ca41a7afd378781203d4caef4b76"
+    },
+    {
+      "path": "description/objects_description/015_laptop/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 584,
+      "sha256": "7a9b9d2dcd5a2485498d60cc094e882ebc58fe36008a685cca03e7eb84a1af9f"
+    },
+    {
+      "path": "description/objects_description/015_laptop/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 685,
+      "sha256": "a757e8d7cce0e7b2d03d8cd33a488fa6b2e281be5b30dee6bc9d92792672f527"
+    },
+    {
+      "path": "description/objects_description/015_laptop/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 733,
+      "sha256": "a8cfb35e5a32412446c6ff79f34adc1308e54c44e706c454029095a956db46d6"
+    },
+    {
+      "path": "description/objects_description/015_laptop/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 747,
+      "sha256": "fbdcf37d3d625232d5c4f9b569b5451cccb02aca0354c9d7c0cd6cffcd38d656"
+    },
+    {
+      "path": "description/objects_description/015_laptop/base6.json",
+      "type": "file",
+      "mode": 420,
+      "size": 638,
+      "sha256": "ed407efea5bd08d08e1f9eec81c9ba94e2c8abe4ccd23bbe77f466ef786f2a12"
+    },
+    {
+      "path": "description/objects_description/015_laptop/base7.json",
+      "type": "file",
+      "mode": 420,
+      "size": 727,
+      "sha256": "716d6762a4e15a899cc25c0cd1a3dab9811b31504dfd17145423d23794cb007b"
+    },
+    {
+      "path": "description/objects_description/015_laptop/base8.json",
+      "type": "file",
+      "mode": 420,
+      "size": 676,
+      "sha256": "c7793c885e4d8de87fe0f26b2f90106ca1ea49681f98f122a4cd9c0c24ce5460"
+    },
+    {
+      "path": "description/objects_description/015_laptop/base9.json",
+      "type": "file",
+      "mode": 420,
+      "size": 669,
+      "sha256": "0e5520f715f5a6a33bf6ad11c4c48d608e5c1b42e6e24c3c7c8ecbdd63fe3cf3"
+    },
+    {
+      "path": "description/objects_description/017_calculator/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 689,
+      "sha256": "3b5a857fc742bb686426b4fba7cf94b32d21a9582b137125aa854126fa618917"
+    },
+    {
+      "path": "description/objects_description/017_calculator/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 734,
+      "sha256": "848f3cfc2e0030599271d9c9aedb62dd8a2b3b7783d526dcf1e5051a21cfa2f0"
+    },
+    {
+      "path": "description/objects_description/017_calculator/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 760,
+      "sha256": "04a0d092af25054560d7f9cf61dfcf57451b87c0e0791f0d2a0e8e42963e4bf6"
+    },
+    {
+      "path": "description/objects_description/017_calculator/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 763,
+      "sha256": "e39de7018de7067038b98ca24e1083c461145a828c27b8eee52ec312cff6b821"
+    },
+    {
+      "path": "description/objects_description/017_calculator/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 742,
+      "sha256": "17ede50dfaf843181a9c6dadc4f7a3963f6230277b7e614182de64e4fd1c366f"
+    },
+    {
+      "path": "description/objects_description/017_calculator/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 718,
+      "sha256": "d9aabb11d6448d54b983f42434dbd4724365e86f6e94bf8e1de0f3be4677b18e"
+    },
+    {
+      "path": "description/objects_description/018_microphone/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 737,
+      "sha256": "71d3e1f98349a046ea1aa0d01bbf8ee3bbba1be85e62f66dcf80a2c0b68e78dc"
+    },
+    {
+      "path": "description/objects_description/018_microphone/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 768,
+      "sha256": "82dce367ad7edea5f41f30a498ea0de71bae97b4d6e2ea348fd3ac9331c949e7"
+    },
+    {
+      "path": "description/objects_description/018_microphone/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 703,
+      "sha256": "a16766d12634a088a5acc41b187c6916df9864197badc12f4d8df0af8ed958c5"
+    },
+    {
+      "path": "description/objects_description/018_microphone/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 717,
+      "sha256": "21ab693e7fd961373806c5ae36da457c6fc5ae40e21c0876c7448739452d7adb"
+    },
+    {
+      "path": "description/objects_description/019_coaster/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 663,
+      "sha256": "154a5361fe3f2850a5f3d88d15fbacf7f723d95f54d97d5e54d3b322dcd9eac2"
+    },
+    {
+      "path": "description/objects_description/020_hammer/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 622,
+      "sha256": "86ac3241aedab194917a44669b488ea1a8f5d4e76b67bc9fc787112784e6622b"
+    },
+    {
+      "path": "description/objects_description/021_cup/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 601,
+      "sha256": "336ed710a672dbd9ac9d86ced9ac9a6ee0351086264a95853c42c6cf40179699"
+    },
+    {
+      "path": "description/objects_description/021_cup/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 655,
+      "sha256": "9318f3288f857dd6d6fe206dd5e498e48c6d71a52fdc27cc201f71df46f793b7"
+    },
+    {
+      "path": "description/objects_description/021_cup/base10.json",
+      "type": "file",
+      "mode": 420,
+      "size": 651,
+      "sha256": "cfd66b596c268ab77a67e8bcb33804222b4d542a3837fdb8d39086382ab462c5"
+    },
+    {
+      "path": "description/objects_description/021_cup/base11.json",
+      "type": "file",
+      "mode": 420,
+      "size": 610,
+      "sha256": "f26ca1b1d99ca40b1096b8f32d5caf7c49991a4e65417e2367b1e0833f61e343"
+    },
+    {
+      "path": "description/objects_description/021_cup/base12.json",
+      "type": "file",
+      "mode": 420,
+      "size": 551,
+      "sha256": "4cc56792d8b6a739673df9a916451d5508879b6e2275a60b1ae97dbede5e3b04"
+    },
+    {
+      "path": "description/objects_description/021_cup/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 615,
+      "sha256": "a2eab092ea4815b3a5f5081718c759184c29f76d07c08da7644c986e2360ffe1"
+    },
+    {
+      "path": "description/objects_description/021_cup/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 566,
+      "sha256": "7633489dff77a062077579bda8646831322d1a2c01863ae88517349d046cc233"
+    },
+    {
+      "path": "description/objects_description/021_cup/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 616,
+      "sha256": "4bac48c791223bdf9fda8a0a9471024b068ed2ab47945e3bf1aada29ebdf8aae"
+    },
+    {
+      "path": "description/objects_description/021_cup/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 607,
+      "sha256": "d09b08abf0f5357dfe29686cf4669197fed7d22c5d4033cdf5cbac7f862ba9ed"
+    },
+    {
+      "path": "description/objects_description/021_cup/base6.json",
+      "type": "file",
+      "mode": 420,
+      "size": 637,
+      "sha256": "2e0978519f0e463e5361b82f4b2a2602c8cc8fb0afdaddc50ee07d06242a0cd5"
+    },
+    {
+      "path": "description/objects_description/021_cup/base7.json",
+      "type": "file",
+      "mode": 420,
+      "size": 621,
+      "sha256": "7d7c54da7bbf86c7b18e80e7667a116fa4946ef1f91ef879b199e0afabb19b88"
+    },
+    {
+      "path": "description/objects_description/021_cup/base8.json",
+      "type": "file",
+      "mode": 420,
+      "size": 691,
+      "sha256": "07ff07a0ba7c16fbd02e5e9201395fbd02e5bee2f9c3d95c15684caba76d1a35"
+    },
+    {
+      "path": "description/objects_description/021_cup/base9.json",
+      "type": "file",
+      "mode": 420,
+      "size": 688,
+      "sha256": "5f27be51caa5287fb138ae08a02f888c7ebb462b31c3da2264e0129f4fa6b624"
+    },
+    {
+      "path": "description/objects_description/022_cup-with-liquid/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 737,
+      "sha256": "96998efc335c6f0fd82e5434303772844d7ba1fa3d0afcce32ea2a6d4fd6fb57"
+    },
+    {
+      "path": "description/objects_description/023_tissue-box/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 682,
+      "sha256": "7f47378a8c7d55aeaadae235b745e89600dbc3f29d50b7546ab630b01cebeab3"
+    },
+    {
+      "path": "description/objects_description/023_tissue-box/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 639,
+      "sha256": "880986e8f2722fb53a90791af7b2952095d734fcc483c6ec579250c8f3298c4c"
+    },
+    {
+      "path": "description/objects_description/023_tissue-box/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 682,
+      "sha256": "3ba6a1aefde96999a5de7c3b102c17413749be279a0b840af8b18c95bf380c5b"
+    },
+    {
+      "path": "description/objects_description/023_tissue-box/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 679,
+      "sha256": "d5d89fb19389947a6c6c0e52433024bfb1050076650377b902e371282e683ca5"
+    },
+    {
+      "path": "description/objects_description/023_tissue-box/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 670,
+      "sha256": "d6260b54a96314539752d3c00f7d0304be6864b4dcf97cd9423c0be94b226ffa"
+    },
+    {
+      "path": "description/objects_description/023_tissue-box/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 721,
+      "sha256": "a7d8bf8cb220c45c240ec79d79424bbd9d28adcf5d73104e9b1768050273b4d7"
+    },
+    {
+      "path": "description/objects_description/023_tissue-box/base6.json",
+      "type": "file",
+      "mode": 420,
+      "size": 717,
+      "sha256": "4f6e8785d938cdb956a770fe4939daf71f446c0b0a4ad5f281e767b563b9d4f6"
+    },
+    {
+      "path": "description/objects_description/024_scanner/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 661,
+      "sha256": "4ee64a4816b8c6ca4257f911895efa14abf341a580c745ab09a780f9c2a72f54"
+    },
+    {
+      "path": "description/objects_description/024_scanner/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 672,
+      "sha256": "43e5ff3ff426e3b8c179d7e9cc94409eaba9007c304b4751da46768f848e304d"
+    },
+    {
+      "path": "description/objects_description/024_scanner/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 712,
+      "sha256": "8d558dc883029a7af5f3b892553489c78c6deab0de392201eb3487ec9c10c4d5"
+    },
+    {
+      "path": "description/objects_description/024_scanner/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 708,
+      "sha256": "eb06ba3499345d091c0e86404b8aaa6f2e2363c3fa046a9bfe26e458c7e1b818"
+    },
+    {
+      "path": "description/objects_description/024_scanner/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 626,
+      "sha256": "518eb085e848f9c3eb0f6854a4528c8f920ff34f7f41f7db63c149214c58e264"
+    },
+    {
+      "path": "description/objects_description/025_chips-tub/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 673,
+      "sha256": "34f89af1e26deeaa8dc6da9afa1ff262cfd5d1675eba008202f63d9f63f82c95"
+    },
+    {
+      "path": "description/objects_description/025_chips-tub/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 695,
+      "sha256": "8651a0f88f23982b20b442dfbb3491b76817312be285f9daf91d2db6e1a9ec6f"
+    },
+    {
+      "path": "description/objects_description/025_chips-tub/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 668,
+      "sha256": "947971bb5972cae21eb3a5d1b7a86ed37327dab4b72d6c19947edc7551a4845b"
+    },
+    {
+      "path": "description/objects_description/025_chips-tub/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 680,
+      "sha256": "1c12596f8ac7680a2054d48434989343ce0d64131e4f30e47b6a9affc550ea49"
+    },
+    {
+      "path": "description/objects_description/026_pet-collar/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 617,
+      "sha256": "e98ab9751847ff8fa089945587725a497d0456c7725dfd5d7715eb7b08058662"
+    },
+    {
+      "path": "description/objects_description/026_pet-collar/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 604,
+      "sha256": "304ba6334001063cb8d1015ef7bf328ece0a1c080b9955567a4b74660f533a92"
+    },
+    {
+      "path": "description/objects_description/026_pet-collar/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 699,
+      "sha256": "bf71f91aadc1ab43a3d6a782a8a2d9dd357bf58982a20c1d8005f68595f241c5"
+    },
+    {
+      "path": "description/objects_description/026_pet-collar/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 629,
+      "sha256": "74928c7280ceda9da266d5276c24fe8812dad00b064226d24fbc2e7cbebe24a3"
+    },
+    {
+      "path": "description/objects_description/027_table-tennis/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 666,
+      "sha256": "468a1202d5aff255b52fe53a7f7df40fce80b0aab0aa241e40d4c2084178b33b"
+    },
+    {
+      "path": "description/objects_description/027_table-tennis/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 710,
+      "sha256": "817056e96fc22951f079d905cbdebe1d65ab09002bc192a897150748aebd501b"
+    },
+    {
+      "path": "description/objects_description/028_roll-paper/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 622,
+      "sha256": "4f83c86dbae27abfd399a0c79df844fcb959c85a84a7136955d96e96f659e8b6"
+    },
+    {
+      "path": "description/objects_description/028_roll-paper/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 663,
+      "sha256": "63e13deb50b0ef3e664206d64089c946fcf39f0b73fdd84827c404bd20378d7f"
+    },
+    {
+      "path": "description/objects_description/028_roll-paper/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 669,
+      "sha256": "6efb07bc4cc93e3b8972e79a775303573e7a5c85f04bb7da62674398750fc398"
+    },
+    {
+      "path": "description/objects_description/028_roll-paper/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 685,
+      "sha256": "e0ba083e30514ec713be53b4c66494e037b9b8a7984c1df137e4ea72a3bd8330"
+    },
+    {
+      "path": "description/objects_description/029_olive-oil/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 682,
+      "sha256": "e8f7c0174b26bfddefc1e44d8f3d41d5245849703fec43295fa2a6c0ac3d9b8f"
+    },
+    {
+      "path": "description/objects_description/029_olive-oil/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 760,
+      "sha256": "f1c209040ed6a12be6ebc2ae13450ac4eb822ef67f437122af647dec32ea0443"
+    },
+    {
+      "path": "description/objects_description/029_olive-oil/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 756,
+      "sha256": "6400ee820772948d44503cce48fc2de4ea585bc01440caea40f1899a7dd90bab"
+    },
+    {
+      "path": "description/objects_description/029_olive-oil/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 706,
+      "sha256": "bc75dbba91e16900c7c026c5b55c99605818618da483efb796360fb00a2ba0bf"
+    },
+    {
+      "path": "description/objects_description/029_olive-oil/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 718,
+      "sha256": "2a19948be1f2a9fcaeff43d2e63971f4f80bb6ac6f6267715c08d9e6a06d25f9"
+    },
+    {
+      "path": "description/objects_description/030_drill/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 644,
+      "sha256": "46ae6d8b3dff95abe02222cfda2707f7b3d3f91dd3aa5842cfec5a59560f6bcd"
+    },
+    {
+      "path": "description/objects_description/030_drill/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 603,
+      "sha256": "54628ff428001f26fb14828284317e7164187127097fc029163385760e2b6b51"
+    },
+    {
+      "path": "description/objects_description/030_drill/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 671,
+      "sha256": "a660ab9e1b58d0d267b86a7a3dc52153961b95b9dff68b6de9cb75e852cd1d55"
+    },
+    {
+      "path": "description/objects_description/030_drill/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 684,
+      "sha256": "fe138d8138c7fb6c063fab20169bfb4e92feb18cce33e26c3a5fbc5db54a5e63"
+    },
+    {
+      "path": "description/objects_description/030_drill/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 721,
+      "sha256": "8f9be8ed3e10437f74274ddd7690341e4d3670f14309efee1176035875763e2d"
+    },
+    {
+      "path": "description/objects_description/030_drill/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 631,
+      "sha256": "c0047398b64157d16bf19ea7eb0a7573a3b8fd0d7931f0f07078bd806b204e0b"
+    },
+    {
+      "path": "description/objects_description/030_drill/base6.json",
+      "type": "file",
+      "mode": 420,
+      "size": 641,
+      "sha256": "61a11928ac461a5357c755f4bb5b6dbd6e08327843bf7fbb19211446670dff52"
+    },
+    {
+      "path": "description/objects_description/031_jam-jar/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 586,
+      "sha256": "fb05e86b2f457ed3c7da91a1a8a8e081a724d223e94df9cb02df3178510ae1d3"
+    },
+    {
+      "path": "description/objects_description/031_jam-jar/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 620,
+      "sha256": "c671d921620c48cbcb21cf34065f4150a1618088c401fc9d318ce347b974c919"
+    },
+    {
+      "path": "description/objects_description/031_jam-jar/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 595,
+      "sha256": "d81f6a34926164da8b1fb5375320469de001a76bc07b372c2f886df706a74032"
+    },
+    {
+      "path": "description/objects_description/031_jam-jar/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 663,
+      "sha256": "e4df6476ad742eb371a4fd1f46a15594a39769962f4aebd20055edafd2c7708f"
+    },
+    {
+      "path": "description/objects_description/031_jam-jar/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 610,
+      "sha256": "aa83bfc3d1045102ea6f9ad37b3113bec2e07f4d88c609fec6e9bfbeb4e59ea5"
+    },
+    {
+      "path": "description/objects_description/032_screwdriver/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 687,
+      "sha256": "1cca24547a38877748ab4dd30f7374817f0eb2b16d970d5e0675c8e7e37d21a5"
+    },
+    {
+      "path": "description/objects_description/033_fork/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 504,
+      "sha256": "bc6308717b4a656feba3914e85726b2f410742b4684337670bb77fb1eece0110"
+    },
+    {
+      "path": "description/objects_description/034_knife/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 650,
+      "sha256": "89ec722aaeef9164e35ba5f6b429faa62618d12db22228ae0ac2b9fb822be1ac"
+    },
+    {
+      "path": "description/objects_description/035_apple/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 631,
+      "sha256": "bf4db5374307f28860641f567d33ae2549209a981c5d92e57e18d112e4814a1d"
+    },
+    {
+      "path": "description/objects_description/035_apple/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 667,
+      "sha256": "cf8299a8452d6de07903e94e7a03fcba0d108e80eaf730039f3c8b3293e58c75"
+    },
+    {
+      "path": "description/objects_description/036_cabinet/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 595,
+      "sha256": "e05475ddf8fa94504061e4aeffb2c427d5df82a52644a905afa1dddbfde527f3"
+    },
+    {
+      "path": "description/objects_description/037_box/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 648,
+      "sha256": "7f68d4f3189842b5d8a6864e9d1149734c326ea3f7aaaff81b70c468b87af154"
+    },
+    {
+      "path": "description/objects_description/038_milk-box/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 657,
+      "sha256": "ecd635119f0099631a4bea6ff41921b3a0d3f461c856223dde798adb900c3707"
+    },
+    {
+      "path": "description/objects_description/038_milk-box/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 585,
+      "sha256": "a1ebe15adb8656afedf76a3461ce5aa251003ed8e2799d3e7beb87273adb5044"
+    },
+    {
+      "path": "description/objects_description/038_milk-box/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 661,
+      "sha256": "2f2ba68bbe482919ca5e29f72947163c563225d3ea5348cd971af4e7fc29e5ae"
+    },
+    {
+      "path": "description/objects_description/038_milk-box/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 598,
+      "sha256": "f783363c859e889de9efb1705a5b104bb398cad0a64f28abd2045e120ab8e497"
+    },
+    {
+      "path": "description/objects_description/039_mug/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 702,
+      "sha256": "33480716a64e1c0b3e68c111cb0213ec2a3cd184af503ac6e82bb84f91c606af"
+    },
+    {
+      "path": "description/objects_description/039_mug/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 543,
+      "sha256": "edb481afcc9a34f195f66830f6f4c973b277aa57b1ce9c8412cbb97faf83fa4f"
+    },
+    {
+      "path": "description/objects_description/039_mug/base10.json",
+      "type": "file",
+      "mode": 420,
+      "size": 574,
+      "sha256": "1559b971121d069dd9456b44e97271c69559221f42e3e9ee2e81eff8e03a777a"
+    },
+    {
+      "path": "description/objects_description/039_mug/base11.json",
+      "type": "file",
+      "mode": 420,
+      "size": 598,
+      "sha256": "f560fd83b1bbaeb1aa5dbc73831cba17aff3edbc612348adde888ec892563729"
+    },
+    {
+      "path": "description/objects_description/039_mug/base12.json",
+      "type": "file",
+      "mode": 420,
+      "size": 662,
+      "sha256": "6e63a0a1fce551aa4f6fa9ec6f08380d35ae93ce6b7a34415985bad40da2a1a6"
+    },
+    {
+      "path": "description/objects_description/039_mug/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 561,
+      "sha256": "803d0565c2ba7ab4c1e92be80e04d80516e17ee10a887a0c57cd98212ce59641"
+    },
+    {
+      "path": "description/objects_description/039_mug/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 550,
+      "sha256": "b95ad51efe45aa7b6199afa35b6c0007781457e8f113e057eb58c3097e1fc824"
+    },
+    {
+      "path": "description/objects_description/039_mug/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 628,
+      "sha256": "822fe21277fbef344d78f6e6558ce1d4ca51e5caf1f4a6ee224a215966921721"
+    },
+    {
+      "path": "description/objects_description/039_mug/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 596,
+      "sha256": "937d1c536f000278f853ff3fb42805e6cced9ac346e608b4a9578c93f2d6e201"
+    },
+    {
+      "path": "description/objects_description/039_mug/base6.json",
+      "type": "file",
+      "mode": 420,
+      "size": 620,
+      "sha256": "600d01c44d332a7784318b0717d672e77abd1b68ca853911672bb3bfc8fd62e4"
+    },
+    {
+      "path": "description/objects_description/039_mug/base7.json",
+      "type": "file",
+      "mode": 420,
+      "size": 592,
+      "sha256": "dd72bff7ddab5ddd83807848ce5b192573f9184e3b6d4b36bb00cfdf655d0f01"
+    },
+    {
+      "path": "description/objects_description/039_mug/base8.json",
+      "type": "file",
+      "mode": 420,
+      "size": 591,
+      "sha256": "a248289ad0bfd8e261f28f85583f31a5f9b0a6120b6143d5127f3fd2d6b6b397"
+    },
+    {
+      "path": "description/objects_description/039_mug/base9.json",
+      "type": "file",
+      "mode": 420,
+      "size": 603,
+      "sha256": "83803048f2d7b2d231388fabb49ea5fea18263486d2c0a26544ee4fc074aa6ef"
+    },
+    {
+      "path": "description/objects_description/040_rack/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 638,
+      "sha256": "456436a1f2ad06314633d15feb646bcc475e4af66f1d314f765d2325bcc833bd"
+    },
+    {
+      "path": "description/objects_description/041_shoe/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 689,
+      "sha256": "2b0d5337d4b36a210d4309365983486bb4022daaa451a27c974b46d2fb049875"
+    },
+    {
+      "path": "description/objects_description/041_shoe/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 554,
+      "sha256": "91f453435a5f725f5351a1e2a0f69f057e4359a71297fbbc8b4a7266e7261aca"
+    },
+    {
+      "path": "description/objects_description/041_shoe/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 597,
+      "sha256": "9acdf2a0021417f0825baaf51b1170c83f2dfff57ab0aa794a51f8ea193703fe"
+    },
+    {
+      "path": "description/objects_description/041_shoe/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 629,
+      "sha256": "d28f51a6954b934a032adb5533f4b38da5899386e77b3b9be43782e2f64b80aa"
+    },
+    {
+      "path": "description/objects_description/041_shoe/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 634,
+      "sha256": "19a049d3d5c6267783ae3e39d96aebd2c99b0dff65e308579eeb556e57148c5f"
+    },
+    {
+      "path": "description/objects_description/041_shoe/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 608,
+      "sha256": "31ebe58793689d977f6ac103fbd708be452a0f4d75fbd1840fcd9bf37b4e3f4a"
+    },
+    {
+      "path": "description/objects_description/041_shoe/base6.json",
+      "type": "file",
+      "mode": 420,
+      "size": 616,
+      "sha256": "1bc1b53db552ed80df1cb7e445dedb3688553636720ae91da2a381466ac63ab3"
+    },
+    {
+      "path": "description/objects_description/041_shoe/base7.json",
+      "type": "file",
+      "mode": 420,
+      "size": 646,
+      "sha256": "400d907979407b8bd426bb655963d2c43a2dfd52b5dc0da4abd179cb0eab66ed"
+    },
+    {
+      "path": "description/objects_description/041_shoe/base8.json",
+      "type": "file",
+      "mode": 420,
+      "size": 558,
+      "sha256": "64ad95a3d69f522680277f8529649ea7085f51c71865637de1589ff0b5b86721"
+    },
+    {
+      "path": "description/objects_description/041_shoe/base9.json",
+      "type": "file",
+      "mode": 420,
+      "size": 632,
+      "sha256": "168894aecf58c6ad1a61614d4f596eaad7ec84c21621bbf0d0d8bd6ab5d7cd4d"
+    },
+    {
+      "path": "description/objects_description/043_book/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 615,
+      "sha256": "37057636d25ac889654e925dae063e2af0599b5e3471facf2ef67c3183eda70b"
+    },
+    {
+      "path": "description/objects_description/043_book/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 604,
+      "sha256": "10a18938004407f5dbdcc595ee38d3b38de169ddf544ed68aabdb88c1eb0bce7"
+    },
+    {
+      "path": "description/objects_description/044_microwave/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 699,
+      "sha256": "aaefc630d2649d631709e305881f2ebacc3cc503926ba9cdd71c7fc327e99d22"
+    },
+    {
+      "path": "description/objects_description/044_microwave/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 721,
+      "sha256": "d8b82212f37784c2926ba38922882877c3c05ef3097ec71c01f3f49aa60959f0"
+    },
+    {
+      "path": "description/objects_description/045_sand-clock/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 747,
+      "sha256": "2a93926cb5cac8b45a8e2242f7605bf2792c526117be0fa76bfc3ce52f065dcc"
+    },
+    {
+      "path": "description/objects_description/045_sand-clock/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 742,
+      "sha256": "af6aaf7f64d55ab0f8c7f0873d68fe4ab410560551d282fb7f5f2e7092e6a3bf"
+    },
+    {
+      "path": "description/objects_description/045_sand-clock/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 746,
+      "sha256": "876b14a04415efd69bf735af081836079934391bce65612d090063fc90922c3e"
+    },
+    {
+      "path": "description/objects_description/046_alarm-clock/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 673,
+      "sha256": "515dca5f730b03a664390144878153aec15c3bf53e7caf8ac9ad078f47dc7a47"
+    },
+    {
+      "path": "description/objects_description/046_alarm-clock/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 646,
+      "sha256": "6f549490b8583b217ff320540e965a82abacf9a68b51e60dad75e8c2888871d9"
+    },
+    {
+      "path": "description/objects_description/046_alarm-clock/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 669,
+      "sha256": "cd89ddf52f7fb6c7dd55593f00f9beea9b297ab007ed9b4a5e75184cd459864a"
+    },
+    {
+      "path": "description/objects_description/046_alarm-clock/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 623,
+      "sha256": "37448d90a4e59951c7564c19006b23bc8bd67b30867fb360a42607794e6bff7c"
+    },
+    {
+      "path": "description/objects_description/046_alarm-clock/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 618,
+      "sha256": "fa637355081ba00625418b42080266ae639e4566654afab61ba2377dc59e49fb"
+    },
+    {
+      "path": "description/objects_description/046_alarm-clock/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 709,
+      "sha256": "71f37c7fc4659aa910208ef3c17bbd6119954225b6aac8d857a7e4c5e0e0aa8f"
+    },
+    {
+      "path": "description/objects_description/047_mouse/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 634,
+      "sha256": "538e99ee65cfa5989a0ec1ca7a2d54e7133d6264a4816201407b0650ae551781"
+    },
+    {
+      "path": "description/objects_description/047_mouse/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 590,
+      "sha256": "40a8746a74a5aef5d3e2aa07c48d89fa2c8122585f1fc7cb02a17095a83d4e50"
+    },
+    {
+      "path": "description/objects_description/047_mouse/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 725,
+      "sha256": "9761ed8b8c2372e1fd28d87299f2f91da7f9c78f539219a9923125747ed20745"
+    },
+    {
+      "path": "description/objects_description/048_stapler/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 705,
+      "sha256": "f2b4afc362667e173eb035ffa33e493982745a967a28defddc6efcca443dcd6a"
+    },
+    {
+      "path": "description/objects_description/048_stapler/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 670,
+      "sha256": "2f7cec14343cb506b5a41c92af1a3de4c2b731d93b46878c301b08284452f2d9"
+    },
+    {
+      "path": "description/objects_description/048_stapler/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 651,
+      "sha256": "c7bf28ab91c034f655d3959f027c2e5835fe4ac7c8882ef02c11fa2965d75952"
+    },
+    {
+      "path": "description/objects_description/048_stapler/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 622,
+      "sha256": "e408234f817dd227d6cbbdbf30c1596d2b9fa030fdf0da67c409d4fb7ed271c8"
+    },
+    {
+      "path": "description/objects_description/048_stapler/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 665,
+      "sha256": "87977541c35f2ec52e6101e9cf2f142902f701e6d70c03eb77dc09c69c681fd4"
+    },
+    {
+      "path": "description/objects_description/048_stapler/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 645,
+      "sha256": "9112de96398164b8ada06dd57d27f83f674e5891c5da2abe93a6757eceacf6a7"
+    },
+    {
+      "path": "description/objects_description/048_stapler/base6.json",
+      "type": "file",
+      "mode": 420,
+      "size": 704,
+      "sha256": "aecc597aa26e1e52a08ea2c79691d8bfa030335658ea9f0e3e05ea01f32af6ab"
+    },
+    {
+      "path": "description/objects_description/049_shampoo/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 678,
+      "sha256": "bfd8488856f42f4da3b249e9a05d092a87159c4f41d02e8ca1cf49fee138b8e2"
+    },
+    {
+      "path": "description/objects_description/049_shampoo/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 705,
+      "sha256": "6661502324efdcfc9c604c62ddc2e4b23813ddeaf98d972c5a37d0ebbbb106f9"
+    },
+    {
+      "path": "description/objects_description/049_shampoo/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 734,
+      "sha256": "2819ee36e0aff956f15f1ae38d838de3c75c88ca0e6482e9b06a7b7c7e548cf9"
+    },
+    {
+      "path": "description/objects_description/049_shampoo/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 660,
+      "sha256": "656853419893a91b1bf02ba8f7e8cbf756c951c5c6d307ec4b0cf1f3383812ee"
+    },
+    {
+      "path": "description/objects_description/049_shampoo/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 717,
+      "sha256": "1256ddb0bb6d9c18c4bb7a28ba430ecfe9f06444a05c4f89c550a345ed94b628"
+    },
+    {
+      "path": "description/objects_description/049_shampoo/base6.json",
+      "type": "file",
+      "mode": 420,
+      "size": 705,
+      "sha256": "b66c79d2806ee55b7308307ec170cca0762787c5d98b3cf9c6218a93d744633f"
+    },
+    {
+      "path": "description/objects_description/049_shampoo/base7.json",
+      "type": "file",
+      "mode": 420,
+      "size": 722,
+      "sha256": "ac679decfdec912a9d1ad56b07b913deb39ea0faa38f76a99b024bb44363e42b"
+    },
+    {
+      "path": "description/objects_description/050_bell/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 639,
+      "sha256": "543240a1b5b88f5a2ec5975dcbfd865c2eb9b8eda7546775ef3069359225b09f"
+    },
+    {
+      "path": "description/objects_description/050_bell/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 565,
+      "sha256": "6c4efb216f006a833724dfe4a760c914f305921c850aae457ac48575754f8ea2"
+    },
+    {
+      "path": "description/objects_description/051_candlestick/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 715,
+      "sha256": "f98a769d0b58686764c0ec7c304bed46e20118402efe9e0a374ab53c3fe8c43a"
+    },
+    {
+      "path": "description/objects_description/051_candlestick/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 664,
+      "sha256": "e23dc4f7c6bd84798b5124c1a5f097e4c6b21572ed8ba33f867f4e1a46d1efce"
+    },
+    {
+      "path": "description/objects_description/051_candlestick/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 651,
+      "sha256": "613c8e4b07404ffda57c9618e711be149a6a3f4bba8f5d15f897a5f4442ea36e"
+    },
+    {
+      "path": "description/objects_description/051_candlestick/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 747,
+      "sha256": "626efddeb86deee853a4319a31cbd94b21800714407b3da65b2016188cc972c0"
+    },
+    {
+      "path": "description/objects_description/051_candlestick/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 786,
+      "sha256": "8c5d391f05a299827765020799a267b7b8007d1be023ee46a34307d410eb63a8"
+    },
+    {
+      "path": "description/objects_description/052_dumbbell/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 636,
+      "sha256": "3a6baddf926730e37bab4de53dc80a3b8b353fc803a282d0efec7faba02a0e2d"
+    },
+    {
+      "path": "description/objects_description/052_dumbbell/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 651,
+      "sha256": "94bd1b0176c66d12684c375b1a3b2f9ae2cfcf251934e567161c964959aba2ba"
+    },
+    {
+      "path": "description/objects_description/052_dumbbell/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 660,
+      "sha256": "633da3ac847b15e73619ce3e783db9bf0f25268cc3dabfbb11c6e1553656ec4e"
+    },
+    {
+      "path": "description/objects_description/052_dumbbell/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 732,
+      "sha256": "034b1aa64949686ad22c32453c8b7f8c77c62eb64265125b7e4d3ca50146eb7f"
+    },
+    {
+      "path": "description/objects_description/052_dumbbell/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 732,
+      "sha256": "0459b456b71effe8f7adc371c7ce02f9367153087900681e0875d449fea20a37"
+    },
+    {
+      "path": "description/objects_description/052_dumbbell/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 639,
+      "sha256": "6ab956cf89cf9ba01bc322b5137dfd64c5708c1937f587cf8acc40fa6bf67363"
+    },
+    {
+      "path": "description/objects_description/052_dumbbell/base6.json",
+      "type": "file",
+      "mode": 420,
+      "size": 632,
+      "sha256": "3dae112124af85e73c2ace5d7c7bc574f2b3e480dd77c6c2ca0b589f923bc102"
+    },
+    {
+      "path": "description/objects_description/053_teanet/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 623,
+      "sha256": "a4b50fca083b349321f046ea788ec9eb9b4c4a1488e03ab61f912073cce37c84"
+    },
+    {
+      "path": "description/objects_description/053_teanet/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 591,
+      "sha256": "d0e215a36a2ee145fdd5bcf8d19022510e2b4efec0f0d0628527d3df6bba2866"
+    },
+    {
+      "path": "description/objects_description/053_teanet/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 576,
+      "sha256": "28c82b5af3af9296cd0de55b985561069e91264122b9e8b377acf111f5732b84"
+    },
+    {
+      "path": "description/objects_description/053_teanet/base6.json",
+      "type": "file",
+      "mode": 420,
+      "size": 574,
+      "sha256": "b8ac9f1d3ed2be9dc8ca5d31ed263ddf093d84500fad2a266731fef85e0c81d6"
+    },
+    {
+      "path": "description/objects_description/053_teanet/base7.json",
+      "type": "file",
+      "mode": 420,
+      "size": 764,
+      "sha256": "01b911cf0ed122a0f4d63d36f52bee241c53f5c22331c1db146412065304c559"
+    },
+    {
+      "path": "description/objects_description/054_baguette/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 688,
+      "sha256": "311a9899f11f17205c143479afc7aa91f0a3f29b8bd6b4ce0902c85fe1407a7b"
+    },
+    {
+      "path": "description/objects_description/054_baguette/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 642,
+      "sha256": "bbd2bfd3a03972a4712c40221fe5b67dc6f73ec76d00ad87e99c55fcd7a27721"
+    },
+    {
+      "path": "description/objects_description/055_small-speaker/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 664,
+      "sha256": "e36840c56c8057e08d688c22565858895eae0c4dd736866ee98132d7674e28e4"
+    },
+    {
+      "path": "description/objects_description/055_small-speaker/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 674,
+      "sha256": "e4506c6c33fc9292e25e559f5c462d2eb2ae77d62e1a0763ef9f01593ebd0572"
+    },
+    {
+      "path": "description/objects_description/055_small-speaker/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 705,
+      "sha256": "6aace97029a636c058d54cd4dccc0b3eaaa6055de595a068dc1f3635e3229025"
+    },
+    {
+      "path": "description/objects_description/056_switch/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 677,
+      "sha256": "919b7683d8668ebca4a02b82db491b47a52496494f7f5269279c9c1523166604"
+    },
+    {
+      "path": "description/objects_description/056_switch/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 712,
+      "sha256": "e5fd67c7ee3332ddee01cbce8992ac8c6c0b3ebf7fd8fa3eae4d5371508b3563"
+    },
+    {
+      "path": "description/objects_description/056_switch/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 713,
+      "sha256": "67c8a27b7401070dc63025e1164045edf267c2018583c6b1cb30e83db5c433cf"
+    },
+    {
+      "path": "description/objects_description/056_switch/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 663,
+      "sha256": "de13db4a2664e6468834a3004ad500389baeedda8fcdfdeeecc9336d37615206"
+    },
+    {
+      "path": "description/objects_description/056_switch/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 648,
+      "sha256": "7c2ac26c8f2e7059bab52674bd6444552175b54c43561a5aadb0cda310a2fd4e"
+    },
+    {
+      "path": "description/objects_description/056_switch/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 669,
+      "sha256": "ab10082447a1437da5ca80ac21fed352f53263be93138fb6bf4549463b4106aa"
+    },
+    {
+      "path": "description/objects_description/056_switch/base6.json",
+      "type": "file",
+      "mode": 420,
+      "size": 642,
+      "sha256": "2649bd0700c4ef714893f4fb823f36501418718c6a6e37f43961d24fb134f8e1"
+    },
+    {
+      "path": "description/objects_description/056_switch/base7.json",
+      "type": "file",
+      "mode": 420,
+      "size": 624,
+      "sha256": "6ee8e0e8ad6cfbf6280f45505fdb751b3c3f40076a967f60132b180f3adf58ff"
+    },
+    {
+      "path": "description/objects_description/057_toycar/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 587,
+      "sha256": "6e979b4ee970ee62b67dd2aa806d36e8c6d5d159f12efaf046b18357398d4a3f"
+    },
+    {
+      "path": "description/objects_description/057_toycar/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 598,
+      "sha256": "7a221b257e025d8fcd888baeadc2d6177913384c44ffca49b71d045d26367152"
+    },
+    {
+      "path": "description/objects_description/057_toycar/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 712,
+      "sha256": "bc40ac2f5eaaf24550efa1c3d4673d95de1ab612962a525e69e54a1aeeef948e"
+    },
+    {
+      "path": "description/objects_description/057_toycar/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 584,
+      "sha256": "41d1a4973a532f3c1d0ea50db795c1c8028cbb7bd11819b75cf0fe5cbdb33ee0"
+    },
+    {
+      "path": "description/objects_description/057_toycar/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 685,
+      "sha256": "cb0643844dbf3b22c67c2736b3eb9070655c3efa9a4b6395eb912c2160d3f52f"
+    },
+    {
+      "path": "description/objects_description/057_toycar/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 619,
+      "sha256": "5e55260417231255c038e1b4c2cea7bb77fc173602e30435cc865bc5e0871ba5"
+    },
+    {
+      "path": "description/objects_description/058_markpen/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 657,
+      "sha256": "3b6cf1e6c29ce715e7deceba79a95a70914b6a38d814c4ba33a9d6c827bbc1e4"
+    },
+    {
+      "path": "description/objects_description/058_markpen/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 642,
+      "sha256": "d732f6ed84e150e5eb9d4b7c9bc1a01f5287c2dbfa7895b0e804f88d3739999b"
+    },
+    {
+      "path": "description/objects_description/058_markpen/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 671,
+      "sha256": "33b8b4c680c7d2872c139e59283446de60bbd13732c3fd60ead9a41c5f06c974"
+    },
+    {
+      "path": "description/objects_description/058_markpen/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 722,
+      "sha256": "97419cd70909b60d9a86a75c245273ea3a52fc9d35257faac0a660051e3413ba"
+    },
+    {
+      "path": "description/objects_description/058_markpen/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 722,
+      "sha256": "4c3c6f676fce9d52d458a0871d3f2b53878c4384cf81bf5360935ee0875b6957"
+    },
+    {
+      "path": "description/objects_description/058_markpen/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 595,
+      "sha256": "45e3841d8a0ef6f8ad1555e953bf711b74064d9456780b1c7ec8f0024a367504"
+    },
+    {
+      "path": "description/objects_description/059_pencup/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 692,
+      "sha256": "cc0152af8f10fe070a2718411a455f72b695244f08c3e79c7de9c08e2b86e9ed"
+    },
+    {
+      "path": "description/objects_description/059_pencup/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 623,
+      "sha256": "84997ab6560c157cf19234903f5674b239ab044a36e590696813c846bcd4fa0b"
+    },
+    {
+      "path": "description/objects_description/059_pencup/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 755,
+      "sha256": "8b47f9e4b83c4489e9f4955ee81fe88957fa23a1545ee18e0ff10ec694f913bd"
+    },
+    {
+      "path": "description/objects_description/059_pencup/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 687,
+      "sha256": "8645d50a8961a28230b373ca5de999e39543abadad7da89abd6630cce61c796c"
+    },
+    {
+      "path": "description/objects_description/059_pencup/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 700,
+      "sha256": "87df5c267f529a558218bcf1ee530f88dc18d08bc8021e69ced1a226f31b6837"
+    },
+    {
+      "path": "description/objects_description/059_pencup/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 696,
+      "sha256": "6923a5c05351f2e87da5ab77dce220535362b663091c9775fa0f16dcef2bcdee"
+    },
+    {
+      "path": "description/objects_description/059_pencup/base6.json",
+      "type": "file",
+      "mode": 420,
+      "size": 651,
+      "sha256": "819b60f3c671fdcbd880e65d6a7c09725be17960d19ff2dfcca132fb9e16c8fa"
+    },
+    {
+      "path": "description/objects_description/060_kitchenpot/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 671,
+      "sha256": "16c5bdc55265bc05e6c9344b95402361db8700c51477f9856456ead88d582917"
+    },
+    {
+      "path": "description/objects_description/060_kitchenpot/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 675,
+      "sha256": "074a5ca9e626aae12de2ca7b354d5de2d05a59b7835a8a5096fe0f0e097c821f"
+    },
+    {
+      "path": "description/objects_description/060_kitchenpot/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 727,
+      "sha256": "761f1b11d857fd01b223c3c26984b7c83680c03f6651f6545d979aeb71bf0724"
+    },
+    {
+      "path": "description/objects_description/060_kitchenpot/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 771,
+      "sha256": "1e15b531582cf61e6593bdd1176cc82c7e3ac4788b3168ccef83585d3965d57a"
+    },
+    {
+      "path": "description/objects_description/060_kitchenpot/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 735,
+      "sha256": "768404b92b464e0cc2244d93c00a9cb5ef0974189d5f16cdbcc1bee3cb00a008"
+    },
+    {
+      "path": "description/objects_description/060_kitchenpot/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 676,
+      "sha256": "316c6d4bbc5ec788f010b270b4905a40d7eeef6ec5f8f7fa4274b9b6a66d5f5e"
+    },
+    {
+      "path": "description/objects_description/060_kitchenpot/base6.json",
+      "type": "file",
+      "mode": 420,
+      "size": 715,
+      "sha256": "7930f08a84469f2c3f79faf7a153bd43f09ac497666b0e09263c82972c4fdb4b"
+    },
+    {
+      "path": "description/objects_description/060_kitchenpot/base7.json",
+      "type": "file",
+      "mode": 420,
+      "size": 639,
+      "sha256": "3de8ba783f2e215614bb184a92964b42aefb5266a38795ee923e7e10451ac4da"
+    },
+    {
+      "path": "description/objects_description/061_battery/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 753,
+      "sha256": "23d7f68d181ca976b49f88e2f7a55254ea10fdffe3b14f602e41bac474ecadf0"
+    },
+    {
+      "path": "description/objects_description/061_battery/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 647,
+      "sha256": "ad44f3b2c8b9b8dfe5e7106cfcefc4ee758de818648f4f44e36f2773a86614e6"
+    },
+    {
+      "path": "description/objects_description/061_battery/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 724,
+      "sha256": "0f2a8669e364fa43ad792b65e1f6588ffd653b15dda1b20c02df9197e52432e7"
+    },
+    {
+      "path": "description/objects_description/061_battery/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 800,
+      "sha256": "023b8c27a6fed97c50f254e6a1e620517b6c6a557b7b36df22c7fb833c1ca717"
+    },
+    {
+      "path": "description/objects_description/061_battery/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 689,
+      "sha256": "049509083b526f8d736cf298ad9005803df69cfcb807ca12d6787e54665e7a85"
+    },
+    {
+      "path": "description/objects_description/061_battery/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 690,
+      "sha256": "0824d9319275e4394cd8b16817f7b84934d0686dc67b69dc0830c607c80b322f"
+    },
+    {
+      "path": "description/objects_description/062_plasticbox/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 727,
+      "sha256": "0f0e2e55fdcb69cb84e5741fd9ee7b07ddd9e519f5431d8eb642dad4ce68265c"
+    },
+    {
+      "path": "description/objects_description/062_plasticbox/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 725,
+      "sha256": "7ee6501be86d5553edd23107a1eb403d50421ebaa593d31af96198fcc92b7d27"
+    },
+    {
+      "path": "description/objects_description/062_plasticbox/base10.json",
+      "type": "file",
+      "mode": 420,
+      "size": 711,
+      "sha256": "95cf5ec9aeb5207a67c2837eaa1ae5fe929cc7e3b59b08e89b8ba0cdcfc67b5a"
+    },
+    {
+      "path": "description/objects_description/062_plasticbox/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 764,
+      "sha256": "2492d8ef51ef37e2b99ed97a1116bb4543ee9f8d9f59950f07023a42c95b0317"
+    },
+    {
+      "path": "description/objects_description/062_plasticbox/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 767,
+      "sha256": "5261c991c175b19e0262938703dfc3416336c3b191458c895c7e4249642a10eb"
+    },
+    {
+      "path": "description/objects_description/062_plasticbox/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 658,
+      "sha256": "661be5fec791f33e7f3ad460cd986ddc3c440a21e41789d9cf4bdc11c94a275c"
+    },
+    {
+      "path": "description/objects_description/062_plasticbox/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 671,
+      "sha256": "38241559c731aa30c8a369b3b854aa80ad87fd8a47c5aa349bfd876771046dd5"
+    },
+    {
+      "path": "description/objects_description/062_plasticbox/base6.json",
+      "type": "file",
+      "mode": 420,
+      "size": 720,
+      "sha256": "7afd94a64645bfa79b461d925ba4d8deb123d26f5694b3f3c07b86b3607c760e"
+    },
+    {
+      "path": "description/objects_description/062_plasticbox/base7.json",
+      "type": "file",
+      "mode": 420,
+      "size": 767,
+      "sha256": "bffa5e74d5650b2c51339af891ce899a6d5c859d17aa1bc979eba27551492c5d"
+    },
+    {
+      "path": "description/objects_description/062_plasticbox/base8.json",
+      "type": "file",
+      "mode": 420,
+      "size": 652,
+      "sha256": "c2166c1c9b83dc89c0249840038ce20b18f8784bb6f854f9a5f8eaa2bc564489"
+    },
+    {
+      "path": "description/objects_description/062_plasticbox/base9.json",
+      "type": "file",
+      "mode": 420,
+      "size": 719,
+      "sha256": "ee010391ea20f2963c74c23d51d0454d43c2325060c45e152c222adfbb7a5a1e"
+    },
+    {
+      "path": "description/objects_description/063_tabletrashbin/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 672,
+      "sha256": "e78be23a570db3e04a985dbd172775dab4c4ad5f535113c607e03b6a6a562671"
+    },
+    {
+      "path": "description/objects_description/063_tabletrashbin/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 730,
+      "sha256": "c754364e48a90674d85c3825c4ca3dc3cc66b23eacccb716e1440ff947108682"
+    },
+    {
+      "path": "description/objects_description/063_tabletrashbin/base10.json",
+      "type": "file",
+      "mode": 420,
+      "size": 703,
+      "sha256": "e5d671747de7b293087de20258e3c13522834c4734e2b3a9e48a8a423f878096"
+    },
+    {
+      "path": "description/objects_description/063_tabletrashbin/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 649,
+      "sha256": "20cc2c1e12a578892a5f8b36d58893d485241f9082044d8031d459ca5ca34559"
+    },
+    {
+      "path": "description/objects_description/063_tabletrashbin/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 759,
+      "sha256": "20c7d30992fd72027597b293a6ae464eb5133bcdae676fc992edd87c7e6883b0"
+    },
+    {
+      "path": "description/objects_description/063_tabletrashbin/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 690,
+      "sha256": "1eb89fc1edb8d641ab90e32daeefb4ea7e0b6e7991a6ee93820cb0495ffb2a45"
+    },
+    {
+      "path": "description/objects_description/063_tabletrashbin/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 714,
+      "sha256": "1d02bf82791421f0c5ce884d676dc37d0e910bd953dc8cda9ba1f2ddb07dba75"
+    },
+    {
+      "path": "description/objects_description/063_tabletrashbin/base6.json",
+      "type": "file",
+      "mode": 420,
+      "size": 715,
+      "sha256": "62d00df2a1388f6c5cee3e0b8671a4ab83cca545ea43d1ff1d557f04cb2b178d"
+    },
+    {
+      "path": "description/objects_description/063_tabletrashbin/base7.json",
+      "type": "file",
+      "mode": 420,
+      "size": 648,
+      "sha256": "b929d9aebb53947745c912e3718431efa6b587acfaa6f05fd4709f8615b0012a"
+    },
+    {
+      "path": "description/objects_description/063_tabletrashbin/base8.json",
+      "type": "file",
+      "mode": 420,
+      "size": 696,
+      "sha256": "181b36e5ca93a2c3b19a1f536341ba0ef844a5fce732837f399faf8baf529b5b"
+    },
+    {
+      "path": "description/objects_description/063_tabletrashbin/base9.json",
+      "type": "file",
+      "mode": 420,
+      "size": 684,
+      "sha256": "8e2fa542cece1b6be101e46a6df3b4c431add2264659f1a7d68cb20278a66591"
+    },
+    {
+      "path": "description/objects_description/064_msg/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 696,
+      "sha256": "45987f507ee0dd771cb6e1e175925e0ec6b4d433008126d1503244bf6ba486a5"
+    },
+    {
+      "path": "description/objects_description/064_msg/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 616,
+      "sha256": "c7a17068951009941d8aef9e1c9c790c315d339633787675c984da7ebc728b9e"
+    },
+    {
+      "path": "description/objects_description/064_msg/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 636,
+      "sha256": "017e73f5e6eb0940e7c3e2322a6641cae916e0a3c29ce926876951dc70159d82"
+    },
+    {
+      "path": "description/objects_description/064_msg/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 716,
+      "sha256": "7abffebc13265cf9c47d64d0decd3f3ee5c13d8f0041a6cdcf0abc0e05ddf840"
+    },
+    {
+      "path": "description/objects_description/064_msg/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 582,
+      "sha256": "fe7286a4c6625faccecbdc090b4eb770b3e7095655e5b7999afe513db3137a4f"
+    },
+    {
+      "path": "description/objects_description/064_msg/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 722,
+      "sha256": "a44862619d5515e5644db96f34599520c9880540dac3ad49c7d7c095ed32aae5"
+    },
+    {
+      "path": "description/objects_description/065_soy-sauce/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 777,
+      "sha256": "1ed0697b838db5a3417b7337ac1816cae0868d772a3e89243c29874edc7d885c"
+    },
+    {
+      "path": "description/objects_description/065_soy-sauce/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 771,
+      "sha256": "ac42319f064154b03a8079f0e31e7eac9007413ca77f01524ec3998c4d99b63b"
+    },
+    {
+      "path": "description/objects_description/065_soy-sauce/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 706,
+      "sha256": "5d04256f90e5ac976dac88019722ab44a39f5198fe723c20ae9bc41f35dfe93d"
+    },
+    {
+      "path": "description/objects_description/065_soy-sauce/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 708,
+      "sha256": "c9207e552944f4bd8f28cd7324b9752370f1e7df6e12a5c031c40c968bda8f6d"
+    },
+    {
+      "path": "description/objects_description/065_soy-sauce/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 724,
+      "sha256": "c5f0c332c4be20a83bae0f22eb0d1491d3f0b1dd7005f372e1a40ffaf1d11576"
+    },
+    {
+      "path": "description/objects_description/066_vinegar/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 735,
+      "sha256": "6864143ec84461e48ebdbe0f069607ee38a7ef0140a6e36e1d869d2f89ecaccc"
+    },
+    {
+      "path": "description/objects_description/066_vinegar/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 741,
+      "sha256": "b44be30d86f45ea833560f283ff0049d4001a0b7bf593f3258aab1f44102ae8c"
+    },
+    {
+      "path": "description/objects_description/066_vinegar/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 736,
+      "sha256": "006dccb3e2e1444798ed4a9994443ccddb824c789747f6d388ace7b6126186d5"
+    },
+    {
+      "path": "description/objects_description/067_steamer/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 618,
+      "sha256": "3d236d62fef5b7c70b782554fd6dff2b47d36cd921c9a936b186b58d277000e3"
+    },
+    {
+      "path": "description/objects_description/067_steamer/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 670,
+      "sha256": "217c29678a2cfebdb91521b4f9465ee5d1ab04a349b6067d2df0df8ed9587d82"
+    },
+    {
+      "path": "description/objects_description/067_steamer/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 602,
+      "sha256": "ab80b3adc8efc59ddbab020abe693f958f65bfb0c0be2f6a50501062314d5e55"
+    },
+    {
+      "path": "description/objects_description/068_boxdrink/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 696,
+      "sha256": "a93607103b072f3404c31dc90636c42bdf8066caf049760b5f9f994c1fe03dc2"
+    },
+    {
+      "path": "description/objects_description/068_boxdrink/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 745,
+      "sha256": "0ffc0e07167f316baa64798c438edc2be7e856753f03af2569592cbe8740af46"
+    },
+    {
+      "path": "description/objects_description/068_boxdrink/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 728,
+      "sha256": "77fd45d897a48819261a7b3d5ea00ee3c0ab2f907ceb8c737e17cde819379d48"
+    },
+    {
+      "path": "description/objects_description/068_boxdrink/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 704,
+      "sha256": "c9d98a1ac0858f92d53abc8ecd4b86e1855ecb9fbd7fb3c4c49d989eb256d015"
+    },
+    {
+      "path": "description/objects_description/069_vagetable/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 658,
+      "sha256": "a80c84a386d6318dab431427199f86aa2cb0e5aac6cc8d378aa7b1299f44db56"
+    },
+    {
+      "path": "description/objects_description/069_vagetable/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 634,
+      "sha256": "7552e64c84a02fad3728048fed7fc27ad4b711a239a80519dbe35eecea2eb3a1"
+    },
+    {
+      "path": "description/objects_description/069_vagetable/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 697,
+      "sha256": "a80dad8c11009285531a3d1cc36f49a45c73cfebdd11c543d6e548e2c54c3c5a"
+    },
+    {
+      "path": "description/objects_description/069_vagetable/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 616,
+      "sha256": "f5ea280fb09f252d28051d1d2b989aaab25e114a31ee6da636a4440bd440bc09"
+    },
+    {
+      "path": "description/objects_description/069_vagetable/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 628,
+      "sha256": "3eb0e216e741824758fbe1e96375db97cb29d196b7c66a5071a4daa91188a64a"
+    },
+    {
+      "path": "description/objects_description/069_vagetable/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 664,
+      "sha256": "43dbea1e5ca0175b0ab5b38f53f53bd440285cd67f1ae45346227c7a3d76651e"
+    },
+    {
+      "path": "description/objects_description/069_vagetable/base6.json",
+      "type": "file",
+      "mode": 420,
+      "size": 729,
+      "sha256": "6f7edc86249eee45dfc2f0f9ff869e7ac1fb1999d90c376f6e2e35ecb77cc916"
+    },
+    {
+      "path": "description/objects_description/070_paymentsign/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 737,
+      "sha256": "f3dd41880a72d0694c1b3da1e9e8a9c1d2bc83c7a57fd670c796d35ac58170b7"
+    },
+    {
+      "path": "description/objects_description/070_paymentsign/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 721,
+      "sha256": "3ac83a444fe9864cea4ebdbde7be6f09909e5f8f99d8c7f708ba8a651208459a"
+    },
+    {
+      "path": "description/objects_description/070_paymentsign/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 671,
+      "sha256": "8f9d6a27a9414c26ed9d3e159673f82540679e1ced92976ef4da6746c1f2e176"
+    },
+    {
+      "path": "description/objects_description/070_paymentsign/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 709,
+      "sha256": "c0826a3e4590e5798d8d93d907eb3f32ceeab8f56363bc6b60562745798353b7"
+    },
+    {
+      "path": "description/objects_description/071_can/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 646,
+      "sha256": "989e71d3617706a0cb8b12ee2e217461b9bd1777fda23d8f9b28fee31c09e520"
+    },
+    {
+      "path": "description/objects_description/071_can/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 610,
+      "sha256": "a46e6f08e093dedd999090c461bbe86f62de660707d0fe042cd223db6ca2ccea"
+    },
+    {
+      "path": "description/objects_description/071_can/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 711,
+      "sha256": "70ee3dea5f945c4c195d9350b168375d9a265cd9a341d0d73a6077e7bae5cd57"
+    },
+    {
+      "path": "description/objects_description/071_can/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 662,
+      "sha256": "43d383a11d8c4261fa0fe6b2a2093583b166cb4801cea4f676f9cd344c4e827d"
+    },
+    {
+      "path": "description/objects_description/071_can/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 716,
+      "sha256": "b862799c5425e9a2b64588223d2a4d86d76a6afc06cb725b462c9cf60ebba0a8"
+    },
+    {
+      "path": "description/objects_description/071_can/base6.json",
+      "type": "file",
+      "mode": 420,
+      "size": 616,
+      "sha256": "2ae93ba8e8b60d70a57c3886a8a986eb9e687455c9ecd76fb82f55d486f78eef"
+    },
+    {
+      "path": "description/objects_description/072_electronicscale/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 749,
+      "sha256": "346aa6c27fe3fcc79c56db3cc1ef611a84391f376031ff3c5e40b95501388a2c"
+    },
+    {
+      "path": "description/objects_description/072_electronicscale/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 777,
+      "sha256": "3c923a1b539467fb3ef41e350848814e724dad162fb414dfddf7dbe0b9e1a0d8"
+    },
+    {
+      "path": "description/objects_description/072_electronicscale/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 779,
+      "sha256": "976cf13b92df90634eaa730da17ec24d2c301ed8512b905ba22b9e8062552766"
+    },
+    {
+      "path": "description/objects_description/072_electronicscale/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 777,
+      "sha256": "299817cc3576b6912f8d4223eafbf279bd580bc193c3c316c18772ce4f1a8d2a"
+    },
+    {
+      "path": "description/objects_description/072_electronicscale/base6.json",
+      "type": "file",
+      "mode": 420,
+      "size": 730,
+      "sha256": "f1672988de557484fc6a04c06eb9123ed285f38042ed1ccb594d596257a4a8c8"
+    },
+    {
+      "path": "description/objects_description/073_rubikscube/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 673,
+      "sha256": "6466e072b5fc6290b710656db19b62e41588df882e9bec6498805e7666c9611d"
+    },
+    {
+      "path": "description/objects_description/073_rubikscube/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 794,
+      "sha256": "db1c1c5ac379e5f1d0c71433424ec52ae7299e7a1b23b582e1795602cb62dd43"
+    },
+    {
+      "path": "description/objects_description/073_rubikscube/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 642,
+      "sha256": "1cee7dc418605a067259f739c56f92154c6509980103fcf88d68d5aab5cbb474"
+    },
+    {
+      "path": "description/objects_description/074_displaystand/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 728,
+      "sha256": "ca2ebb7ae3b9f0d86a02711367108ee39ef7f4100451f97c75f94dd305bfbf5a"
+    },
+    {
+      "path": "description/objects_description/074_displaystand/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 734,
+      "sha256": "32379c7922d9309466f018a90576b3fcdfef24de85a7ac41c06a989b53a438d1"
+    },
+    {
+      "path": "description/objects_description/074_displaystand/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 727,
+      "sha256": "4175c4dddddcdcef788579c15df5315a86d03e8b9774acb692ae4ca47a774551"
+    },
+    {
+      "path": "description/objects_description/074_displaystand/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 738,
+      "sha256": "c67d157c8fe9da1a471f735faa0fe43de079d2daa7b7acc5a687f668bf330451"
+    },
+    {
+      "path": "description/objects_description/074_displaystand/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 695,
+      "sha256": "101320712a8bc4ee844081eee14a22353d0f4e31c484af649c3c9019a7dd016c"
+    },
+    {
+      "path": "description/objects_description/075_bread/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 612,
+      "sha256": "8d5a915c9b693c831a3fd2d236816ab497434745f6067b50f88c52418ac3034f"
+    },
+    {
+      "path": "description/objects_description/075_bread/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 577,
+      "sha256": "8118b57d532e74d88a41613a084dfd66e3b13908b723f641356c6fab0b4bd1a7"
+    },
+    {
+      "path": "description/objects_description/075_bread/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 662,
+      "sha256": "a8a939f1f7b5632e40466eb33048d79ecc5ed3823a46fdde0d36ef8d4dc1233c"
+    },
+    {
+      "path": "description/objects_description/075_bread/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 589,
+      "sha256": "8ee59771df0c7b0a0ad588f65b7cbb7065d4683ec615bccc6fc860c9c36cb60f"
+    },
+    {
+      "path": "description/objects_description/075_bread/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 586,
+      "sha256": "fe3fb115877c28da5151603631b2ef7a367304d281409e3ffaa1c4d5aa17a537"
+    },
+    {
+      "path": "description/objects_description/075_bread/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 607,
+      "sha256": "761e33f9e963a779cc6127e1406fe237ffef63e726bfde1169ba6b7f5f44c8fa"
+    },
+    {
+      "path": "description/objects_description/075_bread/base6.json",
+      "type": "file",
+      "mode": 420,
+      "size": 615,
+      "sha256": "f67d4b197180fc646080d565e5298ce106c0054c3896a064d4077d0dbe80a8e2"
+    },
+    {
+      "path": "description/objects_description/076_breadbasket/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 692,
+      "sha256": "e5e4b0603971022714d72d951e317ed27951534bdf82656b4790777a0c6b9a73"
+    },
+    {
+      "path": "description/objects_description/076_breadbasket/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 724,
+      "sha256": "3602795112a7717f12748850f35bb43e0632b54f02012ca7bcd891c3c155bd1e"
+    },
+    {
+      "path": "description/objects_description/076_breadbasket/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 646,
+      "sha256": "66a133f5941ea6996f9f30013374cbd9a95ad9c19a784117cfb50499134e91e3"
+    },
+    {
+      "path": "description/objects_description/076_breadbasket/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 718,
+      "sha256": "69b75dd0ef6e2eb1e68e3d187f35f9884c81423b650d43937e2db2d06921878c"
+    },
+    {
+      "path": "description/objects_description/076_breadbasket/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 608,
+      "sha256": "cecd16aeec111769dcdbfd13507ea02b0ff76a10b0315c517e764e00c0ee4d7c"
+    },
+    {
+      "path": "description/objects_description/077_phone/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 567,
+      "sha256": "25c28db8ad9b1c29e0c49df6f99e41950c2c74b20c62045093b0cc44b8e7cde8"
+    },
+    {
+      "path": "description/objects_description/077_phone/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 640,
+      "sha256": "3f15f58aee710bb9b892c6d4c2bb8b67086141dddfcf17eaf1d4745ef590c0e5"
+    },
+    {
+      "path": "description/objects_description/077_phone/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 695,
+      "sha256": "7ad4e32d38663c6c7cf8ec2d4ecd0989fb980d1ec845f1c62eed98c811fbff51"
+    },
+    {
+      "path": "description/objects_description/077_phone/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 671,
+      "sha256": "77a34c1610fef659abcc1922da132537e61b35cf0f93fb3a4f84484f91bd9841"
+    },
+    {
+      "path": "description/objects_description/077_phone/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 624,
+      "sha256": "0bd82bf4bd03d01660d56f7ed6e28dcbfe7c938c7bf205d76f3fe32247197f9f"
+    },
+    {
+      "path": "description/objects_description/078_phonestand/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 734,
+      "sha256": "547e2b1342302343edf108d7d48f939e8f77535a643312280f13f8bcfbdf70c7"
+    },
+    {
+      "path": "description/objects_description/078_phonestand/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 624,
+      "sha256": "a88da51de161ad3431bc6749b514618f17314fe251ed17cdd87cf41690e73fdb"
+    },
+    {
+      "path": "description/objects_description/078_phonestand/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 667,
+      "sha256": "002033f17f324461cf125b0d66413126613ab33b071c7349bb16e73ec9a92afa"
+    },
+    {
+      "path": "description/objects_description/078_phonestand/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 702,
+      "sha256": "332b03683bcd0a551da02ea935e5a7873558423c91cb305521371c60158941b0"
+    },
+    {
+      "path": "description/objects_description/078_phonestand/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 684,
+      "sha256": "8c8f7680b0bb6e26ac1b49ec6a6eebe6e58dffcd8f4abac50a91c9ee9218582c"
+    },
+    {
+      "path": "description/objects_description/078_phonestand/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 685,
+      "sha256": "3fc7618512d01fb52996910347bfaf2b336f5f5bc449b2d7f7430cdb9559a78c"
+    },
+    {
+      "path": "description/objects_description/078_phonestand/base6.json",
+      "type": "file",
+      "mode": 420,
+      "size": 651,
+      "sha256": "404cd3cb4acf51f6d5abda8b5f8c2d6bdb5710bd6994cfe07cc26d0dca205273"
+    },
+    {
+      "path": "description/objects_description/079_remotecontrol/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 746,
+      "sha256": "82a8ef8f3fe469938d4a0f43608a541f5fd899a03ea0a0a431ae216b5f1bf558"
+    },
+    {
+      "path": "description/objects_description/079_remotecontrol/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 709,
+      "sha256": "6501955ce51ab096b8a71dd0491f52f7282b8b10bade20b4b37d6214dda5bb0e"
+    },
+    {
+      "path": "description/objects_description/079_remotecontrol/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 710,
+      "sha256": "a43fcd0b7e5fc24cbe6e30f44b838c8170e81adcbb0bf2438b45cda9fe6b5165"
+    },
+    {
+      "path": "description/objects_description/079_remotecontrol/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 692,
+      "sha256": "fb1cebb77f97e8fd4237d341c60b77e774e7ab1369e396f8297f4693f984e73e"
+    },
+    {
+      "path": "description/objects_description/079_remotecontrol/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 713,
+      "sha256": "c0e3cddf1ab0d878e30411702ccfc6732554fee3b3e73411a60038d6f53232b1"
+    },
+    {
+      "path": "description/objects_description/079_remotecontrol/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 739,
+      "sha256": "c2970e038ad3e513db8dd7b91240bd34242bd6c01ea3a2cd660ebd70d2805db6"
+    },
+    {
+      "path": "description/objects_description/079_remotecontrol/base6.json",
+      "type": "file",
+      "mode": 420,
+      "size": 742,
+      "sha256": "6e70debbd5439df1edfbd0a1261472e1f78336261849f610558c4684ceb4f5c3"
+    },
+    {
+      "path": "description/objects_description/080_pillbottle/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 720,
+      "sha256": "a0217b6215a8e66d4bbbd4e8dc41d9f3c21d540a878e0e34f56e1b4e3f8f43f0"
+    },
+    {
+      "path": "description/objects_description/080_pillbottle/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 682,
+      "sha256": "97374edfa41f7e2e995c78325146e6e2e25c434ca4d7acdef8e577bfae1fb62a"
+    },
+    {
+      "path": "description/objects_description/080_pillbottle/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 712,
+      "sha256": "f9b898ef6fc52ce29146aca76b8fa643cd8c78e1ea61545598fc30fe815348cc"
+    },
+    {
+      "path": "description/objects_description/080_pillbottle/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 707,
+      "sha256": "23b4a1ad15a95c6cbd3e1487f02ffe7821e4a47bfb910cbd35c6e9c10a7b6cf7"
+    },
+    {
+      "path": "description/objects_description/080_pillbottle/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 760,
+      "sha256": "485a538bf5e7306d6e0348f80c99d5885d157de993c933562117c960a131ffd2"
+    },
+    {
+      "path": "description/objects_description/081_playingcards/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 710,
+      "sha256": "4b9b0e223c781787328b20da35688a76c2c46ac2cf38caf3aadd126205c2b1d5"
+    },
+    {
+      "path": "description/objects_description/081_playingcards/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 690,
+      "sha256": "90ddb05817ea1d711e11ea5f3af6a4e15b1137fc94fbb2b103502878fa12d589"
+    },
+    {
+      "path": "description/objects_description/081_playingcards/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 683,
+      "sha256": "0646c43c794ee1f546f7b19c892c6dc26b1252f31ba6211aa1cae4d4c6454d75"
+    },
+    {
+      "path": "description/objects_description/082_smallshovel/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 697,
+      "sha256": "a7c82549ac08b8b99ba656b471a6ac9ec02a9c81e8bef3911c11a97d422f214c"
+    },
+    {
+      "path": "description/objects_description/082_smallshovel/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 706,
+      "sha256": "fc8b4bbc82f2470df650d543a3e8a1ec564e1bbe0ed65c9a9d1909b463a06d58"
+    },
+    {
+      "path": "description/objects_description/082_smallshovel/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 690,
+      "sha256": "52ca49fdc8c9d5d2d338988d73ab9d971040aa855222868b91b6fd6e83701183"
+    },
+    {
+      "path": "description/objects_description/082_smallshovel/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 669,
+      "sha256": "670f7de72fe5c3be6c6b5dc9d6a8e141e87b193b63434fc5d773f065f0520ffc"
+    },
+    {
+      "path": "description/objects_description/083_brush/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 676,
+      "sha256": "c272f109dc7a608eba7b66a9abbc92e93ef78df98bc8b362060750ab5985ef49"
+    },
+    {
+      "path": "description/objects_description/083_brush/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 670,
+      "sha256": "6fb73c45769870525edd0e11d1678c147e2e05f06e396d37d40bb0b88da46576"
+    },
+    {
+      "path": "description/objects_description/083_brush/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 692,
+      "sha256": "fd0bce476927256987d4b746260d28a1c5e22068a70b09d290e9f2f738ff6a92"
+    },
+    {
+      "path": "description/objects_description/083_brush/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 676,
+      "sha256": "e1eb4c778518b1936aee8762e84ef1dce9695dbd383e50cd46374c68ed33a02e"
+    },
+    {
+      "path": "description/objects_description/084_woodenmallet/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 676,
+      "sha256": "fc32862af25493300787fcdbf82c3e6c42d9f62437ba087dd354d4b6f8da102c"
+    },
+    {
+      "path": "description/objects_description/084_woodenmallet/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 663,
+      "sha256": "a1eaa3412aa4afe5c68b340c5e74d3b39a9f571149ab7e9352331596af431d2b"
+    },
+    {
+      "path": "description/objects_description/084_woodenmallet/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 658,
+      "sha256": "73daafff5a2a0b7d013610cb3bab8c02fc116b3588d383c586debabf618e7735"
+    },
+    {
+      "path": "description/objects_description/084_woodenmallet/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 669,
+      "sha256": "e72edac2085e56c0d9660a45881d9975aa5c93d9248f624cc25a7675da384f25"
+    },
+    {
+      "path": "description/objects_description/084_woodenmallet/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 716,
+      "sha256": "bd5c077c15b400e019ec3cf75e277784178e80290bfe0a24f456602dc0d4cdfd"
+    },
+    {
+      "path": "description/objects_description/085_gong/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 724,
+      "sha256": "b105543851b8ff436f40acdef319802885debc65f0748477224bdb3c56999a5c"
+    },
+    {
+      "path": "description/objects_description/085_gong/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 564,
+      "sha256": "727bdf480f6df0f30832be26b4904769fc318ccf4fadc0cc96aa4275c650ad95"
+    },
+    {
+      "path": "description/objects_description/085_gong/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 687,
+      "sha256": "e91c4162585fd88d1bf56669a2e8b10a9a700fd36eb6d917967725db378a02dd"
+    },
+    {
+      "path": "description/objects_description/085_gong/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 656,
+      "sha256": "ec2a2ef03e354704dc19ae603233233349a3c6b623cbb87dc8cec0fe1e2ecff2"
+    },
+    {
+      "path": "description/objects_description/085_gong/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 588,
+      "sha256": "e69837708f47d29bf73559148d17d85bfd984ec8a6d253a8b1ad160c118143c7"
+    },
+    {
+      "path": "description/objects_description/085_gong/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 574,
+      "sha256": "d484bf769589099af2cf78c1aff210f476cd7bf206cb4ffdd87f7f8846e7ecc6"
+    },
+    {
+      "path": "description/objects_description/086_woodenblock/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 620,
+      "sha256": "f3a6d86c30ed1e535a5a7229eb8848d6b897a33c3f5e3e870afe13a99b12301e"
+    },
+    {
+      "path": "description/objects_description/086_woodenblock/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 653,
+      "sha256": "b533fd0c989392492f2930e1059f68edefe7b56f71210ce5c6134d47765433e5"
+    },
+    {
+      "path": "description/objects_description/086_woodenblock/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 916,
+      "sha256": "b415e0c315bc1cc55615120814eb4ed07faf3d46098262f53a8479c006f09186"
+    },
+    {
+      "path": "description/objects_description/086_woodenblock/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 752,
+      "sha256": "19a3f8b9f6bd91c6732b99e80de946efff88e3cb25e0e84f1cdd1b38c0462815"
+    },
+    {
+      "path": "description/objects_description/086_woodenblock/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 728,
+      "sha256": "cea693733a62368d933107c7dd9ce479eb2742f2d0a852fd182daffc91ae0e24"
+    },
+    {
+      "path": "description/objects_description/087_waterer/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 675,
+      "sha256": "57af9c1dbc747dfa68280c4b4b9ea0d0955d1028ed1b442394889f36d1f5b776"
+    },
+    {
+      "path": "description/objects_description/087_waterer/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 730,
+      "sha256": "a38d53200894f9e8ff72ccaea67736abfbb09486adf2056dcff4b685a4b99070"
+    },
+    {
+      "path": "description/objects_description/087_waterer/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 651,
+      "sha256": "66a60b5ef9a6c93ff069623b4af1dd7f8f4b92af23b10bd356c08dac03a5b2c4"
+    },
+    {
+      "path": "description/objects_description/087_waterer/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 726,
+      "sha256": "2d282acc456ce30e8fcd53aef97e639c0c83fc58bbc12213d8aa36d0cb347dbe"
+    },
+    {
+      "path": "description/objects_description/087_waterer/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 668,
+      "sha256": "8cf7afa62f5f009e38583622a06219c869643f56be710b22ede8cc06053972a3"
+    },
+    {
+      "path": "description/objects_description/087_waterer/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 755,
+      "sha256": "72be744cee380d31e346f66cb4b63f99ba1675052541f31a3b8d864b0d0b16e1"
+    },
+    {
+      "path": "description/objects_description/087_waterer/base6.json",
+      "type": "file",
+      "mode": 420,
+      "size": 673,
+      "sha256": "9527ad9179f5bbc9b28259fa44aa102a462141adcd59cde3eec8145b79140eaa"
+    },
+    {
+      "path": "description/objects_description/087_waterer/base7.json",
+      "type": "file",
+      "mode": 420,
+      "size": 697,
+      "sha256": "4e3543348ee1f7d37cdafd1266b4e7340af62fc19efaf38224f525ea54c135ac"
+    },
+    {
+      "path": "description/objects_description/088_wineglass/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 645,
+      "sha256": "ae90fc8ab5a47561c4de808d70cce6e21140f0729ea5cf3c3f52188ae64b8364"
+    },
+    {
+      "path": "description/objects_description/088_wineglass/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 659,
+      "sha256": "6a718644de4f45c855644c48fac95aa7854f24383342d89b310c4f233ff84979"
+    },
+    {
+      "path": "description/objects_description/088_wineglass/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 626,
+      "sha256": "c9f74ae34300be4dfb3824eb07241f84697c1a985fcdc6fbee67726b6d2ea161"
+    },
+    {
+      "path": "description/objects_description/088_wineglass/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 648,
+      "sha256": "d368be6cd68422fc33ba0811697cb8f546fbe8bf1e9c693188f4739a3b1d034e"
+    },
+    {
+      "path": "description/objects_description/088_wineglass/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 619,
+      "sha256": "fea0264a60397883f9800816894f1dfbea7b750e3a3a7c0c9cd80904efb89db1"
+    },
+    {
+      "path": "description/objects_description/089_globe/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 598,
+      "sha256": "44172826738442cec253fbc7f2739b03f61a6f22a06794f04aea10ce76a33057"
+    },
+    {
+      "path": "description/objects_description/089_globe/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 706,
+      "sha256": "4219b6a7ce88189cfdc4320f59af1a167ddeef72aa093b3687854c2e20a710a2"
+    },
+    {
+      "path": "description/objects_description/090_trophy/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 644,
+      "sha256": "140c1a3b6a334d11919506b67c0344ee8141b52415785b5a19f381012700aa63"
+    },
+    {
+      "path": "description/objects_description/090_trophy/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 725,
+      "sha256": "efd0e38edf512e2d66dca13ed64779ca3d1b721eaa270e7458564a2eae9a1259"
+    },
+    {
+      "path": "description/objects_description/090_trophy/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 630,
+      "sha256": "4983e0f50f3641f4160c01549acbb918180f7902927ef62a253eeabe352e5b1b"
+    },
+    {
+      "path": "description/objects_description/090_trophy/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 639,
+      "sha256": "3768274213bfc76d335d3631dd8fa96eec75c5c0fe02d12d1e89487eefae4d9e"
+    },
+    {
+      "path": "description/objects_description/090_trophy/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 687,
+      "sha256": "53bf3eed024f71850631d2027de1f06b3c54a6cf163fb4c9fce6377b25df45e6"
+    },
+    {
+      "path": "description/objects_description/091_kettle/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 710,
+      "sha256": "a04ed074e8b2a1551bd1993957e0a75aaf3d5927b687c8d27db823ae75347f64"
+    },
+    {
+      "path": "description/objects_description/091_kettle/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 710,
+      "sha256": "21ce197eabc84712b81518e180847dd02d788095cf98bb3a21530954aeb49156"
+    },
+    {
+      "path": "description/objects_description/091_kettle/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 681,
+      "sha256": "ebf0d2341a255d8bcb91f6164e944cf04ead471d98182c51049a99cf1f34dffc"
+    },
+    {
+      "path": "description/objects_description/091_kettle/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 625,
+      "sha256": "5d312bef23c9831b266b9f1ae3df3c54fd2f76aed92236107ab30b59162c0f6e"
+    },
+    {
+      "path": "description/objects_description/091_kettle/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 696,
+      "sha256": "2b0c07720609dbedf58e2c8d3e0cd9ac4e7ad39106e4ac09fc6a5d31d03ae3fb"
+    },
+    {
+      "path": "description/objects_description/091_kettle/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 731,
+      "sha256": "52f114a12cda9403071e81125b3502b55e41637588324e4077fd0bbb98579f7a"
+    },
+    {
+      "path": "description/objects_description/092_notebook/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 717,
+      "sha256": "169380e8bceaca8cf70da9ec6e049cc221fd7aaef5d5b6ce9371b727139ad62e"
+    },
+    {
+      "path": "description/objects_description/092_notebook/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 662,
+      "sha256": "8bd98d418ec21913dbb677a8de882e709ee310185ea51a9a635417ffff172237"
+    },
+    {
+      "path": "description/objects_description/092_notebook/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 714,
+      "sha256": "4abb08ab3344cdf9695a1ac12f95bd096fa1b2a75590afe88e03132c33ecc462"
+    },
+    {
+      "path": "description/objects_description/093_brush-pen/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 622,
+      "sha256": "25f9425431ce3cd7a7766983406a77cba6a14e3efde07a4228fcc7ce1e8ae71c"
+    },
+    {
+      "path": "description/objects_description/093_brush-pen/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 675,
+      "sha256": "c2cd91fbf72ba1e42b0f3a604bd728c8b7a1308f089089bebb5743e01b5b0b17"
+    },
+    {
+      "path": "description/objects_description/093_brush-pen/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 617,
+      "sha256": "d40c5d65d5aa28b1ca626082982269a22d463ba548b00f251e47e7412d365be1"
+    },
+    {
+      "path": "description/objects_description/093_brush-pen/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 747,
+      "sha256": "c5b4404bb8aeed23fe246d305210d48417401ed649a40ee93205fb752722b531"
+    },
+    {
+      "path": "description/objects_description/093_brush-pen/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 764,
+      "sha256": "e8f3926b85e49c306b9290820cefa264d8037467f78d6ab660b7306025fe2261"
+    },
+    {
+      "path": "description/objects_description/093_brush-pen/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 653,
+      "sha256": "ef30540c782ee304b6927c166323561ad0d4dbd1264f7b0b20ff1aa6e6bc76e7"
+    },
+    {
+      "path": "description/objects_description/094_rest/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 681,
+      "sha256": "f01bdbe448d7d281bd8e1bba173b0b84d00f3cd16fa9bf187d3471adcb3360a5"
+    },
+    {
+      "path": "description/objects_description/094_rest/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 697,
+      "sha256": "400b3a33da21f03cd24df9b9d280614c38ef1c5efec35bf2b024b1074a78faea"
+    },
+    {
+      "path": "description/objects_description/094_rest/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 728,
+      "sha256": "4ed790be4a6d2645762da1908e6d4193d703f2b2690af42a5c7abb145e8af0a6"
+    },
+    {
+      "path": "description/objects_description/094_rest/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 660,
+      "sha256": "8f398f33746d701ae34adf2bf85501539012d8989a9e5b77ad201008c90140bc"
+    },
+    {
+      "path": "description/objects_description/095_glue/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 707,
+      "sha256": "d53f47f22ccd4f4a7c4470ceff74efa533680c17629a3655988ac67910efb253"
+    },
+    {
+      "path": "description/objects_description/095_glue/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 629,
+      "sha256": "c5ad517effe5789d1323f74458f966f092601b0263218dbfbe6b75dfb0cf0d44"
+    },
+    {
+      "path": "description/objects_description/095_glue/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 646,
+      "sha256": "458459c77cc595bc21be90a11b61b2cc087cb09c60e62d83fbce587b8aafda4a"
+    },
+    {
+      "path": "description/objects_description/095_glue/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 675,
+      "sha256": "74267d0fc4aed1cffb6916a7849a7fb94d6da41e85e11066d6820de0d68d4c11"
+    },
+    {
+      "path": "description/objects_description/095_glue/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 670,
+      "sha256": "dad119ee563b4ea491567d77dbfff0aa39244c318244a9aa148b800959e25ba3"
+    },
+    {
+      "path": "description/objects_description/095_glue/base6.json",
+      "type": "file",
+      "mode": 420,
+      "size": 613,
+      "sha256": "f0fbee1ccad61fb1aff524ec67b18e2f3433fbb4df1395622ee2a800b7435e74"
+    },
+    {
+      "path": "description/objects_description/096_cleaner/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 737,
+      "sha256": "01907ddd5043159691da4d6ce9e82889ef011dd6d8090dfdce1ed56c8a89f30a"
+    },
+    {
+      "path": "description/objects_description/096_cleaner/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 641,
+      "sha256": "0c4b8718c739b422ff0df1474762987feb543e1684bb58698dfc7006a33ae0b1"
+    },
+    {
+      "path": "description/objects_description/096_cleaner/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 577,
+      "sha256": "654a9da5897be939f02078e554b76b43b620f67f15f9c8a86779a5fee1b9d36b"
+    },
+    {
+      "path": "description/objects_description/096_cleaner/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 756,
+      "sha256": "8a25d185797413866911ba0dabf0ad2e436b0d659c9590e982ad57ba7240e545"
+    },
+    {
+      "path": "description/objects_description/097_screen/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 599,
+      "sha256": "854b8e097b526ddcba4f6331d55b1b3bc228491f31198954bff07e764cba7fdc"
+    },
+    {
+      "path": "description/objects_description/097_screen/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 698,
+      "sha256": "d395c4db08b3017afc1cdd01c12b2887f6c24bc77a54de160b470f81b6a53e0c"
+    },
+    {
+      "path": "description/objects_description/097_screen/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 613,
+      "sha256": "4375b73db396660205a1d6620a0b17efbe842a9ac2c3f2ef625d63308fb2274e"
+    },
+    {
+      "path": "description/objects_description/097_screen/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 608,
+      "sha256": "2e55c75ea01bf12f88a1b117d5f9a4f309cf9ee13531708f6cdfce34103975f7"
+    },
+    {
+      "path": "description/objects_description/098_speaker/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 732,
+      "sha256": "74c0aaaa3231c493d8c1cb7583d15bc858350fce0a7d301f3706372e08035fb4"
+    },
+    {
+      "path": "description/objects_description/098_speaker/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 733,
+      "sha256": "aa4dfbae5bb1c3fac4d76db4b98fbe465874d405c43d699b542542177d012b1d"
+    },
+    {
+      "path": "description/objects_description/098_speaker/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 668,
+      "sha256": "35b526b63f4851943651bafe892b55c4a5c60c4cf43c0344408d020d213b5f5f"
+    },
+    {
+      "path": "description/objects_description/098_speaker/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 664,
+      "sha256": "90e2f1c81549891cbc448f61eee08e48bf4d95a150cd467436014d9d32a78249"
+    },
+    {
+      "path": "description/objects_description/098_speaker/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 673,
+      "sha256": "bad264f817b5d17f153acb088afd59cdd872e722d072613dca22c6c2479f6de5"
+    },
+    {
+      "path": "description/objects_description/098_speaker/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 682,
+      "sha256": "a7a5d0bac55dc57e8c1458aad969f012ec5328e97b091220c649b74b9b6d753e"
+    },
+    {
+      "path": "description/objects_description/099_fan/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 705,
+      "sha256": "69aaa030484e3563aafebf3985c5d547cbe3fc7ca6b4330a50f0a949a712cb04"
+    },
+    {
+      "path": "description/objects_description/099_fan/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 651,
+      "sha256": "59a7a306ea9084d841d57327497c2eb4283d667737bb28e9fb296af25678148f"
+    },
+    {
+      "path": "description/objects_description/099_fan/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 662,
+      "sha256": "2f58107c610b68d517226c18b82f704abb88bed909608275a29b8b93451c6b7c"
+    },
+    {
+      "path": "description/objects_description/099_fan/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 587,
+      "sha256": "6566f8ce4e846fa95e7b8ae205cf6d398aea55eca428de40fd65358b562f531b"
+    },
+    {
+      "path": "description/objects_description/099_fan/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 548,
+      "sha256": "b4eec3e96fedc5f4cedfa7c09d044f3b4f1242459b4cbe36c9607d3578b978d5"
+    },
+    {
+      "path": "description/objects_description/099_fan/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 669,
+      "sha256": "0393af133809eaab0ea92b4bc6f892c27344577dab09dc73a8d64aed8b43d9d0"
+    },
+    {
+      "path": "description/objects_description/099_fan/base6.json",
+      "type": "file",
+      "mode": 420,
+      "size": 656,
+      "sha256": "08e4532680ce0210f5f76520d1fe61c282a9ee3a24703a08ccd5c979321a1f1f"
+    },
+    {
+      "path": "description/objects_description/100_seal/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 598,
+      "sha256": "9b0bf1dc9f642146e74721e48543fba8abad6b054b7bf63ddfdda2ed948544ea"
+    },
+    {
+      "path": "description/objects_description/100_seal/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 608,
+      "sha256": "d70ae144c9cf494b631a54fa8e382d368c141a0f16392355f9c658ba619d8fcc"
+    },
+    {
+      "path": "description/objects_description/100_seal/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 688,
+      "sha256": "d2efb2b8ccf8e6436918365c3816a616bfec90c810742dd28c3736158a10f90b"
+    },
+    {
+      "path": "description/objects_description/100_seal/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 624,
+      "sha256": "1e2d1490ec7d0242bac832b3805c1a23d975d756906d8947c5ab16e2ab176c05"
+    },
+    {
+      "path": "description/objects_description/100_seal/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 614,
+      "sha256": "18fb4fec954674c958b1f4cca0384df3f6c3071942afbffd833581e8360bfeb7"
+    },
+    {
+      "path": "description/objects_description/100_seal/base6.json",
+      "type": "file",
+      "mode": 420,
+      "size": 616,
+      "sha256": "b0f3a57965e6dc81d8bacbd01f72a490efe80d3c22996e4aba8d40e025f47830"
+    },
+    {
+      "path": "description/objects_description/101_milk-tea/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 650,
+      "sha256": "67949a86c2a1a6529719656c13ebb30d5c5b536642b076ac4aee4468c466e77e"
+    },
+    {
+      "path": "description/objects_description/101_milk-tea/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 681,
+      "sha256": "af1e17132c57835ab257cb8c955629e9864f8397c2838837895b2b9f30efa126"
+    },
+    {
+      "path": "description/objects_description/101_milk-tea/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 658,
+      "sha256": "76e54d6046667638f05f69ad049077f12b5a686803bd4e2067a214ab14213425"
+    },
+    {
+      "path": "description/objects_description/101_milk-tea/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 701,
+      "sha256": "5f3ce167df689625528ce371c856257e15295d618338b3d1bc44e1d05809f413"
+    },
+    {
+      "path": "description/objects_description/101_milk-tea/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 694,
+      "sha256": "92c3b75acac124982da97d86129a33a8ec37e4d28acb812fe8928ad52eccb12a"
+    },
+    {
+      "path": "description/objects_description/101_milk-tea/base6.json",
+      "type": "file",
+      "mode": 420,
+      "size": 687,
+      "sha256": "dcb1aab37ce1e7c7fc495f4cf49a96ae63718d6a51ec48b171e064a43b196267"
+    },
+    {
+      "path": "description/objects_description/102_roller/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 620,
+      "sha256": "70d032760ec6d0c161d036a0a7dceb6e74d5283b154bf6bc1acff8a03eceaab8"
+    },
+    {
+      "path": "description/objects_description/102_roller/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 685,
+      "sha256": "c73730c36d420a692126fb89117080829d50134548a2cfa6a4aa586233f3d0ea"
+    },
+    {
+      "path": "description/objects_description/102_roller/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 559,
+      "sha256": "cab5e8cec78767df7563713595ee1f55bc5ac6d8a73e80b81f63049dc5e2f72b"
+    },
+    {
+      "path": "description/objects_description/103_fruit/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 641,
+      "sha256": "fb0836160f182efb2b5808e5c2c8f0b1a12980d58df5982fb27285ee88ee4234"
+    },
+    {
+      "path": "description/objects_description/103_fruit/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 720,
+      "sha256": "6a448626cf0a0669fbe26644eb6c49e614d2ce1b4109d8b7761ee233b3e5d183"
+    },
+    {
+      "path": "description/objects_description/103_fruit/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 634,
+      "sha256": "ecb3b13ec1d36ef057a1c4d44dc9cd1656fe0b029c906a57ded6d5e949b77246"
+    },
+    {
+      "path": "description/objects_description/103_fruit/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 692,
+      "sha256": "1a93d30e1282ced30b5ce4f1674ea4e245ea50713e82725b914179864c6f1915"
+    },
+    {
+      "path": "description/objects_description/103_fruit/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 698,
+      "sha256": "2f957e8b68ae336c2a5898a493e6d3058946f6efcf646225956cb817a76331f3"
+    },
+    {
+      "path": "description/objects_description/103_fruit/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 645,
+      "sha256": "49cbdc685cb7ee3c28bbae370dac386f19bbcf3e6835cfaa4719e99f80c27bf3"
+    },
+    {
+      "path": "description/objects_description/103_fruit/base6.json",
+      "type": "file",
+      "mode": 420,
+      "size": 648,
+      "sha256": "ede45bbf319100ab30e00a226fc7253df71bfe8f1a3beb594c111e0f1045aae4"
+    },
+    {
+      "path": "description/objects_description/104_board/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 695,
+      "sha256": "7799d893026e2d3c7b3b70d70218edf970fa6d494b959f1d4db7e242010c83f2"
+    },
+    {
+      "path": "description/objects_description/104_board/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 699,
+      "sha256": "b750ca6620e48f0518919883c0dbcef97d12403a64d3a58f893c88b098bbf069"
+    },
+    {
+      "path": "description/objects_description/104_board/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 629,
+      "sha256": "381c0eef904063b0deccc924ec9e9c8b12745ab0ebd7c0767e5264e1d9e2fdbf"
+    },
+    {
+      "path": "description/objects_description/104_board/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 647,
+      "sha256": "01ab027cc9d8a8e862eb2f823da4cae846bf496784d2930323832c207cc72f27"
+    },
+    {
+      "path": "description/objects_description/104_board/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 651,
+      "sha256": "c792267d7e8aefc9cf25501fce70e8469acf9e1dc93b5098ff3751d77f1beb7e"
+    },
+    {
+      "path": "description/objects_description/105_sauce-can/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 628,
+      "sha256": "6b48a7a0ec80a06c88c225df1dc04d1981806a06ff37ba37bbeb7be2fbcb9fec"
+    },
+    {
+      "path": "description/objects_description/105_sauce-can/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 656,
+      "sha256": "a80cd2d024b7f2f6c5b199c168493a05061423ffef6fce1a1f26a84f0d7e6453"
+    },
+    {
+      "path": "description/objects_description/105_sauce-can/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 599,
+      "sha256": "b417d129a38d9182088094815d8057211946dbbaa9ec13085ef3f3366e1934ed"
+    },
+    {
+      "path": "description/objects_description/105_sauce-can/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 609,
+      "sha256": "aa3ed3b9be40a31dcc8f4f43c2068e0761fbf435439713a1fc657e67e5d46b4e"
+    },
+    {
+      "path": "description/objects_description/105_sauce-can/base6.json",
+      "type": "file",
+      "mode": 420,
+      "size": 637,
+      "sha256": "28451b2d26ed8eb3fd7699ecd531a8179dc7522e137a5df5b2852c007e5fd7ae"
+    },
+    {
+      "path": "description/objects_description/106_skillet/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 619,
+      "sha256": "813c2058fc2debece52d6acd029e5c4c39062ff2fb348e54a58057bb8e7ea1fc"
+    },
+    {
+      "path": "description/objects_description/106_skillet/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 672,
+      "sha256": "6a02a7a045e7c166e9b1a33981d8ccba90b050c30442d94b969356f801a13a4e"
+    },
+    {
+      "path": "description/objects_description/106_skillet/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 655,
+      "sha256": "ef4dd46722f5c0e474307a95a15c18dd9dd3f06b780b3ff9c38d4ecf5ae7af75"
+    },
+    {
+      "path": "description/objects_description/106_skillet/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 619,
+      "sha256": "9f70e5646c0806e4cc50596c8d64b8a51eec5b1f56a446eb48a76f07ebcedffc"
+    },
+    {
+      "path": "description/objects_description/107_soap/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 613,
+      "sha256": "bf2e3a18c7b64fc90bf5c3772aac8b7ceff2f30637144bf32214e691b8ebb923"
+    },
+    {
+      "path": "description/objects_description/107_soap/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 652,
+      "sha256": "ca7bc544a83947de3a623e536aa1d589e5eb3f2666c39d9bf51d0696e7565374"
+    },
+    {
+      "path": "description/objects_description/107_soap/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 619,
+      "sha256": "2ec95dc219231c4e20a33fa2637dfa3c1b9cc2d5ebd027a4aad275ae4cefb193"
+    },
+    {
+      "path": "description/objects_description/107_soap/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 595,
+      "sha256": "a42643c8576898fc15e9d3e4049248561da035960a8fdbe2b5d8bca646c61ed7"
+    },
+    {
+      "path": "description/objects_description/108_block/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 638,
+      "sha256": "6fbc6c40eeb9dd7e1e14ab50838ff3d0ae5560ef03b175ce079d0bc4a43d921b"
+    },
+    {
+      "path": "description/objects_description/108_block/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 685,
+      "sha256": "5b1e601f7e69e9cc0342294311769cf0ceed990f0d7bf8023d33797fab054ee7"
+    },
+    {
+      "path": "description/objects_description/108_block/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 685,
+      "sha256": "ab78ae71982ea62222e7fe3dedf6e1afe9598e8e9547e1e94506bcc5ef993278"
+    },
+    {
+      "path": "description/objects_description/108_block/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 698,
+      "sha256": "1a9f436da7e0dec5f2205821d7ccc74098dbb6c32146b06309454b4e215b0bff"
+    },
+    {
+      "path": "description/objects_description/108_block/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 696,
+      "sha256": "3045356ba7c37053b9d455febcaac9ebe6851fde25ba1096df41cc84488baf62"
+    },
+    {
+      "path": "description/objects_description/108_block/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 685,
+      "sha256": "c226d48d0806274bc094ec307ca47063554f3b1897f6b88a15fafcde07018796"
+    },
+    {
+      "path": "description/objects_description/108_block/base6.json",
+      "type": "file",
+      "mode": 420,
+      "size": 740,
+      "sha256": "6cb89eed5ad3655d4a9c0c4af1ce477a1ba675d382e7ce66a254adffb474b894"
+    },
+    {
+      "path": "description/objects_description/109_hydrating-oil/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 797,
+      "sha256": "d46b0026f97e134d90692b84df5c0ee963c8fd0c5bf23149ad83566003a388e8"
+    },
+    {
+      "path": "description/objects_description/109_hydrating-oil/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 795,
+      "sha256": "8249474313d50d50bcbe582e7dd8e1614353b810934f05952d3dc677964ed297"
+    },
+    {
+      "path": "description/objects_description/109_hydrating-oil/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 715,
+      "sha256": "3e8bfb8567dbfa242f67dd70f9b67ef4d6d58358f364de3ff510e857c7c24bd0"
+    },
+    {
+      "path": "description/objects_description/109_hydrating-oil/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 719,
+      "sha256": "6a9cec049a7c70a53e82adde8ba583a6a50a72c44a5520458daa4b11191d6e39"
+    },
+    {
+      "path": "description/objects_description/110_basket/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 643,
+      "sha256": "401fdbdec0c39e6ad7a219733c41c55e8fe40c7fcbc7a19e52f990e5bc1130d2"
+    },
+    {
+      "path": "description/objects_description/110_basket/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 680,
+      "sha256": "cdca830f47d953719690e971ce83c95c96fdcf7ae185b6f4608ef6d8991428f2"
+    },
+    {
+      "path": "description/objects_description/110_basket/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 714,
+      "sha256": "29b8d2e94ec183679d10ec2edf1443e073e59b92a58a04a0873281c8a1a5588d"
+    },
+    {
+      "path": "description/objects_description/110_basket/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 735,
+      "sha256": "929f94ccf0fd7c2c4c0ba59840b91725f8f50fad04231d0f4b68cb98d12ec62f"
+    },
+    {
+      "path": "description/objects_description/111_callbell/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 666,
+      "sha256": "6dce9df2bab4aeaf5b08d608dd97ad6af1588dae30f0e6a0886f660511b3b44a"
+    },
+    {
+      "path": "description/objects_description/111_callbell/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 709,
+      "sha256": "ac47ccd7ff75268c1cb9248fd4d090bb701fcddcade69d644e1a4d128a774f67"
+    },
+    {
+      "path": "description/objects_description/111_callbell/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 712,
+      "sha256": "1cdb34f89a555cd4eefb0ec4d81ddc2c93737cc9d1e71f2aa9891fb59b779161"
+    },
+    {
+      "path": "description/objects_description/111_callbell/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 683,
+      "sha256": "5ffc8353d775f85c8df9672045e11dd8f51f63f9c5022820fe180da43c47524a"
+    },
+    {
+      "path": "description/objects_description/111_callbell/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 629,
+      "sha256": "57ede719c9bdc90e42fe1b23962903317fa1de9bd1043f33345e3bcc9ff2a257"
+    },
+    {
+      "path": "description/objects_description/111_callbell/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 646,
+      "sha256": "64288566ae2d323b99e0c1172eab4e634c39e7f1f95fc846568d8fbc19c24804"
+    },
+    {
+      "path": "description/objects_description/112_tea-box/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 628,
+      "sha256": "218b5eb442492938fae78b4827e6c47bcdd1c644e25f8e3d645258ea18116293"
+    },
+    {
+      "path": "description/objects_description/112_tea-box/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 618,
+      "sha256": "a7a58cf718cd2e75e65c6f96317f711f9f970edaf202177b4093e98446bfb2b9"
+    },
+    {
+      "path": "description/objects_description/112_tea-box/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 574,
+      "sha256": "a3267ba3847420f46a6b07c170510460f54bb70a0b63da2afbbcca0219d9e3a8"
+    },
+    {
+      "path": "description/objects_description/112_tea-box/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 578,
+      "sha256": "c4752cc2c5a52282556da712e44b7a5675c551e4f9ca198ef32e2afb7ddf8a21"
+    },
+    {
+      "path": "description/objects_description/112_tea-box/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 559,
+      "sha256": "6fe1e70ab754dd366db1c779c3b9631da6d55ee68a872ab387a92f555adf55eb"
+    },
+    {
+      "path": "description/objects_description/112_tea-box/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 694,
+      "sha256": "8b90dad2fdf2e9ac673d97f4d017dcb9e3d3ebcfd30e723e13243ea0908c1b24"
+    },
+    {
+      "path": "description/objects_description/113_coffee-box/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 747,
+      "sha256": "caadb006ba4d8a3600df730177b540b8348dc6442c5c8d6bbfd0152080a9f436"
+    },
+    {
+      "path": "description/objects_description/113_coffee-box/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 715,
+      "sha256": "e8a510c832cae01818155d43345baebe0925ff3ed34b0dcfb1cfc26f605585d8"
+    },
+    {
+      "path": "description/objects_description/113_coffee-box/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 662,
+      "sha256": "cceb348cb1100a315f7dc7e3880cc07141a38aba35648e60d8af444fefd383b4"
+    },
+    {
+      "path": "description/objects_description/113_coffee-box/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 634,
+      "sha256": "37e68275c46af2623db0092b8d0d252edb269dd561df7980858a99c9895ef315"
+    },
+    {
+      "path": "description/objects_description/113_coffee-box/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 704,
+      "sha256": "ac253f81f821f3158b25d4d33141fe0055ceb46272f9f9fb4ec7f2b1fdcde1fe"
+    },
+    {
+      "path": "description/objects_description/113_coffee-box/base5.json",
+      "type": "file",
+      "mode": 420,
+      "size": 660,
+      "sha256": "b04bc48440563584c8ccccb3876c17472fc7b1791fb2eadbb3290cc119d6d41b"
+    },
+    {
+      "path": "description/objects_description/113_coffee-box/base6.json",
+      "type": "file",
+      "mode": 420,
+      "size": 647,
+      "sha256": "fcac2325195146128ebde139cba9012a1cb4138750c1070b5fcf7448edf15ec8"
+    },
+    {
+      "path": "description/objects_description/114_bottle/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 748,
+      "sha256": "9d2d923f624efc42d556e50c790daf7b7fc54f3f8fbdb646c3f0b51fd0f61529"
+    },
+    {
+      "path": "description/objects_description/114_bottle/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 620,
+      "sha256": "4cfb8b9c0d68a691583944048bb57e393f1b9c132c873eb2a0039f7287c1f53b"
+    },
+    {
+      "path": "description/objects_description/114_bottle/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 642,
+      "sha256": "8887b33d36ae5b461badf4bf3ea1a9aa987360606a46dfc96f1848920d55fa13"
+    },
+    {
+      "path": "description/objects_description/114_bottle/base4.json",
+      "type": "file",
+      "mode": 420,
+      "size": 694,
+      "sha256": "6c35a8aeb6693eaee685c69f9acb98582477a0b2344ccfdbfc2f4a9d891068fd"
+    },
+    {
+      "path": "description/objects_description/115_perfume/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 697,
+      "sha256": "ee02f423b512fb1f9ec14fa9f5c85a31b187903bbb2eaf980e784ca08a61dc57"
+    },
+    {
+      "path": "description/objects_description/115_perfume/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 719,
+      "sha256": "496d20af5185ae15c8b86b64ac527f5cb724a042ee1421beeae5230b4b9b6bcf"
+    },
+    {
+      "path": "description/objects_description/115_perfume/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 678,
+      "sha256": "3f10bbafbe10e99ed1b7a382220d144f703a2b832b3648875e162e38e04c4eca"
+    },
+    {
+      "path": "description/objects_description/115_perfume/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 641,
+      "sha256": "28d8f79d8d3bc74f66bd885dbf6bb77cf27dde6933f9969310346ca590b5d627"
+    },
+    {
+      "path": "description/objects_description/116_keyboard/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 656,
+      "sha256": "e17ff3776ae705aa831c993b60c338d20da339e9190fab332700a6fa25185fed"
+    },
+    {
+      "path": "description/objects_description/116_keyboard/base1.json",
+      "type": "file",
+      "mode": 420,
+      "size": 692,
+      "sha256": "376e8e532e7a13e5a05017af4542e6c9e7ecac62b85b4fd960bb8e9a7e107de0"
+    },
+    {
+      "path": "description/objects_description/116_keyboard/base2.json",
+      "type": "file",
+      "mode": 420,
+      "size": 714,
+      "sha256": "b47529bba7c44a3079696a84259842c8a8bd05cf1a571d9c40bc2ee2ec743c30"
+    },
+    {
+      "path": "description/objects_description/116_keyboard/base3.json",
+      "type": "file",
+      "mode": 420,
+      "size": 742,
+      "sha256": "ed1016b172c870b351848ae16e64bdf07cf41afa0cc9d61c5b8cc033801d190c"
+    },
+    {
+      "path": "description/objects_description/117_whiteboard-eraser/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 751,
+      "sha256": "55b9fc1571c0945615a29e85149794e3f0384119b5bc03b7456e7cea945dc1f3"
+    },
+    {
+      "path": "description/objects_description/118_tooth-paste/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 723,
+      "sha256": "a75da294f6952523f173ab96b2b2a50d4b720af329ce365596609cc7368953ed"
+    },
+    {
+      "path": "description/objects_description/119_mini-chalkboard/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 786,
+      "sha256": "ea35ffb64ed5be328c74c981fdf1a2cf875523e1c6ab2ae4ce16da56d70a2fed"
+    },
+    {
+      "path": "description/objects_description/120_plant/base0.json",
+      "type": "file",
+      "mode": 420,
+      "size": 782,
+      "sha256": "48bc49c489d16325b444dd8c8a2a67898d1b5e7f38dcfa1f28a49176c1d92817"
+    },
+    {
+      "path": "description/task_instruction/adjust_bottle.json",
+      "type": "file",
+      "mode": 420,
+      "size": 2832,
+      "sha256": "62f87545deb98985db67c854bca2a49afe369688876b1087d41120622d2da26e"
+    },
+    {
+      "path": "description/task_instruction/beat_block_hammer.json",
+      "type": "file",
+      "mode": 420,
+      "size": 2697,
+      "sha256": "f2e419c385c80a3d8dac0bec0516b19eea6cdfa1985d754466afaff7211e8262"
+    },
+    {
+      "path": "description/task_instruction/blocks_ranking_rgb.json",
+      "type": "file",
+      "mode": 420,
+      "size": 6315,
+      "sha256": "c814cda100d7600659a3c790267851068cffca7d736d74475192e2aac0fba6aa"
+    },
+    {
+      "path": "description/task_instruction/blocks_ranking_size.json",
+      "type": "file",
+      "mode": 420,
+      "size": 4137,
+      "sha256": "815e02d899ceaf8852d758e32d0df8aeaeccfa34b63d6141397d2e95de1e6614"
+    },
+    {
+      "path": "description/task_instruction/click_alarmclock.json",
+      "type": "file",
+      "mode": 420,
+      "size": 2911,
+      "sha256": "46cc55f23d3224ff3bbdd5958b90d23fba6f2dbda0ac72471e0c5744697e0424"
+    },
+    {
+      "path": "description/task_instruction/click_bell.json",
+      "type": "file",
+      "mode": 420,
+      "size": 1838,
+      "sha256": "f0cc725a3cacb4182ee27b39f04139213af78fa2480f100f2abbf2ab0b83cd44"
+    },
+    {
+      "path": "description/task_instruction/dump_bin_bigbin.json",
+      "type": "file",
+      "mode": 420,
+      "size": 2665,
+      "sha256": "cbd1922bc3b793289acb349b77061ec9a668e922403323162aee2ae1420148de"
+    },
+    {
+      "path": "description/task_instruction/grab_roller.json",
+      "type": "file",
+      "mode": 420,
+      "size": 2302,
+      "sha256": "2148b70c6c6ea702c32578d333537a32b27b666dc14da0e57e9bd298e674fc87"
+    },
+    {
+      "path": "description/task_instruction/handover_block.json",
+      "type": "file",
+      "mode": 420,
+      "size": 6477,
+      "sha256": "c67350f7684c5d39cf7458c9775e087670e4f03828cea94536f1a7a7d203edd2"
+    },
+    {
+      "path": "description/task_instruction/handover_mic.json",
+      "type": "file",
+      "mode": 420,
+      "size": 2902,
+      "sha256": "808af664ff5a7fd3303b55b8a09f5d6048287792e6ffa769df74af21a492fbfe"
+    },
+    {
+      "path": "description/task_instruction/hanging_mug.json",
+      "type": "file",
+      "mode": 420,
+      "size": 4481,
+      "sha256": "241be0ee8011f888c613575ec58a8789f22ab54c1829cefeb7a9fe6ee048eed2"
+    },
+    {
+      "path": "description/task_instruction/lift_pot.json",
+      "type": "file",
+      "mode": 420,
+      "size": 2362,
+      "sha256": "9b145355b15a87d72fa1561151d16d9a71faa242a3f287ffad546825c393f63b"
+    },
+    {
+      "path": "description/task_instruction/move_can_pot.json",
+      "type": "file",
+      "mode": 420,
+      "size": 2946,
+      "sha256": "a82cfb64ee7d642b2b8c1da7cd9a0fcad522574782575653e1e89e740ab7afe5"
+    },
+    {
+      "path": "description/task_instruction/move_pillbottle_pad.json",
+      "type": "file",
+      "mode": 420,
+      "size": 2869,
+      "sha256": "37fe85c95f87ac30506a597bfcd01064265cf0c09a8adb8fc5a91f54859f6d12"
+    },
+    {
+      "path": "description/task_instruction/move_playingcard_away.json",
+      "type": "file",
+      "mode": 420,
+      "size": 3184,
+      "sha256": "c65cfdbc0bb65132adeeb8ffcd4ccc76d388df36fc3942b18b7b58e30f49b81b"
+    },
+    {
+      "path": "description/task_instruction/move_stapler_pad.json",
+      "type": "file",
+      "mode": 420,
+      "size": 2732,
+      "sha256": "69b41ecebdbc2c9fb8492b571505a1468116e4b1c588b1f0f2d10d8690179eb0"
+    },
+    {
+      "path": "description/task_instruction/open_laptop.json",
+      "type": "file",
+      "mode": 420,
+      "size": 2076,
+      "sha256": "7b549a1ca76c67955a2b89256a26eb6cfcaa400c28758eb5df1455bea95faa29"
+    },
+    {
+      "path": "description/task_instruction/open_microwave.json",
+      "type": "file",
+      "mode": 420,
+      "size": 1994,
+      "sha256": "c75c294f0591e6ab4b2198833d4871a3ad553250884680d02ba6959a74fe4261"
+    },
+    {
+      "path": "description/task_instruction/pick_diverse_bottles.json",
+      "type": "file",
+      "mode": 420,
+      "size": 2233,
+      "sha256": "e96317aca064a30699ec2244d058a184fc143f007ed53175efb3ef750c630b49"
+    },
+    {
+      "path": "description/task_instruction/pick_dual_bottles.json",
+      "type": "file",
+      "mode": 420,
+      "size": 2226,
+      "sha256": "aedbdd5d0f9c562a4f6bc7c3459996e1b786a648cbac41c955faee9c0eb75085"
+    },
+    {
+      "path": "description/task_instruction/place_a2b_left.json",
+      "type": "file",
+      "mode": 420,
+      "size": 2787,
+      "sha256": "4b8a3c065fc3b37412efb393e54149f7ac35f24a275b87657383a2af727a34e9"
+    },
+    {
+      "path": "description/task_instruction/place_a2b_right.json",
+      "type": "file",
+      "mode": 420,
+      "size": 2930,
+      "sha256": "c3466a444a36faf555bc16bf30b974c9a017ca2fa1c797887669dc6f55ca47b7"
+    },
+    {
+      "path": "description/task_instruction/place_bread_basket.json",
+      "type": "file",
+      "mode": 420,
+      "size": 2111,
+      "sha256": "3a88066872b1ced991e7b76d9a759329fdde0da835ee31597f63eba31053cd8c"
+    },
+    {
+      "path": "description/task_instruction/place_bread_skillet.json",
+      "type": "file",
+      "mode": 420,
+      "size": 2264,
+      "sha256": "9d29f1289b11755b02089431bd5bb9b4dd4b762419fb073022513b32418b8345"
+    },
+    {
+      "path": "description/task_instruction/place_burger_fries.json",
+      "type": "file",
+      "mode": 420,
+      "size": 3508,
+      "sha256": "af9a9d757e79b408f39a8a3a22a5e727f23369b3dcbd0e7a064a7f67055b8664"
+    },
+    {
+      "path": "description/task_instruction/place_can_basket.json",
+      "type": "file",
+      "mode": 420,
+      "size": 3928,
+      "sha256": "c72a58e58e33b7179406018ed480be9dd7305b7f42a4f1105658d587b533d88d"
+    },
+    {
+      "path": "description/task_instruction/place_cans_plasticbox.json",
+      "type": "file",
+      "mode": 420,
+      "size": 3748,
+      "sha256": "58c5e951f5daac2a21bd127c36fe63d7a6341ea5ce048e7564a6314901820475"
+    },
+    {
+      "path": "description/task_instruction/place_container_plate.json",
+      "type": "file",
+      "mode": 420,
+      "size": 1035,
+      "sha256": "096eb4b5b1ceda0c3d724058e6088e3387d249d9a6c630d9bef3c0b12828cfc6"
+    },
+    {
+      "path": "description/task_instruction/place_dual_shoes.json",
+      "type": "file",
+      "mode": 420,
+      "size": 3599,
+      "sha256": "61e41ff4a6ab157ed633faf09dc47424e1d985e392fc51b0d2213127a7db9bf0"
+    },
+    {
+      "path": "description/task_instruction/place_empty_cup.json",
+      "type": "file",
+      "mode": 420,
+      "size": 2487,
+      "sha256": "95de3567883298db94e311e4c363f5474a9a7545dcbd55751b273f4e0523d86e"
+    },
+    {
+      "path": "description/task_instruction/place_fan.json",
+      "type": "file",
+      "mode": 420,
+      "size": 4714,
+      "sha256": "915a824f58307dd30e7b13375dd901a906bead2fda3bb7be6c1d883a05658102"
+    },
+    {
+      "path": "description/task_instruction/place_mouse_pad.json",
+      "type": "file",
+      "mode": 420,
+      "size": 3431,
+      "sha256": "2b839baba447bc28528533e585445ca090ffa776414e41063d00f97e69fcee90"
+    },
+    {
+      "path": "description/task_instruction/place_object_basket.json",
+      "type": "file",
+      "mode": 420,
+      "size": 2402,
+      "sha256": "2d7972e2c184abe1cb65d97f992ece56c56dfb5f8cdc22761ce2e1bfd1f9fc79"
+    },
+    {
+      "path": "description/task_instruction/place_object_scale.json",
+      "type": "file",
+      "mode": 420,
+      "size": 2793,
+      "sha256": "f2f55311cc540b79d50a767c4d07cd238e1c17ebdc23ef46bde5a31065baf7a2"
+    },
+    {
+      "path": "description/task_instruction/place_object_stand.json",
+      "type": "file",
+      "mode": 420,
+      "size": 2630,
+      "sha256": "0d83ea204b1e3fe6a74c58f6072524f7f5f2b446c9e52f804246f20bd1a84878"
+    },
+    {
+      "path": "description/task_instruction/place_phone_stand.json",
+      "type": "file",
+      "mode": 420,
+      "size": 432,
+      "sha256": "8411896081df6efc4a895dbe1a4813becfa812ee429286fc7b756212e2fee733"
+    },
+    {
+      "path": "description/task_instruction/place_shoe.json",
+      "type": "file",
+      "mode": 420,
+      "size": 3745,
+      "sha256": "f325857f6e9fc110f397cf9fed23d0ac3e3c78d156a301e59b38b86a2c69948d"
+    },
+    {
+      "path": "description/task_instruction/press_stapler.json",
+      "type": "file",
+      "mode": 420,
+      "size": 2569,
+      "sha256": "7062168b216b2a5a6f575741ff834a07f88bca17ea885cd372460eb4d5a8bf82"
+    },
+    {
+      "path": "description/task_instruction/put_bottles_dustbin.json",
+      "type": "file",
+      "mode": 420,
+      "size": 2701,
+      "sha256": "cbaf7e58e8c0fe47b8d323f83ba989976b79d5c741725e948548b9e1139153cd"
+    },
+    {
+      "path": "description/task_instruction/put_object_cabinet.json",
+      "type": "file",
+      "mode": 420,
+      "size": 2123,
+      "sha256": "9351ba0992276b5f9fab1621aa1aaba9d50dc99cb2f9ee785b6305b2a98b8f8e"
+    },
+    {
+      "path": "description/task_instruction/rotate_qrcode.json",
+      "type": "file",
+      "mode": 420,
+      "size": 4896,
+      "sha256": "8873ecfa306b98774fdf0450fd01e50dce3ac1ef3dec23a88c512ec15dd011fc"
+    },
+    {
+      "path": "description/task_instruction/scan_object.json",
+      "type": "file",
+      "mode": 420,
+      "size": 3024,
+      "sha256": "6748923128a9b4c523efc69f5b94d99630f6887b98558c82755dcba50f367436"
+    },
+    {
+      "path": "description/task_instruction/shake_bottle.json",
+      "type": "file",
+      "mode": 420,
+      "size": 2642,
+      "sha256": "ed6db88170f6f5c95fda09a3386078f43d1bc85b7ef5f74f64026866d7f9248f"
+    },
+    {
+      "path": "description/task_instruction/shake_bottle_horizontally.json",
+      "type": "file",
+      "mode": 420,
+      "size": 3176,
+      "sha256": "2e71dd47b716f61ee4ee33776bcb2c2e6a9346e0012d0129903d46449b373759"
+    },
+    {
+      "path": "description/task_instruction/stack_blocks_three.json",
+      "type": "file",
+      "mode": 420,
+      "size": 3229,
+      "sha256": "fb6f2b798f977541d347ee7c3850594be96498644c6896252bd211440a964ad2"
+    },
+    {
+      "path": "description/task_instruction/stack_blocks_two.json",
+      "type": "file",
+      "mode": 420,
+      "size": 4143,
+      "sha256": "0229ae6057d5304c9aa145b8925fb5ec31c358392ebbe3c26b144d096d18a498"
+    },
+    {
+      "path": "description/task_instruction/stack_bowls_three.json",
+      "type": "file",
+      "mode": 420,
+      "size": 3585,
+      "sha256": "49f5b5c96242ba8807104c2f8d30c35dc4f08dce262e708cd3f4c15567e4c02f"
+    },
+    {
+      "path": "description/task_instruction/stack_bowls_two.json",
+      "type": "file",
+      "mode": 420,
+      "size": 3176,
+      "sha256": "89cd4827e78dde5928ce35a49dc850d1cef9cadbb80efa90181564cb383c129c"
+    },
+    {
+      "path": "description/task_instruction/stamp_seal.json",
+      "type": "file",
+      "mode": 420,
+      "size": 2099,
+      "sha256": "d1b32ae177638dcf379b534a78c8977125a7e554c2193c377d481a45ff5b182c"
+    },
+    {
+      "path": "description/task_instruction/turn_switch.json",
+      "type": "file",
+      "mode": 420,
+      "size": 2133,
+      "sha256": "05d97ea19651a875e7b7fff73e21aebc0dfe69c62620db5ad64c3aa7870d90d5"
+    },
+    {
+      "path": "description/utils/agent.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1473,
+      "sha256": "6d241de9f053a8735410944775e9f0f3ae2031702ae687a5108b97bb28d4ce47"
+    },
+    {
+      "path": "description/utils/clear_task_seen_unseen.py",
+      "type": "file",
+      "mode": 420,
+      "size": 641,
+      "sha256": "675fa1a43b5d401f9df472204be7f661af635c4b06c87697184525772341abb0"
+    },
+    {
+      "path": "description/utils/convert_obj_glb.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3488,
+      "sha256": "859f338f5a12f149822c080332985441543af851b19b229fb4355db2e2e1f7c9"
+    },
+    {
+      "path": "description/utils/generate_episode_instructions.py",
+      "type": "file",
+      "mode": 420,
+      "size": 13676,
+      "sha256": "f43e065022782581aa56161bd87a69f849bbbdc4ad1b78f174cc0c8d90d661b6"
+    },
+    {
+      "path": "description/utils/generate_object_description.py",
+      "type": "file",
+      "mode": 420,
+      "size": 7524,
+      "sha256": "a79d64808c82d5207e7242607ac74b3c3a0b8ae3ea7292d77b3a63fd2267e01f"
+    },
+    {
+      "path": "description/utils/generate_task_description.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4276,
+      "sha256": "f4ee096986113c029b6d808a0a597b7f24b569850caa6b85b93cd4e5545a46c7"
+    },
+    {
+      "path": "description/utils/get_image_from_glb.py",
+      "type": "file",
+      "mode": 420,
+      "size": 35112,
+      "sha256": "796a6b9132255a5f351e31bb5b3b80efd5b8f537415f243be230d21337d9a554"
+    },
+    {
+      "path": "env_cfg/aloha_agilex.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 63,
+      "sha256": "01e03d8104ba0201aaea140af0b2b917553307e950b97380644e493562fda056"
+    },
+    {
+      "path": "env_cfg/arx_x5.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 58,
+      "sha256": "cb50d3c462a978809ca953ba101e9c44e5dffe6947d8283d04abf6e25738f390"
+    },
+    {
+      "path": "env_cfg/eval/all_tasks.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 1245,
+      "sha256": "948931440aef34ba856c67a957aabfd75b798363bc6577af92353b602922507f"
+    },
+    {
+      "path": "env_cfg/eval/remote_server.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 561,
+      "sha256": "b75953aa5d1242ea633e01be4c2f20299ed25906fef14d03956672c68bf155ae"
+    },
+    {
+      "path": "env_cfg/franka.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 62,
+      "sha256": "6afe117c87ec16a3b0ac70bc69fbf53853f63b5ad82a3c286ee0558090c4e6ba"
+    },
+    {
+      "path": "env_cfg/robot/_robot_info.json",
+      "type": "file",
+      "mode": 420,
+      "size": 441,
+      "sha256": "52449da8b6e64c1c954d05e4b44ddc4cbfa7e087f47c718a4e9633c894f79249"
+    },
+    {
+      "path": "env_cfg/task_config/_camera_config.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 154,
+      "sha256": "dc80a40552e0fad25d58cf0141302ceba66d22409b5091bed235ad2f10cbce7f"
+    },
+    {
+      "path": "env_cfg/task_config/_config_template.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 733,
+      "sha256": "511c18d4749fb7c44ba83f9e96b26121dc7e28a13dace83e8edd50a19622d6f5"
+    },
+    {
+      "path": "env_cfg/task_config/_embodiment_config.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 285,
+      "sha256": "b0a198ff27bf6bf6b73162d2d1adafc7e73fcdf53f39943e67e40fee15bd83fa"
+    },
+    {
+      "path": "env_cfg/task_config/_eval_step_limit.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 1077,
+      "sha256": "41c62bd26184977bae45aee555edd0cc21de5cddf560c2595921fc23a1e3b551"
+    },
+    {
+      "path": "env_cfg/task_config/create_task_config.sh",
+      "type": "file",
+      "mode": 420,
+      "size": 111,
+      "sha256": "f92b4d32ddbe551e6bd2c7830e21db1f9e036cd8a05af43a8121e5ebede50007"
+    },
+    {
+      "path": "env_cfg/task_config/demo_clean.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 896,
+      "sha256": "3acfcd508078a51e3a48fd7e2f6e61c1b9a6ced0cc44dedd149b55114248e2ab"
+    },
+    {
+      "path": "env_cfg/task_config/demo_randomized.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 904,
+      "sha256": "2c4637952d5c80b521e4d24a3f9f5257262abcd2f15933616b1e58d2430473c0"
+    },
+    {
+      "path": "envs/_GLOBAL_CONFIGS.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1566,
+      "sha256": "b13afe368bbde94b1f623c11bf6aa1677cc56f6f3b431e62c85bc2b1a9083bf5"
+    },
+    {
+      "path": "envs/__init__.py",
+      "type": "file",
+      "mode": 493,
+      "size": 52,
+      "sha256": "7c4063c61bfe1789dcc933c43923889a3f9e576ddb4f59a3599745df27e3adfc"
+    },
+    {
+      "path": "envs/_base_task.py",
+      "type": "file",
+      "mode": 420,
+      "size": 72679,
+      "sha256": "76a12a3ce2254c019e5c291e29c99b421dabbb0c6e0b9ec24db9155b2dcf81f5"
+    },
+    {
+      "path": "envs/adjust_bottle.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2451,
+      "sha256": "4f76b35e718a4c5a364dae564d35d68268755818d9062e3ed4ff393d158d0548"
+    },
+    {
+      "path": "envs/beat_block_hammer.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3012,
+      "sha256": "90269f15f9ce274fb5bcad703c47b0b552ff5a2f0a3ff62d12dbe9a553018014"
+    },
+    {
+      "path": "envs/blocks_ranking_rgb.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5916,
+      "sha256": "0e632df38d9024e7952c0df7a1f59e3d011b537724e6e6588455dee4d4e6074b"
+    },
+    {
+      "path": "envs/blocks_ranking_size.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6026,
+      "sha256": "18ddb8ca5465f450ef03db292bcfc22e8e795fcb397f104fc24213a5fa063696"
+    },
+    {
+      "path": "envs/camera/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 22,
+      "sha256": "c666ede4ebee6fd286a444c8fa966e1bf2034a2fd1fe1a04c7f8a55fd0ba6df6"
+    },
+    {
+      "path": "envs/camera/camera.py",
+      "type": "file",
+      "mode": 420,
+      "size": 25220,
+      "sha256": "e4d17e99c8a68f44a12bef248a2164f52206efeaf24168172b778cc1e32832dd"
+    },
+    {
+      "path": "envs/click_alarmclock.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3437,
+      "sha256": "f69a1ad4f1b483ab0dd82d8bad872e12047ed8d898f1fa4058de9e382ddeef49"
+    },
+    {
+      "path": "envs/click_bell.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3040,
+      "sha256": "a0b7673e6ef842738999acbccaaa3d01f86d62a147bb8387cb92163218db48ac"
+    },
+    {
+      "path": "envs/dump_bin_bigbin.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5784,
+      "sha256": "3bd57fe9172d59731db1ccf1bc9605dfe3ef08a0f7224edc720ea4812c214611"
+    },
+    {
+      "path": "envs/grab_roller.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1993,
+      "sha256": "f0e1864199605acf59cf8982dded05129d873bb3934f200e47abafd918d41c89"
+    },
+    {
+      "path": "envs/handover_block.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3818,
+      "sha256": "5439712296d7e143d41f8e78b4ab86cd4fad7fb98f40f5f5abb067a462d17650"
+    },
+    {
+      "path": "envs/handover_mic.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4224,
+      "sha256": "41ed0f2561cc8f1ae2449ba405decd4f5d7e3b80243b60921598657551891b17"
+    },
+    {
+      "path": "envs/hanging_mug.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3591,
+      "sha256": "8793ed6be6a80b18a10690767a1910c3c49a7a9e4887ecbdd48a191ca3e03034"
+    },
+    {
+      "path": "envs/lift_pot.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2354,
+      "sha256": "347e06f3f9f82b1bc35882671bbbdea50b6e3c77fff0f7fb4449b024875402eb"
+    },
+    {
+      "path": "envs/model_utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 484,
+      "sha256": "a286af74b91f2ff1ece590ad30be6b570e2e4b6d8bffa64dbc4f4239c38bd59a"
+    },
+    {
+      "path": "envs/move_can_pot.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4043,
+      "sha256": "ea838bb2502199610eea6cc058a4ba5fc7abb01c3d8ee0705c44854ddca20186"
+    },
+    {
+      "path": "envs/move_pillbottle_pad.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3545,
+      "sha256": "a5db7c65db15c2273d1f9e99fab8fc00533a27b740a45161c9402d43b8aa6824"
+    },
+    {
+      "path": "envs/move_playingcard_away.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2290,
+      "sha256": "edf557d5a29ab724860651e24398e03c400a71e4c82bdbf2cedd3958fbfb6cc2"
+    },
+    {
+      "path": "envs/move_stapler_pad.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4057,
+      "sha256": "c2b7aa7bf4e896afc392a8cf1ac107b6982088a459c716de005a3412fcdedd6d"
+    },
+    {
+      "path": "envs/open_laptop.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2518,
+      "sha256": "ec9d157a7d7f09a096807dff113b41c095317d9910b05037bf3e8c8865be313a"
+    },
+    {
+      "path": "envs/open_microwave.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3472,
+      "sha256": "ad679b7753fc50487ba8034570e3b94aa7bfc84756048b94580fa3d2516a1bd0"
+    },
+    {
+      "path": "envs/pick_diverse_bottles.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3672,
+      "sha256": "95ebb80fa96eafd0b7ff5518251c2a7aa42f22ef9b7cfdda4e80eac511f06151"
+    },
+    {
+      "path": "envs/pick_dual_bottles.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3599,
+      "sha256": "422f23510f3662405dcb5518d1ebe8a0270935849a4b02a2585615ff7bffc4ef"
+    },
+    {
+      "path": "envs/place_a2b_left.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5229,
+      "sha256": "9d50d15b8461691484820a3de90b661feba31d8a164581d42b0f68142990e599"
+    },
+    {
+      "path": "envs/place_a2b_right.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5368,
+      "sha256": "41f805f7d621038d38d06aafa7d27f6b1184217772cbe44314988c15a2409dbc"
+    },
+    {
+      "path": "envs/place_bread_basket.py",
+      "type": "file",
+      "mode": 420,
+      "size": 7731,
+      "sha256": "50c433166301a7f0ac8615d041cc51aa673746b5b7d6fcc0b6f29790c560c053"
+    },
+    {
+      "path": "envs/place_bread_skillet.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4197,
+      "sha256": "b1fa08d7f23d8bcd933ea7d64904fea17f67dbe58101c66e42c6addbfdbbcd73"
+    },
+    {
+      "path": "envs/place_burger_fries.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4540,
+      "sha256": "19e8a3428e677839e7e51ae6488752acc940a7d2bc8ee54587c354b422ba6d2c"
+    },
+    {
+      "path": "envs/place_can_basket.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6339,
+      "sha256": "9f24e5ac98146babe93c68cb46baaf1d7bf21e38dbfc7c0b29e7020ae764e7f0"
+    },
+    {
+      "path": "envs/place_cans_plasticbox.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4579,
+      "sha256": "5d004110de53d95c7a6fc7721f9136d96b9792a61b97686f7b5489ff7ec48a5f"
+    },
+    {
+      "path": "envs/place_container_plate.py",
+      "type": "file",
+      "mode": 493,
+      "size": 3490,
+      "sha256": "7a288f27f61e96fe905d5cfb80eb0a4fd8e490c829f2f02149951266012a3aee"
+    },
+    {
+      "path": "envs/place_dual_shoes.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5664,
+      "sha256": "f35c4a133e1de567b274cbd15f158f585eb05e32aeb05be88839d249d0d7ab9e"
+    },
+    {
+      "path": "envs/place_empty_cup.py",
+      "type": "file",
+      "mode": 493,
+      "size": 3386,
+      "sha256": "424bbd61f990ebfffb283eb152d17103c2a990edd20f68229203a96a2fd4d581"
+    },
+    {
+      "path": "envs/place_fan.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4163,
+      "sha256": "7e8be55f1f26ce6128c254b50464edc438a96f272581ccb19827521bc679c237"
+    },
+    {
+      "path": "envs/place_mouse_pad.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4291,
+      "sha256": "369bf399d0fd6a2687abb7d80b8feb6101c8b5405d33f9de63bbbdaaea7b73d0"
+    },
+    {
+      "path": "envs/place_object_basket.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6249,
+      "sha256": "e809bd3eabac48cb34589f164291b04b9e2fbf6cc1ebd8c4024c0af8e265ed48"
+    },
+    {
+      "path": "envs/place_object_scale.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4371,
+      "sha256": "541e5e89582b05f4a82f19712c6a2ad6fd884d8f98bb041072009784fbdf633e"
+    },
+    {
+      "path": "envs/place_object_stand.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4416,
+      "sha256": "62a6b5d93513d61ad67756a96c9375979249531b55ac0957d233f597826ee58e"
+    },
+    {
+      "path": "envs/place_phone_stand.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3434,
+      "sha256": "719cf84ebf997b8d15d0ef9f997d439da62d64067a292b6008433da3536a0216"
+    },
+    {
+      "path": "envs/place_shoe.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3550,
+      "sha256": "9e9b29eaca488f41617127070add87f33900c37db0d286a4c4b08e2138cbfc6f"
+    },
+    {
+      "path": "envs/press_stapler.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2163,
+      "sha256": "69274cf09aa1d4ba51469621461683b5225b8f98cf7837f821e848196ce51f9c"
+    },
+    {
+      "path": "envs/put_bottles_dustbin.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5950,
+      "sha256": "1c03a4b227daa7d285fa366944f1f75773e32dc6a7b73ab693217a13fcd42795"
+    },
+    {
+      "path": "envs/put_object_cabinet.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4108,
+      "sha256": "ea3ffdb9fc1fef3b349beb874d2305f2217dfffa22a282845a93edff69423417"
+    },
+    {
+      "path": "envs/robot/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 44,
+      "sha256": "dd712aa0e0201076c7b9e751581e108081a08fdd927270390656c9a2e3d7cbc7"
+    },
+    {
+      "path": "envs/robot/ik.py",
+      "type": "file",
+      "mode": 420,
+      "size": 7,
+      "sha256": "0e478b525adbeeb1b1de7674e1a00353d1d75eee666537ff0c1c13d3187322fe"
+    },
+    {
+      "path": "envs/robot/planner.py",
+      "type": "file",
+      "mode": 420,
+      "size": 17282,
+      "sha256": "f1012345542483f4cfbac64880a266b7ee0d4a64362d5ec6fd6985ed9c34b564"
+    },
+    {
+      "path": "envs/robot/robot.py",
+      "type": "file",
+      "mode": 420,
+      "size": 31721,
+      "sha256": "3dcd80acc8cab489a4c5edb507cc460dab1724be0226b8d5c4c1b218dee605cb"
+    },
+    {
+      "path": "envs/rotate_qrcode.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2726,
+      "sha256": "382165e22a2a52a73958ff69c662e57a4d1f0bc8cb7cecf3e9dd1f5ba11defa9"
+    },
+    {
+      "path": "envs/scan_object.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4218,
+      "sha256": "860dfe2cc86d180096089bc87502c7904f7ce2efb64fb32620c1720ca0178c2b"
+    },
+    {
+      "path": "envs/shake_bottle.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3152,
+      "sha256": "2e37395b302eb37ecac39b2a676ea119c4bf7a1dcc9e6df75cd683a5cf37b026"
+    },
+    {
+      "path": "envs/shake_bottle_horizontally.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3797,
+      "sha256": "def5f373a3a289c946bb32c6d01145672432dbe1d2b71a10992e5280d5f8dead"
+    },
+    {
+      "path": "envs/stack_blocks_three.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5007,
+      "sha256": "b19f1f1c5a3a2c7c7312a4e1b2e577ccd269ebb0c444c287fecbc16ff5b47fb9"
+    },
+    {
+      "path": "envs/stack_blocks_two.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4492,
+      "sha256": "4e92a679cb5be4ef87a1b842432c930560a2c9b539a4cbcee0161e2b2112f526"
+    },
+    {
+      "path": "envs/stack_bowls_three.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4660,
+      "sha256": "95848e9c2987e64fef2cfd928128d7a19967ba600c57dc7a6b7f1c9ea5b358e6"
+    },
+    {
+      "path": "envs/stack_bowls_two.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4457,
+      "sha256": "3e3217c277d84a0838739d55a0061a9acb3315240b5a99c6607d9637ea719637"
+    },
+    {
+      "path": "envs/stamp_seal.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4456,
+      "sha256": "28a159e27aa76459355fa1f81e962815c62ee6435727039d73664b7eb6731b82"
+    },
+    {
+      "path": "envs/turn_switch.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1433,
+      "sha256": "035e108a861f94f61369ba2221431e123b7ac231e8de683d8bf38090bf021f9a"
+    },
+    {
+      "path": "envs/utils/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 292,
+      "sha256": "d3a670160e83b2467c232f5cbbfffcfc987e3bf0a03617fcf853989e4416d979"
+    },
+    {
+      "path": "envs/utils/action.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2862,
+      "sha256": "7bf69e226b98ae7f5b21a523f722271530885cf4778873900f3564003a9b591d"
+    },
+    {
+      "path": "envs/utils/actor_utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6282,
+      "sha256": "252d43c526b23adcf4ba549fec64a49f037fc4a24e9edd1998e5f60d3e13d5d9"
+    },
+    {
+      "path": "envs/utils/create_actor.py",
+      "type": "file",
+      "mode": 420,
+      "size": 21406,
+      "sha256": "6bababee8e70da2460b2bbf47d3b5fbb20ccf73368782a7be596a63c962dce6d"
+    },
+    {
+      "path": "envs/utils/get_camera_config.py",
+      "type": "file",
+      "mode": 420,
+      "size": 497,
+      "sha256": "d3a167ed2dd6785d42b81ec5cfd244b93b1e327e01439af9d76120acbb69246e"
+    },
+    {
+      "path": "envs/utils/images_to_video.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1495,
+      "sha256": "5abee46ae85afc47005acb964bfff2501fabd9b593b2cba8b851585c93619cd7"
+    },
+    {
+      "path": "envs/utils/parse_hdf5.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1457,
+      "sha256": "ad54ffd19b189916de8d6aa0d2d4bff52b625b45f8dfe0297396d54f4bbf0d84"
+    },
+    {
+      "path": "envs/utils/pkl2hdf5.py",
+      "type": "file",
+      "mode": 420,
+      "size": 7409,
+      "sha256": "c19a77f69d9b5c624c73f0162c2fee7b5f5979bdfddf9fdef3dda020912371bf"
+    },
+    {
+      "path": "envs/utils/rand_create_actor.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4852,
+      "sha256": "6c409ff1d97528b9dc654d39cc34683f51af6e797c1c5d92c076c29c09f9bedb"
+    },
+    {
+      "path": "envs/utils/rand_create_cluttered_actor.py",
+      "type": "file",
+      "mode": 420,
+      "size": 8999,
+      "sha256": "87199b296e199b91701365f94247ee593946eb6b4567ba2e4f7af6960560d41a"
+    },
+    {
+      "path": "envs/utils/save_file.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1038,
+      "sha256": "8922f52adca31b73ac30701624eb0d917cb94b8703630bfdd371db39099284c9"
+    },
+    {
+      "path": "envs/utils/transforms.py",
+      "type": "file",
+      "mode": 420,
+      "size": 19015,
+      "sha256": "b8ec2a27275868dc476ca1e2c2c8264fdc2f8a907278ed531b53d13e82b338ca"
+    },
+    {
+      "path": "scripts/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "scripts/_download_assets.sh",
+      "type": "file",
+      "mode": 420,
+      "size": 304,
+      "sha256": "246347a94ab276f32c5fc91a55c1c2bfa612048c9ab0eaf3be9d7543a826600f"
+    },
+    {
+      "path": "scripts/_install.sh",
+      "type": "file",
+      "mode": 420,
+      "size": 3031,
+      "sha256": "c19918e03513c2ef51d147bff04e58ebceffc904dbeb9b4d9939ba807057333c"
+    },
+    {
+      "path": "scripts/_task_config_template.json",
+      "type": "file",
+      "mode": 420,
+      "size": 958,
+      "sha256": "8f2f285bb4ed1b1faca301cf1be56e1aa5d6adba72f13facb76edbb45bc0d9e9"
+    },
+    {
+      "path": "scripts/add_annotation.py",
+      "type": "file",
+      "mode": 420,
+      "size": 13106,
+      "sha256": "b78f829cd5650fb648e61d6d49d20346d6c01980e81054a366bc4194ebe627aa"
+    },
+    {
+      "path": "scripts/collect_data.py",
+      "type": "file",
+      "mode": 420,
+      "size": 11787,
+      "sha256": "1b39396f1e987d4d6ef138b32dd14585af66ea5d71467f672168754fe2a31f1b"
+    },
+    {
+      "path": "scripts/create_messy_data.py",
+      "type": "file",
+      "mode": 420,
+      "size": 45903,
+      "sha256": "80cca96d43e80ef7985b4e7f1d59c45e4b8cf5bcd3310c3dca78ae4aff60929f"
+    },
+    {
+      "path": "scripts/create_object_data.py",
+      "type": "file",
+      "mode": 420,
+      "size": 45837,
+      "sha256": "8b2dd2f62392812349b0e3025fcb416c1ea6962338f9f792fceaf517e427ef9f"
+    },
+    {
+      "path": "scripts/download_xpolicylab_data.sh",
+      "type": "file",
+      "mode": 493,
+      "size": 14909,
+      "sha256": "44787980aa771bb5e3a5c33c03e29398f27e1a7f2663c1a84d2c310f80fe781b"
+    },
+    {
+      "path": "scripts/eval_policy.sh",
+      "type": "file",
+      "mode": 493,
+      "size": 1129,
+      "sha256": "86b77a323912a3ae60401950d97bf170e413125ba65c9b6e5bdd10539dfd90a7"
+    },
+    {
+      "path": "scripts/eval_policy_multitask.py",
+      "type": "file",
+      "mode": 420,
+      "size": 40194,
+      "sha256": "422f2ddcce4c33f313c42214a576f7925827766e128eee0fd4bb643486a440a1"
+    },
+    {
+      "path": "scripts/eval_policy_server.py",
+      "type": "file",
+      "mode": 420,
+      "size": 19685,
+      "sha256": "1428f8e49a4d345388ee011bb9d14cd3d2fde328e1d0d1a0f3642b6d24973569"
+    },
+    {
+      "path": "scripts/eval_policy_xpolicylab.py",
+      "type": "file",
+      "mode": 420,
+      "size": 52057,
+      "sha256": "78821388d58daf8aa65db55c5952df3742486dd93e717ce6a96374a3795dfc7a"
+    },
+    {
+      "path": "scripts/requirements.txt",
+      "type": "file",
+      "mode": 420,
+      "size": 540,
+      "sha256": "01be63fa7ae194129decc9de19a66b42e8418ec646f5803131b21fb8714e5f85"
+    },
+    {
+      "path": "scripts/test_render.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1757,
+      "sha256": "a73855ec8003da23f305726bb40896424eddaa702a81ae95533054e7fe2c2ae6"
+    },
+    {
+      "path": "scripts/update_embodiment_config_path.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3878,
+      "sha256": "d7a32079dd533195051134c5780b2641f29837409104ad6f570a6c2546b134e0"
+    },
+    {
+      "path": "scripts/update_xpolicylab.sh",
+      "type": "file",
+      "mode": 493,
+      "size": 5462,
+      "sha256": "4561ad55a79f82ba056e2667b52ecfcc35ca5284488dc8a4696685fe8094a3fb"
+    }
+  ]
+}

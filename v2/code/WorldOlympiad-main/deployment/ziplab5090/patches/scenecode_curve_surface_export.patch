@@ -1,0 +1,20 @@
+--- a/scenecode/code_object/agent_framework/pipeline.py
++++ b/scenecode/code_object/agent_framework/pipeline.py
+@@ -547,5 +547,7 @@
+                     script_code,
+                 ]
+             )
++        from autoresearch.scenecode_curve_export import curve_surface_export_code
++        snippets.append(curve_surface_export_code())
+         return "\n".join(snippets)
+ 
+--- a/scenecode/code_object/agent_framework/pipeline_batch.py
++++ b/scenecode/code_object/agent_framework/pipeline_batch.py
+@@ -547,5 +547,7 @@
+                     script_code,
+                 ]
+             )
++        from autoresearch.scenecode_curve_export import curve_surface_export_code
++        snippets.append(curve_surface_export_code())
+         return "\n".join(snippets)
+ 

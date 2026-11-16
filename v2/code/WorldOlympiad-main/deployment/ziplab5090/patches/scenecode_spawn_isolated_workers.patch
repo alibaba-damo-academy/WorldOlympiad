@@ -1,0 +1,10 @@
+--- a/scenecode/utils/parallel.py
++++ b/scenecode/utils/parallel.py
+@@ -106,1 +106,3 @@
+-    result_queue: multiprocessing.Queue = multiprocessing.Queue()
++    # Native Blender/Drake/Torch libraries and service threads are not fork-safe.
++    context = multiprocessing.get_context("spawn")
++    result_queue: multiprocessing.Queue = context.Queue()
+@@ -115,1 +117,1 @@
+-            p = multiprocessing.Process(
++            p = context.Process(

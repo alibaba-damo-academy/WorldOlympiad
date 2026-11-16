@@ -1,0 +1,141 @@
+name: "request_analysis_ceiling"
+version: "1.0"
+description: "Extract ceiling-mounted items from requests"
+template_variables: ["description", "dimensions"]
+prompt: |
+  <role>
+  You analyze ceiling-mounted object requests.
+  You split composite requests into individual items.
+  </role>
+
+  <definitions>
+  CEILING_MOUNTED: Objects mounted on or hanging from ceilings.
+  Examples: chandeliers, pendant lights, ceiling fans, flush mount lights,
+  track lighting, recessed lights, smoke detectors, sprinkler heads,
+  security cameras, exit signs, emergency lights.
+
+  NOT ceiling-mounted: Floor furniture, wall-mounted objects, manipulands on surfaces.
+  </definitions>
+
+  <task>
+  1. Composite ceiling items: split into individual items
+  2. Single ceiling item: return as single item
+  3. Non-ceiling items: reject with error message
+  4. Select appropriate strategy chain for each item (see strategies below)
+  5. PRESERVE original description/style EXACTLY - do NOT add extra attributes
+  </task>
+
+  <style_preservation>
+  CRITICAL: The designer has intentional style choices. Preserve them exactly.
+  - "modern pendant light" -> "modern pendant light" (NOT "chrome modern pendant light")
+  - "ceiling fan" -> "ceiling fan" (NOT "white ceiling fan with light")
+  - When splitting composites, use minimal differentiation
+  </style_preservation>
+
+  <strategies>
+  - ["code_generated"]: All ceiling fixtures.
+  </strategies>
+
+  <output_schema>
+  {
+    "items": [
+      {
+        "description": "string",
+        "short_name": "string (lowercase_with_underscores)",
+        "dimensions": [width, depth, height],
+        "object_type": "CEILING_MOUNTED",
+        "strategies": ["code_generated"]
+      }
+    ],
+    "original_description": "string|null (set if split)",
+    "error": "string|null (set if request rejected)"
+  }
+  </output_schema>
+
+  <examples>
+  Input: "modern pendant light", dimensions=[0.3, 0.3, 0.5]
+  Output:
+  {
+    "items": [{
+      "description": "modern pendant light",
+      "short_name": "pendant_light",
+      "dimensions": [0.3, 0.3, 0.5],
+      "object_type": "CEILING_MOUNTED",
+      "strategies": ["code_generated"]
+    }],
+    "original_description": null
+  }
+
+  Input: "crystal chandelier", dimensions=[0.8, 0.8, 0.6]
+  Output:
+  {
+    "items": [{
+      "description": "crystal chandelier",
+      "short_name": "chandelier",
+      "dimensions": [0.8, 0.8, 0.6],
+      "object_type": "CEILING_MOUNTED",
+      "strategies": ["code_generated"]
+    }],
+    "original_description": null
+  }
+
+  Input: "ceiling fan with light", dimensions=[1.2, 1.2, 0.4]
+  Output:
+  {
+    "items": [{
+      "description": "ceiling fan with light",
+      "short_name": "ceiling_fan",
+      "dimensions": [1.2, 1.2, 0.4],
+      "object_type": "CEILING_MOUNTED",
+      "strategies": ["code_generated"]
+    }],
+    "original_description": null
+  }
+
+  Input: "smoke detector", dimensions=[0.12, 0.12, 0.05]
+  Output:
+  {
+    "items": [{
+      "description": "smoke detector",
+      "short_name": "smoke_detector",
+      "dimensions": [0.12, 0.12, 0.05],
+      "object_type": "CEILING_MOUNTED",
+      "strategies": ["code_generated"]
+    }],
+    "original_description": null
+  }
+
+  Input: "flush mount LED light", dimensions=[0.4, 0.4, 0.1]
+  Output:
+  {
+    "items": [{
+      "description": "flush mount LED light",
+      "short_name": "flush_mount",
+      "dimensions": [0.4, 0.4, 0.1],
+      "object_type": "CEILING_MOUNTED",
+      "strategies": ["code_generated"]
+    }],
+    "original_description": null
+  }
+
+  Input: "dining table", dimensions=[1.5, 0.9, 0.75]
+  Output:
+  {
+    "items": [],
+    "original_description": "dining table",
+    "error": "Request is for floor furniture, not a ceiling-mounted fixture."
+  }
+
+  Input: "wall clock", dimensions=[0.3, 0.3, 0.05]
+  Output:
+  {
+    "items": [],
+    "original_description": "wall clock",
+    "error": "Request is for a wall-mounted object, not a ceiling-mounted fixture."
+  }
+  </examples>
+
+  Request: {{ description }}
+  Dimensions: {{ dimensions }}
+
+  Return your response as a JSON object matching the output_schema.

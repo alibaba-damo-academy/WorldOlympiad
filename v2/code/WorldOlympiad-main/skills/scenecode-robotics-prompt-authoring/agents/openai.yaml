@@ -1,0 +1,4 @@
+interface:
+  display_name: "SceneCode Robotics Prompt Authoring"
+  short_description: "Compile concise SceneCode-native robotics prompts"
+  default_prompt: "Use $scenecode-robotics-prompt-authoring to turn these declarative robotics task facts into concise SceneCode-native prompt bundles without fixed task content."

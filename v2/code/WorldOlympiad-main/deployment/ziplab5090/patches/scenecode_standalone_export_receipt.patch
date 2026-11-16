@@ -1,0 +1,38 @@
+--- a/scenecode/code_object/agent_framework/blender/headless_server.py
++++ b/scenecode/code_object/agent_framework/blender/headless_server.py
+@@ -25,6 +25,19 @@
+ 
+ import bpy
+ import mathutils
++
++
++def _load_export_receipt_writer():
++    """Load the staged companion by file; no repository Python path is required."""
++    import importlib.util
++    companion = os.path.join(os.path.dirname(os.path.abspath(__file__)), "_mesh_export_receipt.py")
++    spec = importlib.util.spec_from_file_location("scenecode_blender_export_receipt", companion)
++    module = importlib.util.module_from_spec(spec)
++    spec.loader.exec_module(module)
++    return module.record_blender_y_up_export
++
++
++record_blender_y_up_export = _load_export_receipt_writer()
+ 
+ 
+ class BlenderHeadlessServer:
+@@ -1060,7 +1073,6 @@
+         if bake_textures:
+             self._patch_mtl_with_baked_textures(mtl_path, bake_result["baked_objects"])
+ 
+-        from autoresearch.scenecode_mesh_export_receipt import record_blender_y_up_export
+         record_blender_y_up_export(out_path)
+ 
+         baked_texture_paths = self._flatten_baked_texture_paths(
+@@ -1133,7 +1145,6 @@
+         if not os.path.exists(bin_path):
+             raise FileNotFoundError(f"GLTF binary export failed: {bin_path}")
+ 
+-        from autoresearch.scenecode_mesh_export_receipt import record_blender_y_up_export
+         record_blender_y_up_export(out_path)
+ 
+         baked_texture_paths = self._flatten_baked_texture_paths(

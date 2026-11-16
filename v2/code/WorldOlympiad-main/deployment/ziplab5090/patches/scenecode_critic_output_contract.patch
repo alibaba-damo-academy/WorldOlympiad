@@ -1,0 +1,37 @@
+--- a/scenecode/agent_utils/base_stateful_agent.py
++++ b/scenecode/agent_utils/base_stateful_agent.py
+@@ -8,6 +8,7 @@
+ 
+ import copy
+ import inspect
++import json
+ import logging
+ import shutil
+ 
+@@ -27,6 +28,7 @@
+     SQLiteSession,
+     function_tool,
+ )
++from agents.agent_output import AgentOutputSchema
+ from agents.memory.session import Session
+ from omegaconf import DictConfig
+ from openai import Timeout
+@@ -275,10 +277,16 @@
+             name=critic_config.name,
+             model=self.cfg.openai.model,
+             tools=tools,
+-            instructions=self.prompt_registry.get_prompt(
++            instructions=(self.prompt_registry.get_prompt(
+                 prompt_enum=prompt_enum,
+                 **prompt_kwargs,
+-            ),
++            ) + "\n\nFinal structured output contract: This serialization contract takes "
++                "precedence over narrative-format instructions above. Return one JSON "
++                "object with no Markdown fences or prose outside it. Keep all requested "
++                "narrative, checklists and Markdown inside the critique string at the "
++                "location required by the schema, and populate every score field. "
++                "Preserve all evaluation criteria, scoring rules and required tool calls. "
++                "JSON schema:\n" + json.dumps(AgentOutputSchema(output_type).json_schema())),
+             output_type=output_type,
+             # Force observe_scene tool call first to ensure visual context.
+             model_settings=self._get_model_settings(

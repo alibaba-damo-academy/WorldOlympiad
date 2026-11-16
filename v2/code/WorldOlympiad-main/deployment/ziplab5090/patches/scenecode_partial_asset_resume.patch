@@ -1,0 +1,22 @@
+--- a/scenecode/agent_utils/code_object_generation.py
++++ b/scenecode/agent_utils/code_object_generation.py
+@@ -311,6 +311,8 @@
+             raise ValueError("Code_Object text input must be non-empty")
+ 
+         output_dir.mkdir(parents=True, exist_ok=True)
++        from autoresearch.scenecode_partial_asset_resume import seed_plan
++        seed_plan(output_dir, text_input)
+         active_config_path = (
+             self._resolve_config_path(str(config_path_override))
+             if config_path_override is not None
+--- a/scenecode/code_object/agent_framework/agents/part_constructor.py
++++ b/scenecode/code_object/agent_framework/agents/part_constructor.py
+@@ -539,6 +539,8 @@
+                 self.logger.info(f"\n--- Part {idx + 1}/{total_parts}: {part.name} ---")
+                 
+                 code_path = os.path.join(parts_dir, f"{part.name}.py")
++                from autoresearch.scenecode_partial_asset_resume import seed_part
++                seed_part(part, text_input, code_path)
+                 if os.path.exists(code_path):
+                     self.logger.info(f"Part code already exists, skipping: {code_path}")
+                     try:

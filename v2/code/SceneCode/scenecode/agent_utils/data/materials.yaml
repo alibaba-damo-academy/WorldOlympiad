@@ -1,0 +1,113 @@
+cardboard:
+  youngs_modulus: 6.5e8
+  density: 700
+  friction: 0.32
+  material_modulus: 1e8
+
+wood:
+  youngs_modulus: 1.0e10
+  density: 600
+  friction: 0.4
+  material_modulus: 1e9
+
+rubber:
+  youngs_modulus: 3e7
+  density: 1100
+  friction: 1.15
+  material_modulus: 1e8
+
+plastic:
+  youngs_modulus: 2.5e9
+  density: 950
+  friction: 0.35
+  material_modulus: 1e10
+
+ceramic:
+  youngs_modulus: 7e10
+  density: 2400
+  friction: 0.35
+  material_modulus: 1e10
+
+glass:
+  youngs_modulus: 7e10
+  density: 2500
+  friction: 0.9
+  material_modulus: 1e10
+
+leather:
+  youngs_modulus: 5e8
+  density: 860
+  friction: 0.6
+  material_modulus: 1e9
+
+steel:
+  youngs_modulus: 2.0e11
+  density: 7800
+  friction: 0.74
+  material_modulus: 1e10
+
+aluminum:
+  youngs_modulus: 6.8e10
+  density: 2700
+  friction: 1.1
+  material_modulus: 1e10
+
+stone:
+  youngs_modulus: 3.0e10
+  density: 2600
+  friction: 0.9
+  material_modulus: 1e10
+
+foam:
+  youngs_modulus: 5e6
+  density: 30
+  friction: 0.4
+  material_modulus: 1e7
+
+fruit:
+  youngs_modulus: 2e6
+  density: 900
+  friction: 0.8
+  material_modulus: 1e7
+
+silicone:
+  youngs_modulus: 5e6
+  density: 1200
+  friction: 1.2
+  material_modulus: 1e7
+
+concrete:
+  youngs_modulus: 3.0e10
+  density: 2400
+  friction: 0.62
+  material_modulus: 1e9
+
+cork:
+  youngs_modulus: 5e6
+  density: 200
+  friction: 0.6
+  material_modulus: 1e8
+
+clay:
+  youngs_modulus: 5e9
+  density: 1900
+  friction: 0.7
+  material_modulus: 1e9
+
+carbon_fiber:
+  youngs_modulus: 5e10
+  density: 1600
+  friction: 0.5
+  material_modulus: 1e10
+
+fabric:
+  youngs_modulus: 1e7
+  density: 500
+  friction: 0.4
+  material_modulus: 1e8
+
+paper:
+  youngs_modulus: 1.0e9
+  density: 900
+  friction: 0.32
+  material_modulus: 1e7

@@ -1,0 +1,99 @@
+diff --git a/scenecode/agent_utils/action_logger.py b/scenecode/agent_utils/action_logger.py
+--- a/scenecode/agent_utils/action_logger.py
++++ b/scenecode/agent_utils/action_logger.py
+@@ -5,8 +5,10 @@
+ """
+ 
++import fcntl
+ import inspect
+ import json
+ import logging
++import os
+ 
+ from dataclasses import asdict, dataclass, is_dataclass
+ from datetime import datetime
+@@ -168,40 +170,52 @@ def _append_action_to_log(
+                 f"Failed to serialize metadata for {tool_name}: {e}"
+             ) from e
+ 
+-    # Load existing log or create empty list.
+-    if log_path.exists():
++    # Multiple tool calls may be dispatched concurrently.  Serialize the full
++    # read-modify-write transaction across threads and processes; otherwise one
++    # writer can observe another writer's truncated JSON and silently discard
++    # the replay history.  The final replace is atomic for readers.
++    log_path.parent.mkdir(parents=True, exist_ok=True)
++    lock_path = log_path.with_name(log_path.name + ".lock")
++    temporary_path = log_path.with_name(
++        f".{log_path.name}.{os.getpid()}.tmp"
++    )
++    with open(lock_path, "a", encoding="utf-8") as lock_file:
++        fcntl.flock(lock_file.fileno(), fcntl.LOCK_EX)
+         try:
+-            with open(log_path, encoding="utf-8") as f:
+-                log_entries = json.load(f)
+-        except (json.JSONDecodeError, IOError) as e:
+-            console_logger.warning(
+-                f"Failed to load existing action log at {log_path}: {e}. Starting "
+-                "new log."
++            # Load existing log or create empty list.
++            if log_path.exists():
++                try:
++                    with open(log_path, encoding="utf-8") as f:
++                        log_entries = json.load(f)
++                except (json.JSONDecodeError, IOError) as e:
++                    raise IOError(
++                        f"Refusing to discard corrupt action log at {log_path}: {e}"
++                    ) from e
++            else:
++                log_entries = []
++
++            step_number = len(log_entries) + 1
++            timestamp = datetime.now().isoformat()
++            entry = ActionLogEntry(
++                step_number=step_number,
++                timestamp=timestamp,
++                tool_name=tool_name,
++                arguments=serialized_args,
++                metadata=serialized_metadata,
+             )
+-            log_entries = []
+-    else:
+-        log_entries = []
+-
+-    # Create new entry.
+-    step_number = len(log_entries) + 1
+-    timestamp = datetime.now().isoformat()
+-    entry = ActionLogEntry(
+-        step_number=step_number,
+-        timestamp=timestamp,
+-        tool_name=tool_name,
+-        arguments=serialized_args,
+-        metadata=serialized_metadata,
+-    )
+-
+-    # Append and save.
+-    log_entries.append(asdict(entry))
+-    try:
+-        # Ensure parent directory exists.
+-        log_path.parent.mkdir(parents=True, exist_ok=True)
+-        with open(log_path, "w", encoding="utf-8") as f:
+-            json.dump(log_entries, f, indent=2)
+-    except IOError as e:
+-        raise IOError(f"Failed to write action log to {log_path}: {e}") from e
++            log_entries.append(asdict(entry))
++            try:
++                with open(temporary_path, "w", encoding="utf-8") as f:
++                    json.dump(log_entries, f, indent=2)
++                    f.flush()
++                    os.fsync(f.fileno())
++                os.replace(temporary_path, log_path)
++            except IOError as e:
++                raise IOError(f"Failed to write action log to {log_path}: {e}") from e
++            finally:
++                temporary_path.unlink(missing_ok=True)
++        finally:
++            fcntl.flock(lock_file.fileno(), fcntl.LOCK_UN)
+ 
+ 
+ def log_scene_action(func: Callable) -> Callable:

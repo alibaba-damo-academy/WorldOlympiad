@@ -1,0 +1,18 @@
+name: "floor_plan_designer_critique_instruction"
+version: "1.0"
+description: "Instruction for designer to address critic feedback"
+template_variables: ["instruction"]
+prompt: |
+  The critic has provided feedback on your floor plan design.
+  Address the following issues:
+
+  {{ instruction }}
+
+  Use the appropriate tools to make changes:
+  - resize_room() to adjust room sizes
+  - add_door()/remove_door() to modify doors
+  - add_window()/remove_window() to modify windows
+  - set_room_materials() to change materials
+  - validate() to check your changes
+
+  After making changes, summarize what you modified and why.

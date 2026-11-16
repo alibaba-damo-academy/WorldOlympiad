@@ -1,0 +1,26 @@
+--- a/scenecode/utils/parallel.py
++++ b/scenecode/utils/parallel.py
+@@ -8,5 +8,6 @@
+ import logging
+ import multiprocessing
++import os
+ import queue
+ import signal
+ import traceback
+@@ -105,2 +105,16 @@
+     """
++    if max_workers == 1 and os.environ.get("SCENECODE_INLINE_SINGLE_WORKER") == "1":
++        results: dict[str, tuple[bool, Any]] = {}
++        for task_id, target, kwargs in tasks:
++            try:
++                result = target(**kwargs)
++            except Exception as e:
++                error_msg = f"{e}\n{traceback.format_exc()}"
++                results[task_id] = (False, error_msg)
++                console_logger.error(f"{task_id} failed: {error_msg}")
++            else:
++                results[task_id] = (True, result if return_values else None)
++                console_logger.info(f"{task_id} completed")
++        return results
++
+     result_queue: multiprocessing.Queue = multiprocessing.Queue()

@@ -1,0 +1,42 @@
+--- a/scenecode/agent_utils/sdf_generator.py
++++ b/scenecode/agent_utils/sdf_generator.py
+@@ -326,7 +326,20 @@
+ 
+ 
+ def _scale_inertial(inertial: ET.Element, scale_factor: float) -> None:
+-    """Scale inertial properties: CoM pose and inertia tensor."""
++    """Scale inertial properties: mass, CoM pose and inertia tensor.
++
++    A uniform geometric rescale preserves the material density, so the mass
++    scales as ``s^3`` and the inertia tensor (mass times distance squared) as
++    ``s^5``.  Scaling only the tensor while keeping the mass fixed leaves the
++    resized asset with an unphysical density: a normalized 1 m object later
++    placed at a few centimetres keeps a metre-scale mass and becomes
++    ungraspable by the task robots.
++    """
++    mass_node = inertial.find("mass")
++    if mass_node is not None and mass_node.text and mass_node.text.strip():
++        mass = float(mass_node.text)
++        mass_node.text = f"{mass * scale_factor ** 3:.12g}"
++
+     # Scale center of mass pose translation.
+     inertial_pose = inertial.find("pose")
+     if inertial_pose is not None and inertial_pose.text:
+@@ -334,7 +347,8 @@
+         scaled_xyz = scale_pose_translation(xyz, scale_factor)
+         inertial_pose.text = pose_to_string(scaled_xyz, rpy)
+ 
+-    # Scale inertia tensor (scales as s^2 for constant mass).
++    # Scale inertia tensor: s^2 from the distance term, then s^3 from the mass
++    # term, for a total of s^5 under density-preserving uniform scaling.
+     inertia = inertial.find("inertia")
+     if inertia is not None:
+         ixx = float(inertia.findtext("ixx", "0"))
+@@ -345,6 +359,7 @@
+         iyz = float(inertia.findtext("iyz", "0"))
+ 
+         scaled = scale_inertia(ixx, iyy, izz, ixy, ixz, iyz, scale_factor)
++        scaled = tuple(value * scale_factor ** 3 for value in scaled)
+ 
+         _set_or_create_text(inertia, "ixx", f"{scaled[0]:.6e}")
+         _set_or_create_text(inertia, "iyy", f"{scaled[1]:.6e}")

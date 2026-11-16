@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.testmondata*
+.ruff_cache/
+.mypy_cache/
+
+# Environments
+.venv/
+.mujoco_venv/
+env/
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+.mcp.json
+
+# Runtime outputs
+outputs/
+output/
+logs/
+tmp/
+cache/
+artifacts/
+debug/
+debug_*/
+latest-run
+*.log
+
+# Large local assets and model/data caches
+/data/
+external/
+checkpoints/
+local_files/
+mujoco_export/
+
+# Generated 3D artifacts
+*.blend
+*.blend1
+*.usd
+*.usda
+*.usdc
+
+# OS / IDE
+.DS_Store
+.idea/
+.vscode/
+command.txt

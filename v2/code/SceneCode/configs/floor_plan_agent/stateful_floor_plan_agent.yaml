@@ -1,0 +1,21 @@
+# Stateful floor plan agent configuration with planner/designer/critic trio
+
+defaults:
+  - base_floor_plan_agent
+
+# Agent configs
+agents:
+  planner_agent:
+    name: "floor_plan_planner"
+    max_turns: 500
+    prompt: PLANNER_AGENT
+
+  designer_agent:
+    name: "floor_plan_designer"
+    max_turns: 1000
+    prompt: DESIGNER_AGENT
+
+  critic_agent:
+    name: "floor_plan_critic"
+    max_turns: 500
+    prompt: CRITIC_AGENT

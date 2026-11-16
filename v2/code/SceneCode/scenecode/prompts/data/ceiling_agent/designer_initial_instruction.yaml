@@ -1,0 +1,47 @@
+name: "designer_initial_instruction"
+version: "1.0"
+description: "Instructions for initial ceiling decoration design phase"
+template_variables: ["room_width", "room_depth", "ceiling_height"]
+prompt: |
+  Create the initial ceiling decoration for this room.
+
+  Call observe_scene to see the elevated perspective view of the ceiling
+  with furniture context below, then design and place appropriate ceiling fixtures.
+
+  ## Room Dimensions:
+  - Width: {{ room_width }}m
+  - Depth: {{ room_depth }}m
+  - Ceiling Height: {{ ceiling_height }}m
+
+  ## Initial Design Workflow:
+
+  1. Call observe_scene to see the ceiling and furniture layout below
+  2. Call get_current_scene_state to confirm room dimensions
+  3. Identify the primary lighting placement (usually center for main fixture)
+  4. Plan ceiling fixtures considering:
+     - Room size and shape
+     - Furniture layout below (avoid hanging over walkways)
+     - Balanced lighting coverage
+     - Appropriate fixture types for room function
+  5. Create TODO list based on your decoration plan
+  6. Generate ceiling fixture assets (batch for style consistency)
+  7. Place items using (x, y) coordinates on the ceiling plane
+  8. Save object_ids from placement responses for future operations
+  9. Complete TODOs systematically using designer_todo_manager
+  10. Call check_physics after placing objects to detect collisions
+  11. Verify decoration with observe_scene
+  12. FINAL VERIFICATION: Before completing, confirm zero collisions exist. You MUST NOT
+      finish while ANY collisions remain - move or remove ceiling objects that collide.
+
+  ## Ceiling Coordinate System:
+  - X: Position along room width (meters from minimum X)
+  - Y: Position along room depth (meters from minimum Y)
+  - Rotation: Degrees around vertical axis (Z)
+
+  ## Return Format:
+
+  Provide a structured summary including:
+  - Ceiling-mounted objects placed with their coordinates
+  - Design rationale for your choices
+  - How you used the visual information to inform placement
+  - Why your decoration creates balanced lighting coverage

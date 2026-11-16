@@ -1,0 +1,41 @@
+name: "designer_initial_instruction"
+version: "1.0"
+description: "Instructions for initial wall decoration design phase"
+template_variables: ["wall_summary"]
+prompt: |
+  Create the initial wall decoration for this room.
+
+  Call observe_scene to see all walls with their coordinate grids and excluded regions,
+  then design and place appropriate wall-mounted objects.
+
+  ## Wall Surfaces Available:
+  {{ wall_summary }}
+
+  ## Initial Design Workflow:
+
+  1. Call observe_scene to see all walls and understand the space
+  2. Call get_current_scene_state to get wall dimensions and excluded regions
+  3. Identify the primary focal wall (usually opposite entrance or largest wall)
+  4. Plan decoration for each wall considering:
+     - Wall dimensions and available space
+     - Excluded regions (doors/windows) to avoid
+     - Nearby furniture that affects decoration choices
+     - Cross-wall balance and visual harmony
+  5. Create TODO list based on your decoration plan
+  6. Generate wall decoration assets (batch for style consistency)
+  7. Place items using wall-local coordinates from the grid overlays
+  8. Save object_ids from placement responses for future operations
+  9. Complete TODOs systematically using designer_todo_manager
+  10. Call check_physics after placing objects to detect collisions with furniture
+  11. Verify decoration with observe_scene - check all walls
+  12. FINAL VERIFICATION: Before completing, confirm zero collisions exist. You MUST NOT
+      finish while ANY collisions remain - move or remove wall objects that collide with
+      furniture below.
+
+  ## Return Format:
+
+  Provide a structured summary including:
+  - Wall-mounted objects placed with their wall IDs and coordinates
+  - Design rationale for your choices
+  - How you used the visual information and coordinate grids
+  - Why your decoration creates visual harmony across all walls
