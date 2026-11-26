@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "environment": {
+    "python": "3.10",
+    "platform": "manylinux_x86_64",
+    "torch": "2.9.0+cu128"
+  },
+  "packages": [
+    {
+      "filename": "pyg_lib-0.7.0+pt29cu128-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+      "name": "pyg-lib",
+      "sha256": "b7fc3d087ab0e5da3f90ec863bd5c758e119cf01d02f7b303b2d3bda30aac373",
+      "source": "https://data.pyg.org/whl/torch-2.9.0%2Bcu128/pyg_lib-0.7.0%2Bpt29cu128-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl",
+      "version": "0.7.0+pt29cu128"
+    }
+  ]
+}

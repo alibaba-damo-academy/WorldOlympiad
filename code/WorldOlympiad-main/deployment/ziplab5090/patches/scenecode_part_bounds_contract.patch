@@ -1,0 +1,36 @@
+--- a/scenecode/code_object/agent_framework/agents/part_constructor.py
++++ b/scenecode/code_object/agent_framework/agents/part_constructor.py
+@@ -10,6 +10,7 @@
+ from pathlib import Path
+ from datetime import datetime
+ 
++from autoresearch.scenecode_part_bounds import append_part_bounds_contract
+ from autoresearch.scenecode_loop_policy import (
+     BLENDER_API_RULES, bounded_attempts, failure_fingerprint, normalize_blender_code,
+ )
+@@ -368,6 +369,7 @@
+         # 生成代码
+         if use_llm:
+             generation_constraints = self._build_generation_constraints(part)
++            generation_constraints += "\nPartPlan.position is the world-space geometric bounding-box center. Center custom mesh vertices locally before setting object location; preserve the planned dimensions and rotation. The executed mesh will be measured against this contract."
+             code = await self._generate_code_with_llm(
+                 part,
+                 image_path=image_path,
+@@ -378,7 +380,7 @@
+             code = self._generate_code_template(part)
+         
+         # Persist known API repairs before execution and later export.
+-        code = normalize_blender_code(code)
++        code = append_part_bounds_contract(normalize_blender_code(code), part.to_dict())
+         # 保存代码
+         code_path = os.path.join(output_dir, f"{part.name}.py")
+         os.makedirs(output_dir, exist_ok=True)
+@@ -417,7 +419,7 @@
+                             image_path=image_path,
+                             text_input=text_input
+                         )
+-                        code = normalize_blender_code(code)
++                        code = append_part_bounds_contract(normalize_blender_code(code), part.to_dict())
+                         with open(code_path, "w", encoding="utf-8") as f:
+                             f.write(code)
+                         self.logger.info(f"Fixed code saved to: {code_path}")

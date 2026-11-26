@@ -1,0 +1,19 @@
+diff --git a/scenecode/prompts/data/manipuland_agent/analyze_furniture_for_placement.yaml b/scenecode/prompts/data/manipuland_agent/analyze_furniture_for_placement.yaml
+--- a/scenecode/prompts/data/manipuland_agent/analyze_furniture_for_placement.yaml
++++ b/scenecode/prompts/data/manipuland_agent/analyze_furniture_for_placement.yaml
+@@ -40,2 +40,14 @@
+   3. Mark items as REQUIRED vs optional for each furniture piece
+   4. Extract style constraints that apply to all surfaces (e.g., "minimalist", "cluttered")
++
++  **Lossless requirement forwarding:**
++  - For every explicitly requested manipuland, copy its complete noun phrase into
++    `suggested_items`. Keep all material, color, shape, part, dimension, grasp,
++    opening, fit, and compatibility qualifiers attached to that item. Never shorten
++    a requested phrase to a category label or a visually simpler paraphrase.
++  - Copy every cross-object geometry sentence (for example fits through, covers,
++    stacks on, closes, or remains graspable) into `prompt_constraints` verbatim.
++    These constraints are executable requirements for the downstream asset designer,
++    not optional style notes.
++  - If a complete phrase contains commas, retain the full phrase as one REQUIRED
++    item; do not split its qualifiers into separate objects.
++

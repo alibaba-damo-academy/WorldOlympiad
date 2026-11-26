@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "scenecode-pybullet-minimal"
+version = "0.1.0"
+description = "Minimal physics-only bridge from official SceneCode SDF assets to PyBullet"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+

@@ -1,0 +1,31 @@
+--- a/scenecode/code_object/agent_framework/blender/headless_server.py
++++ b/scenecode/code_object/agent_framework/blender/headless_server.py
+@@ -1060,6 +1060,9 @@
+         if bake_textures:
+             self._patch_mtl_with_baked_textures(mtl_path, bake_result["baked_objects"])
+ 
++        from autoresearch.scenecode_mesh_export_receipt import record_blender_y_up_export
++        record_blender_y_up_export(out_path)
++
+         baked_texture_paths = self._flatten_baked_texture_paths(
+             bake_result["baked_objects"]
+         )
+@@ -1114,7 +1117,7 @@
+                 filepath=out_path,
+                 export_format="GLTF_SEPARATE",
+                 use_selection=True,
+-                export_apply=False,
++                export_apply=True,
+                 export_cameras=False,
+                 export_lights=False,
+                 export_yup=True,
+@@ -1129,6 +1132,9 @@
+         bin_path = os.path.splitext(out_path)[0] + ".bin"
+         if not os.path.exists(bin_path):
+             raise FileNotFoundError(f"GLTF binary export failed: {bin_path}")
++
++        from autoresearch.scenecode_mesh_export_receipt import record_blender_y_up_export
++        record_blender_y_up_export(out_path)
+ 
+         baked_texture_paths = self._flatten_baked_texture_paths(
+             bake_result["baked_objects"]

@@ -1,0 +1,45 @@
+name: Lint
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+  push:
+    branches:
+      - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.7.8"
+          enable-cache: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: ".python-version"
+
+      - name: black
+        uses: psf/black@stable
+        with:
+          version: 25.1.0
+          jupyter: true
+
+      - name: isort
+        uses: isort/isort-action@master
+        with:
+            configuration: "--settings-path=pyproject.toml --check-only --diff"
+            isort-version: 5.12.0
+
+      - name: autoflake
+        uses: creyD/autoflake_action@master
+        with:
+            options: --remove-all-unused-imports --in-place

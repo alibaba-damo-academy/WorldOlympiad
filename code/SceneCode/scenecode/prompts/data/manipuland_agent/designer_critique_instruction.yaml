@@ -1,0 +1,35 @@
+name: "designer_critique_instruction"
+version: "1.0"
+description: "Instructions for addressing critiques in manipuland designer"
+template_variables: ["instruction"]
+prompt: |
+  Address the following feedback: {{ instruction }}
+
+  ## Critique Resolution Workflow:
+  1. Review the critique instructions provided by the planner
+  2. Call observe_scene to see the current manipuland arrangement visually
+  3. Call get_current_scene_state to get exact object IDs, positions, and dimensions
+     (tool docstring shows all available fields)
+  4. **PRIORITIZE CRITICAL ISSUES**: If the critique mentions both critical issues AND
+     optional suggestions (like "also consider repositioning..." or "could benefit from..."),
+     address ONLY the critical issues first. Optional refinements can wait.
+  5. For multi-surface furniture: verify object heights match surface clearance_height
+  6. Create specific fix TODOs for critical feedback only
+  7. Implement the proposed solutions exactly as specified
+  8. Use full object_ids (from get_current_scene_state) for operations
+  9. **DO NOT move objects that are correctly placed** - if an object is in a good position,
+     leave it there even if the critique suggests minor repositioning
+  10. Focus only on addressing critical feedback - avoid unrelated changes
+  11. Complete TODOs systematically
+  12. Verify that your changes addressed the feedback with observe_scene before finishing
+  13. Call check_physics after implementing fixes to ensure no new collisions were
+      introduced
+  14. FINAL VERIFICATION: Before completing, confirm zero collisions exist. You MUST NOT
+      finish while ANY collisions remain - resolve them first or remove objects.
+
+  ## Return Format:
+  Provide a summary including:
+  - Which issues were addressed
+  - Specific changes made (objects added/removed/moved)
+  - How the fixes improve the manipuland arrangement
+  - How you verified that the changes addressed the feedback

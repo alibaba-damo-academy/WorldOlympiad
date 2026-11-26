@@ -1,0 +1,74 @@
+--- a/scenecode/code_object/agent_framework/agents/part_constructor.py
++++ b/scenecode/code_object/agent_framework/agents/part_constructor.py
+@@ -337,6 +337,7 @@
+         render_output_dir: str = None,
+         use_llm: bool = True,
+         execute: bool = True,
++        initial_code: Optional[str] = None,
+     ) -> Dict[str, Any]:
+         """
+         构造单个部件。
+@@ -366,8 +367,10 @@
+             render_output_dir = os.path.join(os.path.dirname(output_dir), "renders", "parts")
+         os.makedirs(render_output_dir, exist_ok=True)
+         
+-        # 生成代码
+-        if use_llm:
++        # Reused source must pass the same measured execution and repair loop.
++        if initial_code is not None:
++            code = initial_code
++        elif use_llm:
+             generation_constraints = self._build_generation_constraints(part)
+             generation_constraints += "\nPartPlan.position is the world-space geometric bounding-box center. Center custom mesh vertices locally before setting object location; preserve the planned dimensions and rotation. The executed mesh will be measured against this contract."
+             code = await self._generate_code_with_llm(
+@@ -543,26 +546,8 @@
+                 code_path = os.path.join(parts_dir, f"{part.name}.py")
+                 from autoresearch.scenecode_partial_asset_resume import seed_part
+                 seed_part(part, text_input, code_path)
+-                if os.path.exists(code_path):
+-                    self.logger.info(f"Part code already exists, skipping: {code_path}")
+-                    try:
+-                        with open(code_path, "r", encoding="utf-8") as f:
+-                            code = f.read()
+-                        results.append({
+-                            "part_name": part.name,
+-                            "code_path": code_path,
+-                            "code": code,
+-                            "execution_result": {"success": True, "skipped": True},
+-                            "action_trace": None,
+-                            "error": None
+-                        })
+-                    except Exception as e:
+-                        self.logger.error(f"Error loading existing code for {part.name}: {e}")
+-                        failed_parts.append(part.name)
+-                        results.append({"part_name": part.name, "error": str(e)})
+-                    continue
+-                
+                 try:
++                    initial_code = Path(code_path).read_text(encoding="utf-8") if os.path.isfile(code_path) else None
+                     result = await self.construct_part(
+                         part=part,
+                         image_path=image_path,
+@@ -571,6 +556,7 @@
+                         render_output_dir=render_output_dir,
+                         use_llm=use_llm,
+                         execute=execute,
++                        initial_code=initial_code,
+                     )
+                     results.append(result)
+                     
+@@ -731,12 +717,13 @@
+         render_output_dir: str = None,
+         use_llm: bool = True,
+         execute: bool = True,
++        initial_code: Optional[str] = None,
+     ) -> Dict[str, Any]:
+         """Mock 版本：跳过实际的 LLM 调用"""
+         self.logger.info(f"[Mock] Constructing part: {part.name}")
+         
+         # 保存 Mock 代码
+-        code = f"# Mock code for {part.name}\nimport bpy\nprint('Mock {part.name}')\n"
++        code = initial_code if initial_code is not None else f"# Mock code for {part.name}\nimport bpy\nprint('Mock {part.name}')\n"
+         code_path = os.path.join(output_dir, f"{part.name}.py")
+         os.makedirs(output_dir, exist_ok=True)
+         with open(code_path, 'w', encoding='utf-8') as f:

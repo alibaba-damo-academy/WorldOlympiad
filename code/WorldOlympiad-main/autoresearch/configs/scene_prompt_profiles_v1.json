@@ -1,0 +1,274 @@
+{
+  "schema_version": "scene_prompt_profiles.v1",
+  "source_notes": [
+    "Patterns distilled from the official SceneCode project gallery and repository examples.",
+    "SceneCode produces the static executable scene; PyBullet adds certified robot motion and dynamics."
+  ],
+  "profiles": [
+    {
+      "id": "robotics_cup_to_tray_scene_v1",
+      "brief": "A Franka Panda picks up one blue ceramic cup from a realistic wooden worktable and places it upright inside one shallow blue tray.",
+      "spec": {
+        "schema_version": "scene_prompt_spec.v1",
+        "scene_id": "robotics_cup_to_tray_scene_v1",
+        "domain": "robotics_manipulation",
+        "room_type": "bright robotics prototyping room",
+        "room_dimensions_m": [4.8, 4.0],
+        "style": "warm contemporary laboratory",
+        "activity_zones": [
+          "one central wooden manipulation table with a clear robot approach edge",
+          "one restrained storage and charging area along the far wall"
+        ],
+        "objects": [
+          {
+            "name": "full-size rectangular wooden worktable",
+            "category": "table",
+            "count": 1,
+            "placement": "centered with clear floor space on all sides and no crossbar blocking the robot base",
+            "attributes": ["warm matte oak", "stable", "human-scale"],
+            "task_role": "support"
+          },
+          {
+            "name": "Franka Panda work zone",
+            "category": "robot_workspace",
+            "count": 1,
+            "support": "the near edge of the worktable",
+            "placement": "with unobstructed reach to the cup and tray; reserve space but leave the actual robot to the simulator",
+            "attributes": ["cable-free", "clearly bounded"],
+            "task_role": "robot"
+          },
+          {
+            "name": "blue ceramic cup",
+            "category": "cup",
+            "count": 1,
+            "support": "the worktable",
+            "placement": "upright in the front-right manipulation area, 35 cm outside the tray, with side and top grasp clearance",
+            "attributes": ["medium-size", "matte blue glaze", "bright readable rim", "opaque"],
+            "task_role": "target"
+          },
+          {
+            "name": "shallow blue rectangular tray",
+            "category": "sorting_tray",
+            "count": 1,
+            "support": "the worktable",
+            "placement": "left of the cup with its complete interior visible and enough clearance for an upright placement",
+            "attributes": ["light blue", "low rim", "matte", "unlabeled"],
+            "task_role": "environment"
+          },
+          {
+            "name": "low closed storage cabinet",
+            "category": "cabinet",
+            "count": 1,
+            "placement": "against the far wall outside the robot and camera paths",
+            "attributes": ["pale wood", "minimal hardware"],
+            "task_role": "environment"
+          },
+          {
+            "name": "small charging dock",
+            "category": "robotics_context",
+            "count": 1,
+            "support": "the storage cabinet",
+            "placement": "neatly placed as restrained real laboratory context",
+            "attributes": ["dark gray", "non-reflective", "no visible text"],
+            "task_role": "environment"
+          }
+        ],
+        "wall_and_ceiling": [
+          "one diffuse side window with a fabric blind",
+          "two soft overhead area lights",
+          "one simple acoustic wall panel"
+        ],
+        "lighting_and_materials": [
+          "soft daylight plus broad warm-white overhead illumination",
+          "matte wood, pale walls, and neutral flooring with realistic contact shadows",
+          "enough blue-value contrast to distinguish cup from tray"
+        ],
+        "task_setup": "Keep the initial state task-ready but not complete: the cup starts upright outside the tray, the tray interior is empty, and both are visible, reachable, and physically separated",
+        "camera_readability": [
+          "make the cup and tray large enough for reliable video tracking",
+          "preserve the complete table task area and robot reach without severe foreshortening",
+          "keep fixed-camera silhouettes distinct and leave realistic room context"
+        ],
+        "negative_constraints": [
+          "tiny task objects, glass, mirrors, glossy black materials, transparent containers, printed text, random clutter",
+          "occlusion between cup and tray, intersecting geometry, a pre-solved task, or a robot baked into SceneCode"
+        ],
+        "required_semantics": ["table", "cup", "sorting_tray", "robot_workspace"]
+      }
+    },
+    {
+      "id": "robotics_tabletop_physics_v1",
+      "brief": "A realistic domestic robotics workcell supporting block pick-and-place, target-zone pushing, cup tipping, and stacked-block interaction.",
+      "spec": {
+        "schema_version": "scene_prompt_spec.v1",
+        "scene_id": "robotics_tabletop_physics_v1",
+        "domain": "robotics_manipulation",
+        "room_type": "apartment dining room adapted as a home-robotics workspace",
+        "room_dimensions_m": [5.2, 4.2],
+        "style": "bright contemporary",
+        "activity_zones": [
+          "a central manipulation worktable with clear access from the near side",
+          "a compact storage and charging zone along the far wall"
+        ],
+        "objects": [
+          {
+            "name": "solid rectangular oak worktable",
+            "category": "table",
+            "count": 1,
+            "placement": "centered in the room with a 1.2 m clear aisle on the near side and no lower crossbar blocking a robot base",
+            "attributes": ["matte-finished", "stable", "human-scale"],
+            "task_role": "support"
+          },
+          {
+            "name": "seven-degree-of-freedom robot work zone",
+            "category": "robot_workspace",
+            "count": 1,
+            "support": "a rigid low pedestal aligned with the near edge of the oak worktable",
+            "placement": "with unobstructed reach to the full tabletop; leave the actual certified robot asset and pedestal to the simulator",
+            "attributes": ["clearly bounded", "cable-free", "table-height mounting interface"],
+            "task_role": "robot"
+          },
+          {
+            "name": "small red sorting block",
+            "category": "sorting_block",
+            "count": 1,
+            "support": "the oak worktable",
+            "placement": "in the left-front work area, 20 cm to the left of a shallow blue sorting tray, with clear top and side gripper approach space",
+            "attributes": ["vivid matte red", "10 cm single-piece cube"],
+            "task_role": "target"
+          },
+          {
+            "name": "shallow blue sorting tray and flat green push target pad",
+            "category": "robot_task_markers",
+            "count": 1,
+            "support": "the oak worktable",
+            "placement": "with the tray immediately to the right of the red sorting block and the green pad to the right of the wooden manipulation block",
+            "attributes": ["matte", "unlabeled", "low-profile"],
+            "task_role": "environment"
+          },
+          {
+            "name": "blue ceramic mug",
+            "category": "mug",
+            "count": 1,
+            "support": "the oak worktable",
+            "placement": "upright near the center-rear area with its handle visible from the near side",
+            "attributes": ["matte glazed", "empty", "single handle"],
+            "task_role": "target"
+          },
+          {
+            "name": "rectangular beech manipulation block",
+            "category": "sliding_block",
+            "count": 1,
+            "support": "the oak worktable",
+            "placement": "near the right-front quadrant with a clear 30 cm sliding path into the green target pad",
+            "attributes": ["smooth", "natural wood", "22 cm by 18 cm by 10 cm"],
+            "task_role": "target"
+          },
+          {
+            "name": "wooden manipulation cubes",
+            "category": "cube_block",
+            "count": 3,
+            "support": "the oak worktable",
+            "placement": "in the right-rear quadrant as a stable vertical stack with the middle cube visible from the near side",
+            "attributes": ["yellow, green, and off-white", "4.8 cm single-piece cubes"],
+            "task_role": "target"
+          },
+          {
+            "name": "low oak storage cabinet",
+            "category": "cabinet",
+            "count": 1,
+            "placement": "against the far wall without intersecting the worktable clearance",
+            "attributes": ["closed drawers", "matte hardware"],
+            "task_role": "environment"
+          },
+          {
+            "name": "small charging dock and two labeled-free storage bins",
+            "category": "robotics_context",
+            "count": 1,
+            "support": "the low storage cabinet",
+            "placement": "neatly grouped as believable robotics-workspace context",
+            "attributes": ["non-reflective", "cable-managed"],
+            "task_role": "environment"
+          }
+        ],
+        "wall_and_ceiling": [
+          "one large window on the left wall with a simple fabric blind",
+          "one abstract framed print on the far wall",
+          "two warm-white pendant lights centered above the worktable"
+        ],
+        "lighting_and_materials": [
+          "soft daylight from the left window plus practical warm overhead light",
+          "matte oak, pale plaster walls, and a neutral non-gloss floor",
+          "distinct saturated colors only for the manipulation targets"
+        ],
+        "task_setup": "Keep the initial state task-ready but not complete: the red block begins outside the blue tray with enough clearance to grasp, lift, transfer, place, and release it; the wooden block begins outside the green target pad, the cup is upright, and the three-block stack is stable; every target is separately visible and reachable",
+        "camera_readability": [
+          "keep the full worktable and robot reach zone visible from one fixed oblique near-side view",
+          "avoid target overlap and preserve clear silhouettes against the tabletop",
+          "leave enough background context to read the room as realistic rather than as an isolated asset showcase"
+        ],
+        "negative_constraints": [
+          "glass furniture, mirrors, glossy black surfaces, and transparent containers",
+          "random clutter, printed text, exposed cables, and objects floating or intersecting",
+          "a pre-solved manipulation task or a robot baked into SceneCode geometry"
+        ],
+        "required_semantics": ["table", "sorting_block", "sorting_tray", "push_target_zone", "mug", "sliding_block", "cube_block"]
+      }
+    },
+    {
+      "id": "robotics_articulated_storage_v1",
+      "brief": "A realistic cabinet-and-drawer robotics scene for articulated interaction.",
+      "spec": {
+        "schema_version": "scene_prompt_spec.v1",
+        "scene_id": "robotics_articulated_storage_v1",
+        "domain": "robotics_manipulation",
+        "room_type": "organized apartment utility room",
+        "room_dimensions_m": [4.8, 3.8],
+        "style": "warm Scandinavian",
+        "activity_zones": ["an articulated storage wall", "a clear robot approach aisle"],
+        "objects": [
+          {"name": "waist-height wooden cabinet with one drawer and two doors", "category": "articulated_cabinet", "count": 1, "placement": "against the far wall with handles facing the open aisle", "attributes": ["matte oak", "clearly separated joints"], "task_role": "support"},
+          {"name": "seven-degree-of-freedom robot work zone", "category": "robot_workspace", "count": 1, "support": "the floor across from the cabinet", "placement": "with a direct unobstructed reach corridor to every handle; leave the certified robot asset to the simulator", "attributes": ["1.2 m clear aisle"], "task_role": "robot"},
+          {"name": "blue ceramic cup", "category": "cup", "count": 1, "support": "the closed cabinet top", "placement": "near the left side and visible from the aisle", "attributes": ["upright", "empty"], "task_role": "target"},
+          {"name": "red wooden block", "category": "block", "count": 1, "support": "the closed drawer", "placement": "inside the drawer but not at the final retrieval location", "attributes": ["single piece"], "task_role": "target"},
+          {"name": "woven laundry basket", "category": "basket", "count": 1, "placement": "in the rear-left corner outside robot clearance", "attributes": ["empty"], "task_role": "environment"},
+          {"name": "narrow wall shelf with folded towels", "category": "shelf", "count": 1, "placement": "on the right wall above waist height", "attributes": ["orderly"], "task_role": "environment"}
+        ],
+        "wall_and_ceiling": ["one frosted side window", "a warm ceiling fixture", "a small wall clock away from the cabinet"],
+        "lighting_and_materials": ["diffuse daylight and warm practical light", "matte wood, woven fiber, and pale plaster"],
+        "task_setup": "Keep the initial state task-ready but not complete: the cabinet starts closed, the target remains retrievable after opening, and no robot motion is baked into the scene",
+        "camera_readability": ["show the cabinet front, handles, robot aisle, and targets in one fixed main view", "avoid handle occlusion and severe foreshortening"],
+        "negative_constraints": ["mirrors, glass doors, reflective chrome, random clutter, intersecting doors or drawers"],
+        "required_semantics": ["articulated_cabinet", "cup", "block"]
+      }
+    },
+    {
+      "id": "world_living_room_dynamics_v1",
+      "brief": "A realistic non-robot living-room scene for rigid-body physics events.",
+      "spec": {
+        "schema_version": "scene_prompt_spec.v1",
+        "scene_id": "world_living_room_dynamics_v1",
+        "domain": "world_physics",
+        "room_type": "apartment living and dining room",
+        "room_dimensions_m": [6.2, 4.8],
+        "style": "cozy contemporary",
+        "activity_zones": ["a conversational seating area", "a compact dining and object-interaction area"],
+        "objects": [
+          {"name": "solid rectangular dining table", "category": "table", "count": 1, "placement": "beside the right window with clear edges and walking space", "attributes": ["matte walnut", "human-scale"], "task_role": "support"},
+          {"name": "ceramic fruit bowl", "category": "bowl", "count": 1, "support": "the dining table", "placement": "near its center without blocking the physics targets", "attributes": ["off-white", "opaque"], "task_role": "environment"},
+          {"name": "red rubber ball", "category": "ball", "count": 1, "support": "the dining table", "placement": "inside the left table edge with a clear rolling route", "attributes": ["vivid"], "task_role": "target"},
+          {"name": "blue ceramic mug", "category": "mug", "count": 1, "support": "the dining table", "placement": "upright near the far-right quadrant", "attributes": ["empty", "matte"], "task_role": "target"},
+          {"name": "three-seat sofa", "category": "sofa", "count": 1, "placement": "against the long left wall facing the media console", "attributes": ["textured beige fabric"], "task_role": "environment"},
+          {"name": "low coffee table", "category": "coffee_table", "count": 1, "placement": "centered on a woven rug in front of the sofa", "attributes": ["rounded wood corners"], "task_role": "environment"},
+          {"name": "two armchairs and a floor lamp", "category": "seating_context", "count": 1, "placement": "across from the sofa with the lamp in the rear corner", "attributes": ["balanced arrangement"], "task_role": "environment"}
+        ],
+        "wall_and_ceiling": ["a framed landscape print above the sofa", "a pendant over the dining table", "curtains around the right window"],
+        "lighting_and_materials": ["soft window daylight with warm lamps", "matte wood, woven textile, and neutral plaster"],
+        "task_setup": "All movable objects begin stable and separately visible before the deterministic physics intervention",
+        "camera_readability": ["frame the dining table as the main action area while retaining living-room context", "keep target silhouettes unobstructed"],
+        "negative_constraints": ["glass tables, mirrors, excessive ornaments, printed text, floating or intersecting objects"],
+        "required_semantics": ["table", "ball", "mug"]
+      }
+    }
+  ]
+}

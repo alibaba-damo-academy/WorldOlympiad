@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<robot name="single_press_button">
+  <link name="button_base">
+    <visual><geometry><box size="0.12 0.12 0.05"/></geometry><material name="blue"><color rgba="0.08 0.22 0.8 1"/></material></visual>
+    <collision><geometry><box size="0.12 0.12 0.05"/></geometry></collision>
+  </link>
+  <link name="button_cap">
+    <inertial><mass value="0.05"/><inertia ixx="0.000014" ixy="0" ixz="0" iyy="0.000014" iyz="0" izz="0.00002"/></inertial>
+    <visual><geometry><box size="0.07 0.07 0.018"/></geometry><material name="red"><color rgba="0.85 0.12 0.08 1"/></material></visual>
+    <collision><geometry><box size="0.07 0.07 0.018"/></geometry></collision>
+  </link>
+  <joint name="press" type="prismatic">
+    <parent link="button_base"/><child link="button_cap"/>
+    <origin xyz="0 0 0.049"/><axis xyz="0 0 1"/>
+    <limit lower="-0.018" upper="0" effort="30" velocity="0.5"/>
+    <dynamics damping="10" friction="0"/>
+  </joint>
+</robot>

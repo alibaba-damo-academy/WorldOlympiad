@@ -1,0 +1,17 @@
+--- a/scenecode/agent_utils/asset_router/router.py
++++ b/scenecode/agent_utils/asset_router/router.py
+@@ -340,10 +340,10 @@ class AssetRouter:
+                 num_side_views=4,
+                 include_vertical_views=True,
+                 show_coordinate_frame=False,
+-                # Code_Object meshes are normalized to roughly unit scale.  The
+-                # generic 300 W material light clips their base color to white;
+-                # 25 W preserves hue while retaining enough edge contrast.
+-                light_energy=25.0,
++                # Keep saturated materials below the generic 300 W material
++                # light while retaining usable contrast for dark matte assets.
++                # A measured 25 W floor made dark furniture nearly black.
++                light_energy=100.0,
+                 taa_samples=self.validation_taa_samples,
+             )
+             console_logger.debug(f"Rendered {len(image_paths)} images for validation")

@@ -1,0 +1,9 @@
+name: "floor_plan_planner_runner_instruction"
+version: "1.0"
+description: "Initial instruction to start floor plan design workflow"
+template_variables: []
+prompt: |
+  Begin the floor plan design process. Create an initial design, then
+  iterate through critique and improvement cycles to refine it.
+
+  Start by calling request_initial_design() to create the base floor plan.

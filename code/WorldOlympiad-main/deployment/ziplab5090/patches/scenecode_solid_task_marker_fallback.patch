@@ -1,0 +1,117 @@
+--- a/scenecode/agent_utils/asset_router/router.py
++++ b/scenecode/agent_utils/asset_router/router.py
+@@ -5,1 +5,2 @@
+ import os
++import re
+ 
+@@ -10,6 +11,7 @@
+ from typing import TYPE_CHECKING
+ 
+ from omegaconf import DictConfig
++from PIL import Image
+ 
+ from scenecode.agent_utils.articulated_retrieval_server import (
+     ArticulatedRetrievalClient,
+@@ -49,6 +51,7 @@
+ from scenecode.agent_utils.vlm_service import VLMService
+ from scenecode.prompts import AssetRouterPrompts, prompt_manager
+ from scenecode.utils.openai import encode_image_to_base64
++from scenecode.utils.material import Material
+ 
+ if TYPE_CHECKING:
+     from scenecode.agent_utils.blender import BlenderServer
+@@ -73,7 +76,39 @@
+ 
+ console_logger = logging.getLogger(__name__)
+ 
++TASK_MARKER_COLORS = {
++    "red": (190, 45, 45),
++    "green": (45, 165, 75),
++    "blue": (45, 90, 190),
++    "yellow": (220, 185, 45),
++    "orange": (220, 115, 35),
++    "purple": (135, 70, 175),
++    "brown": (125, 80, 45),
++    "gray": (125, 125, 125),
++    "grey": (125, 125, 125),
++    "black": (30, 30, 30),
++    "white": (225, 225, 225),
++}
++TASK_MARKER_TOKENS = {"goal", "marker", "pad", "target", "zone"}
+ 
++
++def _solid_task_marker_color(description: str) -> tuple[str, tuple[int, int, int]] | None:
++    """Return an explicit basic color only for a semantic task-region marker."""
++
++    lowered = description.lower()
++    if not any(re.search(rf"\b{token}\b", lowered) for token in TASK_MARKER_TOKENS):
++        return None
++    candidates = []
++    for name, rgb in TASK_MARKER_COLORS.items():
++        match = re.search(rf"\b{name}\b", lowered)
++        if match is not None:
++            candidates.append((match.start(), name, rgb))
++    if not candidates:
++        return None
++    _, name, rgb = min(candidates)
++    return name, rgb
++
++
+ class AssetRouter:
+     """Routes asset generation requests through LLM analysis and validation.
+ 
+@@ -1088,6 +1123,54 @@
+             f"All {material_generator.config.max_retries} generation attempts "
+             f"failed for '{item.description}'"
+         )
++        fallback = _solid_task_marker_color(item.description)
++        if fallback is not None and not is_wall_mode and not is_single_image:
++            color_name, rgb = fallback
++            material_id = f"solid_{color_name}_task_marker"
++            material_dir = generated_materials_dir / material_id
++            material_dir.mkdir(parents=True, exist_ok=True)
++            Image.new("RGB", (64, 64), rgb).save(
++                material_dir / f"{material_id}_Color.png"
++            )
++            Image.new("RGB", (64, 64), (128, 128, 255)).save(
++                material_dir / f"{material_id}_NormalGL.png"
++            )
++            Image.new(
++                "L", (64, 64), material_generator.config.default_roughness
++            ).save(material_dir / f"{material_id}_Roughness.png")
++            material = Material(
++                path=material_dir,
++                material_id=material_id,
++                texture_scale=material_generator.config.texture_scale,
++            )
++            result = self._generate_thin_covering_geometry(
++                item=item,
++                material_path=material.path,
++                width=width,
++                second_dim=second_dim,
++                thickness=thickness,
++                geometry_dir=geometry_dir,
++                is_wall_mode=False,
++                shape=shape,
++                texture_scale=material.texture_scale,
++            )
++            if result is not None:
++                validation = self._validate_thin_covering(
++                    mesh_path=result.geometry_path,
++                    description=item.description,
++                    debug_dir=debug_dir,
++                    is_wall_mode=False,
++                )
++                if validation.is_acceptable:
++                    console_logger.info(
++                        "Accepted deterministic solid-color task-marker fallback: %s",
++                        validation.reason,
++                    )
++                    return result
++                console_logger.warning(
++                    "Solid-color task-marker fallback failed validation: %s",
++                    validation.reason,
++                )
+         return None
+ 
+     def _generate_thin_covering_geometry(

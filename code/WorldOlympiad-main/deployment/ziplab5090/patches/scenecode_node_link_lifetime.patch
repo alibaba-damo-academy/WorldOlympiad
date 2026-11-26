@@ -1,0 +1,39 @@
+--- a/scenecode/code_object/agent_framework/prompts/constructor.md
++++ b/scenecode/code_object/agent_framework/prompts/constructor.md
+@@ -1,1 +1,10 @@
++
++### Blender node-link lifetime and repeated execution
++
++- A `NodeLink` becomes invalid immediately after `links.remove(link)`.
++  Do not read `link.to_node`, `link.to_socket`, or other fields afterward.
++  Use mutually exclusive `if`/`elif` branches or `continue` after removal.
++- Generated part constructors must run repeatedly in the same Blender scene,
++  because part checks, assembly, and final export reuse materials and nodes.
++  Test material cleanup with existing links, not only on the first creation.
+ # Part Constructor Agent Prompt
+--- a/scenecode/code_object/agent_framework/prompts/constructor_simplemanip.md
++++ b/scenecode/code_object/agent_framework/prompts/constructor_simplemanip.md
+@@ -1,1 +1,10 @@
++
++### Blender node-link lifetime and repeated execution
++
++- A `NodeLink` becomes invalid immediately after `links.remove(link)`.
++  Do not read `link.to_node`, `link.to_socket`, or other fields afterward.
++  Use mutually exclusive `if`/`elif` branches or `continue` after removal.
++- Generated part constructors must run repeatedly in the same Blender scene,
++  because part checks, assembly, and final export reuse materials and nodes.
++  Test material cleanup with existing links, not only on the first creation.
+ # Part Constructor Agent Prompt
+--- a/scenecode/code_object/agent_framework/prompts/constructor_structmanip.md
++++ b/scenecode/code_object/agent_framework/prompts/constructor_structmanip.md
+@@ -1,1 +1,10 @@
++
++### Blender node-link lifetime and repeated execution
++
++- A `NodeLink` becomes invalid immediately after `links.remove(link)`.
++  Do not read `link.to_node`, `link.to_socket`, or other fields afterward.
++  Use mutually exclusive `if`/`elif` branches or `continue` after removal.
++- Generated part constructors must run repeatedly in the same Blender scene,
++  because part checks, assembly, and final export reuse materials and nodes.
++  Test material cleanup with existing links, not only on the first creation.
+ # Part Constructor Agent Prompt

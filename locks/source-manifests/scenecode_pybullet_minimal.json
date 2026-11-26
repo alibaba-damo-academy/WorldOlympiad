@@ -1,0 +1,295 @@
+{
+  "schema_version": 1,
+  "name": "scenecode_pybullet_minimal",
+  "source_commit": null,
+  "tree_sha256": "d4a2c896793fdc77e4fe1e357bf8d8c23aafdb881d3f01485bb29d67b4e954cf",
+  "entries": [
+    {
+      "path": ".gitignore",
+      "type": "file",
+      "mode": 420,
+      "size": 115,
+      "sha256": "bbdf2ab4c2e3e0d7e40a4e35307f68689131d19421d365dea82466a291b033dc"
+    },
+    {
+      "path": "README.md",
+      "type": "file",
+      "mode": 420,
+      "size": 1102,
+      "sha256": "aceb024c3a1641906264af457ef9797caf66698b36fc5a7239d8afe4ac3fd78c"
+    },
+    {
+      "path": "articulated.py",
+      "type": "file",
+      "mode": 420,
+      "size": 78942,
+      "sha256": "9fb0e98b40136fbd72111eb454ea1d5b44b639b2eac985ed2111538dc0548355"
+    },
+    {
+      "path": "deterministic_binding.json",
+      "type": "file",
+      "mode": 420,
+      "size": 631,
+      "sha256": "ad887d19abe2586ba9d1d3b68ddd859c7c63a9b0bc28f0044e969d42ab96a005"
+    },
+    {
+      "path": "make_reference_cabinet_sdf.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4148,
+      "sha256": "fac8958311cf709cb6166e5fec4e54bb87e8a82e69ef94197e1bb9caddb77989"
+    },
+    {
+      "path": "pyproject.toml",
+      "type": "file",
+      "mode": 420,
+      "size": 318,
+      "sha256": "b7dab3a0d277270bf81e1ccfcc7951951ef02cf227e51dbdeb4c07327880ffc7"
+    },
+    {
+      "path": "render_articulated_trajectory.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4404,
+      "sha256": "acf5005f66344e684ed32a9a2667d79fcff4605d0fec1bed574b9ff5d4ec4f0b"
+    },
+    {
+      "path": "run_droid_articulated.py",
+      "type": "file",
+      "mode": 420,
+      "size": 7040,
+      "sha256": "864ad519239f6365e6deae57d720c0fcd79e382a9121fa35bf37b5dd61790cdd"
+    },
+    {
+      "path": "scenecode_pybullet_bridge/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1611,
+      "sha256": "c999054e1c31d2e6d7fb6ff85133b1dc29a4b7e59fcc5a6283add041e6bebbfe"
+    },
+    {
+      "path": "scenecode_pybullet_bridge/__main__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 518,
+      "sha256": "a399f8ce9834c8a9a4a874398fd8bff7d317578ced975d4a1f64bcae021e19ef"
+    },
+    {
+      "path": "scenecode_pybullet_bridge/articulated.py",
+      "type": "file",
+      "mode": 420,
+      "size": 79623,
+      "sha256": "d675dbd3a1cc2013e9aa4aabb2275a59b1dc15aee4a88520cec8b0115c224698"
+    },
+    {
+      "path": "scenecode_pybullet_bridge/articulated_contact.py",
+      "type": "file",
+      "mode": 420,
+      "size": 30509,
+      "sha256": "ec06a859e59b485c5622e21451257420e26956dddbd6e31910bb8b8938d9399c"
+    },
+    {
+      "path": "scenecode_pybullet_bridge/droid_operator_graph.py",
+      "type": "file",
+      "mode": 420,
+      "size": 27570,
+      "sha256": "b47b1374254f71f0a437b0d868517ed1be0f687e2ad81ecade5dc9864e98fa74"
+    },
+    {
+      "path": "scenecode_pybullet_bridge/droid_pick_place.py",
+      "type": "file",
+      "mode": 420,
+      "size": 42468,
+      "sha256": "d718f4c9eaafa24351c1c5c787b526b292a6c7fe57843442d3d186e3058d4469"
+    },
+    {
+      "path": "scenecode_pybullet_bridge/droid_push.py",
+      "type": "file",
+      "mode": 420,
+      "size": 11422,
+      "sha256": "62b6c96a6b07ae977150797ee96a04c7e2522b09cd644506d1e9e8bc4878c79c"
+    },
+    {
+      "path": "scenecode_pybullet_bridge/grasp_profile.py",
+      "type": "file",
+      "mode": 420,
+      "size": 16756,
+      "sha256": "36d693800c22bb54853c446320ca00523cb4879ecc99413d899fb3148e2857be"
+    },
+    {
+      "path": "scenecode_pybullet_bridge/json_evidence.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1347,
+      "sha256": "9c980a0dd267c571ae6828c1cb3b47947db108d4e63cee9f84ae37b733571133"
+    },
+    {
+      "path": "scenecode_pybullet_bridge/pick_place.py",
+      "type": "file",
+      "mode": 420,
+      "size": 18877,
+      "sha256": "6f9b492091f5575937dbcd55d1c873e299c7e9744bf62feba59725b1193d6654"
+    },
+    {
+      "path": "scenecode_pybullet_bridge/policy_scene.py",
+      "type": "file",
+      "mode": 420,
+      "size": 54498,
+      "sha256": "ae4d38584268f1f064a1769532171e54685631dfb1fdf482444b79caefdda05a"
+    },
+    {
+      "path": "scenecode_pybullet_bridge/sdf.py",
+      "type": "file",
+      "mode": 420,
+      "size": 35845,
+      "sha256": "4762662baaa49298ccca8aa6ed647d28e92902bab6b631264716af7d602529c9"
+    },
+    {
+      "path": "scripts/build_robolab_droid_urdf.py",
+      "type": "file",
+      "mode": 420,
+      "size": 16001,
+      "sha256": "d46198abb1f937ddae474b86f5980219b6d780f937c08eeea1b907a42f48d225"
+    },
+    {
+      "path": "scripts/convert_collada_to_obj_blender.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4006,
+      "sha256": "1e2847e732c14aa24ecd32abdecec31441d6fcdcb623d7d422b5de983d1b257e"
+    },
+    {
+      "path": "scripts/encode_video.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3437,
+      "sha256": "3a1521dc00c4fd31293764cdd96bc73723e43dc325a06607e6a19cafb99389a4"
+    },
+    {
+      "path": "scripts/make_reference_cabinet_sdf.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5324,
+      "sha256": "c179d4dc5cbbd8820e6f69d64c3c685f3c0caae1efd515f0438f1e529bfebcdf"
+    },
+    {
+      "path": "scripts/render_articulated_trajectory.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5760,
+      "sha256": "90b87f4576138286e5b062efb3b3117af0c078ed7338266d5f1fdf674ebc489f"
+    },
+    {
+      "path": "scripts/render_trajectory.py",
+      "type": "file",
+      "mode": 420,
+      "size": 10558,
+      "sha256": "fddeabb79625403fd0d0e1136c64e8555175407e1d5dc94c9bd0aae05a1450e5"
+    },
+    {
+      "path": "scripts/run_droid_articulated.py",
+      "type": "file",
+      "mode": 420,
+      "size": 7040,
+      "sha256": "864ad519239f6365e6deae57d720c0fcd79e382a9121fa35bf37b5dd61790cdd"
+    },
+    {
+      "path": "scripts/run_droid_operator_graph.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3234,
+      "sha256": "4f905e1d0530b5df49be6fde2a1a91e21bccd6eb2950e32be9cee2e67a05283b"
+    },
+    {
+      "path": "scripts/run_droid_pick_place.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4325,
+      "sha256": "49cd7730efbd68e58420439dd51cea5c759e6b472a54598f2c025479c2a50f5b"
+    },
+    {
+      "path": "scripts/run_droid_push.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1449,
+      "sha256": "c958bfd96ec8d17f404131c12907e28ac3cb2abd38783c0f15ef296e47c812a9"
+    },
+    {
+      "path": "scripts/run_pick_place.py",
+      "type": "file",
+      "mode": 420,
+      "size": 881,
+      "sha256": "ba53155c55228e5e332de23c0906f79727800842168846aefe144c8897365b23"
+    },
+    {
+      "path": "sdf.py",
+      "type": "file",
+      "mode": 420,
+      "size": 23155,
+      "sha256": "d8e2e70c229aa184277204432e1daf24183b0d84dc19d3ec7e9307b42de0b9e0"
+    },
+    {
+      "path": "tests/test_articulated.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6811,
+      "sha256": "e7a722a566ac173d38b09a78fb9e3148646dffbea24b6a93578ced557339ce27"
+    },
+    {
+      "path": "tests/test_articulated_pose_frames.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1221,
+      "sha256": "f669515ddd259266e9aada7673b526ef9af78669bcbac90858410380cc673236"
+    },
+    {
+      "path": "tests/test_contact_regressions.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3032,
+      "sha256": "289689220eaace8e1f4a840e4a685208322fe4d73ac253253d18225a667aeead"
+    },
+    {
+      "path": "tests/test_droid_operator_graph.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3487,
+      "sha256": "41991ce856332b9ccc337b1c38957f767ff0d8a857a61667aa2581b3879b40c8"
+    },
+    {
+      "path": "tests/test_droid_pick_place.py",
+      "type": "file",
+      "mode": 420,
+      "size": 20429,
+      "sha256": "efb750bd4f145ebc32111819973c4caf115219fa584d83b32362f665421c151c"
+    },
+    {
+      "path": "tests/test_droid_push.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1867,
+      "sha256": "931d1cab29b4033ef24b71694a6924dfb5571fbbf8e12ff96960f7923295c5ce"
+    },
+    {
+      "path": "tests/test_opposed_contact.py",
+      "type": "file",
+      "mode": 420,
+      "size": 7762,
+      "sha256": "388c6666c17966252173e497ad734f3182fe223581bd348e7d4a332582426923"
+    },
+    {
+      "path": "tests/test_policy_scene_objects.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2726,
+      "sha256": "84ccd3ed8f83f93f78ddaa2716395c5fbda7721b2df541cf007ad2659bb4dc4e"
+    },
+    {
+      "path": "tests/test_sdf.py",
+      "type": "file",
+      "mode": 420,
+      "size": 11118,
+      "sha256": "24cdd3b0d50650c2bc5ee2ce38fa8b567c647b8a3ae52609de85cd71e082546b"
+    }
+  ]
+}

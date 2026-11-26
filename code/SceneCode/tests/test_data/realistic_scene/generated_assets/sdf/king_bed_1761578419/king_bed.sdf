@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='utf-8'?>
+<sdf version="1.7">
+  <model name="king_bed">
+    <link name="base_link">
+      <inertial>
+        <mass>100.000000</mass>
+        <pose>0.000344 0.449646 0.149121 0 0 0</pose>
+        <inertia>
+          <ixx>57.980163</ixx>
+          <iyy>81.197730</iyy>
+          <izz>32.341679</izz>
+          <ixy>-0.007910</ixy>
+          <ixz>-0.053320</ixz>
+          <iyz>-5.360965</iyz>
+        </inertia>
+      </inertial>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>king_bed.gltf</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <collision name="collision_0">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.600</mu>
+              <mu2>0.600</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>king_bed_collision_0.obj</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name="collision_1">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.600</mu>
+              <mu2>0.600</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>king_bed_collision_1.obj</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name="collision_2">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.600</mu>
+              <mu2>0.600</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>king_bed_collision_2.obj</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name="collision_3">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.600</mu>
+              <mu2>0.600</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>king_bed_collision_3.obj</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name="collision_4">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.600</mu>
+              <mu2>0.600</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>king_bed_collision_4.obj</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name="collision_5">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.600</mu>
+              <mu2>0.600</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>king_bed_collision_5.obj</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name="collision_6">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.600</mu>
+              <mu2>0.600</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>king_bed_collision_6.obj</uri>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+  </model>
+</sdf>

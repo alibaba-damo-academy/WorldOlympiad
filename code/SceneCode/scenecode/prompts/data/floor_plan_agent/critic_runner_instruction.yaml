@@ -1,0 +1,42 @@
+name: "floor_plan_critic_runner_instruction"
+version: "1.0"
+description: "Instruction for critic to evaluate floor plan"
+template_variables: []
+prompt: |
+  Evaluate the current floor plan design.
+
+  # MANDATORY FIRST STEPS
+
+  You MUST call these tools FIRST before any evaluation:
+  1. `observe_scene` - Shows materials, textures, and 3D spatial relationships
+  2. `render_ascii` - Shows room layout, dimensions, doors, windows, and wall labels
+  3. `validate` - Checks placement validity and room connectivity
+
+  Do NOT skip these steps. Do NOT evaluate until you have seen all outputs.
+
+  # VALIDATION GATE - CRITICAL
+
+  **If `validate` returns ANY errors, the following scores MUST be low:**
+  - **Spatial Flow**: ≤3/10 (connectivity issues mean broken flow)
+
+  Common validation failures and required fixes:
+  - "No exterior door" → Add exterior door to entry/hallway
+  - "Room X not reachable" → Add door connecting X to reachable rooms
+  - "Room placement not completed" → Re-run generate_room_specs or fix adjacencies
+
+  Other categories (Room Proportions, Natural Lighting, Material Consistency,
+  Prompt Following) should be scored independently based on their own criteria.
+
+  # Your Task
+
+  After viewing the rendered images, ASCII layout, AND validation results, provide
+  a comprehensive critique evaluating:
+  1. Room Proportions - Are sizes appropriate for intended use?
+  2. Spatial Flow - How well do rooms connect?
+  3. Natural Lighting - Are windows well-placed?
+  4. Material Consistency - Do materials suit room purposes? (REQUIRES rendered images)
+  5. Prompt Following - Does the design match the user's requirements?
+
+  Score each category 0-10 and provide specific feedback for improvement.
+  If the design is excellent (scores ≥9), acknowledge this and avoid
+  suggesting unnecessary changes that could degrade quality.

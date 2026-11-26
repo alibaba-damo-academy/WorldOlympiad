@@ -1,0 +1,19 @@
+name: "seamless_texture"
+template_variables: ["material_description"]
+prompt: |
+  Generate a seamless, tileable texture image for: {{ material_description }}.
+
+  CRITICAL REQUIREMENTS:
+  - Seamlessly tileable (edges must match when repeated)
+  - Uniform lighting with no directional shadows
+  - Pattern repeats naturally without visible seams
+  - Fill entire image with texture pattern
+  - Flat/orthographic view (no perspective distortion)
+  - Appropriate scale for 0.5 square meter surface (texture tiles every 0.5m)
+  - High detail and realistic appearance
+
+  DO NOT include:
+  - Objects or items (just the texture pattern)
+  - Perspective or 3D effects
+  - Text or labels
+  - Borders or frames

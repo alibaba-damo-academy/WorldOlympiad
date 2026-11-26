@@ -1,0 +1,2 @@
+defaults:
+  - base_experiment # inherits from configs/experiment/base_experiment.yaml

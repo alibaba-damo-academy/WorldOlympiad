@@ -1,0 +1,143 @@
+--- a/scenecode/code_object/agent_framework/config.yaml
++++ b/scenecode/code_object/agent_framework/config.yaml
+@@ -10,7 +10,7 @@
+     # model_name: "claude-opus-4-5-20251101"
+     # model_name: "claude-sonnet-4-5-20250929"
+     # model_name: "gpt-4o-mini"
+-    model_name: "gpt-5.5"
++    model_name: "gpt-5.6-sol"
+     # temperature: 0.7
+     api_base: null  # 如果使用本地模型，设置 API 地址
+ 
+@@ -18,7 +18,7 @@
+   planner_llm:
+     provider: "openai"
+     # model_name: "gpt-4o-mini"  # 模型 A：用于生成 ObjectPlan
+-    model_name: "gpt-5.5"
++    model_name: "gpt-5.6-sol"
+     # model_name: "claude-opus-4-5-20251101"
+     api_base: null
+     # temperature: 0.7
+@@ -27,7 +27,7 @@
+   constructor_llm:
+     provider: "openai"
+     # model_name: "claude-opus-4-5-20251101"  # 模型 B：用于 Part 构造
+-    model_name: "gpt-5.5"
++    model_name: "gpt-5.6-sol"
+     # model_name: "claude-sonnet-4-5-20250929"
+     api_base: null
+     # temperature: 0.7
+@@ -35,7 +35,7 @@
+   # 视觉模型（用于图像对比）
+   vision:
+     provider: "openai"
+-    model_name: "gpt-5.5"
++    model_name: "gpt-5.6-sol"
+ 
+ # ==================== Prompt 配置 ====================
+ prompts:
+--- a/scenecode/code_object/agent_framework/config_simplemanip.yaml
++++ b/scenecode/code_object/agent_framework/config_simplemanip.yaml
+@@ -10,7 +10,7 @@
+     # model_name: "claude-opus-4-5-20251101"
+     # model_name: "claude-sonnet-4-5-20250929"
+     # model_name: "gemini-3.1-pro-preview"
+-    model_name: "gpt-5.5"
++    model_name: "gpt-5.6-sol"
+     # temperature: 0.7
+     api_base: null  # 如果使用本地模型，设置 API 地址
+ 
+@@ -18,7 +18,7 @@
+   planner_llm:
+     provider: "openai"
+     # model_name: "gemini-3.1-pro-preview"  # 模型 A：用于生成 ObjectPlan
+-    model_name: "gpt-5.5"
++    model_name: "gpt-5.6-sol"
+     # model_name: "claude-opus-4-5-20251101"
+     api_base: null
+     # temperature: 0.7
+@@ -27,7 +27,7 @@
+   constructor_llm:
+     provider: "openai"
+     # model_name: "claude-opus-4-5-20251101"  # 模型 B：用于 Part 构造
+-    model_name: "gpt-5.5"
++    model_name: "gpt-5.6-sol"
+     # model_name: "claude-sonnet-4-5-20250929"
+     api_base: null
+     # temperature: 0.7
+@@ -35,7 +35,7 @@
+   # 视觉模型（用于图像对比）
+   vision:
+     provider: "openai"
+-    model_name: "gpt-5.5"
++    model_name: "gpt-5.6-sol"
+ 
+ # ==================== Prompt 配置 ====================
+ prompts:
+--- a/scenecode/code_object/agent_framework/config_structmanip.yaml
++++ b/scenecode/code_object/agent_framework/config_structmanip.yaml
+@@ -10,7 +10,7 @@
+     # model_name: "claude-opus-4-5-20251101"
+     # model_name: "claude-sonnet-4-5-20250929"
+     # model_name: "gemini-3.1-pro-preview"
+-    model_name: "gpt-5.5"
++    model_name: "gpt-5.6-sol"
+     # temperature: 0.7
+     api_base: null  # 如果使用本地模型，设置 API 地址
+ 
+@@ -18,7 +18,7 @@
+   planner_llm:
+     provider: "openai"
+     # model_name: "gemini-3.1-pro-preview"  # 模型 A：用于生成 ObjectPlan
+-    model_name: "gpt-5.5"
++    model_name: "gpt-5.6-sol"
+     # model_name: "claude-opus-4-5-20251101"
+     api_base: null
+     # temperature: 0.7
+@@ -27,7 +27,7 @@
+   constructor_llm:
+     provider: "openai"
+     # model_name: "claude-opus-4-5-20251101"  # 模型 B：用于 Part 构造
+-    model_name: "gpt-5.5"
++    model_name: "gpt-5.6-sol"
+     # model_name: "claude-sonnet-4-5-20250929"
+     api_base: null
+     # temperature: 0.7
+@@ -35,7 +35,7 @@
+   # 视觉模型（用于图像对比）
+   vision:
+     provider: "openai"
+-    model_name: "gpt-5.5"
++    model_name: "gpt-5.6-sol"
+ 
+ # ==================== Prompt 配置 ====================
+ prompts:
+--- a/scenecode/code_object/agent_framework/config_WallArt.yaml
++++ b/scenecode/code_object/agent_framework/config_WallArt.yaml
+@@ -4,22 +4,22 @@
+ model:
+   llm:
+     provider: "openai"
+-    model_name: "gpt-5.5"
++    model_name: "gpt-5.6-sol"
+     api_base: null
+ 
+   planner_llm:
+     provider: "openai"
+-    model_name: "gpt-5.5"
++    model_name: "gpt-5.6-sol"
+     api_base: null
+ 
+   constructor_llm:
+     provider: "openai"
+-    model_name: "gpt-5.5"
++    model_name: "gpt-5.6-sol"
+     api_base: null
+ 
+   vision:
+     provider: "openai"
+-    model_name: "gpt-5.5"
++    model_name: "gpt-5.6-sol"
+ 
+ prompts:
+   planner: "planner_wall_art"

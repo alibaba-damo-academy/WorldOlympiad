@@ -1,0 +1,42 @@
+name: Smoke Test
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+  push:
+    branches:
+      - main
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: ".python-version"
+
+      - name: Install core dependencies
+        run: uv sync --extra dev
+
+      - name: Compile edited entry points
+        run: |
+          uv run python -m py_compile \
+            main.py \
+            scenecode/agent_utils/code_object_generation.py \
+            scenecode/utils/openai.py \
+            scenecode/code_object/agent_framework/utils/llm_client.py
+
+      - name: Check package import
+        run: uv run python -c "import scenecode; import scenecode.code_object.agent_framework"

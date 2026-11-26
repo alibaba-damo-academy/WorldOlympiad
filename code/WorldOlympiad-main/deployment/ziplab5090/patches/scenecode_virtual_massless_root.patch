@@ -1,0 +1,12 @@
+--- a/scenecode/agent_utils/urdf_to_sdf.py
++++ b/scenecode/agent_utils/urdf_to_sdf.py
+@@ -1176,6 +1176,9 @@
+         sdf_joint = convert_urdf_joint_to_sdf(urdf_joint)
+         model.append(sdf_joint)
+ 
++    from autoresearch.scenecode_sdf_virtual_root import normalize_virtual_roots
++    normalize_virtual_roots(model)
++
+     # Format XML with indentation.
+     ET.indent(sdf, space="  ", level=0)
+ 

@@ -1,0 +1,24 @@
+--- a/scenecode/agent_utils/asset_manager.py
++++ b/scenecode/agent_utils/asset_manager.py
+@@ -1612,6 +1612,7 @@ class AssetManager:
+         # Wall thin coverings (paintings, posters) get collision geometry.
+         if generated.asset_source == "thin_covering":
+             is_wall_covering = request.object_type == ObjectType.WALL_MOUNTED
++            is_task_planar_covering = request.object_type == ObjectType.MANIPULAND
+ 
+             # Only add collision for wall coverings (paintings, posters).
+             collision_dims = None
+@@ -1620,7 +1621,11 @@ class AssetManager:
+-            if is_wall_covering and item.dimensions:
++            if (is_wall_covering or is_task_planar_covering) and item.dimensions:
+                 # Wall covering dims: (width, depth, height) where depth is thickness.
+                 thickness = (
+                     self.cfg.asset_manager.router.strategies.thin_covering.thickness_m
+                 )
+-                collision_dims = (item.dimensions[0], thickness, item.dimensions[2])
++                collision_dims = (
++                    (item.dimensions[0], thickness, item.dimensions[2])
++                    if is_wall_covering
++                    else (item.dimensions[0], item.dimensions[1], thickness)
++                )
+                 collision_shape = infer_thin_covering_shape(item.description)

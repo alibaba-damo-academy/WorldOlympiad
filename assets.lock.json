@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "assets": [
+    {
+      "name": "robolab_droid_franka_robotiq_2f85_f72d_2c047340_20260823_v3",
+      "path": "assets/robot_assets/robolab_droid_franka_robotiq_2f85_f72d_2c047340_20260823_v3",
+      "manifest": "locks/asset-manifests/robolab_droid_franka_robotiq_2f85_f72d_2c047340_20260823_v3.json",
+      "manifest_sha256": "b0e420578c70a7aa52c5b39ac1e462ecc45bf7c63fe333a133ec30d0a9ed610b",
+      "tree_sha256": "a7f772b8f983f7e26d91eb293d5286139d6439036e8a8fcf918662e918e957c5",
+      "robot_asset_manifest_sha256": "8d0ff87df2edbb8838f7dfb87597f43942e57f6f6a299563d946958d534e4404",
+      "portable_asset_sha256": "d1f58c1ff4ddf446070b978068f7f0c8fb911f727da676992ffa2b9fe4107a11",
+      "robolab_commit": "f72d39445ab699c9cfd9bf551e8d21b6075293b9",
+      "picknik_commit": "2c047340aeb2440f7a60e429264221aab9658707",
+      "urdf_sha256": "f1463e2410a5524c18cdec41a28799bb58debfea272fabb1d64ff905c68c1944",
+      "provenance": "Verified portable DROID robot asset bundle with machine-independent relative mesh paths."
+    }
+  ]
+}

@@ -1,0 +1,339 @@
+--- a/scenecode/agent_utils/code_object_generation.py
++++ b/scenecode/agent_utils/code_object_generation.py
+@@ -5,20 +5,21 @@
+ import asyncio
+ import importlib
+ import logging
+ import random
+ import threading
+ 
+ from dataclasses import dataclass
+ from pathlib import Path
+ 
+ from autoresearch.scenecode_loop_policy import bounded_attempts
++from autoresearch.scenecode_object_requirements import object_requirements, prepare_request_context
+ from omegaconf import DictConfig
+ 
+ from scenecode.agent_utils.mesh_utils import convert_gltf_to_glb
+ from scenecode.utils.network_utils import is_port_available
+ 
+ console_logger = logging.getLogger(__name__)
+ 
+ 
+ @dataclass(frozen=True)
+ class CodeObjectGenerationResult:
+@@ -78,26 +79,31 @@
+         self._concurrency_semaphore = threading.BoundedSemaphore(
+             self._max_concurrent_runs
+         )
+ 
+     def generate_from_image(
+         self,
+         *,
+         image_path: Path,
+         output_dir: Path,
+         config_path_override: str | Path | None = None,
++        object_description: str = "",
++        desired_dimensions: list[float] | None = None,
++        asset_name: str | None = None,
+     ) -> CodeObjectGenerationResult:
+         """Run the Code_Object pipeline for a single reference image."""
+         if not image_path.exists():
+             raise FileNotFoundError(f"Code_Object input image not found: {image_path}")
+ 
+         output_dir.mkdir(parents=True, exist_ok=True)
++        request_context = object_requirements(object_description, desired_dimensions, asset_name=asset_name)
++        prepare_request_context(output_dir, request_context)
+         active_config_path = (
+             self._resolve_config_path(str(config_path_override))
+             if config_path_override is not None
+             else self._config_path
+         )
+         port = self._reserve_port()
+         attempt_summaries: list[str] = []
+         try:
+             pipeline_cls = self._load_pipeline_class()
+             for attempt in range(1, self._max_attempts + 1):
+@@ -114,20 +120,21 @@
+                 )
+ 
+                 pipeline = pipeline_cls(
+                     config_path=str(active_config_path),
+                     use_mock=False,
+                     port=port,
+                 )
+                 result = asyncio.run(
+                     pipeline.run(
+                         image_path=str(image_path),
++                        request_context=request_context,
+                         output_dir=str(output_dir),
+                         skip_stages=list(resume_state.skip_stages),
+                     )
+                 )
+ 
+                 if getattr(result, "success", False):
+                     mesh_path = self._resolve_mesh_path(
+                         result=result, output_dir=output_dir
+                     )
+                     if mesh_path is not None and mesh_path.exists():
+@@ -180,26 +187,31 @@
+             f"Code_Object pipeline failed for {image_path} after "
+             f"{self._max_attempts} attempt(s): {'; '.join(attempt_summaries)}"
+         )
+ 
+     def generate_articulated_from_image(
+         self,
+         *,
+         image_path: Path,
+         output_dir: Path,
+         config_path_override: str | Path | None = None,
++        object_description: str = "",
++        desired_dimensions: list[float] | None = None,
++        asset_name: str | None = None,
+     ) -> CodeObjectGenerationResult:
+         """Run the articulated Code_Object pipeline for a single reference image."""
+         if not image_path.exists():
+             raise FileNotFoundError(f"Code_Object input image not found: {image_path}")
+ 
+         output_dir.mkdir(parents=True, exist_ok=True)
++        request_context = object_requirements(object_description, desired_dimensions, asset_name=asset_name)
++        prepare_request_context(output_dir, request_context)
+         active_config_path = (
+             self._resolve_config_path(str(config_path_override))
+             if config_path_override is not None
+             else self._config_path
+         )
+         port = self._reserve_port()
+         attempt_summaries: list[str] = []
+         try:
+             pipeline_cls = self._load_pipeline_class("CodeArticulatedPipeline")
+             for attempt in range(1, self._max_attempts + 1):
+@@ -216,20 +228,21 @@
+                 )
+ 
+                 pipeline = pipeline_cls(
+                     config_path=str(active_config_path),
+                     use_mock=False,
+                     port=port,
+                 )
+                 result = asyncio.run(
+                     pipeline.run(
+                         image_path=str(image_path),
++                        request_context=request_context,
+                         output_dir=str(output_dir),
+                         skip_stages=list(resume_state.skip_stages),
+                     )
+                 )
+ 
+                 if getattr(result, "success", False):
+                     mesh_path = self._resolve_mesh_path(
+                         result=result, output_dir=output_dir
+                     )
+                     status = getattr(result, "status", "generated")
+--- a/scenecode/agent_utils/asset_manager.py
++++ b/scenecode/agent_utils/asset_manager.py
+@@ -2028,20 +2028,23 @@
+         )
+ 
+         with ThreadPoolExecutor(max_workers=max_workers) as executor:
+             futures = {}
+             for index, config in enumerate(asset_path_configs):
+                 raw_output_dir = self.code_object_dir / config.geometry_path.stem
+                 futures[
+                     executor.submit(
+                         self.code_object_runner.generate_from_image,
+                         image_path=config.image_path,
++                        object_description=config.description,
++                        desired_dimensions=request.desired_dimensions[index],
++                        asset_name=config.short_name,
+                         output_dir=raw_output_dir,
+                     )
+                 ] = (index, config, raw_output_dir)
+ 
+             for future in as_completed(futures):
+                 index, config, raw_output_dir = futures[future]
+                 try:
+                     result = future.result()
+                     item = AssetItem(
+                         description=config.description,
+@@ -2121,20 +2124,23 @@
+         )
+ 
+         with ThreadPoolExecutor(max_workers=max_workers) as executor:
+             futures = {}
+             for index, config in enumerate(asset_path_configs):
+                 raw_output_dir = self.code_object_dir / config.geometry_path.stem
+                 futures[
+                     executor.submit(
+                         self.code_object_runner.generate_articulated_from_image,
+                         image_path=config.image_path,
++                        object_description=config.description,
++                        desired_dimensions=request.desired_dimensions[index],
++                        asset_name=config.short_name,
+                         output_dir=raw_output_dir,
+                     )
+                 ] = (index, config, raw_output_dir)
+ 
+             for future in as_completed(futures):
+                 index, config, raw_output_dir = futures[future]
+                 try:
+                     result = future.result()
+                     item = AssetItem(
+                         description=config.description,
+--- a/scenecode/agent_utils/asset_router/router.py
++++ b/scenecode/agent_utils/asset_router/router.py
+@@ -1697,22 +1697,25 @@
+         try:
+             if image_path is None:
+                 result = code_object_runner.generate_from_text(
+                     text_input=item.description,
+                     output_dir=output_dir,
+                     config_path_override=config_path_override,
+                 )
+             else:
+                 result = code_object_runner.generate_from_image(
+                     image_path=image_path,
++                    object_description=item.description,
++                    desired_dimensions=item.dimensions,
+                     output_dir=output_dir,
+                     config_path_override=config_path_override,
++                    asset_name=item.short_name,
+                 )
+         except Exception as e:
+             console_logger.error(
+                 f"Code_Object generation failed for '{item.description}': {e}"
+             )
+             return None
+ 
+         if image_path is not None:
+             from autoresearch.scenecode_image_evidence import record_image_result
+             record_image_result(output_dir, result)
+@@ -1753,22 +1756,25 @@
+         try:
+             if image_path is None:
+                 result = code_object_runner.generate_articulated_from_text(
+                     text_input=item.description,
+                     output_dir=output_dir,
+                     config_path_override=config_path_override,
+                 )
+             else:
+                 result = code_object_runner.generate_articulated_from_image(
+                     image_path=image_path,
++                    object_description=item.description,
++                    desired_dimensions=item.dimensions,
+                     output_dir=output_dir,
+                     config_path_override=config_path_override,
++                    asset_name=item.short_name,
+                 )
+         except Exception as e:
+             console_logger.error(
+                 f"Code_Object articulated generation failed for '{item.description}': {e}"
+             )
+             return None
+ 
+         if image_path is not None:
+             from autoresearch.scenecode_image_evidence import prepare_articulated_image_result
+             # Project-owned export-boundary adapter; preserve the generated
+--- a/scenecode/code_object/agent_framework/pipeline.py
++++ b/scenecode/code_object/agent_framework/pipeline.py
+@@ -853,38 +853,41 @@
+             self.logger.error(f"Failed to render full object: {e}")
+         return None
+ 
+     async def run(
+         self,
+         image_path: Optional[str] = None,
+         text_input: Optional[str] = None,
+         output_dir: Optional[str] = None,
+         skip_stages: List[str] = None,
+         mesh_output_path: Optional[str] = None,
++        request_context: str = "",
+     ) -> PipelineResult:
+         """
+         执行 Pipeline（完整生成）。
+ 
+         Args:
+             image_path: 输入图片路径（与 text_input 二选一）。
+             text_input: 输入文本描述（与 image_path 二选一）。
+             output_dir: 输出目录。可选；默认根据输入自动生成。
+             skip_stages: 跳过的阶段列表（仅完整模式有效）：planning, plan_check, construction, export_parts, render_full_object, export_glb。
+ 
+         Returns:
+             PipelineResult
+         """
+         start_time = datetime.now()
+         skip_stages = skip_stages or []
+         stages_completed = []
+         stages_failed = []
+         stage_errors = {}
++        for agent in (self.planner, self.planner_checker, self.part_constructor):
++            agent.request_context = request_context
+         object_plan = None
+         mesh_path = None
+         parts_output_dir = None
+ 
+         # ---------- 完整生成模式 ----------
+         try:
+             input_mode = self._validate_generation_input(image_path=image_path, text_input=text_input)
+         except ValueError as e:
+             return PipelineResult(
+                 success=False,
+--- a/scenecode/code_object/agent_framework/code_articulated_pipeline.py
++++ b/scenecode/code_object/agent_framework/code_articulated_pipeline.py
+@@ -85,28 +85,30 @@
+             use_mock=use_mock,
+         )
+ 
+     async def run(
+         self,
+         image_path: str | None = None,
+         text_input: str | None = None,
+         output_dir: str | None = None,
+         skip_stages: list[str] | None = None,
+         mesh_output_path: str | None = None,
++        request_context: str = "",
+     ) -> CodeArticulatedPipelineResult:
+         """Run the base Code_Object pipeline, then generate URDF if needed."""
+         base_result: PipelineResult = await self.pipeline.run(
+             image_path=image_path,
+             text_input=text_input,
+             output_dir=output_dir,
+             skip_stages=skip_stages,
+             mesh_output_path=mesh_output_path,
++            request_context=request_context,
+         )
+ 
+         resolved_output_dir = base_result.output_dir or (output_dir or "")
+         object_dir = Path(resolved_output_dir) if resolved_output_dir else None
+ 
+         object_plan_path = None
+         code_dir = None
+         pipeline_result_path = None
+         full_object_render_path = None
+         parts_output_dir = None
+--- a/scenecode/code_object/agent_framework/agents/base_agent.py
++++ b/scenecode/code_object/agent_framework/agents/base_agent.py
+@@ -207,20 +207,23 @@
+                     content = messages[-1].get("content", "")
+                     if isinstance(content, str):
+                         messages[-1]["content"] = [
+                             {"type": "text", "text": content},
+                             {"type": "image_url", "image_url": {"url": img}}
+                         ]
+                     elif isinstance(content, list):
+                         content.append({"type": "image_url", "image_url": {"url": img}})
+         
+         # 调用 LLM
++        from autoresearch.scenecode_object_requirements import contextual_messages
++        messages = contextual_messages(messages, getattr(self, "request_context", ""),
++                                       tools=kwargs.get("tools"), tool_choice=kwargs.get("tool_choice"))
+         response = await self.llm_client.chat(messages, **kwargs)
+         return response
+     
+     async def _call_blender(self, action: str, params: Dict[str, Any]) -> Any:
+         """
+         调用 Blender MCP
+         
+         Args:
+             action: 动作名称
+             params: 参数字典

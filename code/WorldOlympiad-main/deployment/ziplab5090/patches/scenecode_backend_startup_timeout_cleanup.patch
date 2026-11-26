@@ -1,0 +1,29 @@
+--- a/scenecode/code_object/agent_framework/blender/backend_manager.py
++++ b/scenecode/code_object/agent_framework/blender/backend_manager.py
+@@ -142,6 +142,25 @@
+                 return
+             await asyncio.sleep(self.poll_interval)
+-        await self.stop()
++        # start() still owns the shared Blender request lock here. Calling
++        # stop() would try to acquire the same non-reentrant flock and deadlock
++        # on the startup-timeout path. The backend is not ready to receive its
++        # graceful shutdown request, so reap this process under the lock already
++        # held by start(), then let the original TimeoutError propagate.
++        proc = self._proc
++        if proc is not None:
++            if proc.poll() is None:
++                proc.terminate()
++                try:
++                    await asyncio.to_thread(proc.wait, self.stop_timeout)
++                except Exception:
++                    if proc.poll() is None:
++                        proc.kill()
++                        try:
++                            await asyncio.to_thread(proc.wait, 3.0)
++                        except Exception:
++                            pass
++            self._proc = None
++        self._close_log_file()
+         raise TimeoutError(
+             f"Timed out waiting for Blender backend at {self.host}:{self.port} "
+             f"(timeout={self.startup_timeout}s)"

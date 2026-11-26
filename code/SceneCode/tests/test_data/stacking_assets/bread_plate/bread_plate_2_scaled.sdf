@@ -1,0 +1,587 @@
+<?xml version='1.0' encoding='utf-8'?>
+<sdf version="1.7">
+  <model name="bread_plate_2">
+    <link name="base_link">
+      <inertial>
+        <mass>0.400000</mass>
+        <pose>0.000280 -0.000131 0.005774 0 0 0</pose>
+        <inertia>
+          <ixx>7.645096e-04</ixx>
+          <iyy>7.726847e-04</iyy>
+          <izz>1.515521e-03</izz>
+          <ixy>-1.144389e-06</ixy>
+          <ixz>-1.388562e-06</ixz>
+          <iyz>6.249604e-07</iyz>
+        </inertia>
+      </inertial>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>bread_plate_2_visual.obj</uri>
+            <scale>0.8 0.8 0.8</scale>
+          </mesh>
+        </geometry>
+      </visual>
+      <collision name="collision_0">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.500</mu>
+              <mu2>0.500</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>bread_plate_2_collision_0.obj</uri>
+            <scale>0.8 0.8 0.8</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name="collision_1">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.500</mu>
+              <mu2>0.500</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>bread_plate_2_collision_1.obj</uri>
+            <scale>0.8 0.8 0.8</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name="collision_2">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.500</mu>
+              <mu2>0.500</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>bread_plate_2_collision_10.obj</uri>
+            <scale>0.8 0.8 0.8</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name="collision_3">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.500</mu>
+              <mu2>0.500</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>bread_plate_2_collision_11.obj</uri>
+            <scale>0.8 0.8 0.8</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name="collision_4">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.500</mu>
+              <mu2>0.500</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>bread_plate_2_collision_12.obj</uri>
+            <scale>0.8 0.8 0.8</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name="collision_5">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.500</mu>
+              <mu2>0.500</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>bread_plate_2_collision_13.obj</uri>
+            <scale>0.8 0.8 0.8</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name="collision_6">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.500</mu>
+              <mu2>0.500</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>bread_plate_2_collision_14.obj</uri>
+            <scale>0.8 0.8 0.8</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name="collision_7">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.500</mu>
+              <mu2>0.500</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>bread_plate_2_collision_15.obj</uri>
+            <scale>0.8 0.8 0.8</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name="collision_8">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.500</mu>
+              <mu2>0.500</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>bread_plate_2_collision_16.obj</uri>
+            <scale>0.8 0.8 0.8</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name="collision_9">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.500</mu>
+              <mu2>0.500</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>bread_plate_2_collision_17.obj</uri>
+            <scale>0.8 0.8 0.8</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name="collision_10">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.500</mu>
+              <mu2>0.500</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>bread_plate_2_collision_18.obj</uri>
+            <scale>0.8 0.8 0.8</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name="collision_11">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.500</mu>
+              <mu2>0.500</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>bread_plate_2_collision_19.obj</uri>
+            <scale>0.8 0.8 0.8</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name="collision_12">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.500</mu>
+              <mu2>0.500</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>bread_plate_2_collision_2.obj</uri>
+            <scale>0.8 0.8 0.8</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name="collision_13">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.500</mu>
+              <mu2>0.500</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>bread_plate_2_collision_20.obj</uri>
+            <scale>0.8 0.8 0.8</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name="collision_14">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.500</mu>
+              <mu2>0.500</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>bread_plate_2_collision_21.obj</uri>
+            <scale>0.8 0.8 0.8</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name="collision_15">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.500</mu>
+              <mu2>0.500</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>bread_plate_2_collision_22.obj</uri>
+            <scale>0.8 0.8 0.8</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name="collision_16">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.500</mu>
+              <mu2>0.500</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>bread_plate_2_collision_23.obj</uri>
+            <scale>0.8 0.8 0.8</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name="collision_17">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.500</mu>
+              <mu2>0.500</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>bread_plate_2_collision_24.obj</uri>
+            <scale>0.8 0.8 0.8</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name="collision_18">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.500</mu>
+              <mu2>0.500</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>bread_plate_2_collision_25.obj</uri>
+            <scale>0.8 0.8 0.8</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name="collision_19">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.500</mu>
+              <mu2>0.500</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>bread_plate_2_collision_26.obj</uri>
+            <scale>0.8 0.8 0.8</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name="collision_20">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.500</mu>
+              <mu2>0.500</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>bread_plate_2_collision_27.obj</uri>
+            <scale>0.8 0.8 0.8</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name="collision_21">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.500</mu>
+              <mu2>0.500</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>bread_plate_2_collision_28.obj</uri>
+            <scale>0.8 0.8 0.8</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name="collision_22">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.500</mu>
+              <mu2>0.500</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>bread_plate_2_collision_29.obj</uri>
+            <scale>0.8 0.8 0.8</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name="collision_23">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.500</mu>
+              <mu2>0.500</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>bread_plate_2_collision_3.obj</uri>
+            <scale>0.8 0.8 0.8</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name="collision_24">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.500</mu>
+              <mu2>0.500</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>bread_plate_2_collision_30.obj</uri>
+            <scale>0.8 0.8 0.8</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name="collision_25">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.500</mu>
+              <mu2>0.500</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>bread_plate_2_collision_31.obj</uri>
+            <scale>0.8 0.8 0.8</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name="collision_26">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.500</mu>
+              <mu2>0.500</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>bread_plate_2_collision_32.obj</uri>
+            <scale>0.8 0.8 0.8</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name="collision_27">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.500</mu>
+              <mu2>0.500</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>bread_plate_2_collision_33.obj</uri>
+            <scale>0.8 0.8 0.8</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name="collision_28">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.500</mu>
+              <mu2>0.500</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>bread_plate_2_collision_34.obj</uri>
+            <scale>0.8 0.8 0.8</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name="collision_29">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.500</mu>
+              <mu2>0.500</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>bread_plate_2_collision_4.obj</uri>
+            <scale>0.8 0.8 0.8</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name="collision_30">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.500</mu>
+              <mu2>0.500</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>bread_plate_2_collision_5.obj</uri>
+            <scale>0.8 0.8 0.8</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name="collision_31">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.500</mu>
+              <mu2>0.500</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>bread_plate_2_collision_6.obj</uri>
+            <scale>0.8 0.8 0.8</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name="collision_32">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.500</mu>
+              <mu2>0.500</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>bread_plate_2_collision_7.obj</uri>
+            <scale>0.8 0.8 0.8</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name="collision_33">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.500</mu>
+              <mu2>0.500</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>bread_plate_2_collision_8.obj</uri>
+            <scale>0.8 0.8 0.8</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <collision name="collision_34">
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.500</mu>
+              <mu2>0.500</mu2>
+            </ode>
+          </friction>
+        </surface>
+        <geometry>
+          <mesh>
+            <uri>bread_plate_2_collision_9.obj</uri>
+            <scale>0.8 0.8 0.8</scale>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+  </model>
+</sdf>

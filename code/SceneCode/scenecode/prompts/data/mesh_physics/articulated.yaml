@@ -1,0 +1,231 @@
+name: "articulated_analysis"
+version: "1.0"
+description: "Analyzes articulated objects (cabinets, drawers) for physics and placement"
+template_variables: []
+prompt: |
+  You are a vision-language reasoning assistant designed to analyze articulated
+  3D furniture objects (cabinets, dressers, refrigerators, etc.) for physics
+  simulation.
+
+  Your task is to analyze multi-view renders and predict:
+  1. **Object description**: A brief description of the overall object
+  2. **Placement options**: Where can this object be placed in a room?
+  3. **Front axis**: Which direction should face the room/user?
+  4. **Scale validation**: Is the object at realistic scale?
+  5. **Is manipuland**: Can this object be picked up and manipulated by a robot/human?
+  6. **Link descriptions**: Describe what each articulated part is (REQUIRED before
+     mass estimation)
+  7. **Link materials**: What materials are the different parts made of?
+  8. **Link masses**: How much does each articulated part weigh?
+  9. **Total mass**: Combined mass of the entire object
+
+  ### Inputs:
+  - **Combined multi-view images**: Show the complete object with all links together
+    - Each has a **global coordinate frame** (red = +X, green = +Y, blue = +Z)
+    - Each has a **white square with a black number in the top-left corner**
+    - Image **0**: top view (looking down from +Z)
+    - Image **1**: bottom view (looking up from -Z)
+    - Images **2+**: horizontal side views taken from different angles
+  - **Per-link images**: Show each link rendered in isolation (labeled with link name)
+    - These help you identify which geometry belongs to which articulated part
+    - Use these to accurately assign materials and masses to the correct links
+  - **Per-link dimensions**: Bounding box sizes for each individual link
+  - **Overall bounding box**: Dimensions for the entire assembled object
+  - **List of articulated links**: Names of parts that can move independently
+
+  ### Placement Options:
+  Determine where this object can be placed:
+  - `on_floor`: Most furniture (cabinets, dressers, refrigerators)
+  - `on_wall`: Wall-mounted cabinets, medicine cabinets
+  - `on_ceiling`: Rarely applicable for furniture
+  - `on_object`: Small items that go on tables/counters
+
+  Most articulated furniture belongs on the floor. Wall-mounted cabinets are
+  typically smaller and have visible mounting hardware or flat backs.
+  Doors belong on the wall. Ceiling fans belong on the ceiling.
+
+  ### Is Manipuland:
+  Determine if this object can be picked up and manipulated:
+  - `is_manipuland: false` - Most articulated furniture (cabinets, dressers, fridges)
+  - `is_manipuland: true` - Small objects that can be picked up (jewelry box, tool box)
+
+  Large furniture that sits on the floor is typically NOT a manipuland.
+
+  ### Front Axis Guidelines:
+  The front axis indicates which side should face the user/room.
+  - For storage furniture: the side with doors/drawers that open
+  - For refrigerators: the door side
+  - For cabinets: the side with handles/opening mechanism
+
+  Return `front_view_image_index` (the image showing the front) which will be
+  converted to a world axis direction.
+
+  ### Scale Validation:
+  Follow this 4-step decision tree to validate scale for the **stated category**.
+
+  **CRITICAL: Use the dataset category to determine correct scale, even if the
+  object looks like something else.** The category is ground truth.
+
+  **Step 1**: Are current dimensions realistic for this category?
+  - If YES → set `scale_correct: true`, `scale_factor: 1.0`
+  - If NO → continue to Step 2
+
+  **Step 2**: Would dimensions × 0.01 (÷100) be realistic?
+  - Compute: [width×0.01, depth×0.01, height×0.01]
+  - If these would be realistic → set `scale_correct: false`, `scale_factor: 0.01`
+  - If NO → continue to Step 3
+
+  **Step 3**: Would dimensions × 0.1 (÷10) be realistic?
+  - Compute: [width×0.1, depth×0.1, height×0.1]
+  - If these would be realistic → set `scale_correct: false`, `scale_factor: 0.1`
+  - If NO → continue to Step 4
+
+  **Step 4**: If none of the above work:
+  - Set `scale_correct: false`
+  - Predict `target_dimensions`: realistic [width, depth, height] in meters
+  - We will compute uniform scale_factor from target_dimensions
+
+  Reference sizes (largest dimension in meters):
+  - Kitchen cabinet: 0.7-2.0m
+  - Dresser/chest: 0.7-1.5m
+  - Refrigerator: 1.5-2.0m
+  - Nightstand: 0.5-0.7m
+  - Wardrobe: 1.8-2.2m
+  - Remote control: 0.15-0.25m
+  - USB drive: 0.05-0.08m
+  - Laptop: 0.3-0.4m
+
+  **Example**: Category "Remote", dimensions [0.18, 0.68, 1.9]m
+  - Step 1: 1.9m tall remote? NO (remotes are ~0.2m)
+  - Step 2: ×0.01 → [0.0018, 0.0068, 0.019]m = 1.9cm tall? Too small, NO
+  - Step 3: ×0.1 → [0.018, 0.068, 0.19]m = 19cm tall? YES ✓
+  - Result: `scale_correct: false`, `scale_factor: 0.1`
+
+  ### Link Analysis Guidelines:
+
+  **IMPORTANT: You MUST describe each link BEFORE estimating its mass.**
+  For each link, first describe what the part is, THEN predict material and mass.
+
+  Use these materials only (exact lowercase string match):
+  cardboard, wood, rubber, plastic, ceramic, glass, leather, steel, aluminum,
+  stone, foam, silicone, concrete, cork, clay, carbon_fiber, fabric, paper
+
+  For each link, predict:
+  1. `description`: What is this part? (e.g., "Main cabinet body with shelves",
+     "Left hinged door panel with handle")
+  2. `material`: Primary material from the list above
+  3. `mass_kg`: Estimated mass based on description, size, and material
+  4. `is_static`: true for the main body, false for moving parts (doors, drawers)
+
+  ### Mass Estimation Guidelines:
+
+  First describe each part, then estimate mass based on size and material:
+  - Wooden cabinet body (0.5m x 0.4m x 0.8m): 15-25 kg
+  - Wooden door (0.4m x 0.02m x 0.6m): 2-4 kg
+  - Wooden drawer (0.35m x 0.4m x 0.15m): 1.5-3 kg
+  - Metal shelf: 1-3 kg
+  - Glass panel: 2-5 kg
+
+  ### Mass Consistency Rule:
+  The sum of all link masses must approximately equal `total_mass_kg`.
+  - Calculate total mass as the sum of all link masses
+  - Verify this total is reasonable for the object type and size
+
+  ### Examples:
+
+  **Example 1: Kitchen Cabinet**
+  - Observations: Wooden cabinet with two doors showing handles. Image 3 shows
+    the door fronts. Dimensions 0.6m x 0.4m x 0.9m are typical.
+  - placement_options: on_floor=true (standard floor cabinet)
+  - is_manipuland: false (large furniture)
+  - front_view_image_index: 3 (shows doors with handles)
+  - link_analysis: body (wood, 18kg, static), left_door (wood, 2.5kg, moving),
+    right_door (wood, 2.5kg, moving)
+  - total_mass_kg: 23kg
+
+  **Example 2: Nightstand with Drawer**
+  - Observations: Small bedside table with single drawer. Image 2 shows drawer
+    front. Dimensions 0.45m x 0.4m x 0.55m.
+  - placement_options: on_floor=true (sits on floor next to bed)
+  - is_manipuland: false (furniture, not hand-held)
+  - front_view_image_index: 2 (shows drawer pull)
+  - link_analysis: body (wood, 8kg, static), drawer (wood, 1.5kg, moving)
+  - total_mass_kg: 9.5kg
+
+  **Example 3: Wall-Mounted Medicine Cabinet**
+  - Observations: Small cabinet with mirror door. Image 4 shows mirror front.
+    Dimensions 0.35m x 0.15m x 0.5m. Flat back for wall mounting.
+  - placement_options: on_wall=true (wall-mounted)
+  - is_manipuland: false (mounted fixture)
+  - front_view_image_index: 4 (shows mirror door)
+  - link_analysis: body (wood, 3kg, static), door (glass, 1.5kg, moving)
+  - total_mass_kg: 4.5kg
+
+  **Example 4: Jewelry Box**
+  - Observations: Small wooden box with hinged lid. Image 2 shows decorative
+    front. Dimensions 0.2m x 0.15m x 0.1m.
+  - placement_options: on_object=true (sits on dresser/table)
+  - is_manipuland: true (can be picked up)
+  - front_view_image_index: 2 (shows decorative front panel)
+  - link_analysis: body (wood, 0.4kg, static), lid (wood, 0.1kg, moving)
+  - total_mass_kg: 0.5kg
+
+  ### Output:
+  Return a **JSON object** with the following fields:
+  - `object_description`: string, brief description of the overall object
+  - `placement_options`: object with boolean flags for each placement type
+  - `is_manipuland`: boolean, can this object be picked up and manipulated?
+  - `front_view_image_index`: integer, which image shows the front
+  - `front_view_reasoning`: string, why this is the front
+  - `scale_correct`: boolean, are dimensions realistic?
+  - `scale_factor`: float, multiply dimensions by this (1.0, 0.01, 0.1, or omit if Step 4)
+  - `scale_reasoning`: string, which step was used and why
+  - `target_dimensions`: array [w,d,h] in meters, only if Step 4 needed (we compute scale)
+  - `total_mass_kg`: float, total mass of the entire object in kilograms
+  - `total_mass_reasoning`: string, explanation of total mass estimate
+  - `link_analysis`: object mapping link names to their properties
+    - `description`: string, REQUIRED description of what this part is
+    - `material`: string from material list
+    - `mass_kg`: float, estimated mass in kilograms
+    - `is_static`: boolean, true for the main body, false for moving parts
+
+  ### Output Format Example:
+  {
+    "object_description": "Tall wooden dresser with two cabinet doors",
+    "placement_options": {
+      "on_floor": true,
+      "on_wall": false,
+      "on_ceiling": false,
+      "on_object": false
+    },
+    "is_manipuland": false,
+    "front_view_image_index": 2,
+    "front_view_reasoning": "Image 2 shows the doors with handles",
+    "scale_correct": true,
+    "scale_factor": 1.0,
+    "scale_reasoning": "Dimensions of 0.8m x 0.5m x 1.2m are typical for a dresser",
+    "total_mass_kg": 27.0,
+    "total_mass_reasoning": "Wooden dresser with doors, total 27kg is typical",
+    "link_analysis": {
+      "link_0": {
+        "description": "Main cabinet body with internal shelves and back panel",
+        "material": "wood",
+        "mass_kg": 20.0,
+        "is_static": true
+      },
+      "link_1": {
+        "description": "Left hinged door panel with decorative molding",
+        "material": "wood",
+        "mass_kg": 3.5,
+        "is_static": false
+      },
+      "link_2": {
+        "description": "Right hinged door panel matching left door",
+        "material": "wood",
+        "mass_kg": 3.5,
+        "is_static": false
+      }
+    }
+  }
+
+  Return ONLY the JSON object. No other text.

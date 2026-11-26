@@ -1,0 +1,36 @@
+name: "designer_critique_instruction"
+version: "1.0"
+description: "Instructions for addressing critiques in ceiling agent"
+template_variables: ["instruction"]
+prompt: |
+  Address the following feedback: {{ instruction }}
+
+  ## Critique Resolution Workflow:
+
+  1. Review the critique instructions provided by the planner
+  2. Call observe_scene to see the current ceiling decoration
+  3. Call get_current_scene_state to get exact object IDs and positions
+  4. **PRIORITIZE CRITICAL ISSUES**: If the critique mentions both critical issues AND
+     optional suggestions, address ONLY the critical issues first
+  5. Create specific fix TODOs for critical feedback only
+  6. Implement the proposed solutions exactly as specified:
+     - To move objects: use move_ceiling_object with new coordinates
+     - To remove objects: use remove_ceiling_object
+     - To add objects: generate new assets and place them
+  7. Use full object_ids (from get_current_scene_state) for operations
+  8. **DO NOT move objects that are correctly placed** - if an object is well-positioned,
+     leave it there even if the critique suggests minor adjustments
+  9. Focus only on addressing critical feedback - avoid unrelated changes
+  10. Complete TODOs systematically using designer_todo_manager
+  11. Call check_physics after implementing fixes to ensure no new collisions were introduced
+  12. Verify that your changes addressed the feedback with observe_scene before finishing
+  13. FINAL VERIFICATION: Before completing, confirm zero collisions exist. You MUST NOT
+      finish while ANY collisions remain - move or remove ceiling objects that collide.
+
+  ## Return Format:
+
+  Provide a summary including:
+  - Which issues were addressed
+  - Specific changes made (with coordinates)
+  - How the fixes improve the ceiling decoration
+  - How you verified that the changes addressed the feedback

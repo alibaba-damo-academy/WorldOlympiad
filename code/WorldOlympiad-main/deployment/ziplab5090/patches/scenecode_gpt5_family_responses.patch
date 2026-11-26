@@ -1,0 +1,25 @@
+diff --git a/scenecode/agent_utils/vlm_service.py b/scenecode/agent_utils/vlm_service.py
+--- a/scenecode/agent_utils/vlm_service.py
++++ b/scenecode/agent_utils/vlm_service.py
+@@ -29,7 +29,7 @@ class VLMService:
+         """
+         self.client = create_openai_client(api_base=api_base)
+         # Cache for model type detection.
+-        self._reasoning_models = {"gpt-5", "gpt-5.2", "o3", "o4"}
++        self._reasoning_models = {"gpt-5", "gpt-5.2", "gpt-5.4", "o3", "o4"}
+         self.service_tier = service_tier
+ 
+     def create_completion(
+@@ -62,7 +62,11 @@ class VLMService:
+             Response content as string.
+         """
+         # Check if model supports reasoning.
+-        if model in self._reasoning_models:
++        # SceneCode's static list predates newer GPT-5 point releases. Treat
++        # the versioned GPT-5 family as Responses-API models so compatible
++        # gateways do not return a raw string through Chat Completions and
++        # subsequently fail at response.choices.
++        if model in self._reasoning_models or model.startswith("gpt-5."):
+             # Use Responses API with reasoning for reasoning-capable models.
+             input_messages = self._convert_to_responses_format(
+                 messages=messages, vision_detail=vision_detail

@@ -1,0 +1,18 @@
+--- a/scenecode/agent_utils/asset_router/router.py
++++ b/scenecode/agent_utils/asset_router/router.py
+@@ -85,6 +85,15 @@ TASK_MARKER_COLORS = {
+     "yellow": (220, 185, 45),
+     "orange": (220, 115, 35),
+     "purple": (135, 70, 175),
++    "teal": (25, 155, 150),
++    "turquoise": (40, 180, 170),
++    "cyan": (35, 175, 200),
++    "magenta": (190, 45, 145),
++    "pink": (220, 105, 150),
++    "lime": (125, 190, 45),
++    "navy": (35, 55, 130),
++    "beige": (190, 170, 125),
++    "maroon": (125, 40, 50),
+     "brown": (125, 80, 45),
+     "gray": (125, 125, 125),
+     "grey": (125, 125, 125),

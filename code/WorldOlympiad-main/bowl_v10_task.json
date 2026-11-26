@@ -1,0 +1,89 @@
+{
+  "schema_version": "wo_task_spec.v1",
+  "case_id": "household_fruit_bowl_shallow_dev_20261017_v10_physical",
+  "family": "pick_place",
+  "instruction": "Place the red apple into the empty shallow fruit bowl on the kitchen counter.",
+  "objects": [
+    {
+      "object_id": "red_apple",
+      "category": "apple",
+      "role": "manipuland",
+      "description": "A naturally proportioned ripe red apple, about 6.5 cm across, with softly irregular rounded shape and a compact side body for parallel-finger grasp; the stem is not a handle.",
+      "geometry_constraints": {
+        "overall_diameter_m": 0.065,
+        "graspable_part": "compact side body",
+        "approach_clearance_m": 0.025
+      }
+    },
+    {
+      "object_id": "fruit_bowl",
+      "category": "bowl",
+      "role": "destination",
+      "description": "An ordinary rigid ceramic countertop fruit bowl with a shallow rotational profile, stable thick flat base, continuous side wall, rounded rim, and a real concave cavity in visual and collision geometry. Empty initially and visibly contains the apple after stable release.",
+      "geometry_constraints": {
+        "outer_diameter_m": 0.24,
+        "overall_height_m": 0.07,
+        "clear_inner_opening_m": 0.22,
+        "interior_depth_m": 0.055,
+        "base_thickness_m": 0.012,
+        "rim_thickness_m": 0.006,
+        "cavity": "closed physical concave interior in both visual and collision geometry",
+        "stable_base": true,
+        "overall_dimensions_m": [
+          0.24,
+          0.24,
+          0.07
+        ],
+        "overall_dimensions_tolerance_m": 0.0005,
+        "interior_depth_target_m": 0.055,
+        "physical_revision": "shallow_profile_v10_base_at_zero paired visual/collision source revision",
+        "required_checks": [
+          "concave visual and collision cavity",
+          "stable base",
+          "apple fully outside with visible gap initially",
+          "ordinary gripper entry and release clearance"
+        ]
+      }
+    },
+    {
+      "object_id": "kitchen_counter",
+      "category": "countertop",
+      "role": "support",
+      "description": "A verified single-link static countertop slab support, physical revision 1353, bounds-authored under the unchanged apple and bowl layout; original slab source and 0.08 m thickness retained.",
+      "geometry_constraints": {
+        "source_revision": "support_only_static_slab_1353",
+        "sdf_sha256": "3765305d01a299f4d1a36ec1af24af67c2c50185432090b8a8e847ae0e2f40f4",
+        "single_link": true,
+        "dimensions_m": [
+          2.8,
+          1.6,
+          0.08
+        ]
+      }
+    }
+  ],
+  "steps": [
+    {
+      "primitive": "transport",
+      "subject": "red_apple",
+      "goal": {
+        "kind": "inside",
+        "subject": "red_apple",
+        "target": "fruit_bowl",
+        "params": {}
+      },
+      "target": "fruit_bowl",
+      "tool": null,
+      "constraints": {
+        "release": "stable"
+      }
+    }
+  ],
+  "articulations": [],
+  "robot": "franka_robotiq_2f85",
+  "fps": 15.0,
+  "max_duration_s": 40.0,
+  "initial_state": "In a tidy lived-in home kitchen, one red apple rests fully outside an empty shallow fruit bowl on the counter with a visible reachable gap. The bowl is stable, empty, and its broad concave interior is clearly visible; the task is unsolved and the apple is not pre-positioned over or inside the bowl; keep both ordinary-sized, uncluttered and reachable with native camera visibility. Intended basic grasp-and-place difficulty: compact apple body with multiple plausible side or oblique grasps and no precise orientation requirement. Support is the explicit single-link static countertop slab revision 1353; the apple and bowl sources and their natural outside initial arrangement are unchanged.",
+  "seed": 16101719,
+  "generation": "/root/autodl-tmp/worldolympiad2/code/wo-agent-worktree/outputs/robotics_scenecode_generations/wo_household_fruit_bowl_shallow_dev_20261017_v10_physical/household_fruit_bowl_shallow_dev_20261017_v10_physical"
+}

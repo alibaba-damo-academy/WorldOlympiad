@@ -1,0 +1,158 @@
+--- a/scenecode/agent_utils/image_generation.py
++++ b/scenecode/agent_utils/image_generation.py
+@@ -1,4 +1,7 @@
+ import base64
++import hashlib
++import json
++import shutil
+ import logging
+ import os
+ import subprocess
+@@ -25,6 +28,97 @@
+ )
+ 
+ console_logger = logging.getLogger(__name__)
++
++
++def _context_sha(path: Path) -> str:
++    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
++
++
++def _checked_context_reference(record: dict, request: dict, base: Path) -> Path:
++    if any(record.get(key) != value for key, value in request.items()):
++        raise ValueError("context reference does not match the actual input image and request")
++    if not isinstance(record.get("producer"), str) or not record["producer"].strip():
++        raise ValueError("context reference requires producer provenance")
++    if record.get("external_manifest_path"):
++        manifest = Path(record["external_manifest_path"])
++        if _context_sha(manifest) != record.get("external_manifest_sha256"):
++            raise ValueError("context reference manifest changed")
++    if record.get("producer_prompt_path"):
++        producer_prompt = base / record["producer_prompt_path"]
++        prompt_hash = _context_sha(producer_prompt)
++    else:
++        producer_prompt = record.get("producer_prompt")
++        if not isinstance(producer_prompt, str) or not producer_prompt:
++            raise ValueError("context reference requires its actual producer prompt")
++        prompt_hash = hashlib.sha256(producer_prompt.encode("utf-8")).hexdigest()
++    if prompt_hash != record.get("producer_prompt_sha256"):
++        raise ValueError("context reference producer prompt changed")
++    image = base / record["output_image"]
++    if _context_sha(image) != record.get("output_image_sha256"):
++        raise ValueError("context reference output image changed")
++    with Image.open(image) as decoded:
++        decoded.verify()
++    return image
++
++
++def _write_context_receipt(output: Path, record: dict) -> None:
++    with Image.open(output) as decoded:
++        decoded.verify()
++    receipt = output.with_suffix(output.suffix + ".context.json")
++    payload = {**record, "schema_version": "scenecode_context_reference_record.v1",
++               "output_image": str(output.resolve()), "output_image_sha256": _context_sha(output),
++               "scope": "semantic design guidance only; not source geometry, native observation or reference success"}
++    temporary = receipt.with_suffix(receipt.suffix + ".tmp")
++    temporary.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
++    temporary.replace(receipt)
++
++
++def _reuse_bound_context_image(reference: Path, prompt: str, output: Path,
++                               context_kind: str | None = None) -> Path | None:
++    request = {"kind": context_kind, "input_image_sha256": _context_sha(reference),
++               "request_prompt_sha256": hashlib.sha256(prompt.encode("utf-8")).hexdigest()}
++    external = os.environ.get("SCENECODE_CONTEXT_REFERENCE_MANIFEST")
++    if external:
++        manifest = Path(external).expanduser().resolve()
++        digest = _context_sha(manifest)
++        if digest != os.environ.get("SCENECODE_CONTEXT_REFERENCE_MANIFEST_SHA256"):
++            raise ValueError("context reference manifest is unbound or changed")
++        payload = json.loads(manifest.read_text(encoding="utf-8"))
++        if payload.get("schema_version") != "scenecode_context_reference.v1":
++            raise ValueError("unsupported context reference manifest")
++        scoped = [item for item in payload.get("items", [])
++                  if isinstance(item, dict) and item.get("kind") == context_kind]
++        if scoped:
++            records = [item for item in scoped
++                       if all(item.get(key) == value for key, value in request.items())]
++            if len(records) != 1:
++                raise ValueError("context reference must match exactly one actual input image/request")
++            record = records[0]
++            source = _checked_context_reference(record, request, manifest.parent)
++            output.parent.mkdir(parents=True, exist_ok=True)
++            if source.resolve() != output.resolve():
++                shutil.copy2(source, output)
++            if _context_sha(output) != record["output_image_sha256"]:
++                raise ValueError("external context copy changed the expected output bytes")
++            record = {**record, "producer_prompt_path":
++                      str((manifest.parent / record["producer_prompt_path"]).resolve())
++                      if record.get("producer_prompt_path") else None,
++                      "external_manifest_path": str(manifest), "external_manifest_sha256": digest}
++            _write_context_receipt(output, record)
++            console_logger.info("Reused bound semantic context reference (producer=%s, manifest_sha256=%s)",
++                                record["producer"], digest)
++            return output
++    receipt = output.with_suffix(output.suffix + ".context.json")
++    if receipt.is_file():
++        record = json.loads(receipt.read_text(encoding="utf-8"))
++        if all(record.get(key) == value for key, value in request.items()):
++            verified = _checked_context_reference(record, request, receipt.parent)
++            if verified.resolve() != output.resolve():
++                raise ValueError("context cache receipt does not bind this output path")
++            console_logger.info("Reused verified same-request context image cache")
++            return output
++    return None
++
+ 
+ 
+ class AssetOperationType(Enum):
+@@ -259,6 +353,7 @@
+             prompt=prompt,
+             reference_image_path=reference_image_path,
+             output_path=output_path,
++            context_kind="furniture_context",
+         )
+ 
+         console_logger.info(f"Saved context image to {output_path}")
+@@ -271,6 +366,7 @@
+         reference_image_path: Path,
+         output_path: Path,
+         size: str = "1024x1024",
++        context_kind: str | None = None,
+     ) -> Path:
+         """Edit an existing image with the given prompt.
+ 
+@@ -290,6 +386,9 @@
+         API Reference: https://platform.openai.com/docs/api-reference/images
+         """
+         console_logger.info(f"Editing image {reference_image_path} (OpenAI)")
++        cached = _reuse_bound_context_image(reference_image_path, prompt, output_path, context_kind)
++        if cached is not None:
++            return cached
+ 
+         start_time = time.time()
+         with open(reference_image_path, "rb") as image_file:
+@@ -303,6 +402,15 @@
+         _extract_and_save_openai_image(
+             response=response, output_path=output_path, description="edited image"
+         )
++        _write_context_receipt(output_path, {
++            "kind": context_kind,
++            "input_image_sha256": _context_sha(reference_image_path),
++            "request_prompt_sha256": hashlib.sha256(prompt.encode("utf-8")).hexdigest(),
++            "producer": "configured SceneCode image API",
++            "producer_model_requested": self.model,
++            "producer_prompt": prompt,
++            "producer_prompt_sha256": hashlib.sha256(prompt.encode("utf-8")).hexdigest(),
++        })
+ 
+         return output_path
+ 
+@@ -345,6 +453,7 @@
+             prompt=prompt,
+             reference_image_path=reference_image_path,
+             output_path=output_path,
++            context_kind="manipuland_context",
+         )
+ 
+         console_logger.info(f"Saved manipuland context image to {output_path}")

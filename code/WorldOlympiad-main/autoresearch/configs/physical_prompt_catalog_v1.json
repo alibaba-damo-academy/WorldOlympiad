@@ -1,0 +1,315 @@
+{
+  "schema_version": "physical_prompt_catalog.v1",
+  "created": "2026-09-08",
+  "items": [
+    {
+      "id": "paired_drop",
+      "title_zh": "双物体落体",
+      "source": {
+        "benchmark": "Physics-IQ",
+        "locator": "0001 / ball-and-block-fall",
+        "url": "https://github.com/google-deepmind/physics-IQ-benchmark/blob/main/descriptions/descriptions_original.csv",
+        "relationship": "phenomenon-inspired original adaptation, not an official benchmark prompt"
+      },
+      "scene_brief": "A bright school science room, 4.8 m by 4.0 m, contains a central pale-oak demonstration table, a closed storage cabinet on the back wall, a cork noticeboard with plain colored cards, and a side window with a fabric blind.",
+      "visual_description_sentence": "On the table are one matte red solid sphere 0.10 m in diameter and one matte blue solid cube 0.10 m on each side, each a separate opaque object.",
+      "initial_state": "Initially, both objects rest separately near the middle of the tabletop with 0.30 m of clear space between them and an unobstructed area below the near edge.",
+      "scene_prompt": "A bright school science room, 4.8 m by 4.0 m, contains a central pale-oak demonstration table, a closed storage cabinet on the back wall, a cork noticeboard with plain colored cards, and a side window with a fabric blind. On the table are one matte red solid sphere 0.10 m in diameter and one matte blue solid cube 0.10 m on each side, each a separate opaque object. Initially, both objects rest separately near the middle of the tabletop with 0.30 m of clear space between them and an unobstructed area below the near edge. Soft diffuse illumination and matte materials keep the task objects distinct while preserving the furnished room background.",
+      "instruction": "Release both objects from the same height at the same time.",
+      "execution": {
+        "setup": "PyBullet places both objects 0.35 m above the support with zero velocity",
+        "trigger": "release under gravity",
+        "track": [
+          "red_sphere",
+          "blue_cube"
+        ],
+        "execution_status": "new_multi_object_initialization_required"
+      },
+      "generation_status": "prompt_ready_not_generated",
+      "backend": "pybullet",
+      "scenecode_contract": "4 sentences; room and initial objects only; no dynamics, camera timing, model, or physics coefficient in scene prompt"
+    },
+    {
+      "id": "impact_target",
+      "title_zh": "滚动物体撞击目标",
+      "source": {
+        "benchmark": "Physics-IQ",
+        "locator": "0007 / ball-hits-duck",
+        "url": "https://github.com/google-deepmind/physics-IQ-benchmark/blob/main/descriptions/descriptions_original.csv",
+        "relationship": "phenomenon-inspired original adaptation, not an official benchmark prompt"
+      },
+      "scene_brief": "A warm modern family living room, 4.5 m by 4.0 m, has a low oak coffee table, a sage-green sofa against the far wall, a slim bookcase, and a framed geometric print.",
+      "visual_description_sentence": "The coffee table holds one matte orange solid ball 0.10 m in diameter and one small yellow opaque duck-shaped toy with a broad stable base, 0.14 m long.",
+      "initial_state": "Initially, the ball is on the left and the toy stands on the right, 0.35 m apart along a clear strip of tabletop.",
+      "scene_prompt": "A warm modern family living room, 4.5 m by 4.0 m, has a low oak coffee table, a sage-green sofa against the far wall, a slim bookcase, and a framed geometric print. The coffee table holds one matte orange solid ball 0.10 m in diameter and one small yellow opaque duck-shaped toy with a broad stable base, 0.14 m long. Initially, the ball is on the left and the toy stands on the right, 0.35 m apart along a clear strip of tabletop. Soft diffuse illumination and matte materials keep the task objects distinct while preserving the furnished room background.",
+      "instruction": "Roll the orange ball toward the yellow toy.",
+      "execution": {
+        "setup": "ball and target at rest, horizontally separated",
+        "trigger": "set ball linear velocity along the target direction",
+        "track": [
+          "orange_ball"
+        ],
+        "execution_status": "existing_collision_operator_new_assets_required"
+      },
+      "generation_status": "prompt_ready_not_generated",
+      "backend": "pybullet",
+      "scenecode_contract": "4 sentences; room and initial objects only; no dynamics, camera timing, model, or physics coefficient in scene prompt"
+    },
+    {
+      "id": "ramp_roll",
+      "title_zh": "球体沿斜坡滚动",
+      "source": {
+        "benchmark": "Physics-IQ",
+        "locator": "0019 / ball-ramp",
+        "url": "https://github.com/google-deepmind/physics-IQ-benchmark/blob/main/descriptions/descriptions_original.csv",
+        "relationship": "phenomenon-inspired original adaptation, not an official benchmark prompt"
+      },
+      "scene_brief": "A tidy university teaching laboratory, 5.0 m by 4.0 m, contains an ash-wood workbench, a metal storage cabinet along the far wall, a pinboard, and a high side window.",
+      "visual_description_sentence": "On the workbench are one single-piece matte wood wedge with a flat sloping top, 0.50 m long, 0.18 m wide and 0.15 m high, and one solid teal sphere 0.08 m in diameter.",
+      "initial_state": "Initially, the wedge rests with its low end toward the clear center of the bench and the sphere rests separately beside its high end.",
+      "scene_prompt": "A tidy university teaching laboratory, 5.0 m by 4.0 m, contains an ash-wood workbench, a metal storage cabinet along the far wall, a pinboard, and a high side window. On the workbench are one single-piece matte wood wedge with a flat sloping top, 0.50 m long, 0.18 m wide and 0.15 m high, and one solid teal sphere 0.08 m in diameter. Initially, the wedge rests with its low end toward the clear center of the bench and the sphere rests separately beside its high end. Soft diffuse illumination and matte materials keep the task objects distinct while preserving the furnished room background.",
+      "instruction": "Release the teal sphere at the upper end of the slope.",
+      "execution": {
+        "setup": "PyBullet positions sphere on the high end before release",
+        "trigger": "gravity only",
+        "track": [
+          "teal_sphere"
+        ],
+        "execution_status": "ramp_asset_binding_and_release_required"
+      },
+      "generation_status": "prompt_ready_not_generated",
+      "backend": "pybullet",
+      "scenecode_contract": "4 sentences; room and initial objects only; no dynamics, camera timing, model, or physics coefficient in scene prompt",
+      "prototype": {
+        "status": "pybullet_reference_and_cae_frontend_completed",
+        "run_root": "/root/autodl-tmp/worldolympiad2/outputs/physical_showcase_20260908_v3",
+        "apparatus_source": "procedural_fixture",
+        "scene_source": "existing_scenecode_room",
+        "generated_asset_binding": "pending_api_quota",
+        "variants": [
+          "runout stop added for ramp",
+          "red initiator in collision chain"
+        ]
+      }
+    },
+    {
+      "id": "domino_chain",
+      "title_zh": "多米诺连锁倾倒",
+      "source": {
+        "benchmark": "Physics-IQ",
+        "locator": "0034 / block-domino",
+        "url": "https://github.com/google-deepmind/physics-IQ-benchmark/blob/main/descriptions/descriptions_original.csv",
+        "relationship": "phenomenon-inspired original adaptation, not an official benchmark prompt"
+      },
+      "scene_brief": "A contemporary design classroom, 5.0 m by 4.0 m, has a long matte maple table, a low closed sideboard, a wall-mounted pinboard, and two simple ceiling pendants.",
+      "visual_description_sentence": "Six separate solid wooden rectangular blocks stand on the tabletop, each 0.035 m thick, 0.07 m wide and 0.16 m tall, alternating red and blue.",
+      "initial_state": "Initially, all six blocks stand upright in one straight row with 0.06 m gaps between neighboring blocks and clear space beyond the final block.",
+      "scene_prompt": "A contemporary design classroom, 5.0 m by 4.0 m, has a long matte maple table, a low closed sideboard, a wall-mounted pinboard, and two simple ceiling pendants. Six separate solid wooden rectangular blocks stand on the tabletop, each 0.035 m thick, 0.07 m wide and 0.16 m tall, alternating red and blue. Initially, all six blocks stand upright in one straight row with 0.06 m gaps between neighboring blocks and clear space beyond the final block. Soft diffuse illumination and matte materials keep the task objects distinct while preserving the furnished room background.",
+      "instruction": "Tip the first block toward the remaining row.",
+      "execution": {
+        "setup": "upright row, distinct instance IDs",
+        "trigger": "brief force on first block",
+        "track": [
+          "block_1",
+          "block_3",
+          "block_6"
+        ],
+        "execution_status": "multi_object_tracking_binding_required"
+      },
+      "generation_status": "prompt_ready_not_generated",
+      "backend": "pybullet",
+      "scenecode_contract": "4 sentences; room and initial objects only; no dynamics, camera timing, model, or physics coefficient in scene prompt",
+      "prototype": {
+        "status": "pybullet_reference_and_cae_frontend_completed",
+        "run_root": "/root/autodl-tmp/worldolympiad2/outputs/physical_showcase_20260908_v3",
+        "apparatus_source": "procedural_fixture",
+        "scene_source": "existing_scenecode_room",
+        "generated_asset_binding": "pending_api_quota",
+        "variants": [
+          "runout stop added for ramp",
+          "red initiator in collision chain"
+        ]
+      }
+    },
+    {
+      "id": "shallow_containment",
+      "title_zh": "落入浅盘",
+      "source": {
+        "benchmark": "Physics-IQ",
+        "locator": "0013 / ball-in-basket",
+        "url": "https://github.com/google-deepmind/physics-IQ-benchmark/blob/main/descriptions/descriptions_original.csv",
+        "relationship": "phenomenon-inspired original adaptation, not an official benchmark prompt"
+      },
+      "scene_brief": "A sunlit home study, 4.2 m by 3.8 m, has a birch desk, a low bookshelf against the back wall, a fabric reading chair away from the desk, and a small framed print.",
+      "visual_description_sentence": "The desk holds one matte purple solid sphere 0.08 m in diameter and one shallow cream-colored rectangular tray, 0.30 m long, 0.24 m wide and 0.04 m high, with a bottom, four low sides and an open empty interior.",
+      "initial_state": "Initially, the sphere rests beside the empty tray with a 0.20 m gap, and the tray interior is unobstructed.",
+      "scene_prompt": "A sunlit home study, 4.2 m by 3.8 m, has a birch desk, a low bookshelf against the back wall, a fabric reading chair away from the desk, and a small framed print. The desk holds one matte purple solid sphere 0.08 m in diameter and one shallow cream-colored rectangular tray, 0.30 m long, 0.24 m wide and 0.04 m high, with a bottom, four low sides and an open empty interior. Initially, the sphere rests beside the empty tray with a 0.20 m gap, and the tray interior is unobstructed. Soft diffuse illumination and matte materials keep the task objects distinct while preserving the furnished room background.",
+      "instruction": "Release the purple sphere above the center of the tray.",
+      "execution": {
+        "setup": "PyBullet moves sphere above tray; keep tray walls low for visibility",
+        "trigger": "release from rest",
+        "track": [
+          "purple_sphere"
+        ],
+        "execution_status": "containment_asset_and_release_binding_required"
+      },
+      "generation_status": "prompt_ready_not_generated",
+      "backend": "pybullet",
+      "scenecode_contract": "4 sentences; room and initial objects only; no dynamics, camera timing, model, or physics coefficient in scene prompt",
+      "prototype": {
+        "status": "pybullet_reference_and_cae_frontend_completed",
+        "run_root": "/root/autodl-tmp/worldolympiad2/outputs/physical_showcase_20260908_v3",
+        "apparatus_source": "procedural_fixture",
+        "scene_source": "existing_scenecode_room",
+        "generated_asset_binding": "pending_api_quota",
+        "variants": [
+          "runout stop added for ramp",
+          "red initiator in collision chain"
+        ]
+      }
+    },
+    {
+      "id": "collision_chain",
+      "title_zh": "多物体碰撞传递",
+      "source": {
+        "benchmark": "Physics-IQ",
+        "locator": "0028 / ball-train",
+        "url": "https://github.com/google-deepmind/physics-IQ-benchmark/blob/main/descriptions/descriptions_original.csv",
+        "relationship": "phenomenon-inspired original adaptation, not an official benchmark prompt"
+      },
+      "scene_brief": "A clean maker studio, 4.8 m by 4.0 m, contains a broad pale-wood worktable, a closed tool cabinet against the far wall, a simple wall clock, and a diffuse ceiling panel.",
+      "visual_description_sentence": "Three separate matte solid spheres, one orange, one blue and one yellow, each 0.09 m in diameter, rest on the table.",
+      "initial_state": "Initially, the blue and yellow spheres are near one another along the same straight line, while the orange sphere sits 0.30 m to their left with a clear path toward them.",
+      "scene_prompt": "A clean maker studio, 4.8 m by 4.0 m, contains a broad pale-wood worktable, a closed tool cabinet against the far wall, a simple wall clock, and a diffuse ceiling panel. Three separate matte solid spheres, one orange, one blue and one yellow, each 0.09 m in diameter, rest on the table. Initially, the blue and yellow spheres are near one another along the same straight line, while the orange sphere sits 0.30 m to their left with a clear path toward them. Soft diffuse illumination and matte materials keep the task objects distinct while preserving the furnished room background.",
+      "instruction": "Roll the orange sphere toward the other two spheres.",
+      "execution": {
+        "setup": "three dynamic rigid bodies, distinct object IDs",
+        "trigger": "initial velocity on orange sphere",
+        "track": [
+          "orange_sphere",
+          "blue_sphere",
+          "yellow_sphere"
+        ],
+        "execution_status": "multi_body_collision_and_tracking_required"
+      },
+      "generation_status": "prompt_ready_not_generated",
+      "backend": "pybullet",
+      "scenecode_contract": "4 sentences; room and initial objects only; no dynamics, camera timing, model, or physics coefficient in scene prompt",
+      "prototype": {
+        "status": "pybullet_reference_and_cae_frontend_completed",
+        "run_root": "/root/autodl-tmp/worldolympiad2/outputs/physical_showcase_20260908_v3",
+        "apparatus_source": "procedural_fixture",
+        "scene_source": "existing_scenecode_room",
+        "generated_asset_binding": "pending_api_quota",
+        "variants": [
+          "runout stop added for ramp",
+          "red initiator in collision chain"
+        ]
+      }
+    },
+    {
+      "id": "elastic_rebound",
+      "title_zh": "弹性回弹",
+      "source": {
+        "benchmark": "PhyGenBench",
+        "locator": "Elasticity / rubber ball",
+        "url": "https://github.com/PhyGenBench/PhyGenBench/blob/main/PhyGenBench/prompts.json",
+        "relationship": "phenomenon-inspired original adaptation, not an official benchmark prompt"
+      },
+      "scene_brief": "A bright indoor recreation room, 4.8 m by 4.2 m, has a light wooden demonstration table, a low bench along the rear wall, a closed equipment cabinet, and two warm ceiling lights.",
+      "visual_description_sentence": "One opaque single-piece coral-colored rubber sphere 0.12 m in diameter rests on the smooth central tabletop.",
+      "initial_state": "Initially, the sphere is still, with the surrounding tabletop clear and the background furniture behind the work area.",
+      "scene_prompt": "A bright indoor recreation room, 4.8 m by 4.2 m, has a light wooden demonstration table, a low bench along the rear wall, a closed equipment cabinet, and two warm ceiling lights. One opaque single-piece coral-colored rubber sphere 0.12 m in diameter rests on the smooth central tabletop. Initially, the sphere is still, with the surrounding tabletop clear and the background furniture behind the work area. Soft diffuse illumination and matte materials keep the task objects distinct while preserving the furnished room background.",
+      "instruction": "Release the coral sphere above the tabletop.",
+      "execution": {
+        "setup": "place sphere at a recorded release height",
+        "trigger": "gravity; explicit contact restitution in physics config",
+        "track": [
+          "coral_sphere"
+        ],
+        "execution_status": "existing_rebound_operator_sphere_asset_required"
+      },
+      "generation_status": "prompt_ready_not_generated",
+      "backend": "pybullet",
+      "scenecode_contract": "4 sentences; room and initial objects only; no dynamics, camera timing, model, or physics coefficient in scene prompt"
+    },
+    {
+      "id": "friction_slide",
+      "title_zh": "摩擦减速",
+      "source": {
+        "benchmark": "Physion",
+        "locator": "Sliding scenario",
+        "url": "https://physion-benchmark.github.io/",
+        "relationship": "phenomenon-inspired original adaptation, not an official benchmark prompt"
+      },
+      "scene_brief": "A warm materials teaching room, 4.6 m by 4.0 m, contains a matte oak workbench, a rear storage sideboard, an acoustic wall panel, and a side window with a pale blind.",
+      "visual_description_sentence": "One solid dark-blue wooden cuboid 0.16 m long, 0.10 m wide and 0.05 m high rests broad-face-down on the light workbench.",
+      "initial_state": "Initially, the cuboid is near the left side, with a clear horizontal path across the middle of the bench.",
+      "scene_prompt": "A warm materials teaching room, 4.6 m by 4.0 m, contains a matte oak workbench, a rear storage sideboard, an acoustic wall panel, and a side window with a pale blind. One solid dark-blue wooden cuboid 0.16 m long, 0.10 m wide and 0.05 m high rests broad-face-down on the light workbench. Initially, the cuboid is near the left side, with a clear horizontal path across the middle of the bench. Soft diffuse illumination and matte materials keep the task objects distinct while preserving the furnished room background.",
+      "instruction": "Slide the dark-blue block across the workbench.",
+      "execution": {
+        "setup": "block at rest on flat support",
+        "trigger": "specified initial velocity; friction stored numerically",
+        "track": [
+          "blue_block"
+        ],
+        "execution_status": "existing_sliding_operator_new_asset_required"
+      },
+      "generation_status": "prompt_ready_not_generated",
+      "backend": "pybullet",
+      "scenecode_contract": "4 sentences; room and initial objects only; no dynamics, camera timing, model, or physics coefficient in scene prompt"
+    },
+    {
+      "id": "support_overhang",
+      "title_zh": "支撑边界与倾倒",
+      "source": {
+        "benchmark": "Physion",
+        "locator": "Support scenario",
+        "url": "https://physion-benchmark.github.io/",
+        "relationship": "phenomenon-inspired original adaptation, not an official benchmark prompt"
+      },
+      "scene_brief": "A small architecture workshop, 4.8 m by 4.0 m, has a central birch worktable, a closed flat-file cabinet along the far wall, a framed plan without legible text, and a soft overhead light.",
+      "visual_description_sentence": "One solid terracotta-colored rectangular block 0.24 m long, 0.10 m wide and 0.08 m high rests horizontally on the tabletop.",
+      "initial_state": "Initially, the block is fully supported near the front edge, with its long axis perpendicular to that edge and the adjacent floor clear.",
+      "scene_prompt": "A small architecture workshop, 4.8 m by 4.0 m, has a central birch worktable, a closed flat-file cabinet along the far wall, a framed plan without legible text, and a soft overhead light. One solid terracotta-colored rectangular block 0.24 m long, 0.10 m wide and 0.08 m high rests horizontally on the tabletop. Initially, the block is fully supported near the front edge, with its long axis perpendicular to that edge and the adjacent floor clear. Soft diffuse illumination and matte materials keep the task objects distinct while preserving the furnished room background.",
+      "instruction": "Move the block outward beyond its support boundary.",
+      "execution": {
+        "setup": "PyBullet sets the chosen overhang before free dynamics",
+        "trigger": "release at specified support margin",
+        "track": [
+          "terracotta_block"
+        ],
+        "execution_status": "overhang_initialization_required"
+      },
+      "generation_status": "prompt_ready_not_generated",
+      "backend": "pybullet",
+      "scenecode_contract": "4 sentences; room and initial objects only; no dynamics, camera timing, model, or physics coefficient in scene prompt"
+    },
+    {
+      "id": "stack_collapse",
+      "title_zh": "叠放结构倒塌",
+      "source": {
+        "benchmark": "Physion",
+        "locator": "Stability / stacked objects",
+        "url": "https://physion-benchmark.github.io/",
+        "relationship": "phenomenon-inspired original adaptation, not an official benchmark prompt"
+      },
+      "scene_brief": "A contemporary learning lounge, 4.8 m by 4.0 m, contains a central maple table, a low bookcase along the far wall, a muted green chair beside it, and a framed abstract print.",
+      "visual_description_sentence": "Three separate matte solid cubes, one red, one green and one yellow, each 0.10 m on a side, form a straight upright stack on the tabletop.",
+      "initial_state": "Initially, the red cube supports the green cube and the green cube supports the yellow cube, with the stack stable and open tabletop around it.",
+      "scene_prompt": "A contemporary learning lounge, 4.8 m by 4.0 m, contains a central maple table, a low bookcase along the far wall, a muted green chair beside it, and a framed abstract print. Three separate matte solid cubes, one red, one green and one yellow, each 0.10 m on a side, form a straight upright stack on the tabletop. Initially, the red cube supports the green cube and the green cube supports the yellow cube, with the stack stable and open tabletop around it. Soft diffuse illumination and matte materials keep the task objects distinct while preserving the furnished room background.",
+      "instruction": "Push the lower cube sideways.",
+      "execution": {
+        "setup": "settled three-body stack",
+        "trigger": "short lateral force on the lower cube",
+        "track": [
+          "yellow_cube"
+        ],
+        "execution_status": "multi_body_stack_initialization_required"
+      },
+      "generation_status": "prompt_ready_not_generated",
+      "backend": "pybullet",
+      "scenecode_contract": "4 sentences; room and initial objects only; no dynamics, camera timing, model, or physics coefficient in scene prompt"
+    }
+  ]
+}

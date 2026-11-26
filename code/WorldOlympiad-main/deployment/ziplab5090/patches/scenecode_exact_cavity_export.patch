@@ -1,0 +1,13 @@
+--- a/scenecode/agent_utils/asset_manager.py
++++ b/scenecode/agent_utils/asset_manager.py
+@@ -2532,6 +2532,10 @@
+             output_path=sdf_path,
+             asset_name=config.short_name,
+         )
++        # Publish the same certified cavity geometry consumed by the reference
++        # and native model simulators, rather than fixing only a private cache.
++        from wo.sim.prismatic_collision import preserve_prismatic_cavities
++        preserve_prismatic_cavities(sdf_path, sdf_path)
+ 
+         # Extract bounding box from scaled mesh.
+         bounds = mesh.bounds  # In Y-up coordinates (GLTF native format).

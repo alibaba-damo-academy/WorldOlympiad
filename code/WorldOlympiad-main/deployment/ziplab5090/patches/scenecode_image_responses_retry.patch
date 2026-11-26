@@ -1,0 +1,45 @@
+--- a/scenecode/agent_utils/openai_images_fallback.py	2026-10-05 15:57:06.802949255 +0800
++++ b/scenecode/agent_utils/openai_images_fallback.py	2026-10-05 15:57:06.826948448 +0800
+@@ -27,6 +27,7 @@
+ import json
+ import logging
+ import os
++import time
+ import urllib.error
+ import urllib.request
+ 
+@@ -184,14 +185,26 @@
+                 "User-Agent": USER_AGENT,
+             },
+         )
+-        try:
+-            with urllib.request.urlopen(request, timeout=self._timeout) as response:
+-                return json.loads(response.read().decode("utf-8"))
+-        except urllib.error.HTTPError as exc:
+-            detail = exc.read().decode("utf-8", "replace")[:400]
+-            raise RuntimeError(
+-                f"Responses image generation failed with HTTP {exc.code}: {detail}"
+-            ) from exc
++        # The gateway intermittently answers 5xx/429 or drops the connection; one such
++        # blip must not discard a 30-70 minute scene, so retry with backoff.
++        attempts = max(1, int(os.environ.get("SCENECODE_IMAGE_RETRIES", "6")))
++        last: Exception | None = None
++        for attempt in range(attempts):
++            try:
++                with urllib.request.urlopen(request, timeout=self._timeout) as response:
++                    return json.loads(response.read().decode("utf-8"))
++            except urllib.error.HTTPError as exc:
++                detail = exc.read().decode("utf-8", "replace")[:400]
++                last = RuntimeError(
++                    f"Responses image generation failed with HTTP {exc.code}: {detail}"
++                )
++                if exc.code not in (408, 409, 429, 500, 502, 503, 504):
++                    raise last from exc
++            except (urllib.error.URLError, TimeoutError, ConnectionError) as exc:
++                last = RuntimeError(f"Responses image generation transport error: {exc}")
++            if attempt + 1 < attempts:
++                time.sleep(min(60.0, 5.0 * 2 ** attempt))
++        raise last
+ 
+     def _tool(self, size: Any, quality: Any, output_format: Any, background: Any, moderation: Any) -> dict[str, Any]:
+         tool: dict[str, Any] = {"type": "image_generation"}

@@ -1,0 +1,13 @@
+--- a/scenecode/prompts/data/asset_router/asset_validation.yaml
++++ b/scenecode/prompts/data/asset_router/asset_validation.yaml
+@@ -130,5 +130,10 @@
+   - ACCEPT if the COLOR FAMILY is approximately plausible, but also ACCEPT neutral/white/gray
+     surfaces when a specific material was requested (e.g., "oak" appearing as plain white)
++  - Validation studio lighting can wash saturated colors toward white. If a requested red,
++    green, yellow, or blue object appears as a pale tint in the correct color family, ACCEPT
++    it when object type, geometry, and assembly coherence are correct.
++  - Do not reject an otherwise correct object solely because color saturation or brightness
++    is weaker than adjectives such as "vivid" or "contrasting".
+   - DO NOT reject because material texture is missing or unrealistic
+   - DO NOT reject because "oak wood" appears plain/white instead of showing wood grain
+   - DO NOT reject because "leather" appears smooth instead of showing leather texture

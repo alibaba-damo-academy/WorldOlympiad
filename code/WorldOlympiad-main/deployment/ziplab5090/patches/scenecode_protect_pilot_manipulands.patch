@@ -1,0 +1,43 @@
+--- a/scenecode/manipuland_agents/tools/manipuland_tools.py
++++ b/scenecode/manipuland_agents/tools/manipuland_tools.py
+@@ -1,6 +1,7 @@
+ import json
+ import logging
+ import math
++import os
+ import time
+ 
+ from dataclasses import asdict
+@@ -1572,6 +1573,32 @@
+                     object_id=object_id,
+                 ).to_json()
+ 
++            # The WorldOlympiad pilot names every event participant explicitly.
++            # SceneCode's generic sparse-layout policy otherwise allows the agent
++            # to delete required actors merely to resolve a bad initial placement.
++            # Preserve those assets so the deterministic Event Compiler can
++            # reposition them from measured support geometry downstream.
++            if os.environ.get("SCENECODE_PROTECT_PILOT_MANIPULANDS", "1") == "1":
++                protected_aliases = (
++                    "rubber_ball",
++                    "ball",
++                    "mug",
++                    "cup",
++                    "slider_block",
++                    "slider",
++                    "stack_block",
++                    "toy_cube",
++                    "cube_block",
++                )
++                identity = f"{object_id} {obj.name} {obj.description}".lower()
++                if any(alias in identity for alias in protected_aliases):
++                    return ManipulandOperationResult(
++                        success=False,
++                        message=(f"Refused to remove required pilot manipuland '{obj.name}' "
++                                 f"({object_id}); move, rescale, or regenerate it instead."),
++                        object_id=object_id,
++                    ).to_json()
++
+             # Remove from scene.
+             success = self.scene.remove_object(unique_id)
+ 

@@ -1,0 +1,24 @@
+name: "artwork_image"
+template_variables: ["artwork_description"]
+prompt: |
+  Generate: {{ artwork_description }}
+
+  MANDATORY - READ CAREFULLY:
+  The generated image will be PRINTED DIRECTLY onto a physical surface.
+  There is NO wall behind it. The image IS the surface.
+
+  Therefore:
+  - Content must touch ALL 4 EDGES (top, bottom, left, right)
+  - ZERO pixels of background color (no white, gray, beige, or any solid color)
+  - If a FRAME is mentioned: crop so frame edges ARE the image edges
+  - Think of this as a TEXTURE that will be applied to a 3D surface
+
+  VISUAL COMPOSITION:
+  - Flat frontal view only (no angle, no perspective, no 3D look)
+  - No shadows, no depth effects
+  - Fill every single pixel with meaningful content
+
+  COMMON MISTAKE TO AVOID:
+  Do NOT generate "a painting hanging on a wall" or "framed art with wall visible".
+  Instead generate ONLY the painting itself, cropped to fill the entire canvas.
+  The frame (if requested) should be CROPPED so its outer edges touch image edges.

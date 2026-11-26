@@ -1,0 +1,939 @@
+{
+  "schema_version": 1,
+  "name": "Depth-Anything-3",
+  "source_commit": "3d835ec1a5802d64a8b8b15f817a1ab54809bfe4",
+  "tree_sha256": "d6115bd6ec3fbb06f52a49dbea5b1c665bb2af56c3a631f776ad5c6b9c9ce45e",
+  "entries": [
+    {
+      "path": ".flake8",
+      "type": "file",
+      "mode": 420,
+      "size": 60,
+      "sha256": "bcde6fffa4335e6e0154e0f2118000d6815534985636deaac2c08f7106c58130"
+    },
+    {
+      "path": ".gitattributes",
+      "type": "file",
+      "mode": 420,
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": ".gitignore",
+      "type": "file",
+      "mode": 420,
+      "size": 382,
+      "sha256": "08dfada8b71ccc97cf2766f66f72f0cea41f6d6de70d5a8cacec6802e400d09a"
+    },
+    {
+      "path": ".gitmodules",
+      "type": "file",
+      "mode": 420,
+      "size": 128,
+      "sha256": "565dcf077a1a5dbc2789dbc98ad26e68c420f44a215ce5568d2c33132c9327e8"
+    },
+    {
+      "path": ".pre-commit-config.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 1563,
+      "sha256": "2726cdfda1f6198bf2ebdc5ec5ced4a0b8ae1dfcda22ea3265c6579c6e22c532"
+    },
+    {
+      "path": "LICENSE",
+      "type": "file",
+      "mode": 420,
+      "size": 11355,
+      "sha256": "78446e29c48900cda82620a8df183cca61f0a595e05a49d0401a5fd604dd1870"
+    },
+    {
+      "path": "README.md",
+      "type": "file",
+      "mode": 420,
+      "size": 18759,
+      "sha256": "91679cf6df290b6af439c85f29a2440ce10353a1063ae4f599e9c734ec3096a8"
+    },
+    {
+      "path": "assets/examples/SOH/000.png",
+      "type": "file",
+      "mode": 420,
+      "size": 1091690,
+      "sha256": "ea78c3b872b1e8b27de48cadf1d4a692cd42ddf5f72fcab78e2be2937935fb79"
+    },
+    {
+      "path": "assets/examples/SOH/010.png",
+      "type": "file",
+      "mode": 420,
+      "size": 1134666,
+      "sha256": "c91a69d4e050e75e3760fbacda18a452b9abcf3065e6d6bd940b4a99d48f7982"
+    },
+    {
+      "path": "assets/examples/robot_unitree.mp4",
+      "type": "file",
+      "mode": 420,
+      "size": 1964268,
+      "sha256": "99bc274f7613a665c6135085fe01691ebfaa9033101319071f37c550ab21d1ea"
+    },
+    {
+      "path": "assets/images/da3_radar.png",
+      "type": "file",
+      "mode": 420,
+      "size": 214877,
+      "sha256": "d85aa2a89c1959e31ea627474360720b94a393126e8102399ce4dbc355d81d47"
+    },
+    {
+      "path": "assets/images/da3_teaser.png",
+      "type": "file",
+      "mode": 420,
+      "size": 132,
+      "sha256": "afb42863bc403be08df3a0d1dccdbf93ca889b1c871a63f15342809c7eb91120"
+    },
+    {
+      "path": "assets/images/demo320-2.gif",
+      "type": "file",
+      "mode": 420,
+      "size": 18815873,
+      "sha256": "dc02d85064d875f7679c70b7156e7b5c7eef872895dbe45a241400c6f99e22f9"
+    },
+    {
+      "path": "da3_streaming/README.md",
+      "type": "file",
+      "mode": 420,
+      "size": 8024,
+      "sha256": "ace54bed87447348082432e84889acb79b78f1fdb020aef277e87d96435f325a"
+    },
+    {
+      "path": "da3_streaming/configs/base_config.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 1595,
+      "sha256": "7a565da143b35032d8d2f9dcbb3120743d75b7d154fac224435b8aa9938375d5"
+    },
+    {
+      "path": "da3_streaming/configs/kitti.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 1586,
+      "sha256": "17b514dbe21505de38e5070e92d1867cda75a278e0fd7a8ca2e924d617f53e88"
+    },
+    {
+      "path": "da3_streaming/configs/tum.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 1595,
+      "sha256": "7a565da143b35032d8d2f9dcbb3120743d75b7d154fac224435b8aa9938375d5"
+    },
+    {
+      "path": "da3_streaming/da3_streaming.py",
+      "type": "file",
+      "mode": 420,
+      "size": 35237,
+      "sha256": "12ab85f3a5c08952b81866778c3488bc742c97a22ceb3a2d9447b486f5c735f0"
+    },
+    {
+      "path": "da3_streaming/fastloop/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 671,
+      "sha256": "74c337ef4321a03ed17055dd649ce0108e47b76387013899790d2611b178984e"
+    },
+    {
+      "path": "da3_streaming/fastloop/solve.cpp",
+      "type": "file",
+      "mode": 420,
+      "size": 3501,
+      "sha256": "d4b2ff07b47facdab2f3f47078c7b9f342a5b2d12a554ec04aa0738947b54aff"
+    },
+    {
+      "path": "da3_streaming/fastloop/solve_python.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2947,
+      "sha256": "36ae46540daeb99693135121ff63000da1407b95b3fedf0f54628633e4022ec8"
+    },
+    {
+      "path": "da3_streaming/loop_utils/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 671,
+      "sha256": "74c337ef4321a03ed17055dd649ce0108e47b76387013899790d2611b178984e"
+    },
+    {
+      "path": "da3_streaming/loop_utils/alignment_torch.py",
+      "type": "file",
+      "mode": 420,
+      "size": 13130,
+      "sha256": "d412e8ca19a4a36344a071265a13251cf78e770b172f55bc3203f5e202cdacc8"
+    },
+    {
+      "path": "da3_streaming/loop_utils/alignment_triton.py",
+      "type": "file",
+      "mode": 420,
+      "size": 16948,
+      "sha256": "79a82c42dcccb5dd135bddab0d609f5c941ce88a41a3ca72512aaa39499d5c18"
+    },
+    {
+      "path": "da3_streaming/loop_utils/config_utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1936,
+      "sha256": "7a9c787c80633d8cbc2026df96ae052acefa474f52d6fbfe29adfcdf94347ab5"
+    },
+    {
+      "path": "da3_streaming/loop_utils/logging_utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 967,
+      "sha256": "e81b6d051b51d795c74cecb7b894e4840f76ee29cf9f0a6542a2f2eebf840c2c"
+    },
+    {
+      "path": "da3_streaming/loop_utils/loop_detector.py",
+      "type": "file",
+      "mode": 420,
+      "size": 13341,
+      "sha256": "8bfef73dc3a8481972c7ca68cec3ce8d4675931c99734029fdeef7a570470ac8"
+    },
+    {
+      "path": "da3_streaming/loop_utils/loop_refinement.py",
+      "type": "file",
+      "mode": 420,
+      "size": 7996,
+      "sha256": "f6040d20163feb0208968d1793532ccbfcc20cb9e7e3886cd4ff4b65c520842b"
+    },
+    {
+      "path": "da3_streaming/loop_utils/sim3loop.py",
+      "type": "file",
+      "mode": 420,
+      "size": 14330,
+      "sha256": "a4dc32aa71e787470e98897476fc6f7e75a06d96d016cdbdb8e8ff149c7bc710"
+    },
+    {
+      "path": "da3_streaming/loop_utils/sim3utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 40907,
+      "sha256": "b16912754f07d511d71b1c2aea121d2b3e6581ce33789e70b42070054c544ac2"
+    },
+    {
+      "path": "da3_streaming/npz_output_process.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4578,
+      "sha256": "d0251afea3c763aeac65a811dde442336ce35c11b19a42f6cd276c087ca33dfa"
+    },
+    {
+      "path": "da3_streaming/requirements.txt",
+      "type": "file",
+      "mode": 420,
+      "size": 61,
+      "sha256": "b0f27b78ab7afa312b8ca8a8ddcc546334d3bba60c84b2660ce29d2c10ce6c55"
+    },
+    {
+      "path": "da3_streaming/scripts/download_weights.sh",
+      "type": "file",
+      "mode": 420,
+      "size": 631,
+      "sha256": "725b27e804b1e39267b38bf25c07b707aab8afd1d850acb06c3c7f08249df1f5"
+    },
+    {
+      "path": "docs/API.md",
+      "type": "file",
+      "mode": 420,
+      "size": 19712,
+      "sha256": "5fbe67842cd7e33dec8cab191a6149bfadfeef72f1435747029619d8f28e100f"
+    },
+    {
+      "path": "docs/BENCHMARK.md",
+      "type": "file",
+      "mode": 420,
+      "size": 15621,
+      "sha256": "6c372ddb0dc292183003065b371b97e67d3bdbbcd8b26d902ea0fe6f6be41907"
+    },
+    {
+      "path": "docs/CLI.md",
+      "type": "file",
+      "mode": 420,
+      "size": 24041,
+      "sha256": "13ad4ce49876e52f97aa7a459ca84c79b3c0bdf4de1322db10bd6f7a5eef1052"
+    },
+    {
+      "path": "docs/funcs/ref_view_strategy.md",
+      "type": "file",
+      "mode": 420,
+      "size": 6639,
+      "sha256": "c5eb10244af27f353fd6012665c3a8d9ee512f7a1d120dd5190bf0b289f0ec6a"
+    },
+    {
+      "path": "notebooks/da3.ipynb",
+      "type": "file",
+      "mode": 420,
+      "size": 650520,
+      "sha256": "6615a09682421a4950bf379585fb5dab10060e6b8bd094b3c84a8494cb1fe35f"
+    },
+    {
+      "path": "pyproject.toml",
+      "type": "file",
+      "mode": 420,
+      "size": 2039,
+      "sha256": "3e178d62b8ca674ee4685a5c2a89ab8363e204b9af24d7313bdb8e3c03926544"
+    },
+    {
+      "path": "requirements.txt",
+      "type": "file",
+      "mode": 420,
+      "size": 214,
+      "sha256": "0809fc8cf0bfe2a8c79b7e525b96bedef71e5866a654c0cc915c572d20c8eba8"
+    },
+    {
+      "path": "src/depth_anything_3/api.py",
+      "type": "file",
+      "mode": 420,
+      "size": 17986,
+      "sha256": "042ae8f6bfd1e5610100a585ebb00f8cbc3320f9aa9e03a07530fd4deda8d2d8"
+    },
+    {
+      "path": "src/depth_anything_3/app/css_and_html.py",
+      "type": "file",
+      "mode": 420,
+      "size": 18836,
+      "sha256": "50da0c868d84df65857672f98275db38db815a2531cc0fd430f01226d7096251"
+    },
+    {
+      "path": "src/depth_anything_3/app/gradio_app.py",
+      "type": "file",
+      "mode": 420,
+      "size": 26755,
+      "sha256": "3e71f4775a6a904259a8d60d4810b31630d944faa8405de89cc9d93b7053f8f8"
+    },
+    {
+      "path": "src/depth_anything_3/app/modules/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1474,
+      "sha256": "9566773f49b2ac25c6993a55c5b06907d5e313e2befc520e036d07c6cdc74a07"
+    },
+    {
+      "path": "src/depth_anything_3/app/modules/event_handlers.py",
+      "type": "file",
+      "mode": 420,
+      "size": 23078,
+      "sha256": "840bf3e53968e84b92f6d44f1d5867d3da33289374695794d7cc5350f393c321"
+    },
+    {
+      "path": "src/depth_anything_3/app/modules/file_handlers.py",
+      "type": "file",
+      "mode": 420,
+      "size": 12782,
+      "sha256": "c928aa405e19bb6748d56e57ee2556fb2ff28068670f39e248a0016276fbaa18"
+    },
+    {
+      "path": "src/depth_anything_3/app/modules/model_inference.py",
+      "type": "file",
+      "mode": 420,
+      "size": 9638,
+      "sha256": "f0873fddfd3f946ceb587ef18b8734d1a81cf8737de888b73c36635c65cb9295"
+    },
+    {
+      "path": "src/depth_anything_3/app/modules/ui_components.py",
+      "type": "file",
+      "mode": 420,
+      "size": 16964,
+      "sha256": "fa499c81c48b4bad07d2ae638cee02e638bdab42a7bf9e766e6259fa5034e997"
+    },
+    {
+      "path": "src/depth_anything_3/app/modules/utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6824,
+      "sha256": "c3dc496a7eb07c5b288adbaf94d16a36a5e1ed5cfbd5818bec8910b60cff877d"
+    },
+    {
+      "path": "src/depth_anything_3/app/modules/visualization.py",
+      "type": "file",
+      "mode": 420,
+      "size": 17125,
+      "sha256": "a4c3a1b8dac78a25c5b3229d0a17ea6f68c15e2646647a34191a3bd7d7c94efe"
+    },
+    {
+      "path": "src/depth_anything_3/bench/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1565,
+      "sha256": "ab214a1a879c9d11e38de148a0fa6bf73b229ad2b8c7a06b66dda47858c6bf99"
+    },
+    {
+      "path": "src/depth_anything_3/bench/configs/eval_bench.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 3106,
+      "sha256": "3bc5fa85fe1aa89b2083d176f5baa3c5373a74d7b5e4bcaad0d04c75543f0463"
+    },
+    {
+      "path": "src/depth_anything_3/bench/dataset.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4362,
+      "sha256": "4c4ba9ada70b10ffa0d48b0c1e6a6cacef2f774caa2b4069dfa0df447a3d7415"
+    },
+    {
+      "path": "src/depth_anything_3/bench/datasets/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 777,
+      "sha256": "cfc476c45a6457c9a3431d8f31a095ee5aec0f7c9b3ed10b6427780c574695a3"
+    },
+    {
+      "path": "src/depth_anything_3/bench/datasets/dtu.py",
+      "type": "file",
+      "mode": 420,
+      "size": 25775,
+      "sha256": "d894c323bf32e91c1a429ad085100e4c9dd956ef2fcd47a4225bec54b10b5071"
+    },
+    {
+      "path": "src/depth_anything_3/bench/datasets/dtu64.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6105,
+      "sha256": "af9432a8b79de5f680e3ca516fe48e75c7b571efe4c926616e8ced8b5357a35c"
+    },
+    {
+      "path": "src/depth_anything_3/bench/datasets/eth3d.py",
+      "type": "file",
+      "mode": 420,
+      "size": 20797,
+      "sha256": "b680344c05795698a640608bbceecea89cd428bcd134dd2c6893fd7cb6454b1a"
+    },
+    {
+      "path": "src/depth_anything_3/bench/datasets/hiroom.py",
+      "type": "file",
+      "mode": 420,
+      "size": 14960,
+      "sha256": "3498497a2f682768cec8babb615d9f85f14bacf6f4fa5008a6bc8e72ce0c4451"
+    },
+    {
+      "path": "src/depth_anything_3/bench/datasets/scannetpp.py",
+      "type": "file",
+      "mode": 420,
+      "size": 20949,
+      "sha256": "6a1d4ef44a7618c1023c9b8a3984e91b72395bc89ac3a3a033a07d8c996488f5"
+    },
+    {
+      "path": "src/depth_anything_3/bench/datasets/sevenscenes.py",
+      "type": "file",
+      "mode": 420,
+      "size": 15101,
+      "sha256": "fb6337d896140bc06d2ab7ae22b6af9dfdae4f3b43ec3e71bace16830b3325c5"
+    },
+    {
+      "path": "src/depth_anything_3/bench/evaluator.py",
+      "type": "file",
+      "mode": 420,
+      "size": 28707,
+      "sha256": "0925673422fd6b30fd0e3b4adb9025721269ad6e3165af2580b621e2f6582b34"
+    },
+    {
+      "path": "src/depth_anything_3/bench/print_metrics.py",
+      "type": "file",
+      "mode": 420,
+      "size": 22817,
+      "sha256": "77b9213a5b235edb05a0866b3fb8983eeee7908c145153b51a97e5892440b335"
+    },
+    {
+      "path": "src/depth_anything_3/bench/registries.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2749,
+      "sha256": "29d07b40740c56bbc29007a8b33cb755f87da395a8ea0c1baae1a8cc9ac6182f"
+    },
+    {
+      "path": "src/depth_anything_3/bench/utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 16963,
+      "sha256": "8e2f5b23f96bf680f7db88b92663a6c4bf05afb319590d7f1a2ac82f793c596e"
+    },
+    {
+      "path": "src/depth_anything_3/cfg.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5037,
+      "sha256": "655a018ab35ad715454fdbca047354591287b6b86c10c91b8c0a920df0153014"
+    },
+    {
+      "path": "src/depth_anything_3/cli.py",
+      "type": "file",
+      "mode": 420,
+      "size": 31475,
+      "sha256": "475f07992b20ec6ac0f34cddbd1002cadc93d6b1af91d3ca05ca560d41c62e71"
+    },
+    {
+      "path": "src/depth_anything_3/configs/da3-base.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 778,
+      "sha256": "930542dc5e3340d0125d1ec0c5e9fbdb0e37c638542e438a80216eafb7a28d26"
+    },
+    {
+      "path": "src/depth_anything_3/configs/da3-giant.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 1340,
+      "sha256": "05bdb8f591395f31aaa159e81825519d15e2323ecb6495e07a3a3a4b38673b31"
+    },
+    {
+      "path": "src/depth_anything_3/configs/da3-large.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 785,
+      "sha256": "16da10fad86488c2627db6346eb4a11acc02fe489c9f00c59c8d3fa64891cc85"
+    },
+    {
+      "path": "src/depth_anything_3/configs/da3-small.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 774,
+      "sha256": "94f69159d682b897dd95ca6d2787148159782c2bcd3112a87e6fab037d7744ed"
+    },
+    {
+      "path": "src/depth_anything_3/configs/da3metric-large.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 508,
+      "sha256": "b7051f0e1b000b7bc92d190fe87db5338364560aea2d290e0400eacf0d7dcb07"
+    },
+    {
+      "path": "src/depth_anything_3/configs/da3mono-large.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 508,
+      "sha256": "b7051f0e1b000b7bc92d190fe87db5338364560aea2d290e0400eacf0d7dcb07"
+    },
+    {
+      "path": "src/depth_anything_3/configs/da3nested-giant-large.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 222,
+      "sha256": "1146a67071cec57f658284a748dd3aab5f3bb49d0c8317b8321d3d4464cbe673"
+    },
+    {
+      "path": "src/depth_anything_3/model/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 755,
+      "sha256": "e6fd99e59aec06a5f8a19255d11e7ecd9fa6482bdacad0e3e1a8fe2991cd64b6"
+    },
+    {
+      "path": "src/depth_anything_3/model/cam_dec.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1713,
+      "sha256": "f7bc81d846b786e314c03eaaf809126505fa0c82eb5177b95eadbfad5beefd63"
+    },
+    {
+      "path": "src/depth_anything_3/model/cam_enc.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2538,
+      "sha256": "3831baa5d661d9693222d209f5908279a350c7711d03c0daf50f7d1aac9b59a2"
+    },
+    {
+      "path": "src/depth_anything_3/model/da3.py",
+      "type": "file",
+      "mode": 420,
+      "size": 17641,
+      "sha256": "c7d5f88962e05c021cf7dab505840c8892e5e9d6880fb2901d20f4120ca173b3"
+    },
+    {
+      "path": "src/depth_anything_3/model/dinov2/dinov2.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1824,
+      "sha256": "5d8e603113731365b3f46a3df4d159ad58f8723ec011440bf1961a4cbe101ca2"
+    },
+    {
+      "path": "src/depth_anything_3/model/dinov2/layers/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 644,
+      "sha256": "321a97ffc00375d6d48569cbc851a38e7d2dc8bbdbfcffbee722c6c27783acda"
+    },
+    {
+      "path": "src/depth_anything_3/model/dinov2/layers/attention.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3264,
+      "sha256": "d9db2bd66c612df689ec19aa2b60138c4185e38c8cfaaef48fc17f39a5b17c81"
+    },
+    {
+      "path": "src/depth_anything_3/model/dinov2/layers/block.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5010,
+      "sha256": "88924cf5cd9fb18b17a8329e4c9910528205c302d8be40be29ad74e97ae7a3b8"
+    },
+    {
+      "path": "src/depth_anything_3/model/dinov2/layers/drop_path.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1146,
+      "sha256": "80b5cc50297f3049d313c5659c1244901407bdac80cf424c5d7ed64ae79cd141"
+    },
+    {
+      "path": "src/depth_anything_3/model/dinov2/layers/layer_scale.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1000,
+      "sha256": "23aba2710d7d425b5abd50c006edef9c9224360d6499171b6c1ec18ef73c0b00"
+    },
+    {
+      "path": "src/depth_anything_3/model/dinov2/layers/mlp.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1271,
+      "sha256": "4f17c26120d04e4e4368b07a2396a977044b00d1dcbf1bbd1a9d3447be1aa6cf"
+    },
+    {
+      "path": "src/depth_anything_3/model/dinov2/layers/patch_embed.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2903,
+      "sha256": "72f14d7b3daf3f545ba93c085b0a90f3b63efcf1a14f8d694dc77763c0607528"
+    },
+    {
+      "path": "src/depth_anything_3/model/dinov2/layers/rope.py",
+      "type": "file",
+      "mode": 420,
+      "size": 7793,
+      "sha256": "dcd09808cf03ceae7abfdcbe6805ee36990412b5308b09a86c4b51a040cff38b"
+    },
+    {
+      "path": "src/depth_anything_3/model/dinov2/layers/swiglu_ffn.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1858,
+      "sha256": "f0e0bab6e9e835b81c53bd69616af43d254a91af4b119923160b7df1602b1562"
+    },
+    {
+      "path": "src/depth_anything_3/model/dinov2/vision_transformer.py",
+      "type": "file",
+      "mode": 420,
+      "size": 17574,
+      "sha256": "c28650e5db0b578745f5a41336709d54d08f952bc08cf1bd2009e2b765111221"
+    },
+    {
+      "path": "src/depth_anything_3/model/dpt.py",
+      "type": "file",
+      "mode": 420,
+      "size": 17438,
+      "sha256": "d4f70e867cb31fd26e807746b63fe21517e5385464acee0096a3021ec928576c"
+    },
+    {
+      "path": "src/depth_anything_3/model/dualdpt.py",
+      "type": "file",
+      "mode": 420,
+      "size": 19576,
+      "sha256": "6ef19b3cb46847830b615e4f8e30621708a3a63500a9fc4cbdee28962bd4bd06"
+    },
+    {
+      "path": "src/depth_anything_3/model/gs_adapter.py",
+      "type": "file",
+      "mode": 420,
+      "size": 8114,
+      "sha256": "2b2b4924c6b1ebd1faed5462aede053fa977ee970d05963575f540e43b91c420"
+    },
+    {
+      "path": "src/depth_anything_3/model/gsdpt.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4912,
+      "sha256": "723dbfac19aa41a1272de0435c97d8048e06a8885676d050bb54306b9e39b4ee"
+    },
+    {
+      "path": "src/depth_anything_3/model/reference_view_selector.py",
+      "type": "file",
+      "mode": 420,
+      "size": 7858,
+      "sha256": "5e1238298a0053e76eab1f2cfd207ae8b0f30fb441c24c915320efed349301e3"
+    },
+    {
+      "path": "src/depth_anything_3/model/utils/attention.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3811,
+      "sha256": "8e8a3dd3aca75ce403bc1a2f7a0b2086cc516b221fcc394b888ebc5ddc9a8a33"
+    },
+    {
+      "path": "src/depth_anything_3/model/utils/block.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2756,
+      "sha256": "b0ec438942816169a5215a3678b4bff72b3783472e35942337b4a1142555c57b"
+    },
+    {
+      "path": "src/depth_anything_3/model/utils/gs_renderer.py",
+      "type": "file",
+      "mode": 420,
+      "size": 12249,
+      "sha256": "8311e4b6cba4c2616b33e6d83bb89c6e77d2345baab776d582b598cf84f821ec"
+    },
+    {
+      "path": "src/depth_anything_3/model/utils/head_utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 8107,
+      "sha256": "efed71ecd3b742d5969d1a938bbf34c9923d202dfd5232f204641c4674f0bd6b"
+    },
+    {
+      "path": "src/depth_anything_3/model/utils/transform.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6549,
+      "sha256": "98d5c499f40e6e3e63cdaf0e269b8eeeb998ed125bcd63da41e2dec9ad32b8b9"
+    },
+    {
+      "path": "src/depth_anything_3/registry.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2047,
+      "sha256": "fefb3b12c7d91acdf2ad478cf4809d23312fcb1b741062d977a0e85a6b16a57d"
+    },
+    {
+      "path": "src/depth_anything_3/services/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 770,
+      "sha256": "89097afd92ee36b4b2c656d3452c5cb37b349ea38578a6e996bfb2b298b57fe9"
+    },
+    {
+      "path": "src/depth_anything_3/services/backend.py",
+      "type": "file",
+      "mode": 420,
+      "size": 54649,
+      "sha256": "2a1208d82424c90b0766437381f488d13292f53c560eb4100876dd73586ef893"
+    },
+    {
+      "path": "src/depth_anything_3/services/gallery.py",
+      "type": "file",
+      "mode": 420,
+      "size": 36516,
+      "sha256": "93d4b4986df34789fdf104042baf8e8ae4930d828066124e769bf6657522e9fe"
+    },
+    {
+      "path": "src/depth_anything_3/services/inference_service.py",
+      "type": "file",
+      "mode": 420,
+      "size": 9176,
+      "sha256": "7d2b6cb7a125c154b36de02f6f8628fe1e5465135a31eeb3c380e39015ea79e4"
+    },
+    {
+      "path": "src/depth_anything_3/services/input_handlers.py",
+      "type": "file",
+      "mode": 420,
+      "size": 9279,
+      "sha256": "29b19244f9d61eb481ca7b437af53702475cfa5e57977ddb9ae9e817c75cab8a"
+    },
+    {
+      "path": "src/depth_anything_3/specs.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1686,
+      "sha256": "d1835f7e15db46d50d6cb27ecedbd8a358ad06d12fc6588fd271fd0fdbcd2df0"
+    },
+    {
+      "path": "src/depth_anything_3/utils/alignment.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4907,
+      "sha256": "7a18fe1c050e42970c7e243adb073ca695e24d197f671d74d16655760a827a88"
+    },
+    {
+      "path": "src/depth_anything_3/utils/api_helpers.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1633,
+      "sha256": "1c792f4f74ec886475386e23532180b274f72c77fc63cd1910348341358fe83c"
+    },
+    {
+      "path": "src/depth_anything_3/utils/camera_trj_helpers.py",
+      "type": "file",
+      "mode": 420,
+      "size": 17585,
+      "sha256": "ef705271d770b2d80dd715ebb9d9580b396b2ab0b3931e9890a096d8553e09be"
+    },
+    {
+      "path": "src/depth_anything_3/utils/constants.py",
+      "type": "file",
+      "mode": 420,
+      "size": 9486,
+      "sha256": "631d18da0159ef6f4a30be446b733b60cbc10f7b867ef61fabeddf89ab380612"
+    },
+    {
+      "path": "src/depth_anything_3/utils/export/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2712,
+      "sha256": "fe07a51f37528c5f1b454c074aca92deeed3658d0447e3e29f780bc32f350cf3"
+    },
+    {
+      "path": "src/depth_anything_3/utils/export/colmap.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5280,
+      "sha256": "8745653a85801cd964883842b3c883587701ea70b8f9c91578b8e23c6c648bc8"
+    },
+    {
+      "path": "src/depth_anything_3/utils/export/depth_vis.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1611,
+      "sha256": "c3cd5e42679591085792116144c54228dfd17207bc7864a40a3bdd7b1f8f6195"
+    },
+    {
+      "path": "src/depth_anything_3/utils/export/feat_vis.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2673,
+      "sha256": "f013860cba10848f52e5be0c36944ec4c24980cb87ce75bcb7b0e3c3db828a0c"
+    },
+    {
+      "path": "src/depth_anything_3/utils/export/glb.py",
+      "type": "file",
+      "mode": 420,
+      "size": 15340,
+      "sha256": "ad5c715a83201bf86e1cf14b4932b65d41e2a60395504af346c2084afc246279"
+    },
+    {
+      "path": "src/depth_anything_3/utils/export/gs.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5528,
+      "sha256": "4c34093f973812446777aa5c4b5fb6a7bbdb0363546328a6e2ec17ce90e0f604"
+    },
+    {
+      "path": "src/depth_anything_3/utils/export/npz.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2477,
+      "sha256": "873285bc2e2667d9e364ed90af44e3629c9f4b31d2cb8f18206cafa854de7ce8"
+    },
+    {
+      "path": "src/depth_anything_3/utils/export/utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1252,
+      "sha256": "fdca3a5aa4132bcd644a3c3b332fa0189c83e8505ad4efa631fa946f5e028caa"
+    },
+    {
+      "path": "src/depth_anything_3/utils/geometry.py",
+      "type": "file",
+      "mode": 420,
+      "size": 16998,
+      "sha256": "3d67391f2eeed57ee5d07387947dea7a5d99fc0ce0a63c6890485183c851c29b"
+    },
+    {
+      "path": "src/depth_anything_3/utils/gsply_helpers.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6253,
+      "sha256": "1c29955aee34b74fbdc505693008b74ed44a20696b4bda5c4dedbd2db9b1a0d4"
+    },
+    {
+      "path": "src/depth_anything_3/utils/io/input_processor.py",
+      "type": "file",
+      "mode": 420,
+      "size": 18924,
+      "sha256": "cdebb6021f5f1001d3aa56261c224a80b9d8431efedfb040537c58a5509410c1"
+    },
+    {
+      "path": "src/depth_anything_3/utils/io/output_processor.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5863,
+      "sha256": "4c877deb4550736907162ae397c11a4b726a49fcbb2ab2c901e536814033469e"
+    },
+    {
+      "path": "src/depth_anything_3/utils/layout_helpers.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6567,
+      "sha256": "63c5e9da249ee8aafa41e969657ef449728120afff287b26e917f35f01824b99"
+    },
+    {
+      "path": "src/depth_anything_3/utils/logger.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2513,
+      "sha256": "03ea0032564443ae6df63aa88ab9e4e63b5933ed10463acee607d0bea5836910"
+    },
+    {
+      "path": "src/depth_anything_3/utils/memory.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4503,
+      "sha256": "070814acb0a89b333211e5c9fef6583564465940d102cfec6ac232417f8f12ac"
+    },
+    {
+      "path": "src/depth_anything_3/utils/model_loading.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5065,
+      "sha256": "a51083012a5fe2dc8d1cebfe574a62b1a57383912af27ccaa5765a9aba7c0485"
+    },
+    {
+      "path": "src/depth_anything_3/utils/parallel_utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4288,
+      "sha256": "e691c31ab459e31e5e98231d67ef519199576b9425efd07273b7e137592514b6"
+    },
+    {
+      "path": "src/depth_anything_3/utils/pca_utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 10631,
+      "sha256": "c0792e83cd0bd3f650bf48fdf6b813f30b9ceae3c66688d0237f513d6ebf08a2"
+    },
+    {
+      "path": "src/depth_anything_3/utils/pose_align.py",
+      "type": "file",
+      "mode": 420,
+      "size": 12141,
+      "sha256": "3e58caa51c499b13650f24049f68b7f659e0f1ce07b9bec24df1c23aaf920428"
+    },
+    {
+      "path": "src/depth_anything_3/utils/ray_utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 20115,
+      "sha256": "d27adc973a03dec912d39f7b7bfa0328c3fd8eabe9f07a43b1bf04ed326f8563"
+    },
+    {
+      "path": "src/depth_anything_3/utils/read_write_model.py",
+      "type": "file",
+      "mode": 420,
+      "size": 22453,
+      "sha256": "8e13ada3271a7ee559bb66eda4e275c4714ad0612b21d0dfa650edcc860aef85"
+    },
+    {
+      "path": "src/depth_anything_3/utils/registry.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1051,
+      "sha256": "30f64f69e384560ab998dd7919aa0d41b20df3c6240993ceb09bf6d947703bd2"
+    },
+    {
+      "path": "src/depth_anything_3/utils/sh_helpers.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3237,
+      "sha256": "6f52781fd2552b482e86f8f482a1852d6b1b306ecad3ad6970978bb3fa3f8040"
+    },
+    {
+      "path": "src/depth_anything_3/utils/visualize.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4123,
+      "sha256": "8e853a56ba0f00501361425a6fd32dded11563f80cfbec115827eb2f64ae4fd0"
+    }
+  ]
+}

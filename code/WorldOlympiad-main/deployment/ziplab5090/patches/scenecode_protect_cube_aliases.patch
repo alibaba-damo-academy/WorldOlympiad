@@ -1,0 +1,12 @@
+diff --git a/scenecode/manipuland_agents/tools/manipuland_tools.py b/scenecode/manipuland_agents/tools/manipuland_tools.py
+--- a/scenecode/manipuland_agents/tools/manipuland_tools.py
++++ b/scenecode/manipuland_agents/tools/manipuland_tools.py
+@@ -1589,6 +1589,8 @@ class ManipulandTools:
+                     "slider_block",
+                     "slider",
+                     "stack_block",
++                    "toy_cube",
++                    "cube_block",
+                 )
+                 identity = f"{object_id} {obj.name} {obj.description}".lower()
+                 if any(alias in identity for alias in protected_aliases):

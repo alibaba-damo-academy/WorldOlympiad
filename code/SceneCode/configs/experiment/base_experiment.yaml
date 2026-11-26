@@ -1,0 +1,119 @@
+# Tasks to run sequantially
+tasks: [generate_scenes]
+
+# Path to CSV file with scene prompts (optional).
+# If set, overrides the prompts list below.
+# CSV format: scene_index,prompt (header row required).
+# Example:
+#   scene_index,prompt
+#   4,"A modern kitchen with an island"
+#   7,"A living room with a sectional sofa"
+# This would produce output directories: scene_004/, scene_007/
+csv_path: null
+
+# Optional single-scene overrides used by sequential runners.
+# When single_prompt is set, generation ignores csv_path/prompts and runs exactly
+# one scene with single_scene_id. fixed_scene_output_dir, when set, is used as
+# the scene directory itself instead of creating output_dir/scene_{ID}.
+single_scene_id: null
+single_prompt: null
+fixed_scene_output_dir: null
+
+# List of scene prompts.
+prompts: [
+  "A teenager's bedroom features a comfortable twin bed with a backboard in the far corner, with boxes underneath it. At the foot of the bed is a small desk equipped with a monitor, an external keyboard and mouse, and a desk lamp on the right for visibility, accompanied by a rolling chair. Next to the bed, a nightstand with an additional floor lamp nearby provides space for a phone and other valuables. A sizable wooden wardrobe with multiple drawers offers ample storage for clothes, while a coffee table beside it holds books and board games. In the center of the room, a tan-colored rug creates a cozy spot to sit, and the walls are adorned with various posters and pictures.",
+  # "A living room with a TV console, sofa, bookshelf, and coffee table.",
+  # "A living room featuring an irregular-shaped table in the middle of the room with a sofa positioned in front of it. Across the table are two sofa chairs with a small wooden coffee table placed between them. A clock is mounted on the wall far from the door."
+]
+
+# Number of parallel workers; 1 = sequential for debugging
+num_workers: 1
+
+# Pipeline stage control
+# Stages run in order: floor_plan → furniture → wall_mounted → ceiling_mounted → manipuland
+# Set start_stage to resume from a specific stage (loads previous stage's state)
+# Set stop_stage to stop after a specific stage (saves state for later resumption)
+# Set resume_from_path to branch from a previous experiment's output
+pipeline:
+  start_stage: "floor_plan"  # Options: "floor_plan", "furniture", "wall_mounted", "ceiling_mounted", "manipuland"
+  stop_stage: "manipuland"  # Options: "floor_plan", "furniture", "wall_mounted", "ceiling_mounted", "manipuland"
+  # Path to source experiment dir (e.g., "outputs/2025-12-21/10-30-45")
+  resume_from_path: null
+  # Parallelize rooms within a house (mutually exclusive with num_workers > 1).
+  parallel_rooms: false
+  # Max concurrent rooms when parallel_rooms=true.
+  max_parallel_rooms: 1
+
+# Geometry generation server settings
+geometry_generation_server:
+  host: "127.0.0.1"
+  port: 6995
+
+# HSSD retrieval server settings
+hssd_retrieval_server:
+  host: "127.0.0.1"
+  port: 6996
+
+# Articulated retrieval server settings
+articulated_retrieval_server:
+  host: "127.0.0.1"
+  port: 6997
+
+# Objaverse retrieval server settings
+objaverse_retrieval_server:
+  host: "127.0.0.1"
+  port: 6999
+
+# Materials retrieval server settings
+materials_retrieval_server:
+  host: "127.0.0.1"
+  port: 6993
+  data_path: ${oc.env:SCENECODE_MATERIALS_DIR,materials}
+  embeddings_path: ${oc.env:SCENECODE_MATERIAL_EMBEDDINGS_DIR,materials/embeddings}
+  use_top_k: 5
+
+# SceneEval export configuration.
+sceneeval_export:
+  enabled: true
+  asset_id_prefix: "scenecode"
+
+# Physical feasibility post-processing configuration.
+# Two-stage process: projection (IK-based) → simulation (physics settling).
+projection:
+  enabled: true  # Master enable/disable flag.
+
+  # Threshold for DOF reduction optimization. When scene has more objects
+  # than this threshold, only colliding objects are made free in IK.
+  # Per-furniture projections have ~7 objects, final projection has 300+.
+  # Set to 0 to always use optimization, very high to disable.
+  large_scene_optimization_threshold: 100
+
+  # Minimum penetration depth (meters) to consider an object as colliding.
+  # Objects with penetration below this are treated as surface contacts.
+  # 0.001m = 1mm filters out resting objects while catching real penetrations.
+  collision_penetration_threshold_m: 0.001
+
+  furniture:
+    enabled: true             # Enable furniture post-processing.
+    xy_only: false            # XYZ to resolve floor collisions.
+    fix_rotation: true        # Fix rotations during projection.
+    influence_distance: 0.02  # 2cm collision influence.
+    solver_name: "snopt"      # NLP solver ("snopt" or "ipopt").
+    iteration_limit: 5000     # Max solver iterations.
+    time_limit_s: 360.0       # Max solver time (seconds).
+
+  final:
+    enabled: true             # Enable final scene post-processing.
+    xy_only: false            # XYZ (default for manipulands - allow vertical).
+    fix_rotation: true        # Fix rotations during projection.
+    influence_distance: 0.02
+    solver_name: "snopt"
+    iteration_limit: 10000
+    time_limit_s: 360.0       # Max solver time (seconds).
+
+  simulation:
+    enabled: true             # Enable forward simulation after projection.
+    simulation_time_s: 15.0    # Simulation duration (seconds).
+    time_step_s: 1.0e-3       # Physics time step (1ms).
+    timeout_s: 600.0          # Max wall-clock time (10 minutes).
+    save_html: false          # Save meshcat visualization HTML (for debugging).

@@ -1,0 +1,79 @@
+diff --git a/scenecode/code_object/agent_framework/utils/llm_client.py b/scenecode/code_object/agent_framework/utils/llm_client.py
+--- a/scenecode/code_object/agent_framework/utils/llm_client.py
++++ b/scenecode/code_object/agent_framework/utils/llm_client.py
+@@ -116,6 +116,10 @@ class LLMClient(ABC):
+         """
+         pass
+ 
++    async def close(self) -> None:
++        """Release provider resources; stateless clients need no cleanup."""
++        return None
++
+ 
+ class OpenAIClient(LLMClient):
+     """
+@@ -171,6 +175,13 @@ class OpenAIClient(LLMClient):
+                 raise ImportError("Please install openai: pip install openai")
+         
+         return self._client
++
++    async def close(self) -> None:
++        """Close the lazily-created SDK client in its owning event loop."""
++        client = self._client
++        self._client = None
++        if client is not None:
++            await client.close()
+     
+     async def chat(
+         self,
+@@ -365,6 +376,13 @@ class AnthropicClient(LLMClient):
+                 raise ImportError("Please install anthropic: pip install anthropic")
+         
+         return self._client
++
++    async def close(self) -> None:
++        """Close the lazily-created SDK client in its owning event loop."""
++        client = self._client
++        self._client = None
++        if client is not None:
++            await client.close()
+     
+     def _add_cache_control_to_system(
+         self, 
+diff --git a/scenecode/code_object/agent_framework/pipeline.py b/scenecode/code_object/agent_framework/pipeline.py
+--- a/scenecode/code_object/agent_framework/pipeline.py
++++ b/scenecode/code_object/agent_framework/pipeline.py
+@@ -365,6 +365,25 @@ class AgentPipeline:
+                 )
+             finally:
+                 self.blender_backend_manager = None
++
++    async def _disconnect_llm_clients(self) -> None:
++        """Close each distinct provider client before its event loop exits."""
++        seen: set[int] = set()
++        for client in (
++            self.llm_client,
++            self.planner_llm_client,
++            self.constructor_llm_client,
++        ):
++            if client is None or id(client) in seen:
++                continue
++            seen.add(id(client))
++            try:
++                await client.close()
++            except Exception as exc:
++                self.logger.warning("Failed to close LLM client: %s", exc)
++        self.llm_client = None
++        self.planner_llm_client = None
++        self.constructor_llm_client = None
+     
+     def _validate_generation_input(
+         self,
+@@ -1117,6 +1136,7 @@ class AgentPipeline:
+         finally:
+             # 断开 Blender 连接
+             await self._disconnect_blender()
++            await self._disconnect_llm_clients()
+ 
+ 
+ async def main():

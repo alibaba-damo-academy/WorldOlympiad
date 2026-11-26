@@ -1,0 +1,191 @@
+--- a/scenecode/agent_utils/asset_router/router.py
++++ b/scenecode/agent_utils/asset_router/router.py
+@@ -1651,148 +1651,164 @@
+     def _build_code_generated_geometry(
+         item: AssetItem,
+         image_path: Path | None,
+         result,
+         asset_source: str = "code_generated",
+     ) -> GeneratedGeometry:
+         """Convert a Code_Object runner result into GeneratedGeometry."""
+         return GeneratedGeometry(
+             geometry_path=result.mesh_path,
+             item=item,
+             asset_source=asset_source,
+             image_path=image_path,
+             code_object_output_dir=result.output_dir,
+             object_plan_path=result.object_plan_path,
+             code_dir=result.code_dir,
+             pipeline_result_path=result.pipeline_result_path,
+             full_object_render_path=result.full_object_render_path,
+         )
+ 
+     def _generate_code_object_geometry(
+         self,
+         item: AssetItem,
+         code_object_runner: "CodeObjectRunner",
+         image_generator: "BaseImageGenerator",
+         images_dir: Path,
+         code_object_dir: Path,
+         style_context: str | None = None,
+     ) -> GeneratedGeometry | None:
+         """Generate a single Code_Object candidate from a reference image."""
+         prepared = self._prepare_code_object_inputs(
+             item=item,
+             image_generator=image_generator,
+             images_dir=images_dir,
+             code_object_dir=code_object_dir,
+             style_context=style_context,
+         )
+         if prepared is None:
+             return None
+ 
+         image_path, output_dir, config_path_override = prepared
++        from autoresearch.scenecode_image_evidence import record_image_input
++        if os.environ.get("SCENECODE_REQUIRE_REFERENCE_IMAGE") == "1" and image_path is None:
++            raise RuntimeError("required SceneCode asset reference image was not generated")
++        if image_path is not None:
++            record_image_input(output_dir, image_path, method='generate_from_image', generator=image_generator)
+ 
+         try:
+             if image_path is None:
+                 result = code_object_runner.generate_from_text(
+                     text_input=item.description,
+                     output_dir=output_dir,
+                     config_path_override=config_path_override,
+                 )
+             else:
+                 result = code_object_runner.generate_from_image(
+                     image_path=image_path,
+                     output_dir=output_dir,
+                     config_path_override=config_path_override,
+                 )
+         except Exception as e:
+             console_logger.error(
+                 f"Code_Object generation failed for '{item.description}': {e}"
+             )
+             return None
+ 
++        if image_path is not None:
++            from autoresearch.scenecode_image_evidence import record_image_result
++            record_image_result(output_dir, result)
+         return self._build_code_generated_geometry(
+             item=item,
+             image_path=image_path,
+             result=result,
+             asset_source="code_generated",
+         )
+ 
+     def _generate_code_articulated_geometry(
+         self,
+         item: AssetItem,
+         code_object_runner: "CodeObjectRunner",
+         image_generator: "BaseImageGenerator",
+         images_dir: Path,
+         code_object_dir: Path,
+         style_context: str | None = None,
+     ) -> GeneratedGeometry | CodeArticulatedGeometry | None:
+         """Generate a single Code_Object articulated candidate from a reference image."""
+         prepared = self._prepare_code_object_inputs(
+             item=item,
+             image_generator=image_generator,
+             images_dir=images_dir,
+             code_object_dir=code_object_dir,
+             style_context=style_context,
+         )
+         if prepared is None:
+             return None
+ 
+         image_path, output_dir, config_path_override = prepared
++        from autoresearch.scenecode_image_evidence import record_image_input
++        if os.environ.get("SCENECODE_REQUIRE_REFERENCE_IMAGE") == "1" and image_path is None:
++            raise RuntimeError("required SceneCode asset reference image was not generated")
++        if image_path is not None:
++            record_image_input(output_dir, image_path, method='generate_articulated_from_image', generator=image_generator)
+ 
+         try:
+             if image_path is None:
+                 result = code_object_runner.generate_articulated_from_text(
+                     text_input=item.description,
+                     output_dir=output_dir,
+                     config_path_override=config_path_override,
+                 )
+             else:
+                 result = code_object_runner.generate_articulated_from_image(
+                     image_path=image_path,
+                     output_dir=output_dir,
+                     config_path_override=config_path_override,
+                 )
+         except Exception as e:
+             console_logger.error(
+                 f"Code_Object articulated generation failed for '{item.description}': {e}"
+             )
+             return None
+ 
++        if image_path is not None:
++            from autoresearch.scenecode_image_evidence import record_image_result
++            record_image_result(output_dir, result)
+         if result.status == "no_movable_parts":
+             return self._build_code_generated_geometry(
+                 item=item,
+                 image_path=image_path,
+                 result=result,
+                 asset_source="code_generated",
+             )
+ 
+         if result.status != "generated" or result.urdf_path is None:
+             raise RuntimeError(
+                 f"code_articulated entered URDF generation but did not produce a valid URDF for '{item.description}'"
+             )
+ 
+         return CodeArticulatedGeometry(
+             urdf_path=result.urdf_path,
+             item=item,
+             image_path=image_path,
+             geometry_path=result.mesh_path,
+             code_object_output_dir=result.output_dir,
+             object_plan_path=result.object_plan_path,
+             code_dir=result.code_dir,
+             pipeline_result_path=result.pipeline_result_path,
+             full_object_render_path=result.full_object_render_path,
+         )
+ 
+     def _try_code_articulated_strategy(
+         self,
+         item: AssetItem,
+         max_retries: int,
+         code_object_runner: "CodeObjectRunner | None",
+         image_generator: "BaseImageGenerator | None",
+         images_dir: Path | None,
+         code_object_dir: Path | None,
+         debug_dir: Path,
+         style_context: str | None = None,
+     ) -> GeneratedGeometry | CodeArticulatedGeometry | None:
+         """Try the articulated Code_Object strategy with rigid fallback if needed."""
+         if code_object_runner is None:
+             console_logger.warning(
+                 f"Code_Object runner not available for '{item.description}'"
+--- a/scenecode/furniture_agents/stateful_furniture_agent.py
++++ b/scenecode/furniture_agents/stateful_furniture_agent.py
+@@ -273,6 +273,9 @@
+                 try:
+                     self.context_image_path = self._generate_and_save_context_image(scene)
+                 except Exception as e:
++                    import os
++                    if os.environ.get("SCENECODE_REQUIRE_REFERENCE_IMAGE") == "1":
++                        raise RuntimeError("required furniture context-image generation failed") from e
+                     console_logger.warning(
+                         f"Context image generation failed, continuing without it: {e}"
+                     )
+--- a/scenecode/manipuland_agents/stateful_manipuland_agent.py
++++ b/scenecode/manipuland_agents/stateful_manipuland_agent.py
+@@ -267,6 +267,9 @@
+                 output_path=render_dir / "context_edited.png",
+             )
+         except Exception as e:
++            import os
++            if os.environ.get("SCENECODE_REQUIRE_REFERENCE_IMAGE") == "1":
++                raise RuntimeError("required manipuland context-image generation failed") from e
+             console_logger.warning(f"Context image generation failed: {e}")
+             return None
+ 

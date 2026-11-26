@@ -1,0 +1,26 @@
+{
+  "case_id": "deterministic_cabinet_drawer_v1",
+  "component_id": "drawer",
+  "host_object_id": "cabinet",
+  "host_sdf": "/Users/luckypiggy/WorldOlympiad2/artifacts/cabinet_reference/deterministic_cabinet.sdf",
+  "host_sdf_sha256": "78a7a1f4fa44b347ff608c590aace1117eece7286625a5354b950870885ea857",
+  "joint_name": "drawer_01_joint",
+  "joint_type": "prismatic",
+  "parent_link": "base_link",
+  "child_link": "drawer_01",
+  "axis_xyz": [
+    0,
+    1,
+    0
+  ],
+  "lower_limit": 0.0,
+  "upper_limit": 0.32,
+  "closed_position": 0.0,
+  "open_position": 0.32,
+  "travel": 0.32,
+  "open_delta_xyz": [
+    0,
+    0.32,
+    0
+  ]
+}

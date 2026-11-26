@@ -1,0 +1,47 @@
+--- a/scenecode/agent_utils/urdf_to_sdf.py
++++ b/scenecode/agent_utils/urdf_to_sdf.py
+@@ -1430,6 +1430,17 @@
+     visual_dir = sdf_dir / "visual"
+ 
+-    if not visual_dir.exists():
++    if not visual_dir.exists() or not any(visual_dir.glob("*.gltf")):
++        if (sdf_dir / "blender_output" / "parts").is_dir():
++            from scenecode.agent_utils.support_surface_extraction import _load_sdf_visual_link_meshes
++
++            # CodeObject SDF visuals provide measured model-frame bounds.
++            # Their declared scale is already applied by the shared loader.
++            meshes = _load_sdf_visual_link_meshes(sdf_path)
++            if not meshes:
++                raise ValueError(f"CodeObject SDF has no usable visual meshes: {sdf_path}")
++            minimum = np.min([mesh.bounds[0] for _, _, mesh in meshes], axis=0)
++            maximum = np.max([mesh.bounds[1] for _, _, mesh in meshes], axis=0)
++            return minimum, maximum, (minimum + maximum) / 2
+         console_logger.warning(f"Visual directory not found: {visual_dir}")
+         return np.zeros(3), np.zeros(3), np.zeros(3)
+ 
+--- a/scenecode/agent_utils/room.py
++++ b/scenecode/agent_utils/room.py
+@@ -503,6 +503,23 @@
+ 
+     scale_factor: float = 1.0
+     """Cumulative scale factor applied to this object's asset (1.0 = original size)."""
++
++    def __post_init__(self) -> None:
++        if (self.metadata.get("asset_source") != "code_articulated"
++                or self.sdf_path is None or not self.sdf_path.is_file()):
++            return
++        if (self.bbox_min is not None and self.bbox_max is not None
++                and np.all(np.isfinite([self.bbox_min, self.bbox_max]))
++                and np.all(np.asarray(self.bbox_max) > np.asarray(self.bbox_min))):
++            return
++        from scenecode.agent_utils.urdf_to_sdf import compute_sdf_bounding_box
++
++        lo, hi, _ = compute_sdf_bounding_box(self.sdf_path)
++        if not np.all(np.isfinite([lo, hi])) or not np.all(hi > lo):
++            raise ValueError(f"Articulated asset has no measured 3D bounds: {self.sdf_path}")
++        self.bbox_min, self.bbox_max = lo, hi
++        console_logger.info("Recomputed invalid CodeObject bounds from %s: %s -> %s",
++                            self.sdf_path, lo, hi)
+ 
+     def has_internal_model_pose(self) -> bool:
+         """Return whether this object carries a non-identity internal model pose."""

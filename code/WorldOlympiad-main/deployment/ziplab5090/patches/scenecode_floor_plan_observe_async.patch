@@ -1,0 +1,5 @@
+--- a/scenecode/floor_plan_agents/tools/vision_tools.py
++++ b/scenecode/floor_plan_agents/tools/vision_tools.py
+@@ -142,1 +142,1 @@
+-        def observe_scene() -> list[ToolOutputImage | ToolOutputText]:
++        async def observe_scene() -> list[ToolOutputImage | ToolOutputText]:

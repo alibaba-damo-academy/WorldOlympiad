@@ -1,0 +1,11 @@
+{
+  "schema_version": "autoresearch_batch.v1",
+  "batch_id": "pilot_scale_example",
+  "jobs": [
+    {
+      "job_id": "bright_room_seed_a",
+      "priority": 10,
+      "prompt": "Create a photorealistic contemporary apartment dining room adapted as a tabletop robot manipulation workspace. Center a matte oak worktable with a clear near-side robot aisle. Place a red sorting block beside a shallow blue tray, an upright blue ceramic cup, a natural wood push block beside a flat green goal pad, and a stable three-block stack, all separately visible and reachable. Add a far-wall sideboard, compact charging dock, window, restrained wall art, diffuse daylight, and warm pendant lighting. Keep every task unsolved, every push corridor clear, and one fixed near-left oblique camera view unobstructed. Do not include glass furniture, mirrors, text, exposed cables, random clutter, floating objects, intersections, or a robot baked into SceneCode geometry."
+    }
+  ]
+}

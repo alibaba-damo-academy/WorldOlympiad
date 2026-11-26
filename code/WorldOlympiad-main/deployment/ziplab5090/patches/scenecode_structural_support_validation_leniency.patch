@@ -1,0 +1,15 @@
+--- a/scenecode/prompts/data/asset_router/asset_validation.yaml
++++ b/scenecode/prompts/data/asset_router/asset_validation.yaml
+@@ -212,6 +212,12 @@
+     cabinet"); drawers (if any) must be integrated into the same body.
+   - dresser / chest of drawers: ONE rectangular body; drawers stack
+     vertically and lie flush with the front face.
++  - table / workbench: a connected apron, crossbar, or stretcher between the
++    tabletop and load-bearing legs is part of the structural base, not an extra
++    attachment and not a shelf unless it forms a distinct load-bearing surface.
++    If such structural support is explicitly requested, do not reject it for a
++    simultaneous "no extra attachments" phrase. That phrase excludes distinct
++    accessories or functional add-ons, not the requested connected support frame.
+ 
+   ACCEPT if components are individually simplified or low-poly but the overall
+   assembly is plausible and reads as one coherent object.

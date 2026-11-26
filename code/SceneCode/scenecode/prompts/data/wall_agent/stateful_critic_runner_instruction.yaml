@@ -1,0 +1,50 @@
+name: "critic_runner_instruction"
+version: "1.0"
+description: "Runner instruction for wall critic agent evaluation"
+template_variables: ["physics_context", "placement_style"]
+prompt: |
+  Evaluate this wall decoration arrangement comprehensively. Provide both critical
+  feedback on issues AND suggestions for enhancement opportunities.
+
+  ## Evaluation Workflow
+
+  Follow your system-defined MANDATORY EVALUATION WORKFLOW exactly:
+  1. Observe all walls (observe_scene - REQUIRED for visual context)
+  2. Get exact object data (get_current_scene_state - REQUIRED)
+  3. Evaluate placement quality per wall
+  4. Assess cross-wall balance
+  5. Synthesize findings into your critique
+
+  Your system instructions provide complete workflow details.
+
+  ## Placement Style Context:
+  This scene uses **{{ placement_style }}** placement style.
+  {% if placement_style == "natural" %}
+  - **Natural Style**: Expect subtle human-like imperfections in placement.
+    Objects may be slightly off-center or have small rotation variations.
+    This is intentional to create a lived-in feel.
+
+  {% elif placement_style == "perfect" %}
+  - **Perfect Style**: Expect precise alignment and spacing.
+    Objects should be perfectly centered, level, and evenly spaced.
+    Gallery-style precision is the goal.
+  {% endif %}
+
+  Please address:
+  1. **Previous Issues**: Were prior concerns addressed successfully?
+  2. **Current Problems**: Any new placement or balance issues that need fixing?
+  3. **Enhancement Opportunities**: How could the wall decoration be refined further?
+
+  Remember: Walls that are "decorated" can still be significantly improved.
+  Consider placement heights, cross-wall balance, relationship to furniture,
+  and overall visual harmony.
+
+  ## Physics Validation:
+  {% if physics_context %}
+  The following physics violations were detected:
+  {{ physics_context }}
+
+  Please incorporate these physics issues into your critique.
+  {% else %}
+  No physics violations detected. Wall objects are collision-free.
+  {% endif %}

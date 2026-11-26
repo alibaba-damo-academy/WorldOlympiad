@@ -1,0 +1,76 @@
+--- a/scenecode/prompts/data/manipuland_agent/designer_initial_instruction.yaml
++++ b/scenecode/prompts/data/manipuland_agent/designer_initial_instruction.yaml
+@@ -34,7 +34,12 @@
+   **CRITICAL - Collision-Free Completion:**
+   Before finishing, you MUST call check_physics and verify zero collisions exist.
+   You MUST NOT complete your work while ANY collisions remain. If collisions exist,
+-  resolve them by repositioning or removing objects. Deletion is better than collision.
++  resolve them by repositioning, rotating, or modestly rescaling objects. Objects explicitly
++  named in the user request are required deliverables: NEVER remove one of those objects,
++  and never reduce the requested count. If a required asset is unsuitable, regenerate a
++  smaller replacement before removing the old instance, then verify the replacement count.
++  Only unrequested decorative objects may be removed. Deletion is never a collision fix for
++  required objects.
+ 
+   ## Return Format:
+   Provide a structured summary including:
+--- a/scenecode/prompts/data/manipuland_agent/designer_agent.yaml
++++ b/scenecode/prompts/data/manipuland_agent/designer_agent.yaml
+@@ -696,21 +696,28 @@
+   - **NEVER complete work with collisions**: You MUST NOT mark your work as
+     complete or return results while ANY physics collisions remain. Call
+     check_physics before concluding. If collisions exist, you MUST resolve
+-    them first - it is ALWAYS possible to eliminate collisions by removing
+-    objects. Completing work with collisions is unacceptable.
+-  - **Resolution strategy hierarchy** (flexible - use judgment on best
+-    approach):
+-    1. **Adjust positions**: Try generous spacing first (0.05m minimum
+-       clearance between objects)
+-    2. **Delete excess objects**: Reducing density often prevents collisions
+-       entirely. Fewer well-placed objects beats many colliding pieces.
+-    3. **Regenerate smaller assets**: Use size descriptions like "compact",
+-       "small-scale" when creating replacement manipulands
+-  - **Deletion is a valid design choice**: Don't feel obligated to keep all
+-    objects. Removing problematic pieces is better than accepting collisions.
+-  - **Don't preserve problematic choices**: Initial object selections aren't
+-    sacred. If objects don't work after visual/physics feedback, remove them.
++    them first. Completing work with collisions is unacceptable.
++  - **Required-object preservation**: Every object type and count explicitly named
++    in the user request is a required deliverable. NEVER call remove_manipuland on
++    a required object and NEVER reduce its requested count. This includes repeated
++    objects such as three individually requested blocks.
++  - **Resolution strategy hierarchy**:
++    1. **Adjust positions and height**: Use the measured surface bounds, place each
++       required object separately with at least 0.05m horizontal clearance, and set
++       its bottom on the measured support top rather than relying on a guessed Z.
++    2. **Use resolve_surface_collisions or move_manipuland**: Prefer deterministic
++       collision projection and explicit moves over deletion.
++    3. **Modestly rescale**: Rescale a required object only when its dimensions do
++       not fit, while preserving recognizability and the requested object count.
++    4. **Regenerate before replacement**: Generate a smaller required asset first,
++       confirm it exists, then replace the unsuitable instance without reducing the
++       requested count.
++    5. **Delete only unrequested decoration**: Reducing optional decoration is valid,
++       but never use deletion as a collision fix for explicitly requested objects.
++  - **Don't preserve problematic optional choices**: Unrequested decorative object
++    selections are not sacred and may be removed after required objects are safe.
+   - **"Less is more" for physics**: A sparse, collision-free scene scores
+-    higher than a full scene with collisions.
++    higher than a full scene with collisions, but all explicitly requested objects
++    must remain present.
+   - **Smart spacing calculations**: Use get_current_scene_state dimensions
+     and bounding boxes to calculate precise clearances between objects.
+--- a/scenecode/prompts/data/manipuland_agent/designer_critique_instruction.yaml
++++ b/scenecode/prompts/data/manipuland_agent/designer_critique_instruction.yaml
+@@ -25,7 +25,10 @@
+   13. Call check_physics after implementing fixes to ensure no new collisions were
+       introduced
+   14. FINAL VERIFICATION: Before completing, confirm zero collisions exist. You MUST NOT
+-      finish while ANY collisions remain - resolve them first or remove objects.
++      finish while ANY collisions remain. Resolve collisions by moving, rotating, modestly
++      rescaling, or regenerating assets. NEVER remove an object type explicitly named in
++      the user request and NEVER reduce a requested count; only unrequested decorative
++      objects may be deleted.
+ 
+   ## Return Format:
+   Provide a summary including:

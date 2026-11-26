@@ -1,0 +1,17 @@
+--- a/scenecode/utils/parallel.py
++++ b/scenecode/utils/parallel.py
+@@ -106,3 +106,1 @@
+-    # Native Blender/Drake/Torch libraries and service threads are not fork-safe.
+-    context = multiprocessing.get_context("forkserver")
+-    result_queue: multiprocessing.Queue = context.Queue()
++    result_queue: multiprocessing.Queue = multiprocessing.Queue()
+@@ -117,1 +115,1 @@
+-            p = context.Process(
++            p = multiprocessing.Process(
+--- a/main.py
++++ b/main.py
+@@ -19,3 +19,1 @@
+-if __name__ == "__main__":
+-    import bpy  # noqa: F401
+-
++import bpy  # noqa: F401

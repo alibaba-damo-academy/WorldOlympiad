@@ -1,0 +1,9 @@
+# Ignore everything.
+*
+!.gitignore
+
+# Track these two material folders and all their contents.
+!Plaster001_1K-JPG/
+!Plaster001_1K-JPG/**
+!Wood094_1K-JPG/
+!Wood094_1K-JPG/**

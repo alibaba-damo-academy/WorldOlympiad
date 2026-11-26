@@ -1,0 +1,409 @@
+{
+  "generated_collision_meshes": [
+    {
+      "path": "collision_meshes/left_finger.obj",
+      "sha256": "30654bc10ee989b20a2794a2f4e889ece2253f989d18d962784492d84381599c"
+    },
+    {
+      "path": "collision_meshes/left_finger_tip.obj",
+      "sha256": "6c27ba82f4f78878aee4407b6134480e478e190cd0abbc511246d702f475fe76"
+    },
+    {
+      "path": "collision_meshes/left_inner_knuckle.obj",
+      "sha256": "c3dd27be982bbecf576d92a3fa5b36a56403f6d76c26d81ab0807ccb66bece60"
+    },
+    {
+      "path": "collision_meshes/left_knuckle.obj",
+      "sha256": "30bf4a44360efd37d5d187905df44b5b7d8d3c2689f3f87bec49cd58bbdd6a22"
+    },
+    {
+      "path": "collision_meshes/right_finger.obj",
+      "sha256": "ac4acb2e7f997e0e35cebfe84489a6b72dab362e34fb14a2569c74d298804f0e"
+    },
+    {
+      "path": "collision_meshes/right_finger_tip.obj",
+      "sha256": "46459afe6a56ae78b513d25e361dd7277ad9ebfb4f3c5ebfccca3947a6b3160e"
+    },
+    {
+      "path": "collision_meshes/right_inner_knuckle.obj",
+      "sha256": "26efe3d4a35a5a9a2c29bdff07326797d7fca618fbd6b0034a4302dddcde017c"
+    },
+    {
+      "path": "collision_meshes/right_knuckle.obj",
+      "sha256": "f3e6a49616fa84253f5892d8111c5649943debe830f39de28d6c4fb71fdbd727"
+    },
+    {
+      "path": "collision_meshes/robotiq_base.obj",
+      "sha256": "d775a8c3e68fad0843568ccda0766c5ec231aa1d6c1015ebbc2bfb91bb07dd99"
+    }
+  ],
+  "generated_urdf": "franka_robotiq_2f_85.urdf",
+  "generated_urdf_sha256": "f1463e2410a5524c18cdec41a28799bb58debfea272fabb1d64ff905c68c1944",
+  "gripper": {
+    "closed_driver_rad": 0.7853981633974483,
+    "explicit_pybullet_mimic_multipliers": {
+      "finger_joint": 1.0,
+      "left_inner_finger_joint": -1.0,
+      "left_inner_finger_knuckle_joint": 1.0,
+      "right_inner_finger_joint": 1.0,
+      "right_inner_finger_knuckle_joint": -1.0,
+      "right_outer_knuckle_joint": -1.0
+    },
+    "open_driver_rad": 0.0
+  },
+  "mesh_sources": [
+    {
+      "path": "pybullet_data/franka_panda/meshes/collision/link0.obj",
+      "sha256": "d29233f03537b6ee92a6861d4139290960325c2bacf9a640ab7935a5539c653f"
+    },
+    {
+      "path": "pybullet_data/franka_panda/meshes/collision/link1.obj",
+      "sha256": "0879335b20930eccccdc7d2565553895589f9125d4c8c0d462ad0f74f17e7472"
+    },
+    {
+      "path": "pybullet_data/franka_panda/meshes/collision/link2.obj",
+      "sha256": "cfca62e5846d3ba6db8be3740fc2219454401f1048db11a78bd9ec8f30cdc128"
+    },
+    {
+      "path": "pybullet_data/franka_panda/meshes/collision/link3.obj",
+      "sha256": "22235fb3676b5cb45a2f512065fab94fecf052a767cddfaed62cbb6d1efcf1f8"
+    },
+    {
+      "path": "pybullet_data/franka_panda/meshes/collision/link4.obj",
+      "sha256": "64b5914ef159149f87b767ff0eae4db41b9c267aecdddf2816ff25726fa0e6f2"
+    },
+    {
+      "path": "pybullet_data/franka_panda/meshes/collision/link5.obj",
+      "sha256": "ff8d4bb5ab506b8cf621f44b928be7714dff86b669a92909b8d4f71c5b01597e"
+    },
+    {
+      "path": "pybullet_data/franka_panda/meshes/collision/link6.obj",
+      "sha256": "e1dc8bbca8690944e6331f5a108d49c363eeec179b56a9f913541a541e6a2cfc"
+    },
+    {
+      "path": "pybullet_data/franka_panda/meshes/collision/link7.obj",
+      "sha256": "675a784e949b2b47894f1965016bd56b992b136bd90e1a62e832f49b4a55b240"
+    },
+    {
+      "path": "pybullet_data/franka_panda/meshes/visual/link1.obj",
+      "sha256": "e0ec1bec9432a46f797e912cd8165798e62ebfd85c0807dce142bd6b9a768cd7"
+    },
+    {
+      "path": "pybullet_data/franka_panda/meshes/visual/link2.obj",
+      "sha256": "a1a41ada6d6cb8c51a8d0d19db9cadea101493842a52db75529e7ba0d4592904"
+    },
+    {
+      "path": "pybullet_data/franka_panda/meshes/visual/link3.obj",
+      "sha256": "82f81c15c236a41918dade0241ce40e59c4a0ee7fb08985f3a934380a8f7f594"
+    },
+    {
+      "path": "pybullet_data/franka_panda/meshes/visual/link4.obj",
+      "sha256": "91f36ecba40ecce6c169ede6d152a6c8853ee886e2b145ef6c5865cc9d5516b8"
+    },
+    {
+      "path": "pybullet_data/franka_panda/meshes/visual/link5.obj",
+      "sha256": "10d084e6f728af7d291403f0359373c121e87785b177e5c6df8a7e1e88077f11"
+    },
+    {
+      "path": "pybullet_data/franka_panda/meshes/visual/link6.obj",
+      "sha256": "7d6c29421e8066761c993a519474eb58f851885387cc2ad5a606f96eb428f059"
+    },
+    {
+      "path": "robotiq_description/meshes/collision/2f_85/left_finger.stl",
+      "sha256": "f39a50be121122fc1c53c588a762ad1da8a0f64d39bc6f299cbe9b0597e7257b"
+    },
+    {
+      "path": "robotiq_description/meshes/collision/2f_85/left_finger_tip.stl",
+      "sha256": "9d90031cd99106a8be63609f8ff78580638d91cc4167bf66c09198329f2e65cf"
+    },
+    {
+      "path": "robotiq_description/meshes/collision/2f_85/left_inner_knuckle.stl",
+      "sha256": "f250a3fea49be4d1bb2383d9980172c59fc44031193ef2293ca540f756f6c1e6"
+    },
+    {
+      "path": "robotiq_description/meshes/collision/2f_85/left_knuckle.stl",
+      "sha256": "b7ec787f57a7db5b2b14e64ffbedaac28739e38f14aac8afa8b575bac941feb7"
+    },
+    {
+      "path": "robotiq_description/meshes/collision/2f_85/right_finger.stl",
+      "sha256": "1d018fa2f0b50aca5941778d78810b211b1abfc8637c7953451d76d4833ba6f8"
+    },
+    {
+      "path": "robotiq_description/meshes/collision/2f_85/right_finger_tip.stl",
+      "sha256": "126f1559f2f7dca62449a6ca926c609fbdaa93ca66df805ff7c069bb206e3d10"
+    },
+    {
+      "path": "robotiq_description/meshes/collision/2f_85/right_inner_knuckle.stl",
+      "sha256": "c936d951ede875b91c180bd41d45b22ae23f8a39d9c3e09e29066453a8e863ef"
+    },
+    {
+      "path": "robotiq_description/meshes/collision/2f_85/right_knuckle.stl",
+      "sha256": "d151fb38f59748f1e6e627312e2ede96f2c98ba267bf722091665b20c78e7a8d"
+    },
+    {
+      "path": "robotiq_description/meshes/collision/2f_85/robotiq_base.stl",
+      "sha256": "ede5cd7d7846c051b88645f33d6bbb5ed9b36bbef404a19a46557639bfab7060"
+    },
+    {
+      "path": "robotiq_description/meshes/visual/2f_85/left_finger.dae",
+      "sha256": "5fb9e5659c735e48eb55269da431cf61b3b7a6745922c1932a7adefb1db86dc3"
+    },
+    {
+      "path": "robotiq_description/meshes/visual/2f_85/left_finger_tip.dae",
+      "sha256": "785ec7a83b4fc6357c211a39bb117833b1cfd4e9bccbef2efc7f35aeb2fdb92e"
+    },
+    {
+      "path": "robotiq_description/meshes/visual/2f_85/left_inner_knuckle.dae",
+      "sha256": "2df009ef28868c90a4904370f5f4995c74ec84e0b8ca1371044e0ea669edcd71"
+    },
+    {
+      "path": "robotiq_description/meshes/visual/2f_85/left_knuckle.dae",
+      "sha256": "1b82214363d9548f3562be70e25cd23217a304c72ccd37bc1551cf1a3a64029d"
+    },
+    {
+      "path": "robotiq_description/meshes/visual/2f_85/right_finger.dae",
+      "sha256": "3b2245b5537eb596d7f8a4c64b12e3aedea46e365fc589019184d3b4200e664f"
+    },
+    {
+      "path": "robotiq_description/meshes/visual/2f_85/right_finger_tip.dae",
+      "sha256": "568371d25ddbcee8e432c0610bdcc7afcd1393d48d973eed92168e353eb4edf5"
+    },
+    {
+      "path": "robotiq_description/meshes/visual/2f_85/right_inner_knuckle.dae",
+      "sha256": "4cc6de99e177773ba755805b58b67537c3af24b2fd8f3a1bf4bbced87d6240a5"
+    },
+    {
+      "path": "robotiq_description/meshes/visual/2f_85/right_knuckle.dae",
+      "sha256": "532b6f6f8794883ff34995701036ca392461f26127757f92003db127693bc57c"
+    },
+    {
+      "path": "robotiq_description/meshes/visual/2f_85/robotiq_base.dae",
+      "sha256": "761a79d586a48d367d60f146ca77ef7d2821ad790f7b1b1c93b061ac59799267"
+    }
+  ],
+  "mount": {
+    "child": "base_link",
+    "maximum_published_knuckle_pivot_residual_m": 0.000242006,
+    "parent": "panda_link8",
+    "rpy_rad": [
+      0.0,
+      0.0,
+      -1.5707963267948966
+    ],
+    "source": "RoboLab USD fixed joint plus PickNik-to-RoboLab base-axis registration",
+    "xyz_m": [
+      0.0,
+      0.0,
+      0.018174022
+    ]
+  },
+  "panda_urdf": "pybullet_data/franka_panda/panda.urdf",
+  "panda_urdf_sha256": "9c27cf846302e26a1d3a44ccfd4dd2dbba89cccc9f17b96b6bd1f8bceedd1ff0",
+  "picknik_commit": "2c047340aeb2440f7a60e429264221aab9658707",
+  "picknik_macro": "robotiq_description/urdf/robotiq_2f_85_macro.urdf.xacro",
+  "picknik_macro_sha256": "0c144283f72a2d75feb3d90cb49b3cea3f76e19e6026dd169651ec94a3c96fb3",
+  "picknik_repo": "ros2_robotiq_gripper",
+  "robolab_commit": "f72d39445ab699c9cfd9bf551e8d21b6075293b9",
+  "robolab_usd": "RoboLab/franka_robotiq_2f_85_flattened.usd",
+  "robolab_usd_sha256": "f555695465687548a1bd31b5e3f30385182d476a67c17080b7820ad0ef747e41",
+  "robot_embodiment": "robolab_droid",
+  "schema_version": "robolab_droid_portable_urdf.v2",
+  "visual_conversion": {
+    "authority": "official SceneCode Blender runtime",
+    "blender_executable": "blender-4.4.3-linux-x64/blender",
+    "converter_script": "deployment/public/convert_collada_to_obj_blender.py",
+    "converter_script_sha256": "1e2847e732c14aa24ecd32abdecec31441d6fcdcb623d7d422b5de983d1b257e",
+    "coordinate_contract": "metres, source Z-up preserved via OBJ -Y-forward/Z-up",
+    "records": [
+      {
+        "destination": "visual_meshes/left_finger.obj",
+        "destination_sha256": "7f9a8b2a5bbf1e51ec19deb69d15530998dc83bac52bbe5b9b9b2c0764c16216",
+        "material": "visual_meshes/left_finger.mtl",
+        "material_sha256": "6414310fd0ca65ef943f55b9ab215e29034616a366786797a1a3044497860f9e",
+        "mesh_object_count": 1,
+        "source": "robotiq_description/meshes/visual/2f_85/left_finger.dae",
+        "source_sha256": "5fb9e5659c735e48eb55269da431cf61b3b7a6745922c1932a7adefb1db86dc3",
+        "world_coordinate_bounds": {
+          "maximum_m": [
+            0.014080279506742954,
+            0.012799969874322414,
+            0.05315165966749191
+          ],
+          "minimum_m": [
+            -0.014497930184006691,
+            -0.014399940147995949,
+            -0.0062627787701785564
+          ]
+        }
+      },
+      {
+        "destination": "visual_meshes/left_finger_tip.obj",
+        "destination_sha256": "1e0fe98f1069a8add42446d0b7c124ca87aa37f6cfe4216d61f8c587e98cca99",
+        "material": "visual_meshes/left_finger_tip.mtl",
+        "material_sha256": "6414310fd0ca65ef943f55b9ab215e29034616a366786797a1a3044497860f9e",
+        "mesh_object_count": 1,
+        "source": "robotiq_description/meshes/visual/2f_85/left_finger_tip.dae",
+        "source_sha256": "785ec7a83b4fc6357c211a39bb117833b1cfd4e9bccbef2efc7f35aeb2fdb92e",
+        "world_coordinate_bounds": {
+          "maximum_m": [
+            0.005977152846753597,
+            0.012699959799647331,
+            0.05101542919874191
+          ],
+          "minimum_m": [
+            -0.02525860071182251,
+            -0.014299980364739895,
+            -0.005999981891363859
+          ]
+        }
+      },
+      {
+        "destination": "visual_meshes/left_inner_knuckle.obj",
+        "destination_sha256": "3cf237484a9cc20c18ff609b18c502b7cdb246cdfb042f9053efc1d3d66f4cb4",
+        "material": "visual_meshes/left_inner_knuckle.mtl",
+        "material_sha256": "6414310fd0ca65ef943f55b9ab215e29034616a366786797a1a3044497860f9e",
+        "mesh_object_count": 1,
+        "source": "robotiq_description/meshes/visual/2f_85/left_inner_knuckle.dae",
+        "source_sha256": "2df009ef28868c90a4904370f5f4995c74ec84e0b8ca1371044e0ea669edcd71",
+        "world_coordinate_bounds": {
+          "maximum_m": [
+            0.04315720871090889,
+            0.0176499392837286,
+            0.04941808804869652
+          ],
+          "minimum_m": [
+            -0.005999683868139982,
+            -0.01734994910657406,
+            -0.005967735778540373
+          ]
+        }
+      },
+      {
+        "destination": "visual_meshes/left_knuckle.obj",
+        "destination_sha256": "9695c456953ebff44d276267c931e94dfbd9e7b773c5a007b3943e82a5eb40f9",
+        "material": "visual_meshes/left_knuckle.mtl",
+        "material_sha256": "27b0ded6b15315e599020ad7d2fb3187fb0191521e575b26bd96b44492d0d42b",
+        "mesh_object_count": 1,
+        "source": "robotiq_description/meshes/visual/2f_85/left_knuckle.dae",
+        "source_sha256": "1b82214363d9548f3562be70e25cd23217a304c72ccd37bc1551cf1a3a64029d",
+        "world_coordinate_bounds": {
+          "maximum_m": [
+            0.03752480819821358,
+            0.008449970744550228,
+            0.010250980034470558
+          ],
+          "minimum_m": [
+            -0.007599948905408382,
+            -0.008049963973462582,
+            -0.009716271422803402
+          ]
+        }
+      },
+      {
+        "destination": "visual_meshes/right_finger.obj",
+        "destination_sha256": "b7e2811f1484a259412b77c956de2270b65620c34e682be5aef53e8f7bf36cbb",
+        "material": "visual_meshes/right_finger.mtl",
+        "material_sha256": "6414310fd0ca65ef943f55b9ab215e29034616a366786797a1a3044497860f9e",
+        "mesh_object_count": 1,
+        "source": "robotiq_description/meshes/visual/2f_85/right_finger.dae",
+        "source_sha256": "3b2245b5537eb596d7f8a4c64b12e3aedea46e365fc589019184d3b4200e664f",
+        "world_coordinate_bounds": {
+          "maximum_m": [
+            0.014497930184006691,
+            0.01359998993575573,
+            0.05315165966749191
+          ],
+          "minimum_m": [
+            -0.014080279506742954,
+            -0.01359998993575573,
+            -0.0062627787701785564
+          ]
+        }
+      },
+      {
+        "destination": "visual_meshes/right_finger_tip.obj",
+        "destination_sha256": "53498accf66de297a4c07ee116a71e53a205c90b149948cc25a7c0c6d3bdd357",
+        "material": "visual_meshes/right_finger_tip.mtl",
+        "material_sha256": "6414310fd0ca65ef943f55b9ab215e29034616a366786797a1a3044497860f9e",
+        "mesh_object_count": 1,
+        "source": "robotiq_description/meshes/visual/2f_85/right_finger_tip.dae",
+        "source_sha256": "568371d25ddbcee8e432c0610bdcc7afcd1393d48d973eed92168e353eb4edf5",
+        "world_coordinate_bounds": {
+          "maximum_m": [
+            0.02525860071182251,
+            0.013549979776144028,
+            0.05101542919874191
+          ],
+          "minimum_m": [
+            -0.005977152846753597,
+            -0.013449959456920624,
+            -0.005999981891363859
+          ]
+        }
+      },
+      {
+        "destination": "visual_meshes/right_inner_knuckle.obj",
+        "destination_sha256": "1e0e2f0d08a25c07d135390e6f280eb160d3ab9f9577f04263493ffbca3149b5",
+        "material": "visual_meshes/right_inner_knuckle.mtl",
+        "material_sha256": "6414310fd0ca65ef943f55b9ab215e29034616a366786797a1a3044497860f9e",
+        "mesh_object_count": 1,
+        "source": "robotiq_description/meshes/visual/2f_85/right_inner_knuckle.dae",
+        "source_sha256": "4cc6de99e177773ba755805b58b67537c3af24b2fd8f3a1bf4bbced87d6240a5",
+        "world_coordinate_bounds": {
+          "maximum_m": [
+            0.005999683868139982,
+            0.017549989745020866,
+            0.04941808804869652
+          ],
+          "minimum_m": [
+            -0.04315720871090889,
+            -0.017449969425797462,
+            -0.005967735778540373
+          ]
+        }
+      },
+      {
+        "destination": "visual_meshes/right_knuckle.obj",
+        "destination_sha256": "0a978534a68809c824b8f15ce03fa787ed024be4466a4acaa1818be6c7bfc4fe",
+        "material": "visual_meshes/right_knuckle.mtl",
+        "material_sha256": "27b0ded6b15315e599020ad7d2fb3187fb0191521e575b26bd96b44492d0d42b",
+        "mesh_object_count": 1,
+        "source": "robotiq_description/meshes/visual/2f_85/right_knuckle.dae",
+        "source_sha256": "532b6f6f8794883ff34995701036ca392461f26127757f92003db127693bc57c",
+        "world_coordinate_bounds": {
+          "maximum_m": [
+            0.007599948905408382,
+            0.008449970744550228,
+            0.010250980034470558
+          ],
+          "minimum_m": [
+            -0.03752480819821358,
+            -0.008049963973462582,
+            -0.009716271422803402
+          ]
+        }
+      },
+      {
+        "destination": "visual_meshes/robotiq_base.obj",
+        "destination_sha256": "ea3a559906276adeca93c790ca1121ec37e91dce30dc94993f57e8bd8fd79899",
+        "material": "visual_meshes/robotiq_base.mtl",
+        "material_sha256": "6414310fd0ca65ef943f55b9ab215e29034616a366786797a1a3044497860f9e",
+        "mesh_object_count": 1,
+        "source": "robotiq_description/meshes/visual/2f_85/robotiq_base.dae",
+        "source_sha256": "761a79d586a48d367d60f146ca77ef7d2821ad790f7b1b1c93b061ac59799267",
+        "world_coordinate_bounds": {
+          "maximum_m": [
+            0.04244296997785568,
+            0.037499960511922836,
+            0.0899999663233757
+          ],
+          "minimum_m": [
+            -0.04244333133101463,
+            -0.037499960511922836,
+            -0.0033394088968634605
+          ]
+        }
+      }
+    ]
+  }
+}

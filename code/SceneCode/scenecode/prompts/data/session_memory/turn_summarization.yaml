@@ -1,0 +1,13 @@
+description: >
+  Prompt for summarizing old conversation turns to reduce context size while
+  preserving key information about tool calls, positions, scores, and decisions.
+
+template_variables: []
+
+prompt: |
+  Summarize this conversation turn concisely. Preserve:
+  - Objects placed/modified and their positions
+  - Critique scores and key issues identified
+  - Important decisions or outcomes
+  - Scene scores and justifications
+  Keep under 200 words.

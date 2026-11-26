@@ -1,0 +1,52 @@
+diff --git a/scenecode/agent_utils/asset_manager.py b/scenecode/agent_utils/asset_manager.py
+index 6819b62..7a5dc6a 100644
+--- a/scenecode/agent_utils/asset_manager.py
++++ b/scenecode/agent_utils/asset_manager.py
+@@ -1482,20 +1482,33 @@ class AssetManager:
+                     # Convert immediately while other geometries are still generating.
+                     # This runs on main thread (bpy) while workers fetch next geometry.
+                     try:
+-                        # Handle articulated SDF assets, pending code_articulated
+-                        # conversions, and plain generated geometry separately.
+-                        if isinstance(generated, CodeArticulatedGeometry):
+-                            scene_obj = self._convert_code_articulated_to_scene_object(
+-                                generated=generated, request=request
+-                            )
+-                        elif isinstance(generated, ArticulatedGeometry):
+-                            scene_obj = self._convert_articulated_to_scene_object(
+-                                articulated=generated, request=request
+-                            )
+-                        else:
+-                            scene_obj = self._convert_generated_to_scene_object(
+-                                item=item, generated=generated, request=request
+-                            )
++                        for conversion_attempt in range(1, 4):
++                            try:
++                                # Handle articulated SDF assets, pending
++                                # code_articulated conversions, and plain generated
++                                # geometry separately.
++                                if isinstance(generated, CodeArticulatedGeometry):
++                                    scene_obj = self._convert_code_articulated_to_scene_object(
++                                        generated=generated, request=request
++                                    )
++                                elif isinstance(generated, ArticulatedGeometry):
++                                    scene_obj = self._convert_articulated_to_scene_object(
++                                        articulated=generated, request=request
++                                    )
++                                else:
++                                    scene_obj = self._convert_generated_to_scene_object(
++                                        item=item, generated=generated, request=request
++                                    )
++                                break
++                            except Exception as conversion_error:
++                                if conversion_attempt == 3:
++                                    raise
++                                console_logger.warning(
++                                    "Mesh conversion attempt %d/3 failed for '%s': %s; retrying",
++                                    conversion_attempt,
++                                    desc,
++                                    conversion_error,
++                                )
+                         successful_assets.append(scene_obj)
+                         console_logger.info(f"Successfully converted asset: '{desc}'")
+                     except Exception as e:

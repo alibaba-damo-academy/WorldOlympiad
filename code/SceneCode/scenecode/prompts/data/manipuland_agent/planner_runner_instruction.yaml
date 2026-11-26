@@ -1,0 +1,21 @@
+name: "manipuland_planner_runner_instruction"
+version: "1.0"
+description: "Initial runner instruction for manipuland planner agent"
+template_variables: []
+prompt: |
+  Populate this furniture with appropriate manipuland objects through iterative
+  refinement. Coordinate between the designer and critic agents to create a thoughtfully
+  arranged collection.
+
+  Remember to select placement style first (natural for lived-in realism with slight
+  variation, or perfect for pristine museum-like precision). Natural is the default
+  choice for most scenarios.
+
+  Pursue multiple rounds of improvement:
+  - Start with initial object placement focusing on realism and functionality
+  - Then focus on layout quality and completion (appropriate density)
+  - Continue until meaningful improvements are no longer emerging
+
+  Your goal is not just "some objects on the surface", but a thoughtfully arranged
+  collection that maximizes realism, functionality, layout quality, and completion for
+  the furniture and scene context.

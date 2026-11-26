@@ -1,0 +1,16 @@
+--- a/scenecode/agent_utils/asset_router/router.py
++++ b/scenecode/agent_utils/asset_router/router.py
+@@ -1577,1 +1577,7 @@
+-        external_reference = os.environ.get("SCENECODE_CODE_OBJECT_REFERENCE_IMAGE")
++        external_reference = os.environ.get("SCENECODE_CODE_OBJECT_REFERENCE_IMAGE")
++        from autoresearch.scenecode_image_evidence import select_provided_object_reference, record_provided_object_reference
++        provided_reference = select_provided_object_reference(item)
++        if provided_reference is not None:
++            if external_reference:
++                raise ValueError("global and object-bound external references cannot be combined")
++            external_reference = provided_reference["image_path"]
+@@ -1644,1 +1650,3 @@
+-            shutil.copy2(reference, image_path)
++            shutil.copy2(reference, image_path)
++            if provided_reference is not None:
++                record_provided_object_reference(output_dir, image_path, item, provided_reference)

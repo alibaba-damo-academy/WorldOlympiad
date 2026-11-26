@@ -1,0 +1,157 @@
+{
+  "scene": 0,
+  "scenes": [
+    {
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "asset": {
+    "version": "2.0",
+    "generator": "https://github.com/mikedh/trimesh"
+  },
+  "accessors": [
+    {
+      "componentType": 5125,
+      "type": "SCALAR",
+      "bufferView": 0,
+      "count": 120000,
+      "max": [
+        119835
+      ],
+      "min": [
+        0
+      ]
+    },
+    {
+      "componentType": 5126,
+      "type": "VEC3",
+      "byteOffset": 0,
+      "bufferView": 1,
+      "count": 119836,
+      "max": [
+        0.037586480379104614,
+        0.07999999821186066,
+        0.05243880674242973
+      ],
+      "min": [
+        -0.037586480379104614,
+        0.0,
+        -0.05243880674242973
+      ]
+    },
+    {
+      "componentType": 5126,
+      "type": "VEC2",
+      "byteOffset": 0,
+      "bufferView": 3,
+      "count": 119836,
+      "max": [
+        0.9995567202568054,
+        1.0
+      ],
+      "min": [
+        0.0,
+        0.0004169940948486328
+      ]
+    }
+  ],
+  "meshes": [
+    {
+      "name": "tmpwc8cexbk.ply.001",
+      "extras": {
+        "units": "meters",
+        "from_gltf_primitive": false,
+        "name": "tmpwc8cexbk.ply.001",
+        "node": "tmpwc8cexbk.ply"
+      },
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 1,
+            "TEXCOORD_0": 2
+          },
+          "indices": 0,
+          "mode": 4,
+          "material": 0
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "bufferView": 2,
+      "mimeType": "image/png"
+    }
+  ],
+  "textures": [
+    {
+      "source": 0
+    }
+  ],
+  "materials": [
+    {
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "roughnessFactor": 0.9036020040512085
+      },
+      "name": "Material_0.001",
+      "doubleSided": false
+    }
+  ],
+  "nodes": [
+    {
+      "name": "world",
+      "children": [
+        1
+      ]
+    },
+    {
+      "name": "tmpwc8cexbk.ply.001",
+      "mesh": 0
+    }
+  ],
+  "buffers": [
+    {
+      "uri": "gltf_buffer_0.bin",
+      "byteLength": 480000
+    },
+    {
+      "uri": "gltf_buffer_1.bin",
+      "byteLength": 1438032
+    },
+    {
+      "uri": "gltf_buffer_2.bin",
+      "byteLength": 1033788
+    },
+    {
+      "uri": "gltf_buffer_3.bin",
+      "byteLength": 958688
+    }
+  ],
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteOffset": 0,
+      "byteLength": 480000
+    },
+    {
+      "buffer": 1,
+      "byteOffset": 0,
+      "byteLength": 1438032
+    },
+    {
+      "buffer": 2,
+      "byteOffset": 0,
+      "byteLength": 1033788
+    },
+    {
+      "buffer": 3,
+      "byteOffset": 0,
+      "byteLength": 958688
+    }
+  ]
+}

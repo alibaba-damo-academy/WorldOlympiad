@@ -1,0 +1,24 @@
+--- a/scenecode/agent_utils/blender/server_manager.py
++++ b/scenecode/agent_utils/blender/server_manager.py
+@@ -300,0 +301,20 @@
++        # Evaluation outputs can live outside the source checkout and home
++        # directory. Keep the root filesystem read-only, but let callers expose
++        # only the specific existing output/temp directories needed by Blender.
++        seen_writable_paths = set()
++        for path_value in os.environ.get(
++            "SCENECODE_BWRAP_WRITABLE_PATHS", ""
++        ).split(os.pathsep):
++            if not path_value.strip():
++                continue
++            writable_path = Path(path_value).expanduser().resolve()
++            if not writable_path.is_dir():
++                raise ValueError(
++                    "SCENECODE_BWRAP_WRITABLE_PATHS entries must be existing "
++                    f"directories: {writable_path}"
++                )
++            path_text = str(writable_path)
++            if path_text not in seen_writable_paths:
++                bwrap_cmd.extend(["--bind", path_text, path_text])
++                seen_writable_paths.add(path_text)
++
+         # Bind NVIDIA devices that exist on this system.

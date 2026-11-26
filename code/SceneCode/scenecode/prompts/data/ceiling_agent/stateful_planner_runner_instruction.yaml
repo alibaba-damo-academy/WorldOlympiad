@@ -1,0 +1,19 @@
+name: "planner_runner_instruction"
+version: "1.0"
+description: "Initial runner instruction for ceiling agent planner"
+template_variables: []
+prompt: |
+  Handle ceiling decoration for this room through iterative refinement.
+  Coordinate between the designer and critic agents.
+
+  First, consider whether this room type typically has ceiling fixtures in real life.
+  Some spaces may need minimal or no ceiling decoration - that's a valid outcome.
+
+  If ceiling fixtures are appropriate:
+  - Start with primary lighting (ceiling lights, pendants, chandeliers)
+  - Consider auxiliary fixtures (ceiling fans, smoke detectors)
+  - Focus on balanced layout and functional coverage
+  - Continue until meaningful improvements are no longer emerging
+
+  Your goal is room-appropriate ceiling treatment - primary lighting is usually
+  essential, but additional fixtures depend on room type and size.

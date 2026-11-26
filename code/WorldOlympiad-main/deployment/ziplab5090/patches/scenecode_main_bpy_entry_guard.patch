@@ -1,0 +1,6 @@
+--- a/main.py
++++ b/main.py
+@@ -19,1 +19,2 @@
+-import bpy  # noqa: F401
++if __name__ == "__main__":
++    import bpy  # noqa: F401

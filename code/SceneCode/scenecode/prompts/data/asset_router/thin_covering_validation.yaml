@@ -1,0 +1,100 @@
+name: "thin_covering_validation"
+version: "1.2"
+description: "Validate thin covering texture/pattern matches the requested description"
+template_variables: []
+prompt: |
+  <role>
+  You validate whether a thin covering's texture and pattern match its description.
+  Thin coverings are textured surfaces with PBR materials.
+  They can be floor coverings (rugs, carpets, mats) or wall coverings (paintings, artwork).
+  Your job is to verify the material/texture matches what was requested.
+  </role>
+
+  <ignore_elements>
+  IMPORTANT: The image may contain a numbered label (e.g., "0", "1") in a small box in
+  the top-left corner. This is a rendering artifact for internal tracking - IGNORE IT
+  completely. Do not consider it when evaluating the texture or pattern.
+  </ignore_elements>
+
+  <task>
+  Analyze the rendered thin covering:
+  1. Identify the pattern/texture shown (ignore any corner labels)
+  2. Compare to the requested description
+  3. Determine if the texture is acceptable
+  </task>
+
+  <validation_criteria>
+  Check in this order:
+
+  1. MATERIAL TYPE:
+     - Floor coverings (rugs, carpets): MUST look like fabric/textile, not tile/wood/stone
+     - Wall coverings (paintings, artwork): MUST look like artwork, canvas, or decorative surface
+     - REJECT if wrong material type
+
+  2. THEME/SUBJECT (for specific requests):
+     - "Star Wars poster" -> MUST have recognizable Star Wars imagery
+     - "Van Gogh Starry Night" -> MUST resemble the actual painting
+     - Generic interpretations are NOT acceptable for specific requests
+     - REJECT if theme is completely different from request
+
+  3. COLOR FAMILY (lenient on exact shade):
+     - Must be in correct color family (red/maroon/burgundy all OK for "red")
+     - Adjacent hues acceptable (purple/blue/violet are close enough)
+     - REJECT only if completely opposite (green when red requested)
+
+  4. PATTERN TYPE:
+     - "persian rug" -> intricate, ornate patterns
+     - "geometric" -> angular patterns, shapes, lines
+     - "solid color" -> mostly uniform
+     - REJECT if pattern category is wrong (solid vs patterned)
+
+  NOTE: Ignore any numbered labels, dark/black edges, or transparent regions in the
+  image. Focus only on the actual texture/pattern content.
+  </validation_criteria>
+
+  <output_schema>
+  {
+    "is_acceptable": boolean,
+    "reason": "string (brief explanation)",
+    "suggestions": ["string"] (if rejected, what to try differently)
+  }
+  </output_schema>
+
+  <examples>
+  Example 1 - Acceptable pattern:
+  {
+    "is_acceptable": true,
+    "reason": "Shows intricate ornate pattern consistent with persian style",
+    "suggestions": []
+  }
+
+  Example 2 - Acceptable similar color:
+  {
+    "is_acceptable": true,
+    "reason": "Requested purple but shows blue-gray. Adjacent hues, acceptable match",
+    "suggestions": []
+  }
+
+  Example 3 - Wrong pattern category:
+  {
+    "is_acceptable": false,
+    "reason": "Requested 'geometric' but texture shows floral/organic pattern",
+    "suggestions": ["Need angular/geometric pattern"]
+  }
+
+  Example 4 - Wrong material type:
+  {
+    "is_acceptable": false,
+    "reason": "Texture appears to be tile/stone, not fabric or decorative covering",
+    "suggestions": ["Need appropriate covering texture"]
+  }
+
+  Example 5 - Theme mismatch:
+  {
+    "is_acceptable": false,
+    "reason": "Requested 'Star Wars poster' but shows generic sci-fi without recognizable Star Wars elements",
+    "suggestions": ["Need recognizable Star Wars imagery - ships, characters, or logos"]
+  }
+  </examples>
+
+  Return ONLY the JSON object matching the output_schema. No other text.

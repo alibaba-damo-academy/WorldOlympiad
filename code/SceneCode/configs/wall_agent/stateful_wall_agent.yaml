@@ -1,0 +1,19 @@
+defaults:
+  - base_wall_agent
+
+# Agent configuration
+agents:
+  designer_agent:
+    name: "designer_agent"
+    max_turns: 2000
+    prompt: DESIGNER_AGENT
+
+  planner_agent:
+    name: "planner_agent"
+    max_turns: 500
+    prompt: STATEFUL_PLANNER_AGENT
+
+  critic_agent:
+    name: "critic_agent"
+    max_turns: 500
+    prompt: STATEFUL_CRITIC_AGENT

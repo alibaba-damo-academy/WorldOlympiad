@@ -1,0 +1,11 @@
+--- a/dream2flow/flow/generators/video_flow_generator.py
++++ b/dream2flow/flow/generators/video_flow_generator.py
+@@ -72,7 +72,7 @@ class VideoFlowGenerator(ObjectFlowGenerator):
+     def _fps(self, object_points: torch.Tensor, ratio: float) -> torch.Tensor:
+         from torch_geometric.nn import fps
+ 
+-        return fps(object_points, ratio=ratio)
++        return fps(object_points.contiguous(), ratio=ratio, random_start=False)
+ 
+     def _get_tracked_particle_image_coordinates(
+         self,

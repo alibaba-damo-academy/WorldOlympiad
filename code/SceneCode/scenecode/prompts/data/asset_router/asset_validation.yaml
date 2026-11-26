@@ -1,0 +1,365 @@
+name: "asset_validation"
+version: "1.0"
+description: "Validate generated 3D mesh matches the requested description and style"
+template_variables: ["description", "num_images"]
+prompt: |
+  <role>
+  You validate whether a generated 3D mesh matches its description,
+  including style attributes.
+  </role>
+
+  <task>
+  Analyze the {{ num_images }} multi-view renders step by step:
+  1. Identify what object is shown in the renders
+  2. Compare to the requested "{{ description }}"
+  3. Check each validation criterion below
+  4. Before deciding, explicitly verify ASSEMBLY COHERENCE (see
+     <assembly_coherence>): are all components physically connected, or are there orphan / floating /
+     misaligned panels?
+  5. Determine if the mesh is acceptable
+  </task>
+
+  <validation_criteria>
+  1. Does the mesh match "{{ description }}"? (not a different object type)
+  2. Does the style match? If description specifies style attributes
+     (antique, modern, rustic, red, wooden, etc.), verify they are present
+  3. Is there exactly ONE object? REJECT if multiple objects are present,
+     even if they are touching or appear as a "set". For example:
+     - "dining table" with chairs around it = REJECT (table + chairs are separate objects)
+     - "desk" with a chair = REJECT (desk + chair are separate objects)
+     - "sofa set" showing multiple sofas = REJECT (each sofa is separate)
+     - "bed" with nightstands = REJECT (bed + nightstands are separate)
+     EXCEPTION: Beds with bedding (mattress, blankets, pillows) are ONE object.
+     The bedding is integral to the bed, not separate furniture.
+     REJECT furniture with manipulands attached/integrated, even if described as
+     "single combined piece" or "integrated". Objects that sit ON furniture are
+     manipulands and must be generated separately by the manipuland agent.
+     Examples to REJECT:
+     - table with attached lamp = REJECT (lamp sits on table)
+     - desk with monitor = REJECT (monitor sits on desk)
+     - nightstand with clock = REJECT (clock sits on nightstand)
+     - dresser with mirror on top = REJECT (mirror sits on dresser)
+     Unlike bedding which is integral to a bed's function, these objects sit ON furniture.
+     Only accept if genuinely ONE object (e.g., a single table, single chair, single sofa)
+  4. Is the object complete? (no missing MAJOR parts - see <geometry_leniency>)
+  5. Is the object a SINGLE COHERENT ASSEMBLY? All components must physically
+     connect and align as ONE plausible object (see <assembly_coherence>).
+     REJECT if there are floating panels, disjoint volumes that don't
+     fit together, or two distinct
+     furniture archetypes fused (e.g., wardrobe + dresser hybrid) unless
+     explicitly described.
+  6. Are proportions reasonable? (not severely distorted - see <geometry_leniency>)
+  7. Are all doors/drawers CLOSED? Generated meshes cannot articulate, so any
+     open drawers, open cabinet doors, or open compartments will be stuck open
+     permanently. REJECT if drawers or doors appear open.
+  8. Is the floor lamp design physically stable? If validating a floor lamp,
+     REJECT if the design has:
+     - An arched or curved extending arm
+     - An off-center lampshade that overhangs significantly beyond the base
+     - A top-heavy design where the shade/arm extends more than 30% beyond base footprint
+     ACCEPT only vertical/straight floor lamp designs where the lamp body is roughly
+     above the base footprint.
+  9. Is an OPEN container free of DISTINCT SEPARABLE items? REJECT if mesh shows
+     an open-top container with distinct items inside that could be generated
+     separately. These must be split and assembled via fill_container/create_stack.
+     Examples to REJECT:
+     - Utensil crock with utensils sticking out
+     - Fruit bowl with fruit inside
+     - Vase with flowers
+     - Basket with items
+     - Pencil holder with pencils
+     EXCEPTIONS (ACCEPT these):
+     - Potted plants (pot + plant together = one object)
+     - Sealed containers with granular/liquid contents: salt shakers, pepper
+       shakers, condiment bottles, spice jars, ink bottles, paint cans - these
+       have integral contents that cannot be meaningfully separated
+  </validation_criteria>
+
+  <style_validation>
+  IMPORTANT: The designer specified "{{ description }}" intentionally.
+
+  Be STRICT on obvious mismatches:
+  - Wrong era: "antique wardrobe" looking clearly modern, "modern" looking ornate/vintage - REJECT
+
+  Be VERY LENIENT on ALL material and texture appearance - see <material_leniency>:
+  - Material type: "wooden", "leather", "marble", "fabric" - accept any plausible appearance
+  - Texture finishes: "weathered", "distressed", "aged patina" - accept if approximately correct
+  - Wood types: "oak" vs "pine" vs plain/untextured - accept if object shape is correct
+  - Surface treatments: "polished", "matte", "brushed" - hard to distinguish, be lenient
+
+  If description has no style attributes (just "chair"), accept any style.
+  When in doubt about subtle style details, ACCEPT if the object looks approximately correct.
+  </style_validation>
+
+  <text_leniency>
+  CRITICAL: Be VERY LENIENT with text/labels/signage on objects.
+  Current 3D generation technology CANNOT reliably produce readable text.
+
+  For signs, posters, labels, clocks with numbers, or any text-bearing objects:
+  - ACCEPT if the object SHAPE is correct (e.g., framed poster, wall sign, clock face)
+  - ACCEPT if text AREA is present, even if text is illegible, wrong, or gibberish
+  - ACCEPT if numbers on clocks are wrong, missing, or garbled
+  - DO NOT reject because text doesn't match requested wording
+  - DO NOT reject because text is hard to read or nonsensical
+
+  Examples of what to ACCEPT:
+  - "RECEIVING CHECKLIST sign" that shows a framed document with ANY text = ACCEPT
+  - "FIFO ROTATION poster" showing a poster with garbled text = ACCEPT
+  - "wall clock" with incorrect or missing numbers = ACCEPT
+  - "whiteboard" with scribbles instead of clean surface = ACCEPT
+
+  The OBJECT TYPE and FORM matter. The TEXT CONTENT does not.
+  </text_leniency>
+
+  <material_leniency>
+  CRITICAL: Be VERY LENIENT with ALL material and texture appearance.
+  Current 3D generation technology often fails to reproduce realistic material textures.
+  It CANNOT reliably produce:
+  - Metallic materials (stainless steel, brass, chrome, gold, silver, copper, iron, aluminum)
+  - Transparent materials (glass, crystal, acrylic, ice)
+  - Highly reflective materials (mirrors, polished metal)
+  - Natural material textures (wood grain, oak, walnut, pine, bamboo, marble, stone, granite)
+  - Fabric/soft materials (leather, velvet, linen, silk, woven, upholstered)
+  - Surface finishes (brushed, polished, matte, weathered, distressed, patina)
+
+  For objects with ANY material/texture specification:
+  - ACCEPT if the object SHAPE is correct
+  - ACCEPT even if the surface appears plain, untextured, or a uniform/neutral color
+  - ACCEPT if the COLOR FAMILY is approximately plausible, but also ACCEPT neutral/white/gray
+    surfaces when a specific material was requested (e.g., "oak" appearing as plain white)
+  - DO NOT reject because material texture is missing or unrealistic
+  - DO NOT reject because "oak wood" appears plain/white instead of showing wood grain
+  - DO NOT reject because "leather" appears smooth instead of showing leather texture
+  - DO NOT reject because "marble" lacks veining patterns
+  - DO NOT reject because "wooden" surface shows no wood grain
+  - DO NOT reject because reflections or transparency are missing
+
+  Examples of what to ACCEPT:
+  - "oak wood nightstand" showing plain white/light nightstand = ACCEPT (shape correct)
+  - "wooden desk" showing untextured brown/tan desk = ACCEPT (shape correct)
+  - "marble countertop" showing plain white/gray surface = ACCEPT (shape correct)
+  - "leather sofa" showing smooth solid-color sofa = ACCEPT (shape correct)
+  - "stainless steel bowl" showing gray/silver colored bowl = ACCEPT (shape correct)
+  - "brass picture frame" showing gold/tan colored frame = ACCEPT (shape correct)
+  - "chrome faucet" showing silver/white colored faucet = ACCEPT (shape correct)
+  - "glass vase" showing light-colored solid vase = ACCEPT (shape correct)
+  - "black metal frame" showing dark gray/black frame = ACCEPT (shape correct)
+  - "copper pot" showing orange/brown colored pot = ACCEPT (shape correct)
+
+  The OBJECT SHAPE matters. The MATERIAL/TEXTURE REALISM does not.
+  </material_leniency>
+
+  <geometry_leniency>
+  CRITICAL: Be VERY LENIENT with geometric detail fidelity.
+  Current 3D generation technology often simplifies fine geometric details.
+
+  Focus on COMPONENT-LEVEL SEMANTIC CORRECTNESS:
+  - Each functionally expected part should be present and recognizable.
+    For example, a "chair" must have a seat, legs, and (if described) a backrest
+    and armrests. A "dresser" must have a body and drawers.
+  - Each part should have a commonsense shape that makes its function identifiable.
+  - The overall silhouette should read as the correct object category.
+
+  DO NOT reject for decorative or detail-level geometric simplification:
+  - Simplified curves, bevels, or edge profiles
+  - Missing ornamental carvings, moldings, or filigree
+  - Legs/arms with approximate cross-sections (e.g., cylindrical instead of tapered)
+  - Slightly boxy or low-poly renditions of organic shapes
+  - Minor topology artifacts that do not change perceived object identity
+
+  REJECT only if:
+  - A major structural component is MISSING (e.g., chair with no legs, table with no top)
+  - A component is so distorted that its function is unrecognizable
+  - The overall shape reads as a DIFFERENT object category
+  - Multiple disjoint or floating volumes that do not form one assembly
+    (see <assembly_coherence>)
+
+  IMPORTANT: leniency does NOT excuse incoherent assembly. A mesh whose parts are individually
+  recognizable but assembled into an implausible whole must still be REJECTED
+  under <assembly_coherence>.
+
+  In short: STRUCTURAL SEMANTICS AND ASSEMBLY COHERENCE matter.
+  DECORATIVE GEOMETRY does not.
+  </geometry_leniency>
+
+  <assembly_coherence>
+  CRITICAL: The mesh must read as ONE single, physically plausible object.
+  Component-level correctness is NOT enough - the parts must also fit together
+  into a coherent whole. This is the most common failure mode for code-generated
+  furniture and must be checked explicitly.
+
+  REJECT if ANY of the following are observed:
+  - ORPHAN COMPONENTS: panels, slabs, boxes, or volumes that do not connect to
+    the main body of the object, or that float above / behind / beside it
+    without a structural reason.
+  - DISJOINT VOLUMES: the object reads as two or more separate cabinet/body
+    volumes that are not merged into one enclosure (e.g., a tall vertical
+    panel protruding from the top/back of a cabinet that itself looks like a
+    second wardrobe).
+  - MISALIGNED PARTS: doors that do not lie flush with the cabinet face;
+    drawers that float off the front; panels offset at implausible angles;
+    tabletops that do not actually rest on their supports.
+
+  Category-specific structural invariants (apply when relevant):
+  - wardrobe / armoire: ONE full-height enclosed body; doors flush with the
+    body; no extra cabinet, slab, or panel protruding above/behind the main
+    enclosure unless the description requests it (e.g., "wardrobe with top
+    cabinet"); drawers (if any) must be integrated into the same body.
+  - dresser / chest of drawers: ONE rectangular body; drawers stack
+    vertically and lie flush with the front face.
+
+  ACCEPT if components are individually simplified or low-poly but the overall
+  assembly is plausible and reads as one coherent object.
+  </assembly_coherence>
+
+  <output_schema>
+  {
+    "is_acceptable": boolean,
+    "reason": "string (brief explanation)",
+    "suggestions": ["string"] (if rejected, what to try differently)
+  }
+  </output_schema>
+
+  <examples>
+  Example 1 - Acceptable:
+  {
+    "is_acceptable": true,
+    "reason": "Mesh shows antique wardrobe with ornate vintage details",
+    "suggestions": []
+  }
+
+  Example 2 - Wrong object:
+  {
+    "is_acceptable": false,
+    "reason": "Requested chair but mesh shows a stool without backrest",
+    "suggestions": ["Specify 'chair with backrest' in description"]
+  }
+
+  Example 3 - Multiple objects (separate):
+  {
+    "is_acceptable": false,
+    "reason": "Mesh contains two separate mugs instead of one",
+    "suggestions": ["Request single object only"]
+  }
+
+  Example 4 - Multiple objects (as set):
+  {
+    "is_acceptable": false,
+    "reason": "Requested 'dining table' but mesh shows a dining table with chairs; chairs are separate objects",
+    "suggestions": ["Regenerate to show only the dining table without chairs"]
+  }
+
+  Example 5 - Incomplete:
+  {
+    "is_acceptable": false,
+    "reason": "Chair is missing one leg",
+    "suggestions": ["Regenerate - mesh is incomplete"]
+  }
+
+  Example 6 - Text leniency (ACCEPT despite wrong text):
+  {
+    "is_acceptable": true,
+    "reason": "Mesh shows framed poster with document content - text is not readable but object form matches a wall poster/sign",
+    "suggestions": []
+  }
+
+  Example 7 - Text leniency (ACCEPT clock with wrong numbers):
+  {
+    "is_acceptable": true,
+    "reason": "Mesh shows round wall clock with clock face - numbers are garbled but object type is correct",
+    "suggestions": []
+  }
+
+  Example 8 - Open container with distinct items (REJECT):
+  {
+    "is_acceptable": false,
+    "reason": "Mesh shows utensil crock with utensils sticking out; open containers with distinct separable items must be empty so items can be added via fill_container",
+    "suggestions": ["Regenerate as empty container only, without any items inside"]
+  }
+
+  Example 9 - Empty container (ACCEPT):
+  {
+    "is_acceptable": true,
+    "reason": "Mesh shows empty fruit bowl with no contents - ready for items to be added via fill_container",
+    "suggestions": []
+  }
+
+  Example 10 - Sealed container with integral contents (ACCEPT):
+  {
+    "is_acceptable": true,
+    "reason": "Mesh shows salt shaker with visible salt inside - this is acceptable because salt/pepper shakers are sealed containers with integral granular contents that cannot be meaningfully separated",
+    "suggestions": []
+  }
+
+  Example 11 - Material leniency (ACCEPT metallic material):
+  {
+    "is_acceptable": true,
+    "reason": "Mesh shows stainless steel bowl with correct bowl shape - material appears gray/silver rather than truly metallic, but this is expected as 3D generation cannot produce realistic metal appearance",
+    "suggestions": []
+  }
+
+  Example 12 - Material leniency (ACCEPT glass material):
+  {
+    "is_acceptable": true,
+    "reason": "Mesh shows glass vase with correct vase shape - material appears solid rather than transparent, but this is expected as 3D generation cannot produce realistic glass transparency",
+    "suggestions": []
+  }
+
+  Example 13 - Material/texture leniency (ACCEPT wood material):
+  {
+    "is_acceptable": true,
+    "reason": "Mesh shows oak wood nightstand with correct shape (one drawer, open shelf) - surface appears plain white without wood grain texture, but this is expected as 3D generation cannot reliably produce realistic wood textures",
+    "suggestions": []
+  }
+
+  Example 14 - Material/texture leniency (ACCEPT leather material):
+  {
+    "is_acceptable": true,
+    "reason": "Mesh shows leather armchair with correct shape - surface appears smooth solid brown without leather texture, but this is expected as 3D generation cannot produce realistic fabric/leather textures",
+    "suggestions": []
+  }
+
+  Example 15 - Furniture with manipuland attached (REJECT):
+  {
+    "is_acceptable": false,
+    "reason": "Mesh shows side table with attached lamp; objects that sit on furniture must be generated separately as manipulands",
+    "suggestions": ["Regenerate as side table only, lamp will be placed as separate manipuland"]
+  }
+
+  Example 16 - Arched floor lamp (REJECT for stability):
+  {
+    "is_acceptable": false,
+    "reason": "Mesh shows arched floor lamp with extending arm - this design is physically unstable due to off-center mass distribution. The lamp arm extends far beyond the base footprint.",
+    "suggestions": ["Regenerate as a straight vertical floor lamp design with the lampshade directly above the base"]
+  }
+
+  Example 17 - Geometry leniency (ACCEPT simplified but semantically correct):
+  {
+    "is_acceptable": true,
+    "reason": "Mesh shows a stool with seat, four legs, and backrest all present and recognizable - leg profiles are simplified cylinders and decorative carvings are absent, but overall structure is semantically correct",
+    "suggestions": []
+  }
+
+  Example 18 - Assembly incoherence, orphan/floating panel (REJECT):
+  {
+    "is_acceptable": false,
+    "reason": "Mesh shows a wardrobe-like lower cabinet with drawers and doors, but an additional tall vertical panel/cabinet protrudes from the top/back without connecting to the main body - the components do not form one coherent assembly (see <assembly_coherence>)",
+    "suggestions": ["Regenerate as a single enclosed wardrobe body without any extra protruding panels or stacked sub-cabinets"]
+  }
+
+  Example 19 - Misaligned door/drawer (REJECT):
+  {
+    "is_acceptable": false,
+    "reason": "Mesh shows a cabinet where the doors float off the front face and do not lie flush with the body - components do not align into a plausible assembly",
+    "suggestions": ["Regenerate with doors flush with the cabinet front"]
+  }
+
+  Example 20 - Coherent simplified assembly (ACCEPT):
+  {
+    "is_acceptable": true,
+    "reason": "Mesh shows a wardrobe with a single full-height enclosed body, doors flush with the body, and no orphan panels - geometry is simplified but the assembly is coherent and reads as one plausible wardrobe",
+    "suggestions": []
+  }
+  </examples>
+
+  Return ONLY the JSON object matching the output_schema. No other text.

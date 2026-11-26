@@ -1,0 +1,17 @@
+diff --git a/scenecode/code_object/agent_framework/prompts/constructor_structmanip.md b/scenecode/code_object/agent_framework/prompts/constructor_structmanip.md
+index a0021f1..c85a027 100644
+--- a/scenecode/code_object/agent_framework/prompts/constructor_structmanip.md
++++ b/scenecode/code_object/agent_framework/prompts/constructor_structmanip.md
+@@ -467,6 +467,12 @@ if __name__ == "__main__":
+ 4.B When `is_symmetric` is `true`, use the Mirror modifier to ensure symmetry
+     - Only half of the geometry needs to be created, and the modifier will automatically generate the other half
+ 
++4.C **Attached parts must have positive geometric overlap**
++    - Handles, knobs, stems, and brackets must intersect the body at every intended attachment point; tangent contact or a visible gap is invalid
++    - For a loop handle, place both terminal sections inside the body wall by at least one quarter of the handle thickness
++    - Inspect the generated attachment coordinates numerically before export; do not rely on smooth shading to hide disconnected geometry
++    - Boolean union is optional, but the final rigid assembly must be visibly connected from all orthographic views
++
+ 5. **Avoid hardcoding**
+    - Read dimensions and position from PartPlan
+    - Use variables instead of magic numbers

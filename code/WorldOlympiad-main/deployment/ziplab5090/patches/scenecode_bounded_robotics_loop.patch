@@ -1,0 +1,193 @@
+--- a/scenecode/code_object/agent_framework/agents/part_constructor.py
++++ b/scenecode/code_object/agent_framework/agents/part_constructor.py
+@@ -10,6 +10,9 @@
+ from pathlib import Path
+ from datetime import datetime
+ 
++from autoresearch.scenecode_loop_policy import (
++    BLENDER_API_RULES, bounded_attempts, failure_fingerprint, normalize_blender_code,
++)
+ from .base_agent import BaseAgent
+ from ..schemas import (
+     ObjectPlan, PartPlan, ActionTrace, BlenderAction,
+@@ -39,12 +42,12 @@
+         super().__init__(config_path, llm_client, blender_client)
+         prompts_cfg = self.config.get("prompts", {})
+         self.prompt_name = prompts_cfg.get("constructor", "constructor")
+-        self.prompt_template = self._load_prompt(self.prompt_name)
++        self.prompt_template = self._load_prompt(self.prompt_name) + BLENDER_API_RULES
+         self.logger.info("Using constructor prompt: %s", self.prompt_name)
+                 
+         # 从配置获取参数
+         constructor_config = self.config.get("agents", {}).get("part_constructor", {})
+-        self.max_retry = constructor_config.get("max_retry", 5)
++        self.max_retry = bounded_attempts(constructor_config.get("max_retry", 5), 2)
+         self.save_action_trace = constructor_config.get("save_action_trace", True)
+         
+     def _encode_image(self, image_path: str) -> str:
+@@ -374,6 +377,8 @@
+         else:
+             code = self._generate_code_template(part)
+         
++        # Persist known API repairs before execution and later export.
++        code = normalize_blender_code(code)
+         # 保存代码
+         code_path = os.path.join(output_dir, f"{part.name}.py")
+         os.makedirs(output_dir, exist_ok=True)
+@@ -385,12 +390,18 @@
+         # 执行代码（失败时根据错误信息用 LLM 修正并重试）
+         execution_result = None
+         execution_attempts = 0
++        seen_execution_failures = set()
+         max_execution_retries = max(1, self.max_retry)
+ 
+         if execute:
+             while execution_attempts < max_execution_retries:
+                 execution_attempts += 1
+                 if execution_attempts > 1:
++                    fingerprint = failure_fingerprint(execution_result.get("error", ""))
++                    if fingerprint in seen_execution_failures:
++                        self.logger.error("Repeated unchanged execution failure; stopping repair: %s", fingerprint)
++                        break
++                    seen_execution_failures.add(fingerprint)
+                     # 根据错误信息用 LLM 修正代码
+                     self.logger.info(
+                         f"Execution failed, fixing code from error (attempt {execution_attempts}/{max_execution_retries})..."
+@@ -406,6 +417,7 @@
+                             image_path=image_path,
+                             text_input=text_input
+                         )
++                        code = normalize_blender_code(code)
+                         with open(code_path, "w", encoding="utf-8") as f:
+                             f.write(code)
+                         self.logger.info(f"Fixed code saved to: {code_path}")
+--- a/scenecode/code_object/agent_framework/agents/planner.py
++++ b/scenecode/code_object/agent_framework/agents/planner.py
+@@ -9,6 +9,7 @@
+ from typing import Any, Dict, Optional, List
+ from pathlib import Path
+ 
++from autoresearch.scenecode_loop_policy import COMPACT_PLAN_RULES, robotics_profile_enabled
+ from .base_agent import BaseAgent
+ from ..schemas import ObjectPlan
+ 
+@@ -37,6 +38,8 @@
+         prompts_cfg = self.config.get("prompts", {})
+         self.prompt_name = prompts_cfg.get("planner", "planner")
+         self.prompt_template = self._load_prompt(self.prompt_name)
++        if robotics_profile_enabled():
++            self.prompt_template += COMPACT_PLAN_RULES
+         self.logger.info("Using planner prompt: %s", self.prompt_name)
+         
+         # 从配置获取参数
+--- a/scenecode/code_object/agent_framework/agents/planner_checker.py
++++ b/scenecode/code_object/agent_framework/agents/planner_checker.py
+@@ -9,6 +9,9 @@
+ from pathlib import Path
+ from dataclasses import dataclass
+ 
++from autoresearch.scenecode_loop_policy import (
++    COMPACT_PLAN_RULES, bounded_attempts, plan_error_fingerprint, robotics_profile_enabled,
++)
+ from .base_agent import BaseAgent
+ from ..schemas import ObjectPlan
+ 
+@@ -81,7 +84,7 @@
+         
+         # 从配置获取参数
+         checker_config = self.config.get("agents", {}).get("planner_checker", {})
+-        self.max_retry = checker_config.get("max_retry", 3)
++        self.max_retry = bounded_attempts(checker_config.get("max_retry", 3), 3)
+         
+         # 部件模板
+         self.part_templates = self.config.get("part_templates", {})
+@@ -92,9 +95,8 @@
+         若分隔失败，回退到完整模板。
+         """
+         parts = self.prompt_template.split("---")
+-        if len(parts) >= 2:
+-            return parts[1].strip()
+-        return self.prompt_template
++        prompt = parts[1].strip() if len(parts) >= 2 else self.prompt_template
++        return prompt + (COMPACT_PLAN_RULES if robotics_profile_enabled() else "")
+         
+     def _encode_image(self, image_path: str) -> str:
+         """将图片编码为 base64"""
+@@ -531,8 +533,9 @@
+             (修正后的 ObjectPlan, 检查历史)
+         """
+         self._validate_single_input(image_path=image_path, text_input=text_input)
+-        max_retry = max_retry or self.max_retry
++        max_retry = bounded_attempts(max_retry or self.max_retry, 3)
+         check_history = []
++        seen_failures = set()
+         current_plan = plan
+         
+         for attempt in range(max_retry):
+@@ -551,6 +554,13 @@
+                 self.logger.info("Plan check passed!")
+                 return current_plan, check_history
+             
++            fingerprint = plan_error_fingerprint(result.issues)
++            if fingerprint in seen_failures:
++                self.logger.error("Repeated unchanged plan errors; stopping repair")
++                break
++            seen_failures.add(fingerprint)
++            if attempt + 1 >= max_retry:
++                break  # Never pay for a revision that cannot be checked.
+             # 如果有修正建议，应用修正（基于现有 ObjectPlan 做最小修改）
+             if result.corrections and planner_agent:
+                 self.logger.info("Applying corrections via ObjectPlan revision (no full re-planning)...")
+--- a/scenecode/agent_utils/code_object_generation.py
++++ b/scenecode/agent_utils/code_object_generation.py
+@@ -11,6 +11,7 @@
+ from dataclasses import dataclass
+ from pathlib import Path
+ 
++from autoresearch.scenecode_loop_policy import bounded_attempts
+ from omegaconf import DictConfig
+ 
+ from scenecode.agent_utils.mesh_utils import convert_gltf_to_glb
+@@ -68,7 +69,7 @@
+         self._max_concurrent_runs = int(code_object_cfg.get("max_concurrent_runs", 2))
+         if self._max_concurrent_runs < 1:
+             raise ValueError("asset_manager.code_object.max_concurrent_runs must be >= 1")
+-        self._max_attempts = int(code_object_cfg.get("max_attempts", 3))
++        self._max_attempts = bounded_attempts(code_object_cfg.get("max_attempts", 3), 1)
+         if self._max_attempts < 1:
+             raise ValueError("asset_manager.code_object.max_attempts must be >= 1")
+ 
+@@ -537,7 +538,7 @@
+             if part_file.is_file() and part_file.name != "__init__.py"
+         ]
+         has_existing_parts = bool(part_files)
+-        skip_stages = ("plan_check",) if has_existing_parts else ()
++        skip_stages = ()  # Partial code alone never certifies a checked plan.
+         return _CodeObjectResumeState(
+             has_existing_plan=object_plan_path.exists(),
+             has_existing_parts=has_existing_parts,
+--- a/scenecode/code_object/agent_framework/pipeline.py
++++ b/scenecode/code_object/agent_framework/pipeline.py
+@@ -965,9 +965,11 @@
+                         # 保存检查历史 并非实时保存，max_retry 后保存全部内容
+                         if self.config.get("pipeline", {}).get("save_intermediate", True):
+                             history_path = os.path.join(output_dir, "plan_check_history.json")
+-                            with open(history_path, 'a', encoding='utf-8') as f:
++                            with open(history_path, 'w', encoding='utf-8') as f:
+                                 json.dump([h.to_dict() for h in check_history], f, indent=2, ensure_ascii=False)
+                         
++                        if not check_history or not check_history[-1].is_valid:
++                            raise RuntimeError("Plan check budget exhausted with unresolved errors")
+                         stages_completed.append("plan_check")
+                         self.logger.info("Plan check completed")
+                     except Exception as e:
+@@ -976,6 +978,9 @@
+                 else:
+                     self.logger.info("Skipping plan check stage")
+             
++            if "plan_check" in stages_failed:
++                raise RuntimeError("Unresolved plan errors: refusing expensive construction/export")
++
+             # ==================== Stage 3: Part Construction & Check ====================
+             # 先构造全部部件，再统一检查
+             self.logger.info("\n" + "="*40)

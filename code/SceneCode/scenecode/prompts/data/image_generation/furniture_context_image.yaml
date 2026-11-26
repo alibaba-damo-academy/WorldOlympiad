@@ -1,0 +1,12 @@
+name: "furniture_context_image"
+version: "2.0"
+description: "Edit a Blender render of an empty room to show furniture placement"
+template_variables: ["scene_description", "width_m", "length_m"]
+prompt: |
+  Using this top-down render of an empty room as reference, show furniture placement.
+  The render shows doors and windows - DO NOT block any openings with furniture.
+
+  Room: {{ scene_description }}
+  Dimensions: {{ length_m }}m x {{ width_m }}m
+
+  Style: architectural visualization, clean, minimal, walls visible.

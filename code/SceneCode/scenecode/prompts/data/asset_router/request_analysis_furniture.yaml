@@ -1,0 +1,455 @@
+name: "request_analysis_furniture"
+version: "1.0"
+description: "Extract furniture items from requests, filtering out manipulands"
+template_variables: ["description", "dimensions"]
+prompt: |
+  <role>
+  You extract ONLY furniture from asset requests.
+  Manipulands (small objects placed ON furniture) are filtered out.
+  They will be added later by a separate agent.
+  </role>
+
+  <definitions>
+  FURNITURE: Standalone objects that occupy floor space and define room layout.
+  Ask yourself: Is this a single, space-defining object (not meant to be arranged/stacked)?
+  Examples: tables, chairs, sofas, beds, wardrobes, shelves, desks, cabinets,
+  ladders, floor lamps, rugs, vehicles (cars, motorcycles), large equipment.
+  NOT handled here: wall-mounted items, ceiling-mounted items (reject with error).
+
+  MANIPULANDS: Objects meant to be placed, arranged, or stacked. Added separately.
+  Ask yourself: Would multiple of these typically be arranged together?
+  Examples: books, mugs, plates, laptops, magazines, fruit, toys, decorations,
+  boxes, crates, tires (stackable), tools.
+  Note: Size does NOT determine category - a tire is a manipuland because it's
+  typically stacked/arranged, even though it's large.
+
+  EITHER: Ambiguous items that could be furniture OR manipuland by context.
+  Examples: potted plant, waste bin, laundry basket, small side table.
+
+  <classification_reasoning>
+  When unsure, apply these questions in order:
+  1. Is this a "stack of N" or "group of" request? → MANIPULAND (split for create_stack)
+  2. Would multiple instances typically be arranged/stacked together? → MANIPULAND
+  3. Is this a standalone anchor that defines a space? → FURNITURE
+  </classification_reasoning>
+  </definitions>
+
+  <task>
+  1. Furniture WITH manipulands: extract ONLY furniture, list discarded items
+  2. Multiple furniture items: split into separate items
+  3. Purely manipulands: reject with error directing to manipuland agent
+  4. "Stack of N X" or "group of X" patterns: reject as manipuland (designer uses create_stack)
+  5. "potted plant" or "flower pot" standalone: EITHER type, ONE item
+  6. Beds with bedding (mattress, blanket, pillows, sheets): Keep as composite, FURNITURE
+     (Bedding is integral to a bed - not separate manipulands)
+  7. Furniture WITH objects on top: ALWAYS split into furniture + discarded manipulands.
+     Objects that sit ON furniture will be placed by the manipuland agent later.
+     - "side table with lamp" -> side table (lamp in discarded_manipulands)
+     - "desk with monitor" -> desk (monitor in discarded_manipulands)
+     - "nightstand with alarm clock" -> nightstand (alarm clock in discarded_manipulands)
+     - "dresser with mirror on top" -> dresser (mirror in discarded_manipulands)
+     Unlike bedding which is integral to a bed, these objects sit ON furniture.
+  8. Floor lamp stability check: If description contains "floor lamp" AND any of
+     ["arched", "arc", "bent", "curved", "overhanging", "extending arm"],
+     REJECT with error:
+     "Arched/curved floor lamps are physically unstable. Use straight vertical designs only."
+  9. Select appropriate strategy chain for each item (see strategies below).
+     In particular, distinguish articulated vs non-articulated furniture:
+     - Has functional moving parts (drawers, hinged doors, lids, etc.) OR
+       belongs to an inherently articulated category -> ["code_articulated"].
+     - Rigid, no moving parts (bed, plain table/chair, potted plant, ladder,
+       minimalist stool, open shelf, etc.) -> ["code_generated"].
+     - Thin floor coverings (rug, carpet, mat, runner) -> ["thin_covering"].
+  10. PRESERVE original description/style EXACTLY - do NOT add extra attributes
+  </task>
+
+  <style_preservation>
+  CRITICAL: The designer has intentional style choices. Preserve them exactly.
+  - "red chair" -> "red chair" (NOT "wooden red chair")
+  - "antique wardrobe" -> "antique wardrobe" (NOT "wooden antique wardrobe")
+  - "ladder" -> "ladder" (NOT "wooden ladder")
+  - Only add differentiation when splitting multiple items
+    (e.g., "dining table and chairs" -> "dining table", "dining chair")
+  </style_preservation>
+
+  <strategies>
+  Choose strategy using this priority order:
+
+  PRIORITY 1 - Thin coverings (always first):
+  - ["thin_covering"]: Flat floor coverings regardless of theme or brand.
+    Examples: rug, carpet, mat, runner - including themed ones like "Frozen-themed rug".
+    Thin covering handles theming via image generation.
+    For thin_covering, also set thin_covering_type:
+    - "tileable": Pattern repeats across surface (rugs, carpets with patterns).
+    - "single_image": One image spans entire surface (not typical for furniture).
+
+  PRIORITY 2 - Articulated furniture (mechanical moving parts):
+  - ["code_articulated"]: Furniture whose typical form has functional articulated
+    parts (hinged doors, drawers that slide, hinged lids, flip-down panels, etc.).
+    This pipeline emits URDF -> SDF so joints are preserved for simulation.
+    Use when ANY of these are true:
+    - Description explicitly mentions drawers, doors, hinge(d), lid, sliding, flip,
+      compartment with cover, or "with N drawers / doors".
+    - The object category inherently has articulated parts even when not spelled out.
+      Inherently articulated categories include:
+        dresser, chest of drawers, nightstand (with drawers), filing cabinet,
+        wardrobe / armoire (with doors), cabinet (kitchen/bathroom/storage),
+        cupboard, sideboard, buffet, credenza, vanity (with drawers/doors),
+        fridge / refrigerator, freezer, oven, microwave, dishwasher,
+        washing machine, dryer, toy box with a lid, TV / television, 
+        TV cabinet, media console with doors,
+        office_chair (swivel, tilt, gas lift), desk (drawers / keyboard tray common).
+    Examples:
+    - "antique wardrobe" -> code_articulated (wardrobes have doors)
+    - "3-drawer dresser" -> code_articulated (explicit drawers)
+    - "kitchen fridge" -> code_articulated (doors)
+    - "toy box with hinged lid" -> code_articulated (explicit hinged lid)
+    - "filing cabinet" -> code_articulated (drawers)
+    - "ergonomic office chair" -> code_articulated (swivel / tilt / lift)
+    - "L-shaped desk" -> code_articulated (typical storage / panels)
+
+  PRIORITY 3 - Code-generated (default, no articulation):
+  - ["code_generated"]: Rigid furniture with no functional moving parts.
+    Use for objects that are static once placed, even if structurally complex.
+    Examples:
+    - Seating/surfaces with no drawers: table, dining table, coffee table,
+      side table (plain), chair (plain, not office_chair), stool, bench, sofa,
+      armchair, ottoman.
+    - Beds and mattresses (including "bed with mattress and pillows" - bedding
+      is integral, not articulated).
+    - Open storage with no doors: open bookshelf, open shelving, ladder shelf,
+      plant stand.
+    - Standalone accents: potted plant, floor lamp (straight), ladder, rug base,
+      simple stool, vehicles (cars, motorcycles - treated as rigid here).
+
+  AMBIGUOUS / DEFAULT-TO-CODE_GENERATED:
+  When the description is minimal and does not signal articulation, prefer
+  code_generated. Only upgrade to code_articulated when the category is
+  clearly articulated (see inherently articulated list) or the description
+  names a moving part.
+  - "simple writing desk" (explicitly no drawers / no moving parts) -> code_generated
+  - "desk" (unspecified or typical office) -> code_articulated
+  - "executive desk with drawers" -> code_articulated
+  - "side table" (plain) -> code_generated
+  - "nightstand with two drawers" -> code_articulated
+  - "bookshelf" (open) -> code_generated
+  - "bookshelf with glass doors" -> code_articulated
+  </strategies>
+
+  <output_schema>
+  {
+    "items": [
+      {
+        "description": "string (furniture description only)",
+        "short_name": "string (lowercase_with_underscores)",
+        "dimensions": [width, depth, height],
+        "object_type": "FURNITURE|EITHER",
+        "strategies": ["code_generated"] | ["code_articulated"] | ["thin_covering"],
+        "thin_covering_type": "tileable|single_image|null (only for thin_covering)"
+      }
+    ],
+    "original_description": "string|null (set if request was modified)",
+    "discarded_manipulands": ["string"]|null (manipulands filtered out)
+  }
+  </output_schema>
+
+  <examples>
+  Input: "wooden ladder", dimensions=[0.5, 0.3, 2.0]
+  Output:
+  {
+    "items": [{
+      "description": "wooden ladder",
+      "short_name": "ladder",
+      "dimensions": [0.5, 0.3, 2.0],
+      "object_type": "FURNITURE",
+      "strategies": ["code_generated"]
+    }],
+    "original_description": null,
+    "discarded_manipulands": null
+  }
+
+  Input: "ladder with flower pots", dimensions=[0.5, 0.3, 2.0]
+  Output:
+  {
+    "items": [{
+      "description": "ladder",
+      "short_name": "ladder",
+      "dimensions": [0.5, 0.3, 2.0],
+      "object_type": "FURNITURE",
+      "strategies": ["code_generated"]
+    }],
+    "original_description": "ladder with flower pots",
+    "discarded_manipulands": ["flower pots"]
+  }
+
+  Input: "bookshelf with books and decorations", dimensions=[1.0, 0.3, 2.0]
+  Output:
+  {
+    "items": [{
+      "description": "bookshelf",
+      "short_name": "bookshelf",
+      "dimensions": [1.0, 0.3, 2.0],
+      "object_type": "FURNITURE",
+      "strategies": ["code_generated"]
+    }],
+    "original_description": "bookshelf with books and decorations",
+    "discarded_manipulands": ["books", "decorations"]
+  }
+
+  Input: "antique wardrobe with clothes", dimensions=[1.2, 0.6, 2.0]
+  Output:
+  {
+    "items": [{
+      "description": "antique wardrobe",
+      "short_name": "wardrobe",
+      "dimensions": [1.2, 0.6, 2.0],
+      "object_type": "FURNITURE",
+      "strategies": ["code_articulated"]
+    }],
+    "original_description": "antique wardrobe with clothes",
+    "discarded_manipulands": ["clothes"]
+  }
+
+  Input: "kitchen fridge", dimensions=[0.7, 0.7, 1.8]
+  Output:
+  {
+    "items": [{
+      "description": "kitchen fridge",
+      "short_name": "fridge",
+      "dimensions": [0.7, 0.7, 1.8],
+      "object_type": "FURNITURE",
+      "strategies": ["code_articulated"]
+    }],
+    "original_description": null,
+    "discarded_manipulands": null
+  }
+
+  Input: "persian rug", dimensions=[2.5, 1.8, 0.02]
+  Output:
+  {
+    "items": [{
+      "description": "persian rug",
+      "short_name": "rug",
+      "dimensions": [2.5, 1.8, 0.02],
+      "object_type": "FURNITURE",
+      "strategies": ["thin_covering"],
+      "thin_covering_type": "tileable"
+    }],
+    "original_description": null,
+    "discarded_manipulands": null
+  }
+
+  Input: "dining table and four chairs", dimensions=[1.5, 0.9, 0.75]
+  Output:
+  {
+    "items": [
+      {
+        "description": "dining table",
+        "short_name": "dining_table",
+        "dimensions": [1.5, 0.9, 0.75],
+        "object_type": "FURNITURE",
+        "strategies": ["code_generated"]
+      },
+      {
+        "description": "dining chair",
+        "short_name": "dining_chair",
+        "dimensions": [0.45, 0.5, 0.9],
+        "object_type": "FURNITURE",
+        "strategies": ["code_generated"]
+      }
+    ],
+    "original_description": "dining table and four chairs",
+    "discarded_manipulands": null
+  }
+
+  Input: "potted plant", dimensions=[0.3, 0.3, 0.6]
+  Output:
+  {
+    "items": [{
+      "description": "potted plant",
+      "short_name": "potted_plant",
+      "dimensions": [0.3, 0.3, 0.6],
+      "object_type": "EITHER",
+      "strategies": ["code_generated"]
+    }],
+    "original_description": null,
+    "discarded_manipulands": null
+  }
+
+  Input: "queen bed with mattress and pillows", dimensions=[1.6, 2.1, 0.5]
+  Output:
+  {
+    "items": [{
+      "description": "queen bed with mattress and pillows",
+      "short_name": "bed",
+      "dimensions": [1.6, 2.1, 0.5],
+      "object_type": "FURNITURE",
+      "strategies": ["code_generated"]
+    }],
+    "original_description": null,
+    "discarded_manipulands": null
+  }
+
+  Input: "TV stand with TV", dimensions=[1.2, 0.4, 0.5]
+  Output:
+  {
+    "items": [{
+      "description": "TV stand",
+      "short_name": "tv_stand",
+      "dimensions": [1.2, 0.4, 0.5],
+      "object_type": "FURNITURE",
+      "strategies": ["code_articulated"]
+    }],
+    "original_description": "TV stand with TV",
+    "discarded_manipulands": ["TV"]
+  }
+
+  Input: "coffee mug", dimensions=[0.08, 0.08, 0.1]
+  Output:
+  {
+    "items": [],
+    "original_description": "coffee mug",
+    "discarded_manipulands": null,
+    "error": "Request is for a manipuland (coffee mug), not furniture."
+  }
+
+  Input: "standard sedan car", dimensions=[4.5, 1.8, 1.5]
+  Output:
+  {
+    "items": [{
+      "description": "standard sedan car",
+      "short_name": "car",
+      "dimensions": [4.5, 1.8, 1.5],
+      "object_type": "FURNITURE",
+      "strategies": ["code_generated"]
+    }],
+    "original_description": null,
+    "discarded_manipulands": null
+  }
+
+  Input: "stack of 4 car tires", dimensions=[0.7, 0.7, 0.8]
+  Output:
+  {
+    "items": [],
+    "original_description": "stack of 4 car tires",
+    "discarded_manipulands": null,
+    "error": "Stackable items (tires) should be handled by manipuland agent with create_stack tool."
+  }
+
+  Input: "side table with lamp", dimensions=[0.5, 0.5, 0.7]
+  Output:
+  {
+    "items": [{
+      "description": "side table",
+      "short_name": "side_table",
+      "dimensions": [0.5, 0.5, 0.7],
+      "object_type": "FURNITURE",
+      "strategies": ["code_generated"]
+    }],
+    "original_description": "side table with lamp",
+    "discarded_manipulands": ["lamp"]
+  }
+
+  Input: "desk with monitor and keyboard", dimensions=[1.4, 0.7, 0.75]
+  Output:
+  {
+    "items": [{
+      "description": "desk",
+      "short_name": "desk",
+      "dimensions": [1.4, 0.7, 0.75],
+      "object_type": "FURNITURE",
+      "strategies": ["code_generated"]
+    }],
+    "original_description": "desk with monitor and keyboard",
+    "discarded_manipulands": ["monitor", "keyboard"]
+  }
+
+  Input: "Frozen-themed toy box with hinged lid", dimensions=[1.0, 0.45, 0.55]
+  Output:
+  {
+    "items": [{
+      "description": "Frozen-themed toy box with hinged lid",
+      "short_name": "toy_box",
+      "dimensions": [1.0, 0.45, 0.55],
+      "object_type": "FURNITURE",
+      "strategies": ["code_articulated"]
+    }],
+    "original_description": null,
+    "discarded_manipulands": null
+  }
+
+  Input: "wooden toy box with hinged lid", dimensions=[1.0, 0.45, 0.55]
+  Output:
+  {
+    "items": [{
+      "description": "wooden toy box with hinged lid",
+      "short_name": "toy_box",
+      "dimensions": [1.0, 0.45, 0.55],
+      "object_type": "FURNITURE",
+      "strategies": ["code_articulated"]
+    }],
+    "original_description": null,
+    "discarded_manipulands": null
+  }
+
+  Input: "Disney Princess wardrobe", dimensions=[1.2, 0.6, 2.0]
+  Output:
+  {
+    "items": [{
+      "description": "Disney Princess wardrobe",
+      "short_name": "wardrobe",
+      "dimensions": [1.2, 0.6, 2.0],
+      "object_type": "FURNITURE",
+      "strategies": ["code_articulated"]
+    }],
+    "original_description": null,
+    "discarded_manipulands": null
+  }
+
+  Input: "filing cabinet", dimensions=[0.4, 0.5, 1.3]
+  Output:
+  {
+    "items": [{
+      "description": "filing cabinet",
+      "short_name": "filing_cabinet",
+      "dimensions": [0.4, 0.5, 1.3],
+      "object_type": "FURNITURE",
+      "strategies": ["code_articulated"]
+    }],
+    "original_description": null,
+    "discarded_manipulands": null
+  }
+
+  Input: "nightstand with two drawers", dimensions=[0.5, 0.4, 0.6]
+  Output:
+  {
+    "items": [{
+      "description": "nightstand with two drawers",
+      "short_name": "nightstand",
+      "dimensions": [0.5, 0.4, 0.6],
+      "object_type": "FURNITURE",
+      "strategies": ["code_articulated"]
+    }],
+    "original_description": null,
+    "discarded_manipulands": null
+  }
+
+  Input: "minimalist stool", dimensions=[0.35, 0.35, 0.45]
+  Output:
+  {
+    "items": [{
+      "description": "minimalist stool",
+      "short_name": "stool",
+      "dimensions": [0.35, 0.35, 0.45],
+      "object_type": "FURNITURE",
+      "strategies": ["code_generated"]
+    }],
+    "original_description": null,
+    "discarded_manipulands": null
+  }
+  </examples>
+
+  Request: {{ description }}
+  Dimensions: {{ dimensions }}
+
+  Return your response as a JSON object matching the output_schema.

@@ -1,0 +1,40 @@
+{
+  "full_description": "use one arm to hold the object and the other arm to open the cabinet drawer, then place the object inside",
+  "schema": "{A} identifies the object, {B} identifies the cabinet, {a} identifies the object arm, and {b} identifies the drawer arm",
+  "preference": "Use no more than 20 words. Always mention {A} and {B}. Mention both {a} and {b}, or mention neither arm placeholder.",
+  "seen": [
+    "Open {B}'s drawer and place {A} inside it.",
+    "Access {B}'s drawer and set {A} inside.",
+    "Pull open {B}'s drawer and put {A} inside.",
+    "Open the drawer of {B} and place {A} into it.",
+    "Slide {B}'s drawer open and move {A} inside.",
+    "Slide open {B}'s drawer and set {A} inside.",
+    "Open {B}'s drawer and transfer {A} into it.",
+    "Pull open the drawer of {B} and place {A} inside.",
+    "Open {B}'s drawer and carefully drop {A} into it.",
+    "Pull open the drawer of {B} and move {A} into it.",
+    "Open the drawer of {B} and set {A} inside.",
+    "Open {B}'s drawer and move {A} into it.",
+    "Unlock the drawer of {B} and drop {A} into it.",
+    "Pull open {B}'s drawer and place {A} inside it.",
+    "Slide out the drawer of {B} and stick {A} inside.",
+    "Open the drawer of {B} and drop {A} inside.",
+    "Slide open the drawer of {B} and set {A} into it.",
+    "Pull open {B}'s drawer and place {A} into it.",
+    "Open the drawer of {B} and move {A} into it.",
+    "Slide open {B}'s drawer and drop {A} inside.",
+    "Pull open {B}'s drawer and place {A} inside.",
+    "Open the drawer of {B} and move {A} into the drawer.",
+    "Pull {B}'s drawer open and transfer {A} into it.",
+    "Slide open the drawer of {B} before putting {A} inside.",
+    "Put {A} into {B}'s drawer once it is opened.",
+    "Open the drawer of {B} before placing {A} inside it.",
+    "Set {A} into {B}'s drawer after opening it.",
+    "Open {B}'s drawer first, then place {A} inside.",
+    "Place {A} into the drawer of {B} after sliding it open."
+  ],
+  "unseen": [
+    "Pull out the drawer of {B} and set {A} into it.",
+    "Open {B}'s drawer and set {A} inside with the other arm."
+  ]
+}

@@ -1,0 +1,16 @@
+diff --git a/scenecode/agent_utils/blender/canonicalization.py b/scenecode/agent_utils/blender/canonicalization.py
+index 6fafc41..ed091e7 100644
+--- a/scenecode/agent_utils/blender/canonicalization.py
++++ b/scenecode/agent_utils/blender/canonicalization.py
+@@ -182,7 +182,10 @@ def canonicalize_mesh_impl(
+ 
+     # Compute bounding box in world coordinates from all meshes in the asset.
+     all_mesh_verts_world = []
+-    for obj in root_obj.children_recursive:
++    # A single-root GLTF commonly imports with the mesh itself as root_obj.
++    # children_recursive excludes the root, which made every one-piece asset
++    # fail with "No mesh vertices found" despite containing valid geometry.
++    for obj in [root_obj, *root_obj.children_recursive]:
+         if obj.type == "MESH":
+             all_mesh_verts_world.extend(
+                 [obj.matrix_world @ v.co for v in obj.data.vertices]

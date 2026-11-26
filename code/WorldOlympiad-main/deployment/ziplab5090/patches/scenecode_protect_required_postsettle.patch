@@ -1,0 +1,39 @@
+diff --git a/scenecode/agent_utils/physical_feasibility.py b/scenecode/agent_utils/physical_feasibility.py
+--- a/scenecode/agent_utils/physical_feasibility.py
++++ b/scenecode/agent_utils/physical_feasibility.py
+@@ -8,6 +8,7 @@ See: https://github.com/nepfaff/steerable-scene-generation/blob/main/steerable_s
+ """
+ 
+ import logging
++import os
+ import signal
+ import tempfile
+ import time
+@@ -1521,6 +1522,27 @@ def simulate_scene(
+                 if obj is None:
+                     continue
+ 
++                # Benchmark-required actors must survive SceneCode settling even
++                # when their generated collision geometry makes them fall.  The
++                # downstream deterministic Event Compiler discards this placement
++                # and repositions them from measured support geometry, so deletion
++                # would lose useful generated geometry without improving the pilot.
++                if os.environ.get("SCENECODE_PROTECT_PILOT_MANIPULANDS", "1") == "1":
++                    protected_aliases = (
++                        "rubber_ball", "ball", "mug", "cup", "slider_block",
++                        "slider", "stack_block", "toy_cube", "cube_block",
++                    )
++                    identity = (
++                        f"{obj_id} {getattr(obj, 'name', '')} "
++                        f"{getattr(obj, 'description', '')}"
++                    ).lower()
++                    if any(alias in identity for alias in protected_aliases):
++                        console_logger.warning(
++                            f"Preserving required pilot manipuland {obj_id} after settle; "
++                            "the Event Compiler will deterministically reposition it"
++                        )
++                        continue
++
+                 current_z = obj.transform.translation()[2]
+ 
+                 # Check 1: Floor penetration (physics bug).

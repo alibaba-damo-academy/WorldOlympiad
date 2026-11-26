@@ -1,0 +1,143 @@
+name: "analyze_furniture_for_placement"
+version: "1.0"
+description: "VLM prompt for analyzing which furniture should have manipulands"
+template_variables:
+  - scene_description
+  - furniture_list
+
+prompt: |
+  You are analyzing a 3D scene to identify which furniture pieces should have
+  small objects (manipulands) placed on them.
+
+  # Scene Context
+  {{ scene_description }}
+
+  # Available Furniture
+  The following furniture pieces are present in the scene:
+  {{ furniture_list }}
+
+  # Task
+
+  Examine the rendered views showing the furnished scene with object ID
+  annotations (blue boxes with labels). Identify which furniture pieces **should
+  have manipulands for this particular scene**, based on the room type, scene
+  description, and realism expectations.
+
+  **Not every placeable surface needs objects** - selection should be driven by
+  what makes sense for this specific scene context, not by what could
+  theoretically hold objects.
+
+  # Prompt Constraint Extraction & Distribution
+
+  **CRITICAL**: You are the ONLY component that sees all furniture AND the full scene
+  prompt. The manipuland agent processes each furniture piece separately and cannot
+  reason about cross-furniture distribution.
+
+  **Your responsibilities:**
+  1. Extract ALL manipuland requirements from the scene prompt
+  2. Decide which furniture gets which items (especially when prompt mentions multiple
+     surfaces, e.g., "laptop on one table, books on the other")
+  3. Mark items as REQUIRED vs optional for each furniture piece
+  4. Extract style constraints that apply to all surfaces (e.g., "minimalist", "cluttered")
+
+  **Extraction checklist:**
+  1. **Explicit object mentions**: "desk with laptop" → laptop REQUIRED on desk
+  2. **Distribution across furniture**: "laptop on one table, books on the other" →
+     assign laptop to table_0, books to table_1 (or reason about which fits better)
+  3. **Quantity constraints**: "three books on the shelf" → exactly 3 books on shelf
+  4. **Negative constraints**: "minimalist desk with only a laptop" → NO other items
+  5. **Style constraints**: "cozy", "minimalist", "cluttered" → affects density/selection
+
+  **Constraint Levels:**
+  - **Tightly-Constrained**: Prompt specifies exact objects. Assign REQUIRED items to
+    specific furniture. Other furniture gets contextually appropriate optional items.
+  - **Open-Ended**: Distribute items logically across furniture based on room context.
+
+  ## Selection Criteria
+
+  **Typically include furniture that naturally holds objects:**
+  - Tables (dining, coffee, side tables)
+  - Desks and workstations
+  - Shelves and bookcases
+  - Kitchen counters and islands
+  - Nightstands and bedside tables
+  - Dressers and cabinets with top surfaces
+  - Entertainment centers
+
+  **Typically exclude furniture that rarely holds objects:**
+  - Chairs, stools, benches, ottomans
+  - Purely decorative items (standalone plants, sculptures)
+  - Appliances without usable surfaces
+  - Structural elements (walls, doors)
+
+  **Context-dependent items (consider scene type):**
+  - **Sofas/couches**: Include if scene suggests casual living (magazines, remote,
+    throw blanket, pizza box). Exclude for formal/pristine spaces.
+  - **Beds**: Include if scene suggests lived-in bedroom (extra pillow, book,
+    phone, clothing). Exclude for hotel-like pristine bedrooms.
+
+  ## Special Considerations
+
+  **Floor placement**: Floor can be selected for appropriate scene types:
+  - Children's rooms (toys, books, stuffed animals)
+  - Workshops/garages (tools, supplies)
+  - Gyms (weights, dumbbells, mats)
+  - Casual/messy spaces (shoes, bags, sports equipment)
+  - NOT appropriate for: formal dining rooms, clean offices, pristine bedrooms
+
+  Use the visual context to understand:
+  - Room type and formality level
+  - Furniture layout and relationships
+  - Which surfaces are accessible and functional
+  - Scene realism expectations (lived-in vs. pristine)
+
+  # Output Format
+
+  Return a JSON object with this exact structure:
+  {
+    "furniture_selections": [
+      {
+        "furniture_id": "desk_0",
+        "suggested_items": "REQUIRED: laptop, coffee mug. Optional: notebook, pen",
+        "prompt_constraints": "Prompt: 'desk with laptop and coffee mug'",
+        "style_notes": "minimalist - keep sparse, 3-4 items max"
+      },
+      {
+        "furniture_id": "coffee_table_0",
+        "suggested_items": "Optional: magazines, remote, coaster",
+        "prompt_constraints": "No specific requirements for this surface",
+        "style_notes": "minimalist - 2-3 items max"
+      },
+      {
+        "furniture_id": "nightstand_0",
+        "suggested_items": "REQUIRED: alarm clock. Optional: book, phone",
+        "prompt_constraints": "Prompt mentions 'alarm clock on nightstand'",
+        "style_notes": "cozy bedroom - moderate density"
+      }
+    ],
+    "scene_style": "minimalist",
+    "reasoning": "Assigned laptop/mug to desk per prompt. Coffee table gets typical items
+    but sparse due to minimalist style. Alarm clock required on nightstand per prompt."
+  }
+
+  **Output Field Descriptions:**
+  - **furniture_id**: Exact object_id from the available furniture list
+  - **suggested_items**: Items for this surface. Format: "REQUIRED: item1, item2. Optional: item3, item4"
+    * REQUIRED items MUST be placed - they are explicit prompt requirements
+    * Optional items are contextually appropriate suggestions
+  - **prompt_constraints**: What the prompt explicitly says about this surface (or "No specific
+    requirements" if none). Quote the relevant part of the prompt.
+  - **style_notes**: Style guidance for this surface (density level, aesthetic)
+  - **scene_style**: Overall style extracted from prompt (minimalist, cozy, cluttered, modern, etc.)
+  - **reasoning**: Explanation of distribution decisions across all furniture
+
+  **Important**:
+  - Only include object_ids from the available furniture list above
+  - Use exact object_id strings (e.g., "desk_0", not "desk")
+  - Always separate REQUIRED vs Optional items clearly
+  - REQUIRED items must match prompt exactly (don't add "REQUIRED" for items not in prompt)
+  - Keep suggestions concise (3-5 item types per furniture piece)
+  - Consider scene type, room purpose, and realism expectations
+  - Prioritize surfaces that would naturally have objects in a lived-in space
+  - Include floor only if scene type makes it appropriate
+  - For multi-furniture scenes, reason about which furniture gets which items to avoid duplication

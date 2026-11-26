@@ -1,0 +1,526 @@
+{
+  "schema_version": 1,
+  "name": "LingBot-VA",
+  "source_commit": "7c6ffa9bfc4b83582cafc860fab4c82cc7deeeeb",
+  "tree_sha256": "613f1ce2c3deab078b616de73653344e0c2fe625327cf5d8edc2654b8984c774",
+  "entries": [
+    {
+      "path": ".gitignore",
+      "type": "file",
+      "mode": 420,
+      "size": 5,
+      "sha256": "c7586350e75d4f16db42e8153d8746d41cda77d63964836a50549b47bb98a841"
+    },
+    {
+      "path": "INSTALL.md",
+      "type": "file",
+      "mode": 420,
+      "size": 1158,
+      "sha256": "ce8491bc42ea307c394b6e609bd52ffe76b5dc3b445d1605c4fbe7229347184b"
+    },
+    {
+      "path": "LICENSE.txt",
+      "type": "file",
+      "mode": 420,
+      "size": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    {
+      "path": "LingBot_VA2_paper.pdf",
+      "type": "file",
+      "mode": 420,
+      "size": 11122733,
+      "sha256": "0d94d44c09c990435fd8ce6d53c79f21dd163eeb57966f550c37a49ab3656bf9"
+    },
+    {
+      "path": "LingBot_VA_paper.pdf",
+      "type": "file",
+      "mode": 420,
+      "size": 7834795,
+      "sha256": "e791faff04ff10eccb62eef7952eabbcb2c654abc4d73f4b4a8d1f683a6e48ba"
+    },
+    {
+      "path": "Makefile",
+      "type": "file",
+      "mode": 420,
+      "size": 62,
+      "sha256": "132cbca9ee8e14fd0fd3a75223b3125823fa3c7a9baa06426c3cab2228e5d3b2"
+    },
+    {
+      "path": "README.md",
+      "type": "file",
+      "mode": 420,
+      "size": 26494,
+      "sha256": "869831a308212d80f7b587f95e8e588993879fd05072ba0a0ae20b97d326c0b3"
+    },
+    {
+      "path": "assets/teaser.mp4",
+      "type": "file",
+      "mode": 420,
+      "size": 12144486,
+      "sha256": "2b23b4170e7784b82d8a6287451e886ac88fd0d7d841c55c4bc290b068c9f394"
+    },
+    {
+      "path": "assets/teaser_v3.png",
+      "type": "file",
+      "mode": 420,
+      "size": 1107098,
+      "sha256": "f27d456c7af839b5929aeffaffa9ac2cb9a3b69e5e0df2440b37b4f241aa933d"
+    },
+    {
+      "path": "evaluation/libero/client.py",
+      "type": "file",
+      "mode": 420,
+      "size": 7562,
+      "sha256": "63a48baa2cfecd924963b8a8f7e7eda2b367785a7e29ad0a6326f80517c7e004"
+    },
+    {
+      "path": "evaluation/libero/launch_client.sh",
+      "type": "file",
+      "mode": 420,
+      "size": 187,
+      "sha256": "fc9ff75d3f58212ffa06274dd5a9f79f26b7f1c22dc08e160b6ce29f69aa9340"
+    },
+    {
+      "path": "evaluation/libero/launch_server.sh",
+      "type": "file",
+      "mode": 420,
+      "size": 236,
+      "sha256": "b260dee980c870685cc2a305b13b9566b97b1506b64418b68f10800d3ca0cf2c"
+    },
+    {
+      "path": "evaluation/robotwin/calc_stat.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4034,
+      "sha256": "101b9c86d95fa6d70488ecf0c48207665beae194202ee7ddb555927bcbe2ef4a"
+    },
+    {
+      "path": "evaluation/robotwin/eval_polict_client_openpi.py",
+      "type": "file",
+      "mode": 420,
+      "size": 27503,
+      "sha256": "35c83231527d63f63887a1f1d757d9774fe90062934849c4f549a8a09f08746e"
+    },
+    {
+      "path": "evaluation/robotwin/geometry.py",
+      "type": "file",
+      "mode": 420,
+      "size": 12270,
+      "sha256": "4ef3c7c351043410dda6926690b1482b51b81d6ef6889d8dedd007efe6e025b1"
+    },
+    {
+      "path": "evaluation/robotwin/launch_client.sh",
+      "type": "file",
+      "mode": 420,
+      "size": 1764,
+      "sha256": "0e6eae99c8865453db53d11c8546c76fd17459dfdc298cf082a6df8dfa81dfa9"
+    },
+    {
+      "path": "evaluation/robotwin/launch_client_multigpus.sh",
+      "type": "file",
+      "mode": 420,
+      "size": 3043,
+      "sha256": "a95b1377a8ec00742240531d81865b801152fd08f271aa2b5b903f6e6b7ceb92"
+    },
+    {
+      "path": "evaluation/robotwin/launch_server.sh",
+      "type": "file",
+      "mode": 420,
+      "size": 320,
+      "sha256": "b22c5564d8fe9415811ea860b0f77ff030d214db275344872a682e4fea4e49bf"
+    },
+    {
+      "path": "evaluation/robotwin/launch_server_multigpus.sh",
+      "type": "file",
+      "mode": 420,
+      "size": 847,
+      "sha256": "11f5a4f00a1612bfe469e68a2b206ac168be1f2cc5be1f84ffc6e0ee778e7655"
+    },
+    {
+      "path": "evaluation/robotwin/msgpack_numpy.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1944,
+      "sha256": "c04568948fcee52b691e3be4b6cffb759f7e79ad67530fcd5d23095a0d13c057"
+    },
+    {
+      "path": "evaluation/robotwin/test_render.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2303,
+      "sha256": "4426c0e313e51995d28858bc2c264ba01ce28fcc56275a56e9efff682f2f84f8"
+    },
+    {
+      "path": "evaluation/robotwin/websocket_client_policy.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4054,
+      "sha256": "92ca958def7ca84721d13c0351d08518f52e03854ab279549415d6de21126175"
+    },
+    {
+      "path": "example/demo/observation.images.top.png",
+      "type": "file",
+      "mode": 420,
+      "size": 118525,
+      "sha256": "e6618f91e81d07a8bd274442686e3ba210b4e5ea6bd620435d566c7f0480ff20"
+    },
+    {
+      "path": "example/demo/observation.images.wrist.png",
+      "type": "file",
+      "mode": 420,
+      "size": 131801,
+      "sha256": "6fa653cb77803f662464a6ef07a4c0a44ef745a74855c8ae4255d7f371714e63"
+    },
+    {
+      "path": "example/franka/observation.images.cam_high.png",
+      "type": "file",
+      "mode": 420,
+      "size": 87242,
+      "sha256": "ce54b27fc8a896015bedafe4e939b2e838a66c82db69c2843e7e836b6cfa72a6"
+    },
+    {
+      "path": "example/franka/observation.images.cam_left_wrist.png",
+      "type": "file",
+      "mode": 420,
+      "size": 88449,
+      "sha256": "b28dbaa1a565916c0f5c9adbcfd3d23f4a2dcbc60fbf18ddef5c607e45a0f2d8"
+    },
+    {
+      "path": "example/franka/observation.images.cam_right_wrist.png",
+      "type": "file",
+      "mode": 420,
+      "size": 71683,
+      "sha256": "639f92affadb98a4b594dee3229308ba5f7bb37c74dcd47be714e86fd2c7e84e"
+    },
+    {
+      "path": "example/libero/observation.images.agentview_rgb.png",
+      "type": "file",
+      "mode": 420,
+      "size": 23458,
+      "sha256": "e91c5d64a2edf6bfeb01ba1d474d04b4b6046113513a5d2fa0a5791d7c571e2d"
+    },
+    {
+      "path": "example/libero/observation.images.eye_in_hand_rgb.png",
+      "type": "file",
+      "mode": 420,
+      "size": 20524,
+      "sha256": "de85cf79bcc062c433408d3d6eb835b291a8db82c7aa008d6564e3d6a9c63fde"
+    },
+    {
+      "path": "example/robotwin/observation.images.cam_high.png",
+      "type": "file",
+      "mode": 420,
+      "size": 50260,
+      "sha256": "78cab76d394114ba912f882ac9b00ddc017f98c946482cb9267c87de82486b72"
+    },
+    {
+      "path": "example/robotwin/observation.images.cam_left_wrist.png",
+      "type": "file",
+      "mode": 420,
+      "size": 24723,
+      "sha256": "fbe55b713e1b3d4505fda6be3b00132213ee1725a78cb357ed2bbd5b3a3a7a93"
+    },
+    {
+      "path": "example/robotwin/observation.images.cam_right_wrist.png",
+      "type": "file",
+      "mode": 420,
+      "size": 50408,
+      "sha256": "b9e6821b38073567232f6dd8f6389b123d09d3d1a70758c27d388e547e228249"
+    },
+    {
+      "path": "pyproject.toml",
+      "type": "file",
+      "mode": 420,
+      "size": 1200,
+      "sha256": "a3109a71e732ceda3a1ebb9413443ed1824b4fd1b50a239ac13d9db86203ceae"
+    },
+    {
+      "path": "requirements.txt",
+      "type": "file",
+      "mode": 420,
+      "size": 275,
+      "sha256": "63470c928db122d75b76f3373a24e1372774320bff4669206b91c41e684cb146"
+    },
+    {
+      "path": "script/run_launch_va_server_sync.sh",
+      "type": "file",
+      "mode": 420,
+      "size": 821,
+      "sha256": "3c220534e7d9b74d8b9f4bc6bf18b62069546f16d287b6893ddcceac1a70f977"
+    },
+    {
+      "path": "script/run_va_posttrain.sh",
+      "type": "file",
+      "mode": 420,
+      "size": 992,
+      "sha256": "0f46446a7c15eac0458ffcc3ee1b3f32ceaca1db68795c32557793ffd521679d"
+    },
+    {
+      "path": "wan_va/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 116,
+      "sha256": "82548e574a8b43d4bb1480e915ea993b526ed9f5fb761f8e65fdcaca601838e8"
+    },
+    {
+      "path": "wan_va/configs/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 993,
+      "sha256": "089e67a9881536877a3c275ec6b8aec50c464273a3f68c5eb3a5143ef8e54df9"
+    },
+    {
+      "path": "wan_va/configs/shared_config.py",
+      "type": "file",
+      "mode": 420,
+      "size": 359,
+      "sha256": "e7989a7c793e10ca81e1dc731aa66d55c4cdb8632f9c06a55371a567c18aa570"
+    },
+    {
+      "path": "wan_va/configs/va_demo_cfg.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1731,
+      "sha256": "65707ff4c57e13c9ac66e87e3e7c2477618e26a7e80cb4a0300b238e7e2bd44c"
+    },
+    {
+      "path": "wan_va/configs/va_demo_i2va.py",
+      "type": "file",
+      "mode": 420,
+      "size": 445,
+      "sha256": "c1133c46dedf386193a3d4654e879fe6d6453edaaa287ea963e148f13127bf7c"
+    },
+    {
+      "path": "wan_va/configs/va_demo_train_cfg.py",
+      "type": "file",
+      "mode": 420,
+      "size": 898,
+      "sha256": "7022e4d23e60986489db57a88153987761d935ea181b0d0397ca25290db9b578"
+    },
+    {
+      "path": "wan_va/configs/va_franka_cfg.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2263,
+      "sha256": "86452cea3fc4949d539ed2022ab903420dffe6d82c20c4d4cd64f3954cf6cd3f"
+    },
+    {
+      "path": "wan_va/configs/va_franka_i2va.py",
+      "type": "file",
+      "mode": 420,
+      "size": 424,
+      "sha256": "d84297e7bcc2227368e3e097982cc2bb8827ba3db1dba508c6f52809e7283172"
+    },
+    {
+      "path": "wan_va/configs/va_libero_cfg.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1807,
+      "sha256": "cddcdc3dee6e31c63160efad40ace4717474d2682a6df894ddc4cef0b4954a37"
+    },
+    {
+      "path": "wan_va/configs/va_libero_i2va.py",
+      "type": "file",
+      "mode": 420,
+      "size": 476,
+      "sha256": "3093b78f540e6c57ae5cd9bc75f51f39a22e437256f94e9bdda5c61430d9fd34"
+    },
+    {
+      "path": "wan_va/configs/va_libero_train_cfg.py",
+      "type": "file",
+      "mode": 420,
+      "size": 943,
+      "sha256": "fcb92781027a68a4bf06ec08cfd4ca7575ff8040b496a94d21636c36c3b0d104"
+    },
+    {
+      "path": "wan_va/configs/va_robotwin_cfg.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1950,
+      "sha256": "554bea2089fa7037b407fbc89a2af65a1e7bc6b944b612e32c0366887943c0e1"
+    },
+    {
+      "path": "wan_va/configs/va_robotwin_i2va.py",
+      "type": "file",
+      "mode": 420,
+      "size": 547,
+      "sha256": "b33f161e42f597907498dd55619b726cd256b199b2334dac8383c05771799a1e"
+    },
+    {
+      "path": "wan_va/configs/va_robotwin_train_cfg.py",
+      "type": "file",
+      "mode": 420,
+      "size": 988,
+      "sha256": "d7ffd1eb2c341e128491edb00f453ef8e313c66bee251dea413db8d1d397363c"
+    },
+    {
+      "path": "wan_va/dataset/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 178,
+      "sha256": "b66a083629ce810dd99b240c5b220450b8d71c975bf1877153998f6fc3d04ecd"
+    },
+    {
+      "path": "wan_va/dataset/lerobot_latent_dataset.py",
+      "type": "file",
+      "mode": 420,
+      "size": 13545,
+      "sha256": "984b20899e87c914f491f10c23608f06cb815c56112bdd929e39e187c89566ee"
+    },
+    {
+      "path": "wan_va/distributed/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 73,
+      "sha256": "013ec40a0739296f1ba474036e5d46e06998f795daa0b7c3214773d885a3ab1a"
+    },
+    {
+      "path": "wan_va/distributed/fsdp.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1273,
+      "sha256": "cf5c7755e934f933645235f9104cae3ff9adea2b2863bcb1a5ec42eb6f3a8d8f"
+    },
+    {
+      "path": "wan_va/distributed/util.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1070,
+      "sha256": "2513e68bcc1163424a7629ec88ce7a9b70c11342945d4ff0dc1801310d1e1648"
+    },
+    {
+      "path": "wan_va/modules/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 270,
+      "sha256": "7de311f2f55aed977114d312b7a4f22c26a451aa4e5685040a37e20533d3d8b1"
+    },
+    {
+      "path": "wan_va/modules/model.py",
+      "type": "file",
+      "mode": 420,
+      "size": 37607,
+      "sha256": "f65fdca5f28b327bfc89ca082a7b55eee3fb4ab1ffc469c642a075920e6f4487"
+    },
+    {
+      "path": "wan_va/modules/utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2612,
+      "sha256": "563499ae1aa9fdbe990963c8c133423241f1a63d3f59743b778a1eb4c47757f4"
+    },
+    {
+      "path": "wan_va/train.py",
+      "type": "file",
+      "mode": 420,
+      "size": 22452,
+      "sha256": "103e04031b32cbbef0c829a7b3f52986aaaffa996040c173ff8f9a67cc4985ab"
+    },
+    {
+      "path": "wan_va/utils/Simple_Remote_Infer/LEGAL.md",
+      "type": "file",
+      "mode": 420,
+      "size": 572,
+      "sha256": "adba50d9794b9ef3f7ec8cbc680f7f1fa3fbf9df0ac8d1f9b9ccab6d941bc11b"
+    },
+    {
+      "path": "wan_va/utils/Simple_Remote_Infer/README.md",
+      "type": "file",
+      "mode": 420,
+      "size": 522,
+      "sha256": "dfc08ab8f0a440c3d4bd8bdedb2234bbc77915880129e0a1e8d8f2481cdce050"
+    },
+    {
+      "path": "wan_va/utils/Simple_Remote_Infer/deploy/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "wan_va/utils/Simple_Remote_Infer/deploy/image_tools.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2566,
+      "sha256": "aa8ca88152654c3973042e49339d08f47e927fc5ecc885ec9a114d90f726ebc8"
+    },
+    {
+      "path": "wan_va/utils/Simple_Remote_Infer/deploy/msgpack_numpy.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2017,
+      "sha256": "c37345c1d0ae4a0f27d91af4798af842986c255e7aa93b08255471cd3393eab1"
+    },
+    {
+      "path": "wan_va/utils/Simple_Remote_Infer/deploy/qwenpi_policy.py",
+      "type": "file",
+      "mode": 420,
+      "size": 18228,
+      "sha256": "447d6c071b6a3f6718cbf53fd79b9d851a52feebbf2587df184a101778623a33"
+    },
+    {
+      "path": "wan_va/utils/Simple_Remote_Infer/deploy/replay_policy.py",
+      "type": "file",
+      "mode": 420,
+      "size": 16322,
+      "sha256": "2369969eef4a89e85b84d53e7db4b529525f3d347bd8df50f551071b86633b84"
+    },
+    {
+      "path": "wan_va/utils/Simple_Remote_Infer/deploy/websocket_client_policy.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4395,
+      "sha256": "39b306a47e582716eb4e4cb9333f2f7ef2a66a1f3c39d65d1674770ec3ed6e53"
+    },
+    {
+      "path": "wan_va/utils/Simple_Remote_Infer/deploy/websocket_policy_server.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3128,
+      "sha256": "441423a7ed7382c656247f51e1d53117252b6c92c802a175f8d5d6ec86db3d76"
+    },
+    {
+      "path": "wan_va/utils/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 498,
+      "sha256": "c04beb288fa33eb00ee2362cc3a312d0614877d2afdb47c272ee76978731aaf5"
+    },
+    {
+      "path": "wan_va/utils/logging.py",
+      "type": "file",
+      "mode": 420,
+      "size": 626,
+      "sha256": "3f894f412c096b15692b9adc5a3c4496447aee7e32a86f09562276fcbc2c7fd5"
+    },
+    {
+      "path": "wan_va/utils/scheduler.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5346,
+      "sha256": "9833300936d1001e5dfb0db76d5e0e131429685980de7b3c9716288ec28da7f1"
+    },
+    {
+      "path": "wan_va/utils/sever_utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2231,
+      "sha256": "d61e653a1541fc829786fcce61cb29e828407b0b1014f555c56c950d2d646e44"
+    },
+    {
+      "path": "wan_va/utils/utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2840,
+      "sha256": "7d81e83d799b338db61e08bd52976fea404ed7db497d93199d4a478c592d2465"
+    },
+    {
+      "path": "wan_va/wan_va_server.py",
+      "type": "file",
+      "mode": 420,
+      "size": 30677,
+      "sha256": "9c2a427611db487fea5cf40f184b713bf2088e533990ee00fdcd020d2668b4bf"
+    }
+  ]
+}

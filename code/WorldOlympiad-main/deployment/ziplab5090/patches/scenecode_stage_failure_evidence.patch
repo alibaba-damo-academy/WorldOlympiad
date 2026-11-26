@@ -1,0 +1,112 @@
+--- a/scenecode/code_object/agent_framework/pipeline.py
++++ b/scenecode/code_object/agent_framework/pipeline.py
+@@ -40,6 +40,7 @@
+     stages_failed: List[str] = field(default_factory=list)
+     total_time: float = 0.0
+     error: Optional[str] = None
++    stage_errors: Dict[str, str] = field(default_factory=dict)
+     mesh_path: Optional[str] = None
+     parts_output_dir: Optional[str] = None
+     
+@@ -53,6 +54,7 @@
+             "stages_failed": self.stages_failed,
+             "total_time": self.total_time,
+             "error": self.error,
++            "stage_errors": self.stage_errors,
+             "mesh_path": self.mesh_path,
+             "parts_output_dir": self.parts_output_dir,
+         }
+@@ -873,6 +875,7 @@
+         skip_stages = skip_stages or []
+         stages_completed = []
+         stages_failed = []
++        stage_errors = {}
+         object_plan = None
+         mesh_path = None
+         parts_output_dir = None
+@@ -939,6 +942,7 @@
+                         self.logger.info(f"Planning completed: {len(object_plan.parts)} parts identified")
+                     except Exception as e:
+                         self.logger.error(f"Planning failed: {e}")
++                        stage_errors["planning"] = f"{type(e).__name__}: {e}"
+                         stages_failed.append("planning")
+                         raise
+             else:
+@@ -974,6 +978,7 @@
+                         self.logger.info("Plan check completed")
+                     except Exception as e:
+                         self.logger.error(f"Plan check failed: {e}")
++                        stage_errors["plan_check"] = f"{type(e).__name__}: {e}"
+                         stages_failed.append("plan_check")
+                 else:
+                     self.logger.info("Skipping plan check stage")
+@@ -1020,15 +1025,17 @@
+                             # Keep a partial assembly available for downstream
+                             # identity, framing, and physical-usability checks.
+                             # Those checks decide whether the result is usable;
+                             # a single omitted part need not discard all others.
++                            stage_errors["construction"] = f"Part construction partially failed: {construction_result.get('failed_parts', [])}"
+                             self.logger.warning(
+                                 "Construction incomplete; exporting the assembled parts; failed parts: %s",
+                                 construction_result.get("failed_parts", []),
+                             )
+                         
+                     except Exception as e:
+                         self.logger.error(f"Construction failed: {e}")
++                        stage_errors["construction"] = f"{type(e).__name__}: {e}"
+                         stages_failed.append("construction")
+                 else:
+                     construction_result = cached_result
+                     stages_completed.append("construction")
+@@ -1057,6 +1064,7 @@
+                             stages_completed.append("export_parts")
+                     except Exception as e:
+                         self.logger.error(f"Export part mesh assets failed: {e}")
++                        stage_errors["export_parts"] = f"{type(e).__name__}: {e}"
+                         stages_failed.append("export_parts")
+                 else:
+                     self.logger.info(
+@@ -1107,6 +1115,7 @@
+                     stages_completed.append("export_glb")
+                 else:
+                     stages_failed.append("export_glb")
++                    stage_errors["export_glb"] = "No valid GLB artifact was exported"
+ 
+             # ==================== Complete ====================
+             total_time = (datetime.now() - start_time).total_seconds()
+@@ -1121,6 +1130,8 @@
+                 stages_completed=stages_completed,
+                 stages_failed=stages_failed,
+                 total_time=total_time,
++                stage_errors=stage_errors,
++                error="; ".join(f"{stage}: {detail}" for stage, detail in stage_errors.items()) or None,
+                 mesh_path=mesh_path,
+                 parts_output_dir=parts_output_dir,
+             )
+@@ -1153,7 +1164,7 @@
+             self.logger.error(f"Pipeline failed with error: {e}")
+             total_time = (datetime.now() - start_time).total_seconds()
+             
+-            return PipelineResult(
++            result = PipelineResult(
+                 success=False,
+                 object_name=object_plan.name if object_plan else "",
+                 output_dir=output_dir,
+@@ -1161,11 +1172,16 @@
+                 stages_completed=stages_completed,
+                 stages_failed=stages_failed,
+                 total_time=total_time,
+-                error=str(e),
++                error="; ".join([*(f"{stage}: {detail}" for stage, detail in stage_errors.items()), f"{type(e).__name__}: {e}"]),
++                stage_errors=stage_errors,
+                 mesh_path=mesh_path,
+                 parts_output_dir=parts_output_dir,
+             )
+             
++            with open(os.path.join(output_dir, "pipeline_result.json"), "w", encoding="utf-8") as handle:
++                json.dump(result.to_dict(), handle, indent=2, ensure_ascii=False)
++            return result
++
+         finally:
+             # 断开 Blender 连接
+             await self._disconnect_blender()

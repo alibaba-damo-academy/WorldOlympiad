@@ -1,0 +1,3984 @@
+{
+  "schema_version": 1,
+  "name": "cuRobo",
+  "source_commit": "d64c4b005459db10c5dd867d8b30a87d5bda9bdb",
+  "tree_sha256": "618de6ad2ccab25870ea24ee540c50e5211d3a65f461d44fada68b77f0bd24ae",
+  "entries": [
+    {
+      "path": ".clangd",
+      "type": "file",
+      "mode": 420,
+      "size": 179,
+      "sha256": "749c68c9375b75af9c345a83a6eca817fab4a9adf9c76b361afc7f56078484db"
+    },
+    {
+      "path": ".gitattributes",
+      "type": "file",
+      "mode": 420,
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/standard-template.md",
+      "type": "file",
+      "mode": 420,
+      "size": 437,
+      "sha256": "1208c633d649b2f0610027d2408774a293db9e5479b2e29cd90976f5968b8088"
+    },
+    {
+      "path": ".gitignore",
+      "type": "file",
+      "mode": 420,
+      "size": 2552,
+      "sha256": "f98cd7848eccbd8fc2fa2c202753701870c541ac45d06dead6e20dd9d75e8498"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "type": "file",
+      "mode": 420,
+      "size": 23678,
+      "sha256": "2d6fee351fb41d8a1a6e1753af6fda8bf93c12dc8ce1e6cc8b03dac01df9add3"
+    },
+    {
+      "path": "CODEOWNERS",
+      "type": "file",
+      "mode": 420,
+      "size": 732,
+      "sha256": "084492007ff8f89cb23c44d141d090f5045c9d023b4908b8ad6d51a1a2cf8155"
+    },
+    {
+      "path": "LICENSE",
+      "type": "file",
+      "mode": 420,
+      "size": 4396,
+      "sha256": "797d1e69fe7fd1c502e87af12c5a0ed08a84c7a8a22af1c7a3589cbfadff4364"
+    },
+    {
+      "path": "LICENSE_ASSETS",
+      "type": "file",
+      "mode": 420,
+      "size": 21428,
+      "sha256": "208e6ee6488630aaba4d9f06113844f58c8867d3be6348c122a6aa8b9e2409c1"
+    },
+    {
+      "path": "MANIFEST.in",
+      "type": "file",
+      "mode": 420,
+      "size": 923,
+      "sha256": "6a55edf7c5014648234c97a1d2fbe6346edfe082e7c17c343cd05ea3cb0437e7"
+    },
+    {
+      "path": "README.md",
+      "type": "file",
+      "mode": 420,
+      "size": 2829,
+      "sha256": "9398351b3186c0fe8d5fabc6b5c0f46ffb2e8b8243617260b53f451c80ddb5d9"
+    },
+    {
+      "path": "benchmark/README.md",
+      "type": "file",
+      "mode": 420,
+      "size": 648,
+      "sha256": "75df885e6257038a09e0f57e12a37308e94366ba7a532e2e7c36a1b84f200d02"
+    },
+    {
+      "path": "benchmark/curobo_benchmark.py",
+      "type": "file",
+      "mode": 420,
+      "size": 28637,
+      "sha256": "4114ee1ced6a8bb3d5cf2726bcd4a03c64ab6be7c6509683e1d3716906763fa7"
+    },
+    {
+      "path": "benchmark/curobo_nvblox_benchmark.py",
+      "type": "file",
+      "mode": 420,
+      "size": 29135,
+      "sha256": "75cec5c36d12b11a69cc47d4d37105504face6eada34756b062688d366b9f8ee"
+    },
+    {
+      "path": "benchmark/curobo_nvblox_profile.py",
+      "type": "file",
+      "mode": 420,
+      "size": 7229,
+      "sha256": "034547f7b7a55a4fd83d635a82ffb686aef995819703497957edcd6c988b70b9"
+    },
+    {
+      "path": "benchmark/curobo_profile.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6564,
+      "sha256": "8b4a859085c2fbfeec9ef0fc518fafc88986c3a35d9a0777214cfbc7dbed8b8f"
+    },
+    {
+      "path": "benchmark/curobo_python_profile.py",
+      "type": "file",
+      "mode": 420,
+      "size": 10022,
+      "sha256": "30b27de461fbf2d0de8229cc9c34f4a9ba8468dc1f07f5e593becd0453f87a86"
+    },
+    {
+      "path": "benchmark/curobo_voxel_benchmark.py",
+      "type": "file",
+      "mode": 420,
+      "size": 26670,
+      "sha256": "455d70fd838bc580d22fa1a8094dd6908104f358891a9d94c81b6e628bf9c94d"
+    },
+    {
+      "path": "benchmark/curobo_voxel_profile.py",
+      "type": "file",
+      "mode": 420,
+      "size": 10281,
+      "sha256": "8c5a8578967bd3d90977b09e33a0f1df0530470bd6d07879c4b3ee01a3ceb8d3"
+    },
+    {
+      "path": "benchmark/generate_nvblox_images.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1999,
+      "sha256": "980a8f732a7ddf7a1b611f2fefffccb9f7d0f702ffb45c80ee21166c75a983f3"
+    },
+    {
+      "path": "benchmark/ik_benchmark.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6972,
+      "sha256": "17587d5cd251073fed53605448741486c6b2fb3f3deb9567e275925c4f2112ba"
+    },
+    {
+      "path": "benchmark/kinematics_benchmark.py",
+      "type": "file",
+      "mode": 420,
+      "size": 7544,
+      "sha256": "9dd959032e478c9b7b7fb8798c4c789dbb782619825b0852fc53bfec48338c58"
+    },
+    {
+      "path": "benchmark/metrics.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1887,
+      "sha256": "59df1a03e3166d3c19561c8726d1bec504b3a97a90a0353c199d272721dcf433"
+    },
+    {
+      "path": "benchmark/robometrics_benchmark.py",
+      "type": "file",
+      "mode": 420,
+      "size": 24358,
+      "sha256": "da62d11420599b129e76e63a1f40493105f9873c2860e6af1a45d539eecbe62e"
+    },
+    {
+      "path": "docker/.dockerignore",
+      "type": "file",
+      "mode": 420,
+      "size": 20,
+      "sha256": "f1c6ac86c628af9d652c04ce16cf884086ef7ac8cb4b11f290be0c2f7540d7e1"
+    },
+    {
+      "path": "docker/README.md",
+      "type": "file",
+      "mode": 420,
+      "size": 598,
+      "sha256": "e692d57db6a8dd4102662e3fb6855612e4e737e66982432e95b3d5034c49e408"
+    },
+    {
+      "path": "docker/aarch64.dockerfile",
+      "type": "file",
+      "mode": 420,
+      "size": 5194,
+      "sha256": "b99719ec9be0fd6bdf942420354f694ca5eb5bf527c48d2fea8e960bcb0ed0fd"
+    },
+    {
+      "path": "docker/base.dockerfile",
+      "type": "file",
+      "mode": 420,
+      "size": 1091,
+      "sha256": "65af6f61b101f7a558ba58a696e899fc0da876cd419ce57e7ee10e638ab8986f"
+    },
+    {
+      "path": "docker/build_dev_docker.sh",
+      "type": "file",
+      "mode": 493,
+      "size": 1173,
+      "sha256": "1a50b2030ffb342263d99bf2047b47ca3865c07bb0027b862198ad041062ac7e"
+    },
+    {
+      "path": "docker/build_docker.sh",
+      "type": "file",
+      "mode": 493,
+      "size": 2196,
+      "sha256": "4b8360494360e9048c07729622ac33e04ee11306719a367307ac96a5efd75407"
+    },
+    {
+      "path": "docker/isaac_sim.dockerfile",
+      "type": "file",
+      "mode": 420,
+      "size": 8601,
+      "sha256": "87325dd99ce67f55ed1ca17b5aafdeb8a0db8c94e535500fed5e59a47417d6a0"
+    },
+    {
+      "path": "docker/start_dev_docker.sh",
+      "type": "file",
+      "mode": 493,
+      "size": 3138,
+      "sha256": "a8ad5161cbd5d92d9073c817f5a2ca3890a6d17860c722a525215b6016d9407a"
+    },
+    {
+      "path": "docker/start_docker.sh",
+      "type": "file",
+      "mode": 493,
+      "size": 2561,
+      "sha256": "09d11539ea20157b59cc135c50b3c6f461521c59c5f8b74d829d71bc92fd2746"
+    },
+    {
+      "path": "docker/start_docker_aarch64.sh",
+      "type": "file",
+      "mode": 420,
+      "size": 842,
+      "sha256": "7e097a0ed5e1e9470d46ee493909c156618306726d2460794d2ea6afdfb63678"
+    },
+    {
+      "path": "docker/start_docker_isaac_sim.sh",
+      "type": "file",
+      "mode": 420,
+      "size": 1236,
+      "sha256": "54db1c0e3869c1d72142b1f30b0f2689b107259fd570734367f6ecb8b3dc894c"
+    },
+    {
+      "path": "docker/start_docker_isaac_sim_headless.sh",
+      "type": "file",
+      "mode": 420,
+      "size": 1158,
+      "sha256": "baf7c9b153bc28171839896b8a0dcc74f65bb2b939340720a41bde91dffa0173"
+    },
+    {
+      "path": "docker/start_docker_x86.sh",
+      "type": "file",
+      "mode": 420,
+      "size": 816,
+      "sha256": "e1f3beb085207f1fcec176aedda16f4932e0f5c3baffdfe23cf37035a0689e19"
+    },
+    {
+      "path": "docker/start_user_docker.sh",
+      "type": "file",
+      "mode": 493,
+      "size": 2350,
+      "sha256": "b4d7cca1353a44d96942b8c6c11d229a5839b6fc0a2cdaff2ab87e1aa643cfed"
+    },
+    {
+      "path": "docker/user.dockerfile",
+      "type": "file",
+      "mode": 420,
+      "size": 1134,
+      "sha256": "374fd576dd967fd522c878ed0c0a016170135826246d9f7ce53568091eeda584"
+    },
+    {
+      "path": "docker/user_isaac_sim.dockerfile",
+      "type": "file",
+      "mode": 420,
+      "size": 2810,
+      "sha256": "e77d426922f7b2389c60e48d998e56e7ae959ca2934451bd1f9b44d2a4f73ce8"
+    },
+    {
+      "path": "docker/x86.dockerfile",
+      "type": "file",
+      "mode": 420,
+      "size": 4150,
+      "sha256": "f84e8d7d9ff8651d9aafaa5c81fe9ec343f0747d5da3cb1fcd1be1dbccf3197b"
+    },
+    {
+      "path": "examples/collision_check_example.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2078,
+      "sha256": "a3e7458d5c970aa714c3827b651f799235bf5b1afa71b566441f72d8283ae529"
+    },
+    {
+      "path": "examples/ik_example.py",
+      "type": "file",
+      "mode": 420,
+      "size": 7963,
+      "sha256": "5fa11faf6cbb9f63c452357e77b6347ea78275e8e68d07a7b14023e6956dcb41"
+    },
+    {
+      "path": "examples/isaac_sim/batch_collision_checker.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5415,
+      "sha256": "c2ac37394b30022077185f3ad7f850c53fdfae1ef85cc23db7f9325ef1ebbdf1"
+    },
+    {
+      "path": "examples/isaac_sim/batch_motion_gen_reacher.py",
+      "type": "file",
+      "mode": 420,
+      "size": 10904,
+      "sha256": "2cf2616c8550ca712aba23e2a7fc0926443815dbf423488df913eb6c51667cf2"
+    },
+    {
+      "path": "examples/isaac_sim/collision_checker.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6673,
+      "sha256": "3a913bee0483b8c80830a4e77deb18c9b4926b73e9fc66c8b19e53dec98d080b"
+    },
+    {
+      "path": "examples/isaac_sim/constrained_reacher.py",
+      "type": "file",
+      "mode": 420,
+      "size": 13114,
+      "sha256": "f14b92989efb4a1517c21935e1fa0340e0c49eca4997e1590d1caedbd710ee09"
+    },
+    {
+      "path": "examples/isaac_sim/helper.py",
+      "type": "file",
+      "mode": 420,
+      "size": 7478,
+      "sha256": "de2010046dac5ead7798a7045950ed0048fb4922a395b123b3eff63a6329dcd4"
+    },
+    {
+      "path": "examples/isaac_sim/ik_reachability.py",
+      "type": "file",
+      "mode": 420,
+      "size": 12574,
+      "sha256": "7effa7f70c4f176524231f5c65cbb6413082d6563a829ca70004cfcf48c06da8"
+    },
+    {
+      "path": "examples/isaac_sim/load_all_robots.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5462,
+      "sha256": "8100c2a047f2f428a95acc7080c3cec329669099647ce4dee2cfef4ff65fd601"
+    },
+    {
+      "path": "examples/isaac_sim/motion_gen_reacher.py",
+      "type": "file",
+      "mode": 420,
+      "size": 15169,
+      "sha256": "baa2e06151e72ab02556a119e942e32ff638ef124b051bb05b9b3fdbf9a652e8"
+    },
+    {
+      "path": "examples/isaac_sim/motion_gen_reacher_nvblox.py",
+      "type": "file",
+      "mode": 420,
+      "size": 10226,
+      "sha256": "47ab9ca780d6e1cdf141d84af3582bd933d06d32447e17b45287031eaf36f7c1"
+    },
+    {
+      "path": "examples/isaac_sim/mpc_example.py",
+      "type": "file",
+      "mode": 420,
+      "size": 12450,
+      "sha256": "d7f020dc001b76145e3b53e2534f2d204d02d6b659cce94a8b412d39f3adab82"
+    },
+    {
+      "path": "examples/isaac_sim/mpc_nvblox_example.py",
+      "type": "file",
+      "mode": 420,
+      "size": 11472,
+      "sha256": "8bfb4ffefc6b161947f8f44957df641fb639f4d20b8be4a7e720a5dddba261bb"
+    },
+    {
+      "path": "examples/isaac_sim/multi_arm_reacher.py",
+      "type": "file",
+      "mode": 420,
+      "size": 12467,
+      "sha256": "b502e33759ced4d174a92d02e10760e700d6c1e622d2f31ad215b7f504935b31"
+    },
+    {
+      "path": "examples/isaac_sim/realsense_collision.py",
+      "type": "file",
+      "mode": 420,
+      "size": 9124,
+      "sha256": "0f976db52ac996588095fb1d1c9e0ccb284b6baa5611b87e6b329925157647df"
+    },
+    {
+      "path": "examples/isaac_sim/realsense_mpc.py",
+      "type": "file",
+      "mode": 420,
+      "size": 17121,
+      "sha256": "b45cb0a2b09fbdaaea6247b58fa7e491798878bbed5f09ab6bb00a184cd69baf"
+    },
+    {
+      "path": "examples/isaac_sim/realsense_reacher.py",
+      "type": "file",
+      "mode": 420,
+      "size": 14990,
+      "sha256": "48723344ebb7003ba4170e718c28ce4c3f2d6de4d18d525e49faa7c677205903"
+    },
+    {
+      "path": "examples/isaac_sim/realsense_viewer.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1570,
+      "sha256": "c1bc9e95291ed8e2836c633cc704640ea179c2116a23b82a0b33e03a049f0198"
+    },
+    {
+      "path": "examples/isaac_sim/simple_stacking.py",
+      "type": "file",
+      "mode": 420,
+      "size": 18973,
+      "sha256": "e9730f25bb72b95a622131a7f4a8bb22773964f53c210733babb70a671aca139"
+    },
+    {
+      "path": "examples/isaac_sim/util/convert_urdf_to_usd.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6504,
+      "sha256": "c5d8056e4544cac23bdf3ba4f88471cd974355810fbe12c60bfc0bcc0128c7e4"
+    },
+    {
+      "path": "examples/isaac_sim/util/dowload_assets.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2377,
+      "sha256": "8580430ca7f3adda93af7693ab5ed883c1bad397e089c8a4054c8de1235c3601"
+    },
+    {
+      "path": "examples/kinematics_example.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2172,
+      "sha256": "d10965266aedeaa7b77650f0f54cc9a0c96a72288bf480169008a84aa2268afa"
+    },
+    {
+      "path": "examples/mesh_dataset.py",
+      "type": "file",
+      "mode": 420,
+      "size": 8033,
+      "sha256": "cb45c94fbf63882114461da247cf497dd1946754d0b036617deb8fd36bfc9a65"
+    },
+    {
+      "path": "examples/motion_gen_api_example.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3183,
+      "sha256": "9b88fbc8f3d4861250845b9324417a8cc6c0824a3c04c6793cff4d2f9d23e3ad"
+    },
+    {
+      "path": "examples/motion_gen_example.py",
+      "type": "file",
+      "mode": 420,
+      "size": 16521,
+      "sha256": "b288081899f750b5bc273285782577e404dc44e2a1fbf36185e4adab3d3cec87"
+    },
+    {
+      "path": "examples/motion_gen_profile.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2634,
+      "sha256": "55a7c6546f983678563380135cef172847186ff02d057dc24d6ed50dd0d537a4"
+    },
+    {
+      "path": "examples/mpc_example.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4188,
+      "sha256": "c4e14b85f5ccf10cc26afdbaae258c2e24e50ff9c8ec1f0f323a506ee3b8e996"
+    },
+    {
+      "path": "examples/nvblox_example.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3444,
+      "sha256": "c58591fc4d3330feea9f97273299be12594d172b24ff2c55f8fdef5305980e3b"
+    },
+    {
+      "path": "examples/pose_sequence_example.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2917,
+      "sha256": "501d3f9c54f8781417e0a5aeebf6eaf62461fddf97a2d738d5c328c38ec861da"
+    },
+    {
+      "path": "examples/robot_image_segmentation_example.py",
+      "type": "file",
+      "mode": 420,
+      "size": 17167,
+      "sha256": "80df630eb65e51c552c30eb3d62290c3020463224db382f6a7aa417759eb1a95"
+    },
+    {
+      "path": "examples/torch_layers_example.py",
+      "type": "file",
+      "mode": 420,
+      "size": 9165,
+      "sha256": "e24b3c6865e8285c0d72977f86542322f589ff1109e9346222e0ba25722b27d7"
+    },
+    {
+      "path": "examples/trajopt_example.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4009,
+      "sha256": "c6f2d00f205b009994e8ca7f30b4d258c1022a71c9094ce80078601ed019dd7d"
+    },
+    {
+      "path": "examples/usd_example.py",
+      "type": "file",
+      "mode": 420,
+      "size": 9475,
+      "sha256": "2fa900c4ffd195e02942fe66030242f1b4fc38d20d0182994d7a6c4113dfd395"
+    },
+    {
+      "path": "examples/world_representation_example.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3053,
+      "sha256": "25234e3442539bf376e2caf46c54ee5cacd5804506e4dfebc55fa52e27617888"
+    },
+    {
+      "path": "images/robot_demo.gif",
+      "type": "file",
+      "mode": 420,
+      "size": 4026516,
+      "sha256": "8496a75cf043db596aa194894c8f8c8038fdc6fc46f3c15f0cc64acf5eb1c05e"
+    },
+    {
+      "path": "images/rrt_compare.gif",
+      "type": "file",
+      "mode": 420,
+      "size": 2181094,
+      "sha256": "df0dbe0775664436989433c5e785878733520d38c4116a863f601f34dc4788c5"
+    },
+    {
+      "path": "pyproject.toml",
+      "type": "file",
+      "mode": 420,
+      "size": 2321,
+      "sha256": "98b6ea8e8bdeb3c5061ae0e60cd346d6d4839a21995d9b0a74b0d5a000c10192"
+    },
+    {
+      "path": "setup.cfg",
+      "type": "file",
+      "mode": 420,
+      "size": 2820,
+      "sha256": "a137b0f2409b7a343fad1955e5ecccf5d07bbe91661ab1159ed1181b28f6dc49"
+    },
+    {
+      "path": "setup.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2799,
+      "sha256": "e80a5c5fbbbe8acf8dbcb20aa551bbc23cf45b89ff7eff0a4a146fa37ce1cf0e"
+    },
+    {
+      "path": "src/curobo/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3776,
+      "sha256": "184595d417850c97d870de7bb5d780470ddf7fe17c774fbc9fb4d4c78b3e0ba4"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/franka_panda.urdf",
+      "type": "file",
+      "mode": 420,
+      "size": 9987,
+      "sha256": "6a0044e6e72ee667927f17d1871ec3e2615a8bc5fe978882fc909e4094667967"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/franka_panda_mobile.urdf",
+      "type": "file",
+      "mode": 420,
+      "size": 9935,
+      "sha256": "1fa899f621c3f47d4997e3378391e6e1966a8ff9ac8105bf83d4d349a502ad4c"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/franka_panda_mobile_base.urdf",
+      "type": "file",
+      "mode": 420,
+      "size": 1300,
+      "sha256": "12001e96623e4dd9e46968b8f5515691731c6cb9ecb05a98ca07d75bd58fef63"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/franka_panda_mobile_x.urdf",
+      "type": "file",
+      "mode": 420,
+      "size": 9309,
+      "sha256": "84936ec79b380d51b6736d6a165f7da9fa7e599c5a6216fb1112074edc23c836"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/franka_panda_mobile_xy.urdf",
+      "type": "file",
+      "mode": 420,
+      "size": 9619,
+      "sha256": "1015b3e1b7721c779bc4c1f436d09c83156a0d78144a6116f412e60981deacc6"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/franka_panda_mobile_xy_tz.urdf",
+      "type": "file",
+      "mode": 420,
+      "size": 10169,
+      "sha256": "281cc928e64d7dccb9fecb35493b719906c3b3c7413c1f44bb89066c32ce8aee"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/franka_panda_no_gripper.urdf",
+      "type": "file",
+      "mode": 420,
+      "size": 9578,
+      "sha256": "ff226f4b654ce3b318fac9fc46a3b8fa221c19701560e1dc449a1323a5d227e6"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/franka_test.urdf",
+      "type": "file",
+      "mode": 420,
+      "size": 10468,
+      "sha256": "d4eeb093ab62fd7df64838195c2080063b31841de315f71047cf2a59d9809d73"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/collision/finger.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 4205,
+      "sha256": "66e0a3a626eaefb51d870eb4278c3a3f73f04b17b5ab30df311f22bdd7f74522"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/collision/finger.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 1684,
+      "sha256": "2d07a740392f3b9b0816f65d64fff9927d3d57c897870fc4b6ff9c56fff3a0c8"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/collision/hand.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 18393,
+      "sha256": "9f1f3398f710e252910b39af81e5ea879f253885e57cd040118abaab7de54885"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/collision/hand.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 10084,
+      "sha256": "94493e94f30fe940f2c8ca2f155c3bbe67bbff406d3edf5e261670d2f0f6e2ed"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/collision/hand_flipped.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 23294,
+      "sha256": "1712eba3051f7614cf487d5f68e1e85cc224eafeaff6097ba84fa814e005ba12"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/collision/hand_gripper.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 14812,
+      "sha256": "896ee3653c834aa96d1a680e45357ff05833d631fabd1de15febfe041e26ca86"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/collision/hand_gripper.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 13284,
+      "sha256": "e0298ef00a3858b382a9ca7b4d6de4801bc1cf2b566ae989542cbe8a2ee5bc04"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/collision/hand_gripper_flipped.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 14844,
+      "sha256": "71b8b19e1e0d22ed16613718515aec9c48199ee1b24a1261b7b0825926bf67c6"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/collision/link0.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 16592,
+      "sha256": "b55372e5bb72f07bd4a0b5b66cb27f2eb35016bf2322e3f23145336f282842f0"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/collision/link0.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 10084,
+      "sha256": "dfc6d94330de8ddb005b311bfdba9f3b8e1aa7c256b71592ee7ff32cb9a9a5aa"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/collision/link1.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 20865,
+      "sha256": "c3440a8671b70343f13fbbf586251b297e952749f9850913be4629aed847c458"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/collision/link1.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 15084,
+      "sha256": "e41a39a94108fcf56aacff603fc91ec80541f4c1af17b51a0de5617f5566e6d2"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/collision/link2.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 20791,
+      "sha256": "fc279633c0a14dcee8dd74e371274699e4786a135d460007cf5d0b34476ba9c5"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/collision/link2.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 15084,
+      "sha256": "370f7605a0fae3529db169ded50f52f171024aa792d4d773bc84197301f6a039"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/collision/link3.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 20385,
+      "sha256": "64e5deb22ef80e594cbaaae5e97e6a788643a5089319b95c6c736d791ce3745a"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/collision/link3.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 15084,
+      "sha256": "0a8d638b9349c6c0eefc4e888636ac4838c4b27170f18a51699321118af709c1"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/collision/link4.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 20504,
+      "sha256": "64fbabb294012d86d3ba5d1feabb362f6c8a70ee5d45947073112eeff9e97ab2"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/collision/link4.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 15084,
+      "sha256": "0180ebb5772ec9840cb049750cffb29a9ddc90311752a16ea34757782ef9e48d"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/collision/link5.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 21313,
+      "sha256": "936f20861fe9ae5a2873e5a2536086629fab92ebdbd5e5217919d9d49a2b285c"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/collision/link5.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 15084,
+      "sha256": "dd17e688c7870e722283525879643d53a74c0024d328b0e14b034b54c8b6c31a"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/collision/link6.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 14325,
+      "sha256": "b950af03e0c8b06dae2c7f68af1e2c2f945b37174f60358d2c6b7e77a8cdb0ec"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/collision/link6.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 10084,
+      "sha256": "20b768e99a0e0440b5754dcca108016434e57937cc356acd9c352ccd3cb27f77"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/collision/link7.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 16747,
+      "sha256": "e96078e8551ea47b991fba278953233b56acc870b1db6c552eefd46cf31dda47"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/collision/link7.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 10084,
+      "sha256": "92ac6afcf7574c034d3170d8a68e95ac9048ab9d0dd5bbd8311b86e551b9ab1c"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/finger.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 51298,
+      "sha256": "91e979cce042a1bb520723eb041087df006a4a4d76f6decbe5e32964072aac8d"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/finger.mtl",
+      "type": "file",
+      "mode": 420,
+      "size": 430,
+      "sha256": "58889da6176f721f5f0fd6bc7464e48fd0398e7d4cbe9f0ef7d0f4d17fe19d1b"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/finger.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 48085,
+      "sha256": "5e7d38f85c14bcb6d1fcf2bfadb70329bb0f3b352c02dd03d7f5baed15f3f954"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/graspnet_panda_mesh.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 15155,
+      "sha256": "4abcce212b09cc5423426c6d99e453f6985f3b59388be9d303037dd1db9a9a9b"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/hand.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 549346,
+      "sha256": "1001349e0de1fd6cde51bcb3485cb81566bc88ad1e41e732861859286fcf9ebb"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/hand.mtl",
+      "type": "file",
+      "mode": 420,
+      "size": 1033,
+      "sha256": "a6ab4800d01e9b71c8879f8cbc68c06f3796ea23307fbc53cc7c148c1b6d7a6f"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/hand.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 483975,
+      "sha256": "2c572a8071796245b1d30dfff565e41c780ca711462884977ca3969b4baeecdd"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/hand_ee_link.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 521526,
+      "sha256": "5deae54ea137fc93c221848630283519e0213af9d8a21a75649ddf62e0d016f2"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/hand_gripper.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 15112,
+      "sha256": "2d6a514a9e3e7602b022dd26b9a2365d9f74d1c4126016e2a04864829026a742"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/hand_gripper.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 13284,
+      "sha256": "e0298ef00a3858b382a9ca7b4d6de4801bc1cf2b566ae989542cbe8a2ee5bc04"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/link0.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 1591811,
+      "sha256": "1a1742769950c81ce60b881aad0f4fb04949536f01a9e2872bf775d54e895420"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/link0.mtl",
+      "type": "file",
+      "mode": 420,
+      "size": 2304,
+      "sha256": "ff9410f716d1867cd2f56d5b63d568925c88f8878b91f608716ccead2e719784"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/link0.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 1442561,
+      "sha256": "5abc04a4e134587f7d02359c4e5b2fe45063fbd5232abc453ffdccf335d4c071"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/link0.obj.mtl",
+      "type": "file",
+      "mode": 420,
+      "size": 483,
+      "sha256": "59b1c0760dadce2fea90b2171c42712c2867f1a8fc81eb3b9c88474fb394ec90"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/link1.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 978516,
+      "sha256": "76b831bdbef18850067af86373484591cc1bfdeaafa15fad3d74a6c3c0d3e2d3"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/link1.mtl",
+      "type": "file",
+      "mode": 420,
+      "size": 237,
+      "sha256": "fa16263e679d1a08a98840d95295a416653587b137921ccc190297e88898be39"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/link1.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 777412,
+      "sha256": "43cfacefee7beaeb83c07747cda20643fc32d73702acd19e688dda4a3693cdcd"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/link1.obj.mtl",
+      "type": "file",
+      "mode": 420,
+      "size": 201,
+      "sha256": "62501040642d4dd994054739ea61d30ee361f6b53a6a349b96e6dcef231721e0"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/link2.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 998587,
+      "sha256": "2641ba86d89d980a4b0323f9c38c2c6741a7463ab6ba7d426ebfba91217d4cd0"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/link2.mtl",
+      "type": "file",
+      "mode": 420,
+      "size": 236,
+      "sha256": "985a0cd2281b85f6e81146500b28f5605f0ecedcbe786e5a2896480540f3b636"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/link2.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 783731,
+      "sha256": "f02da31df4f8f4d56a2ff5a745a264138f26e2cd43cbf6696f6329a6d3489e50"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/link2.obj.mtl",
+      "type": "file",
+      "mode": 420,
+      "size": 201,
+      "sha256": "62501040642d4dd994054739ea61d30ee361f6b53a6a349b96e6dcef231721e0"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/link3.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 1099974,
+      "sha256": "152a575b9e8e66483daf8d4630f039673f83da4401c57f4951fd4f4599906f9d"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/link3.mtl",
+      "type": "file",
+      "mode": 420,
+      "size": 868,
+      "sha256": "57e36e096e4921f515e0cd2eb4b9379c1b70ef07ec5a902086612bb068894e33"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/link3.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 910167,
+      "sha256": "b129c2eabd4d060ad40a1442add2d419216f23ea57c029bc44ec241b24cf63df"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/link3.obj.mtl",
+      "type": "file",
+      "mode": 420,
+      "size": 342,
+      "sha256": "20fb1c9a74f955edbc44e64571f274ed8db1aecb2b621b7a73351a4b39f66ed9"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/link4.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 1145814,
+      "sha256": "b7ca4622569abc56c73fe0cefffa5df7bef4055a44f900f3bd5263ba1be94fb7"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/link4.mtl",
+      "type": "file",
+      "mode": 420,
+      "size": 848,
+      "sha256": "aeec9c07e5578ca99ba2393da220f4765d6aa4b9108297b5ec6c38e50a488892"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/link4.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 939686,
+      "sha256": "d93e9c9295160c851afd8c1acb9ad75cb339ebe4e67de26e28899bdebb1ace0b"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/link4.obj.mtl",
+      "type": "file",
+      "mode": 420,
+      "size": 342,
+      "sha256": "20fb1c9a74f955edbc44e64571f274ed8db1aecb2b621b7a73351a4b39f66ed9"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/link5.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 1438422,
+      "sha256": "fc0e0f9db62856a0dd19217a4d4299e0ee779e7d42fe2c7d95b6a8c3185244de"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/link5.mtl",
+      "type": "file",
+      "mode": 420,
+      "size": 628,
+      "sha256": "b04e7c87e3ab31bf910c7b00be84e4030ca45eba0ac0be98d5e1e36a6cb12ced"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/link5.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 1186728,
+      "sha256": "fbc922b94b4e95ea073a27c3faf9c2591d9249bd1b9cca805cea85c8b979a865"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/link5.obj.mtl",
+      "type": "file",
+      "mode": 420,
+      "size": 342,
+      "sha256": "24a7c5d671d51c02489b0843790afab0009f5ef7d7a5f4969ca8c2227d192f50"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/link6.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 1729056,
+      "sha256": "e3832db44d0546dfb576b63243fcb9836ee07f4c4469a9486c4cdbd0d56c27b2"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/link6.mtl",
+      "type": "file",
+      "mode": 420,
+      "size": 3387,
+      "sha256": "9847fda48bf743603f06d04c4ffff272ba936629782935c04f05a994e9fd6053"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/link6.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 1547955,
+      "sha256": "82d37a43fb5be9c8da3b87627c7cba1de1950db8011567ea1571579855427a50"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/link6.obj.mtl",
+      "type": "file",
+      "mode": 420,
+      "size": 906,
+      "sha256": "8ce02f06aa6b1edde5ae9ca7f02380c458550abb07b5dc4b444aa13cfddfe403"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/link7.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 936575,
+      "sha256": "00cec1f7a687e918c7c631b2e75ff053ddefc928a05bfd598aa712db863094ed"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/link7.mtl",
+      "type": "file",
+      "mode": 420,
+      "size": 1636,
+      "sha256": "4d72b308ddb6e8f81509b58290448d479e5b4f4082ae51281bb449befb45a68d"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/link7.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 868368,
+      "sha256": "93c8ba32b58e82749baf086f1049b0930891763678e284270bb99978763d873b"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/link7.obj.mtl",
+      "type": "file",
+      "mode": 420,
+      "size": 483,
+      "sha256": "f8604527f7915de394b6b8e48f5762dc17a2e5a03f8016f1d8a72e6f13af97c1"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/meshes/visual/train_gripper.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 11044,
+      "sha256": "c4e2b8d07f8765741aae129647e46280e6d7fea9fde0c8e18f72e178832e6eda"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/moving_gripper.urdf",
+      "type": "file",
+      "mode": 420,
+      "size": 2134,
+      "sha256": "435399b356888c6ea81dfab51e187d6d97603063ad933ed4f630a09085ddd8eb"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/panda.urdf",
+      "type": "file",
+      "mode": 420,
+      "size": 11132,
+      "sha256": "4baabf5f174eb2772c6c164ab2a525fadf2897136ef5c89c1fc3910e07603f4c"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/panda_grasp_gripper.urdf",
+      "type": "file",
+      "mode": 420,
+      "size": 714,
+      "sha256": "8c9cea13718e9808ac5e29a7d748991666f8d22327e854a609bf9361c802dc80"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/franka_description/panda_gripper.urdf",
+      "type": "file",
+      "mode": 420,
+      "size": 812,
+      "sha256": "a47f4b3c79ef22bbcee19294a62266df7dac89bbe2d308f1c963d19e88f22e99"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/iiwa_allegro_description/allegro.urdf",
+      "type": "file",
+      "mode": 420,
+      "size": 18426,
+      "sha256": "4aefbc8d8737cdf436a27bf6375b4d40689b90097297a15e27229832cb9843e8"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/iiwa_allegro_description/iiwa.urdf",
+      "type": "file",
+      "mode": 420,
+      "size": 14489,
+      "sha256": "626a758725b781d96fec551254c76310644f6e9aab4ac93a64c54366bdf7b8c6"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/iiwa_allegro_description/iiwa_allegro.urdf",
+      "type": "file",
+      "mode": 420,
+      "size": 33024,
+      "sha256": "208ddc029b9728ceab2edd03428de4d3a01c6621d1eab0af1314c9777b00bc0b"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/iiwa_allegro_description/meshes/allegro/base_link.STL",
+      "type": "file",
+      "mode": 420,
+      "size": 150884,
+      "sha256": "d14035c25df1970813c213b62f7e7bb06600cbf0e6ce23c423143c317202ee97"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/iiwa_allegro_description/meshes/allegro/base_link.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 327925,
+      "sha256": "12d149d6158a0fedeeeed083ab094d040ca47171d1cbcc6859cf4bd9a965032f"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/iiwa_allegro_description/meshes/allegro/primary_base.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 22422,
+      "sha256": "8b06ff046238b791684bd6fd8226e48ad9298537ad9d049d261661eff7e15e69"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/iiwa_allegro_description/meshes/allegro/primary_base.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 10684,
+      "sha256": "1cec14eae3de98e6a553447953f5f24c1d373923728a381b30b5dbdd62c9d592"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/iiwa_allegro_description/meshes/allegro/primary_medial.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 133905,
+      "sha256": "7cc05f5e18ed53c2336f3077c05ce64b701da266e16181310a0d1e8946bef6b3"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/iiwa_allegro_description/meshes/allegro/primary_medial.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 62684,
+      "sha256": "c0aac9d6e7521b3ed5ab6b5f08f0b31acd1d9488aec705070ffdc23b2cc52084"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/iiwa_allegro_description/meshes/allegro/primary_proximal.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 185973,
+      "sha256": "8214848577956120fa91f70b525d192a44b7ab865f07ae788d219e47596a0c88"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/iiwa_allegro_description/meshes/allegro/primary_proximal.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 86684,
+      "sha256": "56fa9965d205bf52b6e66c7c07a3804b22b1c77498f8aaa263d01bb9c06d7428"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/iiwa_allegro_description/meshes/allegro/thumb_base.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 116245,
+      "sha256": "f59220f1b2097353108c2d6581a0022ec5f7fa88e2f2c59e4555dbb7c483391c"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/iiwa_allegro_description/meshes/allegro/thumb_base.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 53884,
+      "sha256": "9a17a4170e24a59aa5a53639ebe35c02820f07e3716fca1677c1568fba668b19"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/iiwa_allegro_description/meshes/allegro/thumb_medial.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 134241,
+      "sha256": "900f8d876cff48d88350918270f8d8b9e495eddb200fcfb1c9efb83b00e237cb"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/iiwa_allegro_description/meshes/allegro/thumb_medial.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 62684,
+      "sha256": "975f29aa6acc53cdd2c13fe3927def031a817a7367b6455229e899af5013c645"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/iiwa_allegro_description/meshes/allegro/thumb_proximal.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 22107,
+      "sha256": "eee9fd35fce5b17d153f603843f6a2e7110ef633152e741e729e63432424779b"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/iiwa_allegro_description/meshes/allegro/thumb_proximal.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 10684,
+      "sha256": "c2f3280ad75a81896007a340e2ddcddaded4ffeb11b5741eccb1cfc53fc9e01c"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/iiwa_allegro_description/meshes/biotac/biotac_sensor.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 557702,
+      "sha256": "3b71edc0c96e3d5b3aba61d2a64453af97ff3683d035fca904a7efa22ffd6d83"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/iiwa_allegro_description/meshes/biotac/biotac_sensor.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 258584,
+      "sha256": "4d99e6e28d932134a54f9f15e137a92ed4b972ca9efa2bd67faae0242fb76119"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/iiwa_allegro_description/meshes/biotac/biotac_sensor_thumb.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 644099,
+      "sha256": "29ca1c721966d8fedb4d5779162f9821251bb2e865b2af4c60a7ebac4d5b13b5"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/iiwa_allegro_description/meshes/biotac/biotac_sensor_thumb.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 297584,
+      "sha256": "919a836e839d0c6d56d2d276fab3f501704ae837af7e4e50b98e45976ddc8851"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/iiwa_allegro_description/meshes/iiwa7/collision/link_0.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 1013429,
+      "sha256": "9c718bc48114093ec90ee33ce0bae3f7166d805c18264741e38ea8cc37aa752c"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/iiwa_allegro_description/meshes/iiwa7/collision/link_1.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 418511,
+      "sha256": "ac2151ac41c5fad6bcaf299308e83d71d80a0829f605b5969084be5b9696b569"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/iiwa_allegro_description/meshes/iiwa7/collision/link_2.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 916359,
+      "sha256": "8cdb904196baac2712d631bcc919382b735a90624aa268313b36a87dbc495b2c"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/iiwa_allegro_description/meshes/iiwa7/collision/link_3.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 494484,
+      "sha256": "342182da67551e7d28a03b76be98627a48bf33e3d343e8236236b866d9421190"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/iiwa_allegro_description/meshes/iiwa7/collision/link_4.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 921180,
+      "sha256": "42b1077899f965ef27c58d5d7d75c0b3c36923022aeef2c8b1f8d383d8686a47"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/iiwa_allegro_description/meshes/iiwa7/collision/link_5.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 471566,
+      "sha256": "c7762e4b1c5fcf81500d2ab8ed34d0f94e94842cf5030871a64d83391c349325"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/iiwa_allegro_description/meshes/iiwa7/collision/link_6.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 1055648,
+      "sha256": "b24e2e338e774549e9d07736f8cf41d959d458084e225acbf7a6cfaea0b0a501"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/iiwa_allegro_description/meshes/iiwa7/collision/link_7.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 2178842,
+      "sha256": "bf1ad28096ef509edf48db6050d150f31f8f9a01c42c94f25a55132544e571cb"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/iiwa_allegro_description/meshes/iiwa7/visual/link_0.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 3919382,
+      "sha256": "03691a83997ce90f592a28eeb3217d2762017673c45396b7fad9b10cd9b64dd2"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/iiwa_allegro_description/meshes/iiwa7/visual/link_1.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 1023264,
+      "sha256": "dcf408fbb8059990af221a81c69993b70186a4a49f84b19f182664ef10f64257"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/iiwa_allegro_description/meshes/iiwa7/visual/link_2.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 2905281,
+      "sha256": "cea7c195fa7734a9028ae174ba8a6ed0ab443d82b84f30b6d7c4935d83f94331"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/iiwa_allegro_description/meshes/iiwa7/visual/link_3.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 1142700,
+      "sha256": "1569de6d07509e94daa6b56c464e42727c9d2fc98f9b8c7d3b6f7b8f3eda262e"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/iiwa_allegro_description/meshes/iiwa7/visual/link_4.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 2906513,
+      "sha256": "94e0ab4fb7cea1bc3019be7a1c4ebdb5ee0bea12d961bb977556fe4e2ad6cb80"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/iiwa_allegro_description/meshes/iiwa7/visual/link_5.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 1256051,
+      "sha256": "f81aabc034c527c8ca1122e51a27b656dbab1a5a0b8efcd567f58c36d1b0a28e"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/iiwa_allegro_description/meshes/iiwa7/visual/link_6.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 2880195,
+      "sha256": "31ad452a121827837f9a01685f03f2419a6002e361eb05de8dcb350e01b04d5a"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/iiwa_allegro_description/meshes/iiwa7/visual/link_7.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 2178842,
+      "sha256": "bf1ad28096ef509edf48db6050d150f31f8f9a01c42c94f25a55132544e571cb"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/iiwa_allegro_description/meshes/mounts/allegro_mount.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 269131,
+      "sha256": "a63dacba6e86e70426bad649411358493b30299b9828d026aa5f6ffa00480eeb"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/iiwa_allegro_description/meshes/mounts/allegro_mount.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 126284,
+      "sha256": "d52f361fd27615087449518e08eba83b5cefa82d635cf91024c1da59f7ff8a18"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/jaco/jaco_7n.urdf",
+      "type": "file",
+      "mode": 420,
+      "size": 26646,
+      "sha256": "1021ead8a62e32e06d445be8f5a689628f720213b50a2e12db5cdcc0cd34760f"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/jaco/jaco_7s.urdf",
+      "type": "file",
+      "mode": 420,
+      "size": 25727,
+      "sha256": "5fb689af2280d437d4f0f5e495775c51b985980d42842763768948e29b1b7d5a"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/jaco/meshes/arm.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 645873,
+      "sha256": "34fbe87b12d0878546ad8f01541c61d4a54d204e52b03f3aa83955d47b5fc067"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/jaco/meshes/arm_half_1.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 469714,
+      "sha256": "b1d9bf67a736e22f587c58de16699a212b1818786815f03ce83300076edf951b"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/jaco/meshes/arm_half_2.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 467085,
+      "sha256": "cb0cde072c2ebca152f121df98f37dae98c1ed8c6dd5364925fabaf03c954078"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/jaco/meshes/arm_mico.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 633481,
+      "sha256": "7806101c64584157486a1fbcd1f9cf077435b26694695e77d71626419af4acfb"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/jaco/meshes/base.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 1336047,
+      "sha256": "84d6c46a5cf934f8d9abd669928948857ef8eec0d537ea226e9e44cd72e5133c"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/jaco/meshes/finger_distal.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 141699,
+      "sha256": "73f6662e0e9c47e43b9f3018069cf6285f40e163d3555a6928607f058ed7cffb"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/jaco/meshes/finger_proximal.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 200973,
+      "sha256": "ce16acaa3571b4023c131c7310744fc28894c9703c9833a3d274bb38a704fa33"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/jaco/meshes/forearm.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 547752,
+      "sha256": "4da6f9148f2b3fd0d4fdfa13129f1a1f2080277a07598540636c4b9eccabc170"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/jaco/meshes/forearm_mico.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 556683,
+      "sha256": "ba6649b3568630b70bddd8b1e5596f12c301fcc549c6ce57bf7e0389f3e1c0da"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/jaco/meshes/hand_2finger.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 3952875,
+      "sha256": "25d70ab15bcbece6b50e819656624e7d7374ba48e0a54a14742dc4612f73c2c9"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/jaco/meshes/hand_3finger.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 2286771,
+      "sha256": "018d65704e40f198c2af21ce69de59b955f13c238875f0df229ac7f8436bb003"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/jaco/meshes/ring_big.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 34042,
+      "sha256": "ddd3db4dd2e64ef0673b90a0b2aead433c65ee81fa485a64c169356dcea2b952"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/jaco/meshes/ring_small.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 35177,
+      "sha256": "cf4d3b83ed06116b66c6d33a7e2d5e2d2643b7a822147c44bfbba80b5b27a234"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/jaco/meshes/shoulder.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 643584,
+      "sha256": "c94f20e293244a5cf55b724cc19573fb5f4dd3e7fa3ba6fb17f1582bc9bf9963"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/jaco/meshes/wrist.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 290082,
+      "sha256": "dd7f14d83ee829804b780d152adb878034d2fc3e142a3a2ea9ac26ed8e68c4a4"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/jaco/meshes/wrist_spherical_1.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 566958,
+      "sha256": "37c505698084ecf21d724f36c0771c58da7458829340503f7ca494e6080e2089"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/jaco/meshes/wrist_spherical_2.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 568875,
+      "sha256": "bdb261fe1d11d9aaaa92232de57c54a0b8a738ed261eafb2ca10dbc3d10cd841"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/README.md",
+      "type": "file",
+      "mode": 420,
+      "size": 120,
+      "sha256": "0bd627c142e754e992d131e2f540f9296f307e61bc01ce5d8b79e2e9e50250c5"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/kinova_gen3_7dof.urdf",
+      "type": "file",
+      "mode": 420,
+      "size": 22487,
+      "sha256": "a622dd917f29a59127871b1303bb31ff34fadada72642cf01e6f30ced6643c95"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/kortex_description/arms/gen3/7dof/meshes/base_link.STL",
+      "type": "file",
+      "mode": 420,
+      "size": 183884,
+      "sha256": "3e38517e653d58f4160cfdcee34c9dea983d8b3ecb8f2c147444f58235335260"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/kortex_description/arms/gen3/7dof/meshes/bracelet_no_vision_link.STL",
+      "type": "file",
+      "mode": 420,
+      "size": 1334384,
+      "sha256": "5b2ec7dafbf6a3c9a2cac717d18132a8a1efd9fcb8f2c40d9c12c8ece7323ec8"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/kortex_description/arms/gen3/7dof/meshes/bracelet_with_vision_link.STL",
+      "type": "file",
+      "mode": 420,
+      "size": 1164084,
+      "sha256": "8bb05e420a88532b4eee3948a0047fb8e7f341c3e5cc971d54e97e2aaffcf878"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/kortex_description/arms/gen3/7dof/meshes/end_effector_link.STL",
+      "type": "file",
+      "mode": 420,
+      "size": 80,
+      "sha256": "5b6fb58e61fa475939767d68a446f97f1bff02c0e5935a3ea8bb51e6515783d8"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/kortex_description/arms/gen3/7dof/meshes/forearm_link.STL",
+      "type": "file",
+      "mode": 420,
+      "size": 456284,
+      "sha256": "a00d96d2c7ec37e9fe4c5fb6d3fa2b4386dfd48fea5ac25632f4cb83b3505105"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/kortex_description/arms/gen3/7dof/meshes/half_arm_1_link.STL",
+      "type": "file",
+      "mode": 420,
+      "size": 514184,
+      "sha256": "8df461a71780d8e2d09104a507584424279d85173adf14867e359f7e58b3bba7"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/kortex_description/arms/gen3/7dof/meshes/half_arm_2_link.STL",
+      "type": "file",
+      "mode": 420,
+      "size": 489184,
+      "sha256": "8a9f38de21648804b3ab7076ec73726031f2ade7c95eb2541d070553e025407b"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/kortex_description/arms/gen3/7dof/meshes/shoulder_link.STL",
+      "type": "file",
+      "mode": 420,
+      "size": 476984,
+      "sha256": "a98e232e5197f09e9cd520e7a450c21bcec74bc49e2a19ce7cf86c5dc25f2e18"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/kortex_description/arms/gen3/7dof/meshes/spherical_wrist_1_link.STL",
+      "type": "file",
+      "mode": 420,
+      "size": 546484,
+      "sha256": "0b97a5e3b2de535344f8e8d4176d77f0cdb3455b235f35430fa0413208856e66"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/kortex_description/arms/gen3/7dof/meshes/spherical_wrist_2_link.STL",
+      "type": "file",
+      "mode": 420,
+      "size": 516984,
+      "sha256": "12271fb7d0ee78fb5642424cf5078be20f0476061e74203db964b674031ce879"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/kortex_description/grippers/robotiq_2f_140/LICENSE",
+      "type": "file",
+      "mode": 420,
+      "size": 1296,
+      "sha256": "bfe9a4de3ec95dac1d2bf02df4d774ecfd6d492df1fa33476c3af5576bd08435"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/kortex_description/grippers/robotiq_2f_140/README.md",
+      "type": "file",
+      "mode": 420,
+      "size": 699,
+      "sha256": "8772be60eaa1a67261ac4ddebfb3302f30644934950e713783a64472c6d391fa"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/kortex_description/grippers/robotiq_2f_140/meshes/collision/robotiq_arg2f_140_inner_finger.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 7284,
+      "sha256": "043901d9c22b38d09b30d11326108ab3ef1445b4bd655ef313f94199f25f57ed"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/kortex_description/grippers/robotiq_2f_140/meshes/collision/robotiq_arg2f_140_inner_knuckle.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 5484,
+      "sha256": "d341d986aa8aca7262565c039c04fb6b4c0f2f5c93443519eb7ca9bfc67ba17c"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/kortex_description/grippers/robotiq_2f_140/meshes/collision/robotiq_arg2f_140_outer_finger.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 11684,
+      "sha256": "bd7da1b31b73f1aa1d61b26a582cea10f16f17396d54b8937890fa51547d26b0"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/kortex_description/grippers/robotiq_2f_140/meshes/collision/robotiq_arg2f_140_outer_knuckle.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 9784,
+      "sha256": "37c1779f71fb5504a5898048a36f9f4bfce0f5e7039ff1dce53808b95c229777"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/kortex_description/grippers/robotiq_2f_140/meshes/collision/robotiq_arg2f_base_link.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 86384,
+      "sha256": "111e37f13a664989dd54226f80f521b32ea0b71c975282a16696b14be7cc9249"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/kortex_description/grippers/robotiq_2f_140/meshes/collision/robotiq_arg2f_coupling.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 21184,
+      "sha256": "5ca9ffc28ed04193854b005358599dd9c3dc6fa92c8403e661fda94732d9ac25"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/kortex_description/grippers/robotiq_2f_140/meshes/visual/robotiq_arg2f_140_inner_finger.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 33984,
+      "sha256": "be21c5e18c901d4747cbc8fa1a2af15dad7173ff701482a8517e33278432bb21"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/kortex_description/grippers/robotiq_2f_140/meshes/visual/robotiq_arg2f_140_inner_knuckle.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 43484,
+      "sha256": "d61e9c5304d8015333856e4a26d99e32b695b6ada993253986b1afe8e396ab11"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/kortex_description/grippers/robotiq_2f_140/meshes/visual/robotiq_arg2f_140_outer_finger.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 76084,
+      "sha256": "666a92ee075f6f320ffb13b39995a5b374657cee90ded4c52c23ede20a812f34"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/kortex_description/grippers/robotiq_2f_140/meshes/visual/robotiq_arg2f_140_outer_knuckle.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 78384,
+      "sha256": "f042edc44ede9773e7cad00f7d7354d0b7c1c6a6353fe897b2ca2e6ac71107fc"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/kortex_description/grippers/robotiq_2f_140/meshes/visual/robotiq_arg2f_base_link.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 1054984,
+      "sha256": "74a62de75ae10cf77c60f2c49749b5d11f4c265f8624bbe7697a941fa86f6b3b"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/kortex_description/grippers/robotiq_2f_140/meshes/visual/robotiq_arg2f_coupling.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 160684,
+      "sha256": "4281e83002a25c20dc07c68b8d77da30a13e9a8401f157f6848ed8287d7cce44"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/kortex_description/grippers/robotiq_2f_85/LICENSE",
+      "type": "file",
+      "mode": 420,
+      "size": 1296,
+      "sha256": "bfe9a4de3ec95dac1d2bf02df4d774ecfd6d492df1fa33476c3af5576bd08435"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/kortex_description/grippers/robotiq_2f_85/README.md",
+      "type": "file",
+      "mode": 420,
+      "size": 695,
+      "sha256": "b7b779ba109fbabae5d2122d80cd594a9e433a49bc18e5a020cc731051729170"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/kortex_description/grippers/robotiq_2f_85/meshes/collision/robotiq_arg2f_85_base_link.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 86384,
+      "sha256": "d8844d7d09e05423b6edb56b354eef561ad6cf4787d8b7f980232cd4346f46bf"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/kortex_description/grippers/robotiq_2f_85/meshes/collision/robotiq_arg2f_85_inner_finger.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 21799,
+      "sha256": "807aff52c5a12ca5429cfb2eb19cc88dfaf0083bac6b69e24d49f6beb29aa2c8"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/kortex_description/grippers/robotiq_2f_85/meshes/collision/robotiq_arg2f_85_inner_knuckle.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 18425,
+      "sha256": "a8e6bb0b3b5ef6ea1323aa698a16dc1ec1a878ed2c2bcd43547750a18e72d9b4"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/kortex_description/grippers/robotiq_2f_85/meshes/collision/robotiq_arg2f_85_outer_finger.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 21252,
+      "sha256": "5e45e7773260cc4b04bbae626af94bfdd49c38b3c69fc248cf0708e5fa65a39f"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/kortex_description/grippers/robotiq_2f_85/meshes/collision/robotiq_arg2f_85_outer_knuckle.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 25969,
+      "sha256": "8c7ce8ee42044149f9a956d55f33f06e6b75e5e35080ee4bf1e8cb381535aeb7"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/kortex_description/grippers/robotiq_2f_85/meshes/collision/robotiq_arg2f_base_link.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 86384,
+      "sha256": "111e37f13a664989dd54226f80f521b32ea0b71c975282a16696b14be7cc9249"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/kortex_description/grippers/robotiq_2f_85/meshes/visual/robotiq_arg2f_85_base_link.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 2523721,
+      "sha256": "d03d6e7395b0aa11ae7954b2f04a0a650448547d5d4f367238098ccd848b3eb5"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/kortex_description/grippers/robotiq_2f_85/meshes/visual/robotiq_arg2f_85_inner_finger.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 154078,
+      "sha256": "3172e8fe000fda75b9b29b48cd8cad4011d184a6df23eb2c3adb6c1f5a4eae93"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/kortex_description/grippers/robotiq_2f_85/meshes/visual/robotiq_arg2f_85_inner_knuckle.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 117207,
+      "sha256": "19b12510eec739a1a4655ff633ce3f02ad3c2eda2cb8f451df900ddfa76c8f14"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/kortex_description/grippers/robotiq_2f_85/meshes/visual/robotiq_arg2f_85_outer_finger.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 120496,
+      "sha256": "32d842e51e0ddd25b3354af212131befa191c183cf4cdb61f82ecbe5c5276323"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/kortex_description/grippers/robotiq_2f_85/meshes/visual/robotiq_arg2f_85_outer_knuckle.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 69464,
+      "sha256": "f1cc5198c9f3b06979af07d2944034b32acbb6130df5396dc2c7253cb656f587"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/kortex_description/grippers/robotiq_2f_85/meshes/visual/robotiq_arg2f_85_pad.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 4136,
+      "sha256": "0f1d5b8403fed489fb40b389e3d9ec27882db324d77d20cc84cf8bb8901fee80"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/kinova/kortex_description/grippers/robotiq_2f_85/meshes/visual/robotiq_gripper_coupling.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 160684,
+      "sha256": "4281e83002a25c20dc07c68b8d77da30a13e9a8401f157f6848ed8287d7cce44"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/simple/simple_mimic_robot.urdf",
+      "type": "file",
+      "mode": 420,
+      "size": 2652,
+      "sha256": "8d9b7386c26eeba459846b2af9ab48c2a44cf26108f403ae42a9f94627eb8942"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm12/collision/tm12-arm1_c.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 30084,
+      "sha256": "4597f7866f4d6205f892565f184ea0ec7bab0c55c566af38dce8a81bab39be87"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm12/collision/tm12-arm2_c.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 30084,
+      "sha256": "5c910691c06d30239446bb92aa3248b1cb7f71a1ea9aae72507c946d491f8289"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm12/collision/tm12-base_c.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 91784,
+      "sha256": "89dd80554416b8c1554d5efe54a9e43ab6fdb9a6d2fc5b508ae3e34c04e2d6fd"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm12/collision/tmr_750w_01_c.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 327984,
+      "sha256": "52cadd82860f15604891ffdcdf510642ab80bff4624d3d607269cfdb828beb7e"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm12/visual/tm12-arm1.mtl",
+      "type": "file",
+      "mode": 420,
+      "size": 161,
+      "sha256": "1a1c9b38d4f7d86d0428faab5dc3d1ebc1ab262e4c20ee018c1c0a0208f98eeb"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm12/visual/tm12-arm1.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 5547987,
+      "sha256": "a4f36a3fa4a9a5e17a5882739887274a5c93fbea9be612b5e9767ce1588a21c5"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm12/visual/tm12-arm1.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 1935184,
+      "sha256": "84b0cc29b5b6ad29216843a4b829e0abc3c7e3ba1d316c37341e826b9fffbbff"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm12/visual/tm12-arm2.mtl",
+      "type": "file",
+      "mode": 420,
+      "size": 161,
+      "sha256": "1a1c9b38d4f7d86d0428faab5dc3d1ebc1ab262e4c20ee018c1c0a0208f98eeb"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm12/visual/tm12-arm2.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 2577917,
+      "sha256": "c273e1eaf35f59f2bf6440376e1404f4f0180228cec75058a2999b14e670ce00"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm12/visual/tm12-arm2.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 942784,
+      "sha256": "99ba318bbbc5d64dba044e20200b3c99e3c599e4710907474ba4f0b8bdfd637a"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm12/visual/tm12-base.mtl",
+      "type": "file",
+      "mode": 420,
+      "size": 85,
+      "sha256": "07ed2175ab29c8ff93ebe04f7e1c6430d0b05d86ac14a3165d7cd80348c5c54f"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm12/visual/tm12-base.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 1423225,
+      "sha256": "db49b2ab7daf666fcdff0f93379b4eb7b8c73c30c765521a6ab5cfca70cd2644"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm12/visual/tm12-base.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 555684,
+      "sha256": "d9bb002867ef91e313685cc6ebeb4c5848e84c29ea8e9d53cda3b7d528cc1159"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm12/visual/tmr_750w_01.mtl",
+      "type": "file",
+      "mode": 420,
+      "size": 161,
+      "sha256": "1a1c9b38d4f7d86d0428faab5dc3d1ebc1ab262e4c20ee018c1c0a0208f98eeb"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm12/visual/tmr_750w_01.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 4446892,
+      "sha256": "abb0447f28df2d43b3ad2b4cd35764d369322c3b81474f98e3364bb822d2b5b1"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm12/visual/tmr_750w_01.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 1635984,
+      "sha256": "c870a2dd187572825a018c07dd5678ff00a56a98d4cc6a767c8b2cb265eccbda"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm5-900/collision/tm5-900_arm1_c.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 15884,
+      "sha256": "7545a98c8e7c649af4a24de2a49d0a8d9d6ac38d01cdb65e261676826297ccc1"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm5-900/collision/tm5-900_arm2_c.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 41384,
+      "sha256": "2fcc27da6eb462dbb307b12acd178be12cd2af71e1a8efa389c256db9459f674"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm5-900/collision/tm5-base_c.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 24284,
+      "sha256": "a7daae0def342bba645b35d526cc42247fb084300519fc8731316a2885fef763"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm5-900/collision/tmr_100w_01_c.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 6284,
+      "sha256": "8d58341b3d8f37cc17a4cc9e68f561d1ddae5f3651c96d1f95b88de2f9ba3d8c"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm5-900/collision/tmr_100w_02_c.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 354784,
+      "sha256": "3615ced4edbe03f1a1a1f14fc3f160b5ce8feac715a0552063ec72594f753810"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm5-900/collision/tmr_400w_01_c.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 6284,
+      "sha256": "fa4d21d6371817d99d686e0f6b64a640a8da0eb669a2f8155e36add8d1cadbcf"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm5-900/collision/tmr_ee_c.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 344984,
+      "sha256": "99fb1390e96a334681acead2e00d5b8a0dc6c1f9396ba74bb141dc810514f642"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm5-900/collision/tmr_iox_c.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 98784,
+      "sha256": "496d497dc068faa458b0a1caa143b1f1d67c15f446ae7b12727bc7a6cdbefff1"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm5-900/visual/tm5-900_arm1.mtl",
+      "type": "file",
+      "mode": 420,
+      "size": 161,
+      "sha256": "b382601534fb7ebe15c87575fab8ea34ac584c1c10e84d6d355a9f8751aa17fe"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm5-900/visual/tm5-900_arm1.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 6120438,
+      "sha256": "97aa87f82bf452bca1319f16adbec4cdc0d77c6a8936ef01092fb789f5e5e640"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm5-900/visual/tm5-900_arm1.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 2131984,
+      "sha256": "80fce43f14ec8a9e60e0ca70b8b7149e7920caa15560243af53ac1b5bf36153f"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm5-900/visual/tm5-900_arm2.mtl",
+      "type": "file",
+      "mode": 420,
+      "size": 199,
+      "sha256": "5d4bdbfc31f9efc894ac78bd00f38af29407679b9e75c6e715b72b212bd483be"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm5-900/visual/tm5-900_arm2.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 3556751,
+      "sha256": "b791a3b187ccbc4d78c423305cd6599a84404ac18a64435aa8d0b42e533ed472"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm5-900/visual/tm5-900_arm2.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 1251434,
+      "sha256": "86e8dd55a670e77e9649cf348f865bfba43722d3840f00a3ebd5fdcf2bdec65a"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm5-900/visual/tm5-base.mtl",
+      "type": "file",
+      "mode": 420,
+      "size": 85,
+      "sha256": "07ed2175ab29c8ff93ebe04f7e1c6430d0b05d86ac14a3165d7cd80348c5c54f"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm5-900/visual/tm5-base.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 1209404,
+      "sha256": "8bbc40d7e3e4e21e1e9c89c480d878e6fdcc59b5c04d81b0c5a617344ce255f9"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm5-900/visual/tm5-base.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 230284,
+      "sha256": "7ac29476fa24e935b27cdd74e280f41bc9df206b53d153515c887d07d928cfc1"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm5-900/visual/tmr_100w_01.mtl",
+      "type": "file",
+      "mode": 420,
+      "size": 161,
+      "sha256": "2bc87495ac86c8034f1d567a8667fa3a6348ce4a5d7f1cdf95507699673e0c57"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm5-900/visual/tmr_100w_01.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 4261435,
+      "sha256": "356828f75b8d902055e7e678dbe9ee373a46dab14c39febee8972fda45aa76dc"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm5-900/visual/tmr_100w_01.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 1544084,
+      "sha256": "e2d20585307c7a0dc6ad9cb5ad66d214d2ae1f5037e07dfbea394157ab52aa6d"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm5-900/visual/tmr_100w_02.mtl",
+      "type": "file",
+      "mode": 420,
+      "size": 161,
+      "sha256": "2bc87495ac86c8034f1d567a8667fa3a6348ce4a5d7f1cdf95507699673e0c57"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm5-900/visual/tmr_100w_02.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 4210918,
+      "sha256": "06af99804af35228d39a9d392f7f25ab0f79c803c867ebfbb0edafe29f96be1c"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm5-900/visual/tmr_100w_02.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 1610784,
+      "sha256": "05681b017633e3d150c1f98090453c0adab0ef9cc68312503840bebf5b69eb2c"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm5-900/visual/tmr_400w_01.mtl",
+      "type": "file",
+      "mode": 420,
+      "size": 161,
+      "sha256": "19750f5983efd457b62fba26e5156ea7fff064a4d2c495baf93afd7cdb8cbffa"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm5-900/visual/tmr_400w_01.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 4399362,
+      "sha256": "0fcf19e7052d26f7b108947b94e199b6afcb0159445e165e34d978c6f18f5da4"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm5-900/visual/tmr_400w_01.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 1595884,
+      "sha256": "33e26ccdff4f230ced8b4e8cf3eff7ce2187ccf7751c124ccd069bdc8b252af0"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm5-900/visual/tmr_ee.mtl",
+      "type": "file",
+      "mode": 420,
+      "size": 161,
+      "sha256": "256005c6754da719cfd497b0f77eb917bdfce90fc8c669cb9559b8a8a73fd47e"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm5-900/visual/tmr_ee.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 5256729,
+      "sha256": "d2957049f0d90cd90810b4800143fc9fd993c4707e688fd9c0fcbf7e20654b71"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm5-900/visual/tmr_ee.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 2501684,
+      "sha256": "de6158ae0f9288fbfaf5f2387a35afb978409dea025a7fa09832bf276bfb301a"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm5-900/visual/tmr_iox.mtl",
+      "type": "file",
+      "mode": 420,
+      "size": 161,
+      "sha256": "70af27501be6a2c6da6f8b8ace3c43234aba036120de439b73b0e8b4b977c11f"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm5-900/visual/tmr_iox.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 2739178,
+      "sha256": "360f1c367e6935f665f3015cf107c0737b180edcb8515b700533f42e711483bf"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/meshes/tm5-900/visual/tmr_iox.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 922384,
+      "sha256": "28c69c1729a9eb6aa9ae52a6e1588a83f2e7e150ec9c94d6e5ac551a918e1bd2"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/urdf/tm12-nominal.urdf",
+      "type": "file",
+      "mode": 420,
+      "size": 11439,
+      "sha256": "86543972a1f3a8bab63a322488112f84696ad218818f4c5a6eca4964de6c27a4"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/techman/tm_description/urdf/tm12x-nominal.urdf",
+      "type": "file",
+      "mode": 493,
+      "size": 11446,
+      "sha256": "f274ad970c85691a89c54fe74ae819dd46db612c3da5683b8f6c552abf3e1bb8"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/ur_description/dual_ur10e.urdf",
+      "type": "file",
+      "mode": 420,
+      "size": 20260,
+      "sha256": "e16bb3dfb508de89fba894097d7f641d76d816ef4dd0b0cffce70320245b92c1"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/ur_description/meshes/ur10e/collision/base.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 22984,
+      "sha256": "8a214f3f650e703fa081bd4bd8b1caeb0667598bec22d8b0e572efb97d06e957"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/ur_description/meshes/ur10e/collision/forearm.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 67284,
+      "sha256": "7005ed835336ec03ce6a299a356c774bfe2ba989051e37b2a66406173dcb3c96"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/ur_description/meshes/ur10e/collision/shoulder.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 85284,
+      "sha256": "3f7c5f7ee742cf2d57130829be9f20b25625b3513d676ac5e20ca46ae84fd528"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/ur_description/meshes/ur10e/collision/upperarm.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 93784,
+      "sha256": "663a935951c802b1c16ad7478e7ce754b2d48efb828bbe5d3915fb6bb51cd7db"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/ur_description/meshes/ur10e/collision/wrist1.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 66984,
+      "sha256": "1408c3a0a29385fefe30ed44fceca56d2254f51ea93c75c404976816992324cc"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/ur_description/meshes/ur10e/collision/wrist2.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 89184,
+      "sha256": "4b9e74eab991af3dc9d38c3dfaad2c5bc69591fadc855f7966627ba4d0956579"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/ur_description/meshes/ur10e/collision/wrist3.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 6984,
+      "sha256": "7038904dd03dfea56212191ac61d26746b379dbddfd517b905e13c01e1c12e6a"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/ur_description/meshes/ur10e/visual/base.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 370617,
+      "sha256": "0085d7f98ff3a66b6e753c9fac62bf3ce4aa1258d90752d5eeda82b80c13a524"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/ur_description/meshes/ur10e/visual/forearm.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 1375879,
+      "sha256": "f29caa6868a7f1a9e0476efc6fc960bc629e86f621bc8e40a17e4c3b78fd99fc"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/ur_description/meshes/ur10e/visual/shoulder.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 2344670,
+      "sha256": "0bfe5d42b2d135692276efb1537f746b89a491d48e8be90448b632856b2a52d3"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/ur_description/meshes/ur10e/visual/upperarm.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 3168983,
+      "sha256": "0617eee74c1d98c2f27f98732244a48d0da4d59847c87e610a2387cc97ba2de6"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/ur_description/meshes/ur10e/visual/wrist1.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 1241548,
+      "sha256": "c209b7279e9e6d4bda8a54c2c81bb8b3436bc00d1da2b9faf77e195688e45c89"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/ur_description/meshes/ur10e/visual/wrist2.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 1428001,
+      "sha256": "9c7a830db19554c3bfc5397bcec20c65b5f942e07e0894c7d5d898e0cb9ba6c5"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/ur_description/meshes/ur10e/visual/wrist3.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 71926,
+      "sha256": "7f9b06263287b4235f61b323f5cc486624bfb55d12e9814f90c3df065de8a045"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/ur_description/meshes/ur5e/collision/base.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 21084,
+      "sha256": "9a145e0d46f2130afdf2a2e8825a00a929870c4c3d6d8e4d1adc5f04db3aac1b"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/ur_description/meshes/ur5e/collision/forearm.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 53284,
+      "sha256": "2e7423cab807c34160ec4f770daee5e747d70e777eb01b7beeace2b8c5751816"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/ur_description/meshes/ur5e/collision/shoulder.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 70084,
+      "sha256": "ceb92532177daa77682f5fbd628e01c2137d168f949a7a706ce1dabe9f002387"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/ur_description/meshes/ur5e/collision/upperarm.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 99684,
+      "sha256": "ee893044caf00075cb55b4cf666d1f1311c7979786212a501009f33bee945209"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/ur_description/meshes/ur5e/collision/wrist1.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 59584,
+      "sha256": "f8c9f9337b6fd98c75f052e96de10e14a107ddb6874ba6b904e546f8a4e4f43a"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/ur_description/meshes/ur5e/collision/wrist2.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 67584,
+      "sha256": "2964a63f60ce3e3cf3ad55bcf190d7876d50e373cb64b70a57cea5885eaf3c86"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/ur_description/meshes/ur5e/collision/wrist3.stl",
+      "type": "file",
+      "mode": 420,
+      "size": 7184,
+      "sha256": "83b3666b4ae2badd54af0d2c25a921682ecbc29e849eec646c3ed55fb74c78a3"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/ur_description/meshes/ur5e/visual/base.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 358055,
+      "sha256": "a7d37bb19bd062ca80ea00dfcd758b1145455c5cfad87d41756b101ac5b2a8a4"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/ur_description/meshes/ur5e/visual/forearm.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 1140936,
+      "sha256": "6cb2f094ffba59f124f70881cabea985abfd399f2fbbe76fba7c18d2ece943b9"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/ur_description/meshes/ur5e/visual/shoulder.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 1797082,
+      "sha256": "b2b58abbef50ce03d4704465d3b619a7da5b2ecb2efc236eadfd221116cbbef0"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/ur_description/meshes/ur5e/visual/upperarm.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 3082485,
+      "sha256": "6486526456e11585a41080958b97a0c8821da856e93b2059c74b07f8102bf6cd"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/ur_description/meshes/ur5e/visual/wrist1.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 1334662,
+      "sha256": "c36649cf4deec6da427d72d45163a059dcb668eb61aac760d5f2f979948fa13a"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/ur_description/meshes/ur5e/visual/wrist2.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 1554838,
+      "sha256": "c99f5538357a7b42a9b207a12e52e713dd3eb7e587645144bde7ab31c1cfc76b"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/ur_description/meshes/ur5e/visual/wrist3.dae",
+      "type": "file",
+      "mode": 420,
+      "size": 66076,
+      "sha256": "9f5d4f544ae72698a41f75ed4897a76386a91b814dff22e30e93a5bd105a717c"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/ur_description/quad_ur10e.urdf",
+      "type": "file",
+      "mode": 420,
+      "size": 38049,
+      "sha256": "6f49be3b70b52a880f1a7e38d46308d88b122f0754aa280d0e4f92b7162857a9"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/ur_description/tri_ur10e.urdf",
+      "type": "file",
+      "mode": 420,
+      "size": 34398,
+      "sha256": "d9f8da59f656b5f02f77e9ecc02bd3d0fe36838a566c3518b6c50d6bc5ee2a22"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/ur_description/ur10e.urdf",
+      "type": "file",
+      "mode": 420,
+      "size": 13999,
+      "sha256": "2510b45e19a1db4e1df0bc1741f102d947863d392a1cc186ac221e093722479e"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/ur_description/ur5e.urdf",
+      "type": "file",
+      "mode": 420,
+      "size": 13713,
+      "sha256": "00d13bdf4e9f28f8a54bd15771fa89e22702cd3666f6480219b2364f5d75e56e"
+    },
+    {
+      "path": "src/curobo/content/assets/robot/ur_description/ur5e_robotiq_2f_140.urdf",
+      "type": "file",
+      "mode": 420,
+      "size": 27034,
+      "sha256": "11aba4a741b019c952d1354abf8895b77b586295f9bd49a9e9e08609e85c10c1"
+    },
+    {
+      "path": "src/curobo/content/assets/scene/nvblox/srl_ur10_bins.mtl",
+      "type": "file",
+      "mode": 420,
+      "size": 231,
+      "sha256": "80ec7ba941326566cdf9a9df01b9188bf35a6e1ff3fb71de303d0aba5bd0450d"
+    },
+    {
+      "path": "src/curobo/content/assets/scene/nvblox/srl_ur10_bins.obj",
+      "type": "file",
+      "mode": 420,
+      "size": 4523203,
+      "sha256": "47904dbefdc60beb58c39bc9d962978bcf99690fef1d5ebd3a2a1488a77aa0ca"
+    },
+    {
+      "path": "src/curobo/content/assets/scene/nvblox/srl_ur10_bins.zip",
+      "type": "file",
+      "mode": 420,
+      "size": 7428959,
+      "sha256": "92d1be9e35b02b345dec6da823cb40c10244dbe3a0eff9abf2e31dae9c6ddac6"
+    },
+    {
+      "path": "src/curobo/content/assets/scene/nvblox/srl_ur10_bins_color.png",
+      "type": "file",
+      "mode": 420,
+      "size": 1773918,
+      "sha256": "4b82b0a4873d7bf1796893a47f9b41ab7cd32751d8caa102cfea3f401f75dd70"
+    },
+    {
+      "path": "src/curobo/content/configs/robot/dual_ur10e.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 2883,
+      "sha256": "15014deed2902aa5c404d6925adfc271d27d48c3bda59f7f4391488dcbc4fa55"
+    },
+    {
+      "path": "src/curobo/content/configs/robot/franka.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 4174,
+      "sha256": "c809e9c1d044c8cf98d888552fb55739077419fb3568d5e696242cdecb457430"
+    },
+    {
+      "path": "src/curobo/content/configs/robot/franka_mobile.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 4255,
+      "sha256": "75f3995c6d5508f48ecc2d1f43a0f93d04ae7404eb54a91b0930597f4df3e969"
+    },
+    {
+      "path": "src/curobo/content/configs/robot/iiwa.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 2178,
+      "sha256": "99cee8659f7a57884400551c8619d67122d9aa71f5f2bb2e3529b4f4491bc8d0"
+    },
+    {
+      "path": "src/curobo/content/configs/robot/iiwa_allegro.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 5210,
+      "sha256": "2be663cecb9c6a85fa72a5727f1ba37615da8879181d9e48a84758c9b9bf096c"
+    },
+    {
+      "path": "src/curobo/content/configs/robot/isaac_sim_description/jaco_7s.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 4690,
+      "sha256": "1b4174b308cb4ccc40a953436c224f413fc84bb863e2d9cb8c63df50222d92c3"
+    },
+    {
+      "path": "src/curobo/content/configs/robot/isaac_sim_description/tm12.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 3141,
+      "sha256": "705a3922d081c13d392d9930e1fc8afba3759c13f78cd66ee9047a0ee6cc86c7"
+    },
+    {
+      "path": "src/curobo/content/configs/robot/isaac_sim_description/ur5e.yaml",
+      "type": "file",
+      "mode": 420,
+      "size": 3144,
+      "sha256": "722813df9fe963d40c36db45ebf5a5448037f6059b6d298d3d41bfea06d5c506"
+    },
+    {
+      "path": "src/curobo/content/configs/robot/jaco7.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 8202,
+      "sha256": "1d256bc928a472d9baae43ed4bfe23d59eb72e42454bac159211d65ff967e364"
+    },
+    {
+      "path": "src/curobo/content/configs/robot/kinova_gen3.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 2933,
+      "sha256": "5abe80e4aa902bd25aa51968e2506cc68c07c937fd213cc1b979c8c5302ca72d"
+    },
+    {
+      "path": "src/curobo/content/configs/robot/quad_ur10e.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 4548,
+      "sha256": "463d7a71c8e145aa628d0a640ee65ba13d25a58ed16e324c1cfc82a16bbff6c5"
+    },
+    {
+      "path": "src/curobo/content/configs/robot/simple_mimic_robot.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 1458,
+      "sha256": "500c2899680b17ae349078cbf3b74246505b591c44ba0e687b6633af7541f780"
+    },
+    {
+      "path": "src/curobo/content/configs/robot/spheres/dual_ur10e.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 2837,
+      "sha256": "7280d8fa35798ea4ca86bcca2a83bd2358112a2734417a6dae05e7c586d63700"
+    },
+    {
+      "path": "src/curobo/content/configs/robot/spheres/franka.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 4980,
+      "sha256": "6ed4ec174825281c5ec7db4f83aecf515bbd18ba3c266932c51e9cc50308bd28"
+    },
+    {
+      "path": "src/curobo/content/configs/robot/spheres/franka_collision_mesh.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 4611,
+      "sha256": "551c4a2357daca4c921273fcd343851a818fc44ce73a703f2bd6d50a66cf49e4"
+    },
+    {
+      "path": "src/curobo/content/configs/robot/spheres/franka_mesh.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 4679,
+      "sha256": "6e3e032a01cc0904b115d24953b2b55d0a91e79d6965b8f0bc224ad2591dec83"
+    },
+    {
+      "path": "src/curobo/content/configs/robot/spheres/franka_mesh_inside.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 4695,
+      "sha256": "66d03a6fea85efabf99ad9a229b7134152363af723a272417308b3eb24248dd6"
+    },
+    {
+      "path": "src/curobo/content/configs/robot/spheres/franka_mesh_mb.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 5067,
+      "sha256": "6a8ff8732aeeaddf19230d3e69bb7a04d5b7d65a38292aac40c5dbbb4a2262d3"
+    },
+    {
+      "path": "src/curobo/content/configs/robot/spheres/franka_real_robot.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 4509,
+      "sha256": "941a2c059a10b3f2df6a909047d758dad0c7f6ab526604aaaf34ffdf86acbb8c"
+    },
+    {
+      "path": "src/curobo/content/configs/robot/spheres/iiwa_allegro.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 4800,
+      "sha256": "f70ecff6b1ecdc894de8a652a64fe3e83bb6e97308928dfe546e1a67eecc43a0"
+    },
+    {
+      "path": "src/curobo/content/configs/robot/spheres/kinova_gen3.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 2214,
+      "sha256": "ebab913a2eade453f6568086c5a0c26fb7a4fde144bf6f533de789e2d1485564"
+    },
+    {
+      "path": "src/curobo/content/configs/robot/spheres/quad_ur10e.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 5189,
+      "sha256": "f97d9b4885fb03d26cd3745a90d700e36306dcfa66f7499fdf3c3053b4a8b3f4"
+    },
+    {
+      "path": "src/curobo/content/configs/robot/spheres/single.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 602,
+      "sha256": "eefc142e54f2647cd02af7019695f71493ed2af0d01f384735def3147fd0450c"
+    },
+    {
+      "path": "src/curobo/content/configs/robot/spheres/ur10e.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 1746,
+      "sha256": "85e964b1e7b443b12d17b637e2b9bf9abfaa5b4132e240a6b66176277cf19ee0"
+    },
+    {
+      "path": "src/curobo/content/configs/robot/template.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 1481,
+      "sha256": "344bcdbd3bd849244f5680ea6c235a3c7ede5ac309fe6882520fc932b1e9ac04"
+    },
+    {
+      "path": "src/curobo/content/configs/robot/tm12.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 4147,
+      "sha256": "291f9930ac7670d38f78653e9ccf249eb0db072a234ff6d1062048298d5b678c"
+    },
+    {
+      "path": "src/curobo/content/configs/robot/tri_ur10e.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 3679,
+      "sha256": "fd09f3b891a96f4083358dd42c57cff865bb74c41205402d8353680991913931"
+    },
+    {
+      "path": "src/curobo/content/configs/robot/ur10e.xrdf",
+      "type": "file",
+      "mode": 420,
+      "size": 2466,
+      "sha256": "5c0baf35f06ea2e6a1db4e9e3c87836049e856b229715a00159f146abd366135"
+    },
+    {
+      "path": "src/curobo/content/configs/robot/ur10e.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 2240,
+      "sha256": "634a87287afc7d0259d98aec0b186698ad8461856a5b7785f62608cda67b9a24"
+    },
+    {
+      "path": "src/curobo/content/configs/robot/ur5e.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 4247,
+      "sha256": "8e96ca172984d510659fb1cc2e8947f3e3c1f8e6a9d1447d924883bc59b9ce68"
+    },
+    {
+      "path": "src/curobo/content/configs/robot/ur5e_robotiq_2f_140.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 9114,
+      "sha256": "0f0ea5ebf32ca78123efcbbb2c1e438f783e3c2028af6c9c71a8636801de5ff3"
+    },
+    {
+      "path": "src/curobo/content/configs/task/base_cfg.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 1834,
+      "sha256": "82b7c484a7f08ec0a0696a7177972b8075d8cbfdf35343c636a101f08d0da6a7"
+    },
+    {
+      "path": "src/curobo/content/configs/task/finetune_trajopt.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 3018,
+      "sha256": "0811d6f8afc362c76b783ef1a5e548047d15eb714bf630238c608c05287bfa14"
+    },
+    {
+      "path": "src/curobo/content/configs/task/finetune_trajopt_slow.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 3027,
+      "sha256": "de54f3b219b202f0311147ca9948ae709cd00811b52c9b82221147cfa4e95aca"
+    },
+    {
+      "path": "src/curobo/content/configs/task/gradient_ik.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 2199,
+      "sha256": "c83954f640a137ae8db0bc3370eef387cf67cb12fe9e9fd05f71f331ca3ea32b"
+    },
+    {
+      "path": "src/curobo/content/configs/task/gradient_ik_autotune.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 2470,
+      "sha256": "ad3f34da4f8f7e9b699ffb84e2cb2bdeb5a6b693dfbab715c4bd10400c51db1c"
+    },
+    {
+      "path": "src/curobo/content/configs/task/gradient_mpc.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 2813,
+      "sha256": "c7773e5e65c2c16e76f829c0e304ee367abfbaedb6dabf12054d4f363ac434a6"
+    },
+    {
+      "path": "src/curobo/content/configs/task/gradient_trajopt.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 3028,
+      "sha256": "6533d27ce6b8dfecdf007158fea57a35b5c285f43958b85e27fabf776ff78b42"
+    },
+    {
+      "path": "src/curobo/content/configs/task/graph.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 1301,
+      "sha256": "05be858a85555a4abc9ed445c5451b524b36965305cbfbcd6a8cfc6da9f04186"
+    },
+    {
+      "path": "src/curobo/content/configs/task/particle_ik.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 2399,
+      "sha256": "e5f7e9b81860a319dff90507698db6ccfa885ec551c29f26c8f88410e23076a2"
+    },
+    {
+      "path": "src/curobo/content/configs/task/particle_mpc.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 2816,
+      "sha256": "3ef3ae6aea7c51e3fef79ad45c283e37471e5b9a07ff5acb0652a251ca56536b"
+    },
+    {
+      "path": "src/curobo/content/configs/task/particle_trajopt.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 2975,
+      "sha256": "18ca9253c8e38b5eedb0b82de51fd229ad1cb8d9b3ed3acc414108031db1012c"
+    },
+    {
+      "path": "src/curobo/content/configs/world/collision_base.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 603,
+      "sha256": "fd7f43311783c6267956f2c5cf809458a779babf9d8ed64b5dd8ffe4d44c44cf"
+    },
+    {
+      "path": "src/curobo/content/configs/world/collision_cage.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 2480,
+      "sha256": "448dd59b9f65301869bcc9621de4f906631f48ab603d67f0ee3f228b939bee59"
+    },
+    {
+      "path": "src/curobo/content/configs/world/collision_cubby.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 1160,
+      "sha256": "bc1c5bb4dd91788dee4fd5ec5c22ef66951385c74d29f3016d7c6f24b74e7b09"
+    },
+    {
+      "path": "src/curobo/content/configs/world/collision_floor_plan.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 1291,
+      "sha256": "7a1c7d28d62b839dec871801449602502d68bcd4c8a9cc54ab913e922931cafd"
+    },
+    {
+      "path": "src/curobo/content/configs/world/collision_handover.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 716,
+      "sha256": "bb348460589edc32fa5dbf17e5b55963cdb7f7f85a139261c5f93a1c0d20097f"
+    },
+    {
+      "path": "src/curobo/content/configs/world/collision_mesh_scene.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 607,
+      "sha256": "9d22bb03281f74b088b80ddfbac3df7332a2d81ec100ad57c2ff56121a7f892c"
+    },
+    {
+      "path": "src/curobo/content/configs/world/collision_nvblox.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 710,
+      "sha256": "245d29fa16e1b759abb5d913dd4df8bd4823915e6ac2b5fd40111d5496b803e1"
+    },
+    {
+      "path": "src/curobo/content/configs/world/collision_nvblox_online.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 579,
+      "sha256": "1c389fe07764417217b0b5bd9d862acf91c86082ae0f291c68af4831d6ec149f"
+    },
+    {
+      "path": "src/curobo/content/configs/world/collision_nvblox_ur10.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 1261,
+      "sha256": "d8cb6ee1d9b540a33a69f4bbe1daf48c309f2cf358bbe1f1cde8e1c983b4b9a5"
+    },
+    {
+      "path": "src/curobo/content/configs/world/collision_pillar_wall.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 1051,
+      "sha256": "b88dc1963345aee0bb7b0aebfe307838f886781f92d2b0b5843fb9394e982b81"
+    },
+    {
+      "path": "src/curobo/content/configs/world/collision_primitives_3d.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 1128,
+      "sha256": "861a5f0dd41a6f3ab25357d797b481031a051186b0ee1de2d0ef6f3dc0352b52"
+    },
+    {
+      "path": "src/curobo/content/configs/world/collision_table.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 853,
+      "sha256": "23814bacdd1a5a857633ed3fc33bac15d9cb1286ca668979d7318c30d875b1b4"
+    },
+    {
+      "path": "src/curobo/content/configs/world/collision_test.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 781,
+      "sha256": "fb716ce3d033d46772eedba5fb133f1706b841f200cd164c748a05c135acf622"
+    },
+    {
+      "path": "src/curobo/content/configs/world/collision_thin_walls.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 1128,
+      "sha256": "81a60986cafe95e4b0300da70ea5a0872342353574088bd3fb6a45bcc72e7ce2"
+    },
+    {
+      "path": "src/curobo/content/configs/world/collision_wall.yml",
+      "type": "file",
+      "mode": 420,
+      "size": 861,
+      "sha256": "b09219fde8a54d2cdc81d0e11b489e0f32cd0037842dba5da75d70ebc4098b71"
+    },
+    {
+      "path": "src/curobo/cuda_robot_model/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4385,
+      "sha256": "c77cbd31c9ca8f37116767702841be1b806cc975261e7bfa780b04ee74abe0dd"
+    },
+    {
+      "path": "src/curobo/cuda_robot_model/cuda_robot_generator.py",
+      "type": "file",
+      "mode": 420,
+      "size": 49674,
+      "sha256": "260df6aa18ddf9ae2a7c9dee098613a079d9d8ad5bed92fba394f0515c40599d"
+    },
+    {
+      "path": "src/curobo/cuda_robot_model/cuda_robot_model.py",
+      "type": "file",
+      "mode": 420,
+      "size": 36608,
+      "sha256": "3ebf45845292a044c2999290a1ead6a5147f09e4cc509174459f6309df594201"
+    },
+    {
+      "path": "src/curobo/cuda_robot_model/kinematics_parser.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6047,
+      "sha256": "3da973965de968115b1a23de0a3a755675108aa01edb46563e74a3845c2d6516"
+    },
+    {
+      "path": "src/curobo/cuda_robot_model/types.py",
+      "type": "file",
+      "mode": 420,
+      "size": 29168,
+      "sha256": "4ea764f467c2dc86fa854748fdecf057dc7d929ba144a13f8df33ca3ddb747f3"
+    },
+    {
+      "path": "src/curobo/cuda_robot_model/urdf_kinematics_parser.py",
+      "type": "file",
+      "mode": 420,
+      "size": 11824,
+      "sha256": "bed90c3cebfab3d8d7d3cda5ac0e2133db3880f5e76e8232fdba53c0b375c582"
+    },
+    {
+      "path": "src/curobo/cuda_robot_model/usd_kinematics_parser.py",
+      "type": "file",
+      "mode": 420,
+      "size": 9990,
+      "sha256": "d515ee59c456c1c98f9577ce45bd2c3a39554c2f327cb9c935c0fc892c789cc0"
+    },
+    {
+      "path": "src/curobo/cuda_robot_model/util.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2580,
+      "sha256": "1da1dd6efd87814bca9dc6cb785aa8b9577101c463f3e49022c6123c6a6e3c39"
+    },
+    {
+      "path": "src/curobo/curobolib/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 690,
+      "sha256": "9946fbf4864cb0a9b516ee7a13719b253788302a81d304e5b5373120ee4f3e39"
+    },
+    {
+      "path": "src/curobo/curobolib/cpp/check_cuda.h",
+      "type": "file",
+      "mode": 420,
+      "size": 1277,
+      "sha256": "46848842a45fdc535c9a6784912a3bbe2ac9dcf858c3192f393170022b4f7c39"
+    },
+    {
+      "path": "src/curobo/curobolib/cpp/cuda_precisions.h",
+      "type": "file",
+      "mode": 420,
+      "size": 597,
+      "sha256": "7942db90395149138c2f0a13bfe8e60016d3fdf9dfe697b4bfe74b38c379387a"
+    },
+    {
+      "path": "src/curobo/curobolib/cpp/geom_cuda.cpp",
+      "type": "file",
+      "mode": 420,
+      "size": 17175,
+      "sha256": "45397971163a4e0909257caa94b66728928703c6508468e1fc6d0c791c6f0f65"
+    },
+    {
+      "path": "src/curobo/curobolib/cpp/helper_math.h",
+      "type": "file",
+      "mode": 420,
+      "size": 37393,
+      "sha256": "6520a4fb82705d44abdfc23e3155f986dfbef06f517545d910ca3366f21be214"
+    },
+    {
+      "path": "src/curobo/curobolib/cpp/kinematics_fused_cuda.cpp",
+      "type": "file",
+      "mode": 420,
+      "size": 2609,
+      "sha256": "20b20c1a3f3d0146d6a8522a3ab0a857250650d32bf193f6c9c96f372abbe313"
+    },
+    {
+      "path": "src/curobo/curobolib/cpp/kinematics_fused_kernel.cu",
+      "type": "file",
+      "mode": 420,
+      "size": 55001,
+      "sha256": "b8da74bdd6523114c84c91115c297a23d53368b836175999dd831b4e6fe880c2"
+    },
+    {
+      "path": "src/curobo/curobolib/cpp/lbfgs_step_cuda.cpp",
+      "type": "file",
+      "mode": 420,
+      "size": 2426,
+      "sha256": "1b5863f904884cedc053d707a6a326259de754a446f5852c468bfd1ce6667e15"
+    },
+    {
+      "path": "src/curobo/curobolib/cpp/lbfgs_step_kernel.cu",
+      "type": "file",
+      "mode": 420,
+      "size": 32600,
+      "sha256": "0decd2ad0cafa31d15cd43454bddfc3f9e7c43ea1ee3b298c067743af83e4656"
+    },
+    {
+      "path": "src/curobo/curobolib/cpp/line_search_cuda.cpp",
+      "type": "file",
+      "mode": 420,
+      "size": 4194,
+      "sha256": "3970487f13db2dfb3f9930c3121a0d2cd218344d4e217820345e3591c6000eb5"
+    },
+    {
+      "path": "src/curobo/curobolib/cpp/line_search_kernel.cu",
+      "type": "file",
+      "mode": 420,
+      "size": 13201,
+      "sha256": "17491544dfa93fe3b499d63b3d20a64dcf0be5ae76f297f415ab9d9fb69db870"
+    },
+    {
+      "path": "src/curobo/curobolib/cpp/pose_distance_kernel.cu",
+      "type": "file",
+      "mode": 420,
+      "size": 33614,
+      "sha256": "02e5850594caa4d115f2e901edad94131c52711ee240272f4ef853809eae5aca"
+    },
+    {
+      "path": "src/curobo/curobolib/cpp/self_collision_kernel.cu",
+      "type": "file",
+      "mode": 420,
+      "size": 26073,
+      "sha256": "612be710756be5d4b80cf7bb7211df94feab9108b4114c4dabb6773e04c03328"
+    },
+    {
+      "path": "src/curobo/curobolib/cpp/sphere_obb_kernel.cu",
+      "type": "file",
+      "mode": 420,
+      "size": 112196,
+      "sha256": "88eebb6fa7704cfcaf8fc6567542985e9d39f126246aa480d40b9cc3a0efc1f4"
+    },
+    {
+      "path": "src/curobo/curobolib/cpp/tensor_step_cuda.cpp",
+      "type": "file",
+      "mode": 420,
+      "size": 12042,
+      "sha256": "724c7f03a432e47d5d77da57452c7259e84ad222c10a8c97da4424d29c3071f2"
+    },
+    {
+      "path": "src/curobo/curobolib/cpp/tensor_step_kernel.cu",
+      "type": "file",
+      "mode": 420,
+      "size": 72134,
+      "sha256": "d6fed7fe7a72dbbc70373a9e99c20d0ed351d42c1c754a4b8829251de90246ab"
+    },
+    {
+      "path": "src/curobo/curobolib/cpp/update_best_kernel.cu",
+      "type": "file",
+      "mode": 420,
+      "size": 4629,
+      "sha256": "c92337bf96d383ccb2e3fb930bb21243b8836aff23aca4f82759f15d292eaa00"
+    },
+    {
+      "path": "src/curobo/curobolib/geom.py",
+      "type": "file",
+      "mode": 420,
+      "size": 23880,
+      "sha256": "4712f6a83f0ba163e3710a66cb58446bb044048e174a942612664d5d93cd4d1f"
+    },
+    {
+      "path": "src/curobo/curobolib/kinematics.py",
+      "type": "file",
+      "mode": 420,
+      "size": 7426,
+      "sha256": "71c535b8983ff9f3dd41136755c95d65e5e15f1b1ca936ec76f74fcad2d4b6d6"
+    },
+    {
+      "path": "src/curobo/curobolib/ls.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2305,
+      "sha256": "308e7df32ecf6aff238b4efdc29c9668730db6e69566909b81673e187575d433"
+    },
+    {
+      "path": "src/curobo/curobolib/opt.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2149,
+      "sha256": "963aeea3c8e42528bebb0f9c5d827b4316b4881374f73eca91128844ceef57c0"
+    },
+    {
+      "path": "src/curobo/curobolib/tensor_step.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3995,
+      "sha256": "ef10ab50e85ab799145765047e3fbc072497f9b8ffdd135412a908da462e3d37"
+    },
+    {
+      "path": "src/curobo/curobolib/util_file.py",
+      "type": "file",
+      "mode": 420,
+      "size": 648,
+      "sha256": "71956cc7be6565b78b490711e5f332ff327220c3157a9d7dcb65e41987161734"
+    },
+    {
+      "path": "src/curobo/geom/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 811,
+      "sha256": "abecac8892e55a6694a9d9341021d90ef300e1a290d766e2ea4fe53b1ab0471d"
+    },
+    {
+      "path": "src/curobo/geom/cv.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4832,
+      "sha256": "b132b31ce53f4ea24335dc66cf1986a50442979d7d54f848e983c00483cd316b"
+    },
+    {
+      "path": "src/curobo/geom/sdf/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 883,
+      "sha256": "4808b4dcfbe7bc08b6054ec98037b311561dbe277f8b79c7e5dc1377216e66b1"
+    },
+    {
+      "path": "src/curobo/geom/sdf/sdf_grid.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2895,
+      "sha256": "da8faec84c89c53c85a2ef8fc751c2e07fcf8915090344d8a539f516805423b4"
+    },
+    {
+      "path": "src/curobo/geom/sdf/utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1772,
+      "sha256": "53e9458ac247dd1758dbbba2a55b1d5c29116398a2238ffbd99f8266d69065e0"
+    },
+    {
+      "path": "src/curobo/geom/sdf/warp_primitives.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6298,
+      "sha256": "afc55c7e64c34c7ff6eeb29ae1aa10ec03624fc2dfb7c5f8ef495d9b12355925"
+    },
+    {
+      "path": "src/curobo/geom/sdf/warp_sdf_fns.py",
+      "type": "file",
+      "mode": 420,
+      "size": 19833,
+      "sha256": "a6678382aae92e4ada7e0f62d87d77a2c2ca5c75057699eb08e1b2200bf2cead"
+    },
+    {
+      "path": "src/curobo/geom/sdf/warp_sdf_fns_deprecated.py",
+      "type": "file",
+      "mode": 420,
+      "size": 19214,
+      "sha256": "8ff22d0ddc94227d05ff8e2144748b9243f04f231f5b309fb3ab42666a0bec2e"
+    },
+    {
+      "path": "src/curobo/geom/sdf/world.py",
+      "type": "file",
+      "mode": 420,
+      "size": 55892,
+      "sha256": "b5d05bff2ef792a0e2d8d8b4a83f19ffdcd8b6abbbb5561b6504edffb7c8a70b"
+    },
+    {
+      "path": "src/curobo/geom/sdf/world_blox.py",
+      "type": "file",
+      "mode": 420,
+      "size": 32044,
+      "sha256": "e113b52af6633a694bcc00123f01595b9ad95594d1cd28984428ff501104788d"
+    },
+    {
+      "path": "src/curobo/geom/sdf/world_mesh.py",
+      "type": "file",
+      "mode": 420,
+      "size": 34188,
+      "sha256": "52a45886651f0035c1f4fa4f55df35b09a0edb80a3370e882a022bea2a1a05fa"
+    },
+    {
+      "path": "src/curobo/geom/sdf/world_voxel.py",
+      "type": "file",
+      "mode": 420,
+      "size": 37096,
+      "sha256": "df1078b998aa9c65de5cd5c41605edee020d5242e6aa9cace16d1322106893e6"
+    },
+    {
+      "path": "src/curobo/geom/sphere_fit.py",
+      "type": "file",
+      "mode": 420,
+      "size": 11516,
+      "sha256": "aa3b5a4e2a80d8845de78798b091f340646d7340c70626372324d62433cebd87"
+    },
+    {
+      "path": "src/curobo/geom/transform.py",
+      "type": "file",
+      "mode": 420,
+      "size": 49551,
+      "sha256": "a176512017060d6989400a749e42602cb1c88481159dfab1e9b11c98516e5acd"
+    },
+    {
+      "path": "src/curobo/geom/types.py",
+      "type": "file",
+      "mode": 420,
+      "size": 46420,
+      "sha256": "ec812b2bfc0997d4676a3573132c9d9fd53019713be470879adeb4921fa4d19d"
+    },
+    {
+      "path": "src/curobo/graph/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 472,
+      "sha256": "b9c5b3bddaab7de6c5aaee2289205552ce75466f30ea81a098afb7473200eef6"
+    },
+    {
+      "path": "src/curobo/graph/graph_base.py",
+      "type": "file",
+      "mode": 420,
+      "size": 43016,
+      "sha256": "e0b33ea59d15cb93c26957c8db1f64a2683b2df6d64c8a79e0131572de2bb5f9"
+    },
+    {
+      "path": "src/curobo/graph/graph_nx.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2930,
+      "sha256": "5fab81e48502fe47c5e641781140fe885fbc121575ea3f267e55ea097b6ea0a1"
+    },
+    {
+      "path": "src/curobo/graph/prm.py",
+      "type": "file",
+      "mode": 420,
+      "size": 20807,
+      "sha256": "19e174815d7e3384cc4e75f8dc9faa48722dc7d98099fbf5735987cf6f16ad58"
+    },
+    {
+      "path": "src/curobo/opt/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1128,
+      "sha256": "ea9bd9932f3a047f89daf1eb890bbd75cecb15db7bf095068b2db5ec08bda6ea"
+    },
+    {
+      "path": "src/curobo/opt/newton/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 531,
+      "sha256": "bd6aad7f9a449e9c1dedf4eaefa8da8299884c2fe01f347cc4d220716968331c"
+    },
+    {
+      "path": "src/curobo/opt/newton/lbfgs.py",
+      "type": "file",
+      "mode": 420,
+      "size": 9358,
+      "sha256": "d1afc1b872ade3c1bc01c0ca1c4dcb6f09bb7cc3878c89895293422582d576f2"
+    },
+    {
+      "path": "src/curobo/opt/newton/newton_base.py",
+      "type": "file",
+      "mode": 420,
+      "size": 24276,
+      "sha256": "f21093caf01ecac4d83fd1f2b893e436c83f0f8e22f5b98777d65de1d6a2729a"
+    },
+    {
+      "path": "src/curobo/opt/opt_base.py",
+      "type": "file",
+      "mode": 420,
+      "size": 11564,
+      "sha256": "69ce8baaec9f1b3e8d791710564579af8e994a995bb4251bd62356e0965976f2"
+    },
+    {
+      "path": "src/curobo/opt/particle/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 539,
+      "sha256": "ad75df985efb6cf6ea38822fcc0d5c0972039691d42ef4383807911363a987d7"
+    },
+    {
+      "path": "src/curobo/opt/particle/parallel_es.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4908,
+      "sha256": "c4a4b686b9ddc66d38842beb97485f005afd5c1edcdf3b4c3cc2ea1f82465997"
+    },
+    {
+      "path": "src/curobo/opt/particle/parallel_mppi.py",
+      "type": "file",
+      "mode": 420,
+      "size": 24753,
+      "sha256": "d09998cc4957a36224a671e4bee833b571ec1e18930f054543c4d15bc65e72ac"
+    },
+    {
+      "path": "src/curobo/opt/particle/particle_opt_base.py",
+      "type": "file",
+      "mode": 420,
+      "size": 10357,
+      "sha256": "cfe3c340507f54e66c32259890af3721875250fd24be28099803da2a189cbbd8"
+    },
+    {
+      "path": "src/curobo/opt/particle/particle_opt_utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 10208,
+      "sha256": "dd9fb63ec4a3d7319fb5d0c3b4e9c2d4f9d815f9d7fb00c56d2742c3f367e68b"
+    },
+    {
+      "path": "src/curobo/py.typed",
+      "type": "file",
+      "mode": 420,
+      "size": 114,
+      "sha256": "b12bd956d33f67f3ba8dc1841dcf64d964ea411019cf8803584999b62c054e5d"
+    },
+    {
+      "path": "src/curobo/rollout/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 518,
+      "sha256": "8d0983cc8ab04cc73560542678711fcbfc4950c9668b3e3f0a3107428a785af6"
+    },
+    {
+      "path": "src/curobo/rollout/arm_base.py",
+      "type": "file",
+      "mode": 420,
+      "size": 30028,
+      "sha256": "a3e632a66f274604d6adf3f1ab59ea0ac1333933710976d893633b0ee8a510f3"
+    },
+    {
+      "path": "src/curobo/rollout/arm_reacher.py",
+      "type": "file",
+      "mode": 420,
+      "size": 18712,
+      "sha256": "763c60f21a8bb9555d5f5e74ed587a20de354ddf10a479bb23a888bb8ae9df5b"
+    },
+    {
+      "path": "src/curobo/rollout/cost/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 481,
+      "sha256": "ca5ff1b4aa0444124040f817f0f487c31461d11612072ff15d4f6f8d075f66ed"
+    },
+    {
+      "path": "src/curobo/rollout/cost/bound_cost.py",
+      "type": "file",
+      "mode": 420,
+      "size": 54157,
+      "sha256": "392baca1eec53eb7f8a4f364fbd55fe5ba8070a706fc7988d5b9891633003fc6"
+    },
+    {
+      "path": "src/curobo/rollout/cost/cost_base.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4131,
+      "sha256": "ddbd7ad23a2506529ab8e94007720cfc41214b47ed0a2edf48be5f67b42c210c"
+    },
+    {
+      "path": "src/curobo/rollout/cost/dist_cost.py",
+      "type": "file",
+      "mode": 420,
+      "size": 17750,
+      "sha256": "c490e67e42f0ed36d79c9e9605d05b212a285062e800d87750b5f8286fc540da"
+    },
+    {
+      "path": "src/curobo/rollout/cost/manipulability_cost.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3773,
+      "sha256": "3fba3c35a3156fa7b07a325134b0703a3388c67e006f45249c0fc32e48f99e64"
+    },
+    {
+      "path": "src/curobo/rollout/cost/pose_cost.py",
+      "type": "file",
+      "mode": 420,
+      "size": 20178,
+      "sha256": "1b3ee7d9b9457309bc15327c56de898260f187682d7d2e601ca13a493f846b0f"
+    },
+    {
+      "path": "src/curobo/rollout/cost/primitive_collision_cost.py",
+      "type": "file",
+      "mode": 420,
+      "size": 9317,
+      "sha256": "373f1f15731268bf4364adea102d09e746d9efad20c5c94a9408d26096019da7"
+    },
+    {
+      "path": "src/curobo/rollout/cost/projected_dist_cost.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2222,
+      "sha256": "4823f83414e616b4a4d7e4600510e12ddcaa9977ddd3e4f1f48ad3969cc01f75"
+    },
+    {
+      "path": "src/curobo/rollout/cost/self_collision_cost.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2744,
+      "sha256": "2c88c09d8080a2f30ab6d6a97b0965c05982b6fd078d41311d8a758aac453db4"
+    },
+    {
+      "path": "src/curobo/rollout/cost/stop_cost.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2779,
+      "sha256": "c136f5ac4920347e3bc1b140001bf1b27b5a16de3900e5ffdda3a9c045c21319"
+    },
+    {
+      "path": "src/curobo/rollout/cost/straight_line_cost.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1467,
+      "sha256": "3175dc057885827bb32e114c1f60798b9fc740269b0383509b5539277dfd9bb7"
+    },
+    {
+      "path": "src/curobo/rollout/cost/zero_cost.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3941,
+      "sha256": "c8a76d1b6c56bd879b4d8fcfc3ed9b64339107f964ec2cfa986e18ef6a1bb11f"
+    },
+    {
+      "path": "src/curobo/rollout/dynamics_model/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 472,
+      "sha256": "b9c5b3bddaab7de6c5aaee2289205552ce75466f30ea81a098afb7473200eef6"
+    },
+    {
+      "path": "src/curobo/rollout/dynamics_model/integration_utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 28842,
+      "sha256": "714bc62229d56dca86f4431c58485694002538b411894cc27be6fdefec325baa"
+    },
+    {
+      "path": "src/curobo/rollout/dynamics_model/kinematic_model.py",
+      "type": "file",
+      "mode": 420,
+      "size": 24514,
+      "sha256": "2b9064b7078d3b421e19e652352ae2e2657b866fd19c8df33efcd4552db45143"
+    },
+    {
+      "path": "src/curobo/rollout/dynamics_model/model_base.py",
+      "type": "file",
+      "mode": 420,
+      "size": 944,
+      "sha256": "789e13f5ef81b9ab73b5370edfeea9aba743116a5298b4b5e7e80c91a8e0cfab"
+    },
+    {
+      "path": "src/curobo/rollout/dynamics_model/tensor_step.py",
+      "type": "file",
+      "mode": 420,
+      "size": 18923,
+      "sha256": "cdf9620527789413a183e168d5e49c6895d68bfb7a823ef8f098b998e72544b1"
+    },
+    {
+      "path": "src/curobo/rollout/rollout_base.py",
+      "type": "file",
+      "mode": 420,
+      "size": 21621,
+      "sha256": "5039f02048aaa2d2dfd701f914d9c104ecfe426a91fc153fd76f689cbaa4afd0"
+    },
+    {
+      "path": "src/curobo/types/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 472,
+      "sha256": "b9c5b3bddaab7de6c5aaee2289205552ce75466f30ea81a098afb7473200eef6"
+    },
+    {
+      "path": "src/curobo/types/base.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1584,
+      "sha256": "25f5a28889a619bf1a6f1aaec9f8b2a18d0449668137a5390bccfd50b46a5906"
+    },
+    {
+      "path": "src/curobo/types/camera.py",
+      "type": "file",
+      "mode": 420,
+      "size": 7809,
+      "sha256": "395fa4ba0936c64bfc82bf945c861957c5f49ceeb212183c1dfd57105662ace6"
+    },
+    {
+      "path": "src/curobo/types/enum.py",
+      "type": "file",
+      "mode": 420,
+      "size": 606,
+      "sha256": "d7f438157def644134ccaf8acf4b2456e0275c51740480c88c0280c05989dc2d"
+    },
+    {
+      "path": "src/curobo/types/file_path.py",
+      "type": "file",
+      "mode": 420,
+      "size": 7056,
+      "sha256": "c3b3d6deb7efeefef547348d08e760a49b6c0de18e90f591af13e8c7b5bd3548"
+    },
+    {
+      "path": "src/curobo/types/math.py",
+      "type": "file",
+      "mode": 420,
+      "size": 19805,
+      "sha256": "6865d911444ddc5ee8e10e86e12eebf757e36793ed07cf6c5d733d1e0a1ab9a4"
+    },
+    {
+      "path": "src/curobo/types/robot.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2524,
+      "sha256": "375051c0893dc422f55d727b2294f06e6c057a6c0ecbbb718e8ebe324a8a940e"
+    },
+    {
+      "path": "src/curobo/types/state.py",
+      "type": "file",
+      "mode": 420,
+      "size": 22182,
+      "sha256": "18304737d142b4c9a572c65bc480e812f12cff40eb1a39a68b1bf441f6cc5ffb"
+    },
+    {
+      "path": "src/curobo/types/tensor.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1407,
+      "sha256": "20d97ab1c56bdd7259c397acaaa54f040e67ba9b371993437aa66322dadd0e88"
+    },
+    {
+      "path": "src/curobo/util/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 472,
+      "sha256": "b9c5b3bddaab7de6c5aaee2289205552ce75466f30ea81a098afb7473200eef6"
+    },
+    {
+      "path": "src/curobo/util/error_metrics.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1500,
+      "sha256": "507d5dceb833076a9ef93ba136b64e370ffe9f20b1dff19e58c83f506a2bbd5b"
+    },
+    {
+      "path": "src/curobo/util/helpers.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1124,
+      "sha256": "8f35b110b3282d94396d5cbd039e063b99d8f9287056de4e17167300ef992087"
+    },
+    {
+      "path": "src/curobo/util/logger.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3555,
+      "sha256": "3a9804a45bb2526a2eb01e432c574e3299bb689a5c93c415505b5799df356c13"
+    },
+    {
+      "path": "src/curobo/util/metrics.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2288,
+      "sha256": "47fedeb51283388f0e30e43cc54df81645271a0ac2c2d73a990757ffb61ffd23"
+    },
+    {
+      "path": "src/curobo/util/sample_lib.py",
+      "type": "file",
+      "mode": 420,
+      "size": 24639,
+      "sha256": "6134d8b2f18f54ba62706a0538bd77163a6bde9b1b00c99d99ea1df6926cc7fd"
+    },
+    {
+      "path": "src/curobo/util/state_filter.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5228,
+      "sha256": "a578e58b88005a361917b2e2928ee2538118db9969adb1023a1d32cffeef9d12"
+    },
+    {
+      "path": "src/curobo/util/tensor_util.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2665,
+      "sha256": "3e994b50dbeefdf70c0207a9ab01bc9a70adad02341b06b7c468fcfdd3e5b536"
+    },
+    {
+      "path": "src/curobo/util/torch_utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5856,
+      "sha256": "70016c1ab06ca3bf85d57b8b8dbef1cc5e1a6dea7a5d9042fa908591ba49d606"
+    },
+    {
+      "path": "src/curobo/util/trajectory.py",
+      "type": "file",
+      "mode": 420,
+      "size": 22857,
+      "sha256": "51877b74e973f96f002d756b11d0bf8868536fad63fc29be036a0c2044b4617d"
+    },
+    {
+      "path": "src/curobo/util/usd_helper.py",
+      "type": "file",
+      "mode": 420,
+      "size": 57559,
+      "sha256": "85edfc5a37208d5a2f590535e41e88152a1b8e37ea02fb21feb41cba4bf12c18"
+    },
+    {
+      "path": "src/curobo/util/warp.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2562,
+      "sha256": "4c9ec6eea7114fd0c3eff635755beb42a0c73125c5f765ae10ee4462e487aa68"
+    },
+    {
+      "path": "src/curobo/util/warp_interpolation.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6140,
+      "sha256": "c560e6cd7e627ead29ab31c29cc7ec4aa5eddf9c2be4d11d45e1b6070439b775"
+    },
+    {
+      "path": "src/curobo/util/xrdf_utils.py",
+      "type": "file",
+      "mode": 420,
+      "size": 7307,
+      "sha256": "1cd57c2598b3a2de632c2e6500c28ceb46bd8cd48311b52c64124b8102246af4"
+    },
+    {
+      "path": "src/curobo/util_file.py",
+      "type": "file",
+      "mode": 420,
+      "size": 10761,
+      "sha256": "fe92252e518386f6ef9a40779a95fef855cc696f832bea2717688365a86e762a"
+    },
+    {
+      "path": "src/curobo/wrap/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 537,
+      "sha256": "7d0d856e0de2e6f1e56b8834d299f955de3f7f52625060cda660c5f3976e473a"
+    },
+    {
+      "path": "src/curobo/wrap/model/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 472,
+      "sha256": "b9c5b3bddaab7de6c5aaee2289205552ce75466f30ea81a098afb7473200eef6"
+    },
+    {
+      "path": "src/curobo/wrap/model/curobo_robot_world.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1170,
+      "sha256": "254d31ca028f8e06fc96213f611047911eda535ada6709c731fec76214f784dc"
+    },
+    {
+      "path": "src/curobo/wrap/model/robot_segmenter.py",
+      "type": "file",
+      "mode": 420,
+      "size": 11028,
+      "sha256": "e55820984bb13c9b5905ab17c3732007d099b04f2f979dfb5f82c8d42a952dee"
+    },
+    {
+      "path": "src/curobo/wrap/model/robot_world.py",
+      "type": "file",
+      "mode": 420,
+      "size": 16267,
+      "sha256": "562df1947465d73592c4f68829218b1f5cb3624feb8f7b230b20c060b1d03f5b"
+    },
+    {
+      "path": "src/curobo/wrap/reacher/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 547,
+      "sha256": "70ba2680f58c56fce9c09fcd1dcb926abbe756e236d3cef2f16d84672687079b"
+    },
+    {
+      "path": "src/curobo/wrap/reacher/evaluator.py",
+      "type": "file",
+      "mode": 420,
+      "size": 17306,
+      "sha256": "3b65e94c5157ab678e69f91321beeb76097cbd55b073f42f9cbbb8de8a0176d3"
+    },
+    {
+      "path": "src/curobo/wrap/reacher/ik_solver.py",
+      "type": "file",
+      "mode": 420,
+      "size": 73066,
+      "sha256": "7a5ef34f97ca22a8c7e8f863cddaeaddd4b1e025313c69ab57d47a9c0b98edb9"
+    },
+    {
+      "path": "src/curobo/wrap/reacher/motion_gen.py",
+      "type": "file",
+      "mode": 420,
+      "size": 204466,
+      "sha256": "348ee2fa858b1d651a70fa2b2b5a5d4e240ea724b7817d7769473c3f7a7e46e8"
+    },
+    {
+      "path": "src/curobo/wrap/reacher/mpc.py",
+      "type": "file",
+      "mode": 420,
+      "size": 37652,
+      "sha256": "c65e4a99ec64b9487d3449990773f16f98f8a5ca5198b8e0d96fb07ed4973539"
+    },
+    {
+      "path": "src/curobo/wrap/reacher/trajopt.py",
+      "type": "file",
+      "mode": 420,
+      "size": 91376,
+      "sha256": "56c755a521b06e0df5d23df52e21ca73d7be2076b993af9ab6f3104c9d2bc35b"
+    },
+    {
+      "path": "src/curobo/wrap/reacher/types.py",
+      "type": "file",
+      "mode": 420,
+      "size": 16669,
+      "sha256": "86a2b5bae23531f0240ede2756815585d3f8ab5613a4e81ad2114134e854ed3f"
+    },
+    {
+      "path": "src/curobo/wrap/wrap_base.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6622,
+      "sha256": "26a452b49ed09d613e410e36619256e65ebf98d8e724097263b7a9f00db48919"
+    },
+    {
+      "path": "src/curobo/wrap/wrap_mpc.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3064,
+      "sha256": "74fa46521e05aa8a33096dd51e048583284223d60d60ec432306ff690b650d57"
+    },
+    {
+      "path": "tests/__init__.py",
+      "type": "file",
+      "mode": 420,
+      "size": 500,
+      "sha256": "278b3dcf08df35b6d7e9f3852543e06bb8792ace5e6a863afee5112d449c4c14"
+    },
+    {
+      "path": "tests/conftest.py",
+      "type": "file",
+      "mode": 420,
+      "size": 652,
+      "sha256": "0259a1a94e3af886d1a91a4427e6d4065d34fb15b8936738e8af9a22c5c6034d"
+    },
+    {
+      "path": "tests/cost_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1703,
+      "sha256": "6b6fe5de9cdfee3b916a3df28f7b269dcd4bc0d771b406d63fc047544afdd552"
+    },
+    {
+      "path": "tests/cuda_graph_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2776,
+      "sha256": "374093ab2487e4acb79f2f12528a68791742bcfdbbf15d2d14bcf9ee3c727380"
+    },
+    {
+      "path": "tests/cuda_robot_generator_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1990,
+      "sha256": "ab38c8a34711042dfb8bc019ff05fc4bed1a0be68ef4c9d60ff0fe7c93a69eea"
+    },
+    {
+      "path": "tests/curobo_robot_world_model_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4257,
+      "sha256": "091051d2fca182863a151fc26117850e26201a21912c58ba24f41c0a4e905466"
+    },
+    {
+      "path": "tests/curobo_version_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 699,
+      "sha256": "58f5f75dd34a0328cc9381703079c2485e6905f6007b60be06f9a9718f55b272"
+    },
+    {
+      "path": "tests/geom_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 9008,
+      "sha256": "88757bdefbcad05889250e5ef039783e42e11aadd1c3f79e343fcdc7961e7e1b"
+    },
+    {
+      "path": "tests/geom_types_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1511,
+      "sha256": "fd151a82e1deeca8b448ebbc58d7ff8cacbe0d90dc003c1551b6e0aa7d4cf0c4"
+    },
+    {
+      "path": "tests/goal_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5609,
+      "sha256": "0a151c333625f186ec42cfc7a3f8e9bbe9af061396ad85d27e9d56e0a80f5728"
+    },
+    {
+      "path": "tests/ik_config_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4698,
+      "sha256": "030ac4adca7accfe56f1f316946da54a62efd6179926ac4d959b9375a4713b19"
+    },
+    {
+      "path": "tests/ik_module_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4498,
+      "sha256": "13c5eb1fdb8af80d9bbd0614bc53cabf7809c94c75c1ea159b81fb96dde3c2cd"
+    },
+    {
+      "path": "tests/ik_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 7376,
+      "sha256": "4b9331ed61483fa9ca7e18fe611cd1e8203c1f8a372481d1e9a894e15ac39ddd"
+    },
+    {
+      "path": "tests/interpolation_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2247,
+      "sha256": "6db7c4fe2d7c15db16dbd6ff7b1445a452e7adb644aaa99cd0048cdfc4b0197b"
+    },
+    {
+      "path": "tests/kinematics_parser_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4907,
+      "sha256": "94dea5e06fed11a96e19ad19c2850b883f2bb86c83c50b9228be5d73f998c8c4"
+    },
+    {
+      "path": "tests/kinematics_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 9873,
+      "sha256": "969992b8cb4cd95db3e7cf07dc95d251c784570cea933a4f2344e8d9ee6b0bb8"
+    },
+    {
+      "path": "tests/mimic_joint_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 1427,
+      "sha256": "cb4a236bd1b423846c90b6c2be4d209cb696995d79ab7e47f6e551ba6dcc3544"
+    },
+    {
+      "path": "tests/motion_gen_api_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3915,
+      "sha256": "2968a54438f46a5e9918cf3ed7a005a3509655b835fdc27d808c717e610ee772"
+    },
+    {
+      "path": "tests/motion_gen_constrained_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 10187,
+      "sha256": "75c5f0908202087802c862499b5ff9aec4c6f9decba20c9e85efe374c91f94dd"
+    },
+    {
+      "path": "tests/motion_gen_cuda_graph_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 11176,
+      "sha256": "72e93f6b7cce664ea0d7ac8aeeec38c7109e3737f47552abd8987b570650fdef"
+    },
+    {
+      "path": "tests/motion_gen_eval_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2773,
+      "sha256": "d76c1ed953dca4e8f354fe8eae382932b3b6606ae1681a62259159317fda97eb"
+    },
+    {
+      "path": "tests/motion_gen_goalset_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 7823,
+      "sha256": "7c562aa016d53a4f2025dde0049f1c7e298ed21e1816a9081b57fbbe3422bd42"
+    },
+    {
+      "path": "tests/motion_gen_js_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2388,
+      "sha256": "bfceaa83eb1c9fc790ce060b603ed4bec7359e7609db6aed7e89b939f7b57d6d"
+    },
+    {
+      "path": "tests/motion_gen_module_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 16500,
+      "sha256": "f6b8e8004a4ae9e86f34786c1d5097efecd6b3eafacaa4533a162baaa6b5d6fa"
+    },
+    {
+      "path": "tests/motion_gen_speed_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 7328,
+      "sha256": "c92d4607bc88b186c9293389aff6d53f13af5671c7627f87ffcbe2d45ff3f8bd"
+    },
+    {
+      "path": "tests/motion_gen_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3885,
+      "sha256": "f340fe25b849d576cd4f03b1b4449391388adecd94a6ecf1c80012e921f26d99"
+    },
+    {
+      "path": "tests/mpc_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 9639,
+      "sha256": "b5b60e0e5dac16b5b4cb4967a0c4d77a15efa3d518117c2caed7fc0274df579d"
+    },
+    {
+      "path": "tests/multi_pose_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 3368,
+      "sha256": "5e2bedd762a85640ce719b0bdb903df7065ede68c8b2430178ffada26c6a1d42"
+    },
+    {
+      "path": "tests/nvblox_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6106,
+      "sha256": "408b939861f5bb0c45ed6aca83ee69d2ac875748ba49ae5c56d261a786d6fa98"
+    },
+    {
+      "path": "tests/pose_reaching_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2749,
+      "sha256": "1aedbb1d0a365bbe23d43a107075b9498dbf295823471652f04a0d74e32ebcc3"
+    },
+    {
+      "path": "tests/pose_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2261,
+      "sha256": "c65f2b1d1156232cf2b6f952218bc5ff8cf5953574894afb81e41650e806c499"
+    },
+    {
+      "path": "tests/robot_assets_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4268,
+      "sha256": "aee37ca64f0cea8557b9872bcdfe7715f62b929e2086da9b3774ff70043d4484"
+    },
+    {
+      "path": "tests/robot_config_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2866,
+      "sha256": "64bda7021fb63c9d0ba588694d9ac8ab2972d33d85b42cab9be72a033dcea8c8"
+    },
+    {
+      "path": "tests/robot_segmentation_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 7000,
+      "sha256": "4cc736388422a564403dacb24f0bdc062de260bfc9a8a69e6f9e7482b35ef7b1"
+    },
+    {
+      "path": "tests/robot_world_model_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4410,
+      "sha256": "4c2afbb949b31a9f4344a8fff035734bad07e0b551fbe2febd571b1ed4a1c027"
+    },
+    {
+      "path": "tests/self_collision_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 6724,
+      "sha256": "3cdc95f6584eebeaa2a4defc2e426e5e397580497fb0df1397c7d442e504be71"
+    },
+    {
+      "path": "tests/trajopt_config_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4234,
+      "sha256": "eceb2725d4c5026931b92c66f21a26a59edf1f4f2928b14ae6163d0d4fa88761"
+    },
+    {
+      "path": "tests/trajopt_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 10533,
+      "sha256": "e90ac1813bfe11251101bcf270a287c8a3766ae32d5772bea4fceeed4d768e5f"
+    },
+    {
+      "path": "tests/usd_export_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4768,
+      "sha256": "ecfa2d3295548e4596aa1d317d7154e9718869f380e719a226b617144195e5ca"
+    },
+    {
+      "path": "tests/voxel_collision_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 8235,
+      "sha256": "2343e7db719c684206a0238ce810d05d602563e70f4135954c41d5e8d489cb8d"
+    },
+    {
+      "path": "tests/voxelization_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 5181,
+      "sha256": "c3b134ea487d341a299450127f183808b77b070df45d618ddd49aeb4e31d549f"
+    },
+    {
+      "path": "tests/warp_mesh_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 4066,
+      "sha256": "79815183b69ab686221d0636c4d41bc9940563096f897a8affaef86b8b54260b"
+    },
+    {
+      "path": "tests/world_config_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 7226,
+      "sha256": "781bc2856476018c63f1d6e1ef78ec4817f013825323c1d68318146e70ca5925"
+    },
+    {
+      "path": "tests/xrdf_test.py",
+      "type": "file",
+      "mode": 420,
+      "size": 2648,
+      "sha256": "7bdbb311bc3a5092bb18cf891d59827c714756bdad22ab546b447a003c1456aa"
+    }
+  ]
+}

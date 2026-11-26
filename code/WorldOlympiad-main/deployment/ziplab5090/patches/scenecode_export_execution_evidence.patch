@@ -1,0 +1,22 @@
+--- a/scenecode/code_object/agent_framework/blender/headless_server.py
++++ b/scenecode/code_object/agent_framework/blender/headless_server.py
+@@ -191,7 +191,9 @@
+             return {"status": "success", "result": result}
+         except Exception as exc:
+             traceback.print_exc()
+-            return {"status": "error", "message": str(exc)}
++            detail = traceback.format_exc(limit=12)
++            return {"status": "error", "message": detail,
++                    "error_type": type(exc).__name__, "traceback": detail}
+ 
+     # ------------------------------------------------------------------
+     # Handlers
+@@ -1168,7 +1170,7 @@
+         self,
+         output_path: str,
+         use_selection: bool = False,
+-        export_apply: bool = False,
++        export_apply: bool = True,
+         bake_textures: bool = True,
+         bake_resolution: int = 1024,
+     ) -> Dict[str, Any]:

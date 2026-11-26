@@ -1,0 +1,15 @@
+{
+  "full_description": "pick up the phone and put it on the phone stand",
+  "schema": "{A} identifies the phone, {B} identifies the phone stand, and {a} identifies the arm that moves the phone",
+  "preference": "num of words should not exceed 5",
+  "seen": [
+    "Move {A} onto {B}.",
+    "Take {A} to {B}.",
+    "Put {A} atop {B}.",
+    "Carry {A} to {B}.",
+    "Lift {A} onto {B}."
+  ],
+  "unseen": [
+    "Set {A} on {B}."
+  ]
+}

@@ -1,0 +1,94 @@
+# Agent Framework Configuration
+# Dedicated profile for wall-mounted artwork and framed prints.
+
+model:
+  llm:
+    provider: "openai"
+    model_name: "gemini-3.1-pro-preview"
+    api_base: null
+
+  planner_llm:
+    provider: "openai"
+    model_name: "gemini-3.1-pro-preview"
+    api_base: null
+
+  constructor_llm:
+    provider: "openai"
+    model_name: "gemini-3.1-pro-preview"
+    api_base: null
+
+  vision:
+    provider: "openai"
+    model_name: "gemini-3.1-pro-preview"
+
+prompts:
+  planner: "planner_wall_art"
+  constructor: "constructor_wall_art"
+  checker: "checker_wall_art"
+
+paths:
+  input_dir: "./dataset_in"
+  output_dir: "./dataset_out"
+  temp_dir: "./temp"
+  log_dir: "./logs"
+
+blender:
+  mcp_server:
+    host: "127.0.0.1"
+    port: 9676
+
+  runtime:
+    command: "blender"
+    startup_timeout: 45.0
+    stop_timeout: 10.0
+
+  render:
+    engine: "CYCLES"
+    samples: 128
+    resolution_x: 336
+    resolution_y: 336
+    file_format: "PNG"
+
+  scene:
+    background_color: [0.9, 0.9, 0.9, 1.0]
+    camera_position: [1.4, -1.4, 1.0]
+    light_energy: 1000
+
+agents:
+  planner:
+    max_parts: 12
+    min_parts: 1
+
+  planner_checker:
+    max_retry: 5
+
+  part_constructor:
+    max_retry: 5
+    save_action_trace: true
+
+pipeline:
+  enable_planner_check: true
+  enable_part_construct: true
+  enable_glb_export: true
+  save_intermediate: true
+  parallel_parts: false
+  max_workers: 4
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  save_to_file: true
+
+part_templates:
+  decor:
+    required:
+      - canvas
+    optional:
+      - mat_board
+      - frame
+  artwork:
+    required:
+      - canvas
+    optional:
+      - mat_board
+      - frame

@@ -1,0 +1,13 @@
+--- a/scenecode/agent_utils/asset_router/router.py
++++ b/scenecode/agent_utils/asset_router/router.py
+@@ -1415,7 +1415,10 @@ class AssetRouter:
+             include_vertical_views=include_vertical,
+             start_azimuth_degrees=start_azimuth,
+             show_coordinate_frame=False,
+-            light_energy=MATERIAL_VALIDATION_LIGHT_ENERGY,
++            # The generic 300 W material-validation light clips saturated flat
++            # task markers nearly to white.  Match the validated Code_Object
++            # render floor so exact marker hue remains observable to the VLM.
++            light_energy=100.0,
+             taa_samples=self.validation_taa_samples,
+         )

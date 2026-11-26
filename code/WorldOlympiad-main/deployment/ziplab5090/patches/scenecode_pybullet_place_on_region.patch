@@ -1,0 +1,29 @@
+--- a/scripts/run_droid_pick_place.py
++++ b/scripts/run_droid_pick_place.py
+@@ -45,5 +45,5 @@ def main() -> None:
+     parser.add_argument(
+         "--success-predicate",
+-        choices=("in_container", "stacked", "inserted", "covering"),
++        choices=("in_container", "stacked", "inserted", "covering", "on_region"),
+         default="in_container",
+     )
+--- a/scenecode_pybullet_bridge/droid_operator_graph.py
++++ b/scenecode_pybullet_bridge/droid_operator_graph.py
+@@ -33,6 +33,6 @@ TERMINAL_OPERATORS = {"place", "stack", "insert", "cover"}
+ TERMINAL_PREDICATES = {
+-    "place": "in_container",
+-    "stack": "stacked",
+-    "insert": "inserted",
+-    "cover": "covering",
++    "place": {"in_container", "on_region"},
++    "stack": {"stacked"},
++    "insert": {"inserted"},
++    "cover": {"covering"},
+ }
+@@ -133,5 +133,5 @@ def _validate_inputs(inputs: DroidOperatorGraphInputs) -> dict[str, DroidGraphObject]:
+             raise ValueError("operator step target must be a destination")
+         if step.terminal_operator not in TERMINAL_OPERATORS:
+             raise ValueError("operator graph contains an unsupported terminal operator")
+-        if TERMINAL_PREDICATES[step.terminal_operator] != step.success_predicate:
++        if step.success_predicate not in TERMINAL_PREDICATES[step.terminal_operator]:
+             raise ValueError("terminal operator and physical predicate disagree")

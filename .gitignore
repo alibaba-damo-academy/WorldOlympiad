@@ -1,0 +1,42 @@
+# User data and runtime material. Setup never cleans these paths.
+.secrets/
+weights/
+envs/
+outputs/
+tmp/
+cache/
+/runtime/*
+!/runtime/.gitkeep
+/config/two-interface.json
+
+# The complete, file-manifest-locked source snapshots are shipped with this entry repo.
+/code/*
+!/code/.gitkeep
+!/code/WorldOlympiad-main/
+!/code/WorldOlympiad-main/**
+!/code/scenecode_pybullet_minimal/
+!/code/scenecode_pybullet_minimal/**
+!/code/SceneCode/
+!/code/SceneCode/**
+!/code/RoboTwin/
+!/code/RoboTwin/**
+!/code/lingbot-va/
+!/code/lingbot-va/**
+!/code/curobo-0.7.8/
+!/code/curobo-0.7.8/**
+!/code/Depth-Anything-3/
+!/code/Depth-Anything-3/**
+# Preserve local source-verification remnants and the prior nested Git checkout; do not ship them.
+/code/SceneCode-main/
+/code/.*.materialize.*
+
+__pycache__/
+*.py[cod]
+**/__pycache__/
+.pytest_cache/
+
+/weights
+
+/code/WorldOlympiad-main/weights
+/code/WorldOlympiad-main/Depth-Anything-3
+/logs/

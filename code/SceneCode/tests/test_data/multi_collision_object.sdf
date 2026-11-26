@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<sdf version="1.8">
+  <model name="multi_collision_object">
+    <link name="body">
+      <inertial>
+        <mass>2.0</mass>
+        <inertia>
+          <ixx>0.33</ixx>
+          <iyy>0.33</iyy>
+          <izz>0.33</izz>
+        </inertia>
+      </inertial>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>1.0 1.0 1.0</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse>0 1 0 1</diffuse>
+        </material>
+      </visual>
+      <!-- Multiple overlapping collision geometries in the same link -->
+      <collision name="collision_1">
+        <pose>0.1 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.5 0.5 0.5</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name="collision_2">
+        <pose>-0.1 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.5 0.5 0.5</size>
+          </box>
+        </geometry>
+      </collision>
+    </link>
+  </model>
+</sdf>

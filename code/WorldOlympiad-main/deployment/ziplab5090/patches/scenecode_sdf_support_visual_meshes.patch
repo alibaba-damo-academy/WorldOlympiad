@@ -1,0 +1,103 @@
+--- a/scenecode/agent_utils/support_surface_extraction.py
++++ b/scenecode/agent_utils/support_surface_extraction.py
+@@ -1004,6 +1004,8 @@
+ def extract_support_surfaces_from_mesh(
+     mesh_path: Path,
+     config: SupportSurfaceExtractionConfig | None = None,
++    *,
++    prepared_mesh: trimesh.Trimesh | None = None,
+ ) -> list["SupportSurface"]:
+     """Extract all horizontal support surfaces from furniture mesh.
+ 
+@@ -1035,7 +1037,7 @@
+     if config is None:
+         config = SupportSurfaceExtractionConfig()
+ 
+-    mesh = _load_and_prepare_mesh(mesh_path=mesh_path)
++    mesh = prepared_mesh if prepared_mesh is not None else _load_and_prepare_mesh(mesh_path=mesh_path)
+ 
+     # Cluster faces by normal similarity.
+     clusters = _cluster_faces_by_normal(mesh=mesh, config=config)
+@@ -1170,6 +1172,35 @@
+     return mesh_to_link
+ 
+ 
++def _load_sdf_visual_link_meshes(sdf_path: Path):
++    """Read declared glTF visuals in model coordinates, including SDF FK/scale."""
++    from pydrake.all import AddMultibodyPlantSceneGraph, DiagramBuilder, Mesh, Parser
++
++    builder = DiagramBuilder()
++    plant, scene_graph = AddMultibodyPlantSceneGraph(builder, time_step=0.001)
++    model = Parser(plant).AddModels(str(sdf_path.resolve()))[0]
++    plant.Finalize()
++    context = plant.CreateDefaultContext()
++    model_frame = plant.GetFrameByName("__model__", model)
++    inspector = scene_graph.model_inspector()
++    meshes = []
++    for body_index in plant.GetBodyIndices(model):
++        body = plant.get_body(body_index)
++        X_MB = plant.CalcRelativeTransform(context, model_frame, body.body_frame())
++        for geometry in plant.GetVisualGeometriesForBody(body):
++            shape = inspector.GetShape(geometry)
++            if not isinstance(shape, Mesh):
++                continue
++            mesh_path = Path(shape.source().path())
++            if mesh_path.suffix.lower() not in {".gltf", ".glb"}:
++                continue
++            mesh = _load_and_prepare_mesh(mesh_path)
++            mesh.apply_scale(shape.scale())
++            mesh.apply_transform((X_MB @ inspector.GetPoseInFrame(geometry)).GetAsMatrix4())
++            meshes.append((mesh_path, body.name(), mesh))
++    return meshes
++
++
+ def extract_support_surfaces_articulated(
+     sdf_dir: Path,
+     config: SupportSurfaceExtractionConfig | None = None,
+@@ -1228,7 +1259,13 @@
+ 
+     link_gltfs = sorted(set(link_gltfs))  # Dedupe and sort.
+ 
+-    if not link_gltfs:
++    sdf_link_meshes = []
++    if (not link_gltfs and sdf_path and sdf_path.exists()
++            and (sdf_dir / "blender_output" / "parts").is_dir()):
++        # CodeObject exports use SDF-declared blender_output/parts paths.
++        sdf_link_meshes = _load_sdf_visual_link_meshes(sdf_path)
++
++    if not link_gltfs and not sdf_link_meshes:
+         # Fallback to combined mesh extraction.
+         combined_path = sdf_dir / "combined_scene.gltf"
+         # Also check *_meshes subdirectory for combined mesh (ArtVIP).
+@@ -1257,14 +1294,19 @@
+         combined_mesh = _load_and_prepare_mesh(combined_path)
+         console_logger.debug("Loaded combined mesh for clearance computation")
+ 
+-    console_logger.info(f"Extracting surfaces from {len(link_gltfs)} link meshes")
++    if sdf_link_meshes:
++        combined_mesh = trimesh.util.concatenate([row[2] for row in sdf_link_meshes])
++    link_meshes = sdf_link_meshes or [(path, None, None) for path in link_gltfs]
++    console_logger.info(f"Extracting surfaces from {len(link_meshes)} link meshes")
+ 
+     all_surfaces: list[SupportSurface] = []
+ 
+-    for link_gltf in link_gltfs:
++    for link_gltf, sdf_link_name, prepared_mesh in link_meshes:
+         # Derive link_name from SDF mapping, fallback to filename.
+         mesh_filename = link_gltf.name
+-        if mesh_filename in mesh_to_link:
++        if sdf_link_name is not None:
++            link_name = sdf_link_name
++        elif mesh_filename in mesh_to_link:
+             link_name = mesh_to_link[mesh_filename]
+         else:
+             # Fallback: strip _combined/_visual suffix.
+@@ -1276,7 +1318,7 @@
+         # Extract surfaces from this link mesh using the standard algorithm.
+         try:
+             link_surfaces = extract_support_surfaces_from_mesh(
+-                mesh_path=link_gltf, config=config
++                mesh_path=link_gltf, config=config, prepared_mesh=prepared_mesh
+             )
+         except (FileNotFoundError, ValueError) as e:
+             console_logger.warning(f"Failed to extract from {link_gltf.name}: {e}")

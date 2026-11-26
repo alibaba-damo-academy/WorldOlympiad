@@ -1,0 +1,39 @@
+diff --git a/scenecode/agent_utils/asset_router/router.py b/scenecode/agent_utils/asset_router/router.py
+--- a/scenecode/agent_utils/asset_router/router.py
++++ b/scenecode/agent_utils/asset_router/router.py
+@@ -8,6 +8,10 @@
+ 
+ from omegaconf import DictConfig
+ 
++from autoresearch.scenecode_structure import (
++    failed_structure_reason,
++    validate_mesh_structure,
++)
+ from scenecode.agent_utils.articulated_retrieval_server import (
+     ArticulatedRetrievalClient,
+     ArticulatedRetrievalServerRequest,
+@@ -380,6 +384,25 @@
+                 suggestions=["Check mesh file validity"],
+             )
+ 
++        # Deterministic WorldOlympiad structure gate.  VLM naming and visual
++        # approval cannot certify an actual opening, bottom, enclosing sides,
++        # or through-hole.  Rejecting here stays inside the router's per-item
++        # retry loop, so one failed asset is regenerated without touching its
++        # already-valid siblings or the room/furniture checkpoint.
++        structure = validate_mesh_structure(mesh_path, description)
++        if structure.get("passed") is not True:
++            reason = failed_structure_reason(structure)
++            console_logger.info(
++                "Deterministic structure validation failed for '%s': %s",
++                description,
++                reason,
++            )
++            return ValidationResult(
++                is_acceptable=False,
++                reason=f"Deterministic structure gate: {reason}",
++                suggestions=["Regenerate only this asset from the exact structural description"],
++            )
++
+         # Encode images for VLM.
+         encoded_images = [encode_image_to_base64(img) for img in image_paths]
