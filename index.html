@@ -323,6 +323,7 @@ footer a{color:#4b5563;text-decoration:none;margin:0 8px}
   .finding-card{grid-template-columns:1fr}
 }
 </style>
+<link rel="stylesheet" href="assets/v2/v2.css">
 </head>
 <body>
 <nav>
@@ -339,8 +340,12 @@ footer a{color:#4b5563;text-decoration:none;margin:0 8px}
       <a class="brand" href="#top" aria-label="WorldOlympiad home">
         <span>WorldOlympiad</span>
       </a>
+      <div class="nav-ver-switch" role="tablist" aria-label="Switch benchmark version">
+        <button class="nav-ver-btn" type="button" role="tab" data-version-switch="v1">1.0</button>
+        <button class="nav-ver-btn active" type="button" role="tab" data-version-switch="v2">2.0</button>
+      </div>
     </div>
-    <div class="links">
+    <div class="links hidden" id="nav-links-v1">
       <a href="#overview">Overview</a>
       <a href="#leaderboard">Leaderboard</a>
       <a href="#metrics">Metrics</a>
@@ -350,12 +355,22 @@ footer a{color:#4b5563;text-decoration:none;margin:0 8px}
       <a href="https://arxiv.org/abs/2606.11129">Paper</a>
       <a class="nav-btn" href="https://github.com/alibaba-damo-academy/WorldOlympiad">Code</a>
     </div>
+    <div class="links" id="nav-links-v2">
+      <a href="#v2-demo">Overview</a>
+      <a href="#v2-videos">Videos</a>
+      <a href="#v2-harness">Harness</a>
+      <a href="#v2-cae">CAE</a>
+      <a href="#v2-leaderboard">Leaderboard</a>
+      <a href="#v2-citation">Citation</a>
+      <a href="#" onclick="return false" title="Paper coming soon">Paper</a>
+      <a class="nav-btn" href="https://github.com/alibaba-damo-academy/WorldOlympiad/tree/v2">Code</a>
+    </div>
   </div>
 </nav>
 
 <main id="top">
   <div class="container page-layout">
-    <aside class="toc" aria-label="Page sections">
+    <aside class="toc hidden" id="toc-v1" aria-label="WorldOlympiad 1.0 sections">
       <div class="toc-title">Sections</div>
       <a href="#overview">Overview</a>
       <a href="#data">Data</a>
@@ -368,34 +383,59 @@ footer a{color:#4b5563;text-decoration:none;margin:0 8px}
       <a href="#citation">Citation</a>
     </aside>
 
+    <aside class="toc" id="toc-v2" aria-label="WorldOlympiad 2.0 sections">
+      <div class="toc-title">Sections</div>
+      <a href="#v2-demo">Demo Video</a>
+      <a href="#v2-videos">Videos</a>
+      <a href="#v2-harness">Agent Harness</a>
+      <a href="#v2-cae">CAE</a>
+      <a href="#v2-leaderboard">Leaderboard</a>
+      <a href="#v2-breakdown">Breakdown</a>
+      <a href="#v2-rollouts">Rollouts</a>
+      <a href="#v2-citation">Citation</a>
+    </aside>
+
     <div class="hero-shell">
-      <video class="hero-bg-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+      <video id="heroVideoV1" class="hero-bg-video hidden" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
         <source src="assets/video/hero_sports_competition_hd.mp4" type="video/mp4">
       </video>
-      <div class="hero-content">
+      <video id="heroVideoV2" class="hero-bg-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+        <source src="assets/v2/video/hero_v2_bg.mp4" type="video/mp4">
+      </video>
+
+      <!-- HERO 1.0 -->
+      <div class="hero-content hidden" id="hero-v1">
         <section class="hero">
-          <div class="kicker">Benchmarking Video World Models</div>
-          <h1>WorldOlympiad: Can Your World Model Survive a Triathlon?</h1>
-          <p class="subtitle">A unified benchmark for diagnosing video-based world models across physical faithfulness, geometric consistency, and interaction fidelity.</p>
-          <p class="authors">Yuke Zhao<sup>1*</sup>, Wangbo Zhao<sup>3*</sup>, Weijie Wang<sup>1*</sup>, Zeyu Zhang<sup>2*&dagger;</sup>, Dakai An<sup>3</sup>, Akide Liu<sup>4</sup>, Yinghao Yu<sup>5</sup>, Jiasheng Tang<sup>2&ddagger;</sup>, Fan Wang<sup>2</sup>, Wei Wang<sup>3</sup>, Bohan Zhuang<sup>1&ddagger;</sup></p>
-          <p class="affiliations"><sup>1</sup>Zhejiang University &middot; <sup>2</sup>DAMO Academy, Alibaba Group &middot; <sup>3</sup>HKUST &middot; <sup>4</sup>Monash University &middot; <sup>5</sup>TRE, Alibaba Group</p>
-          <p class="contributions"><sup>*</sup>Equal contribution. &middot; <sup>&dagger;</sup>Project lead. &middot; <sup>&ddagger;</sup>Corresponding authors.</p>
-          <div class="cta-row">
-            <a class="btn primary" href="https://arxiv.org/abs/2606.11129">
-              <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true">
-                <path fill="currentColor" d="M6 2h8l5 5v15H6V2Zm7 1.8V8h4.2L13 3.8ZM8 14.4h1.2c.9 0 1.5-.5 1.5-1.3s-.6-1.3-1.5-1.3H8v2.6Zm0 3.1h1v-2.2h.3c1.5 0 2.4-.8 2.4-2.2s-.9-2.1-2.4-2.1H8v6.5Zm4.5 0h1.8c1.8 0 2.9-1.2 2.9-3.3s-1.1-3.2-2.9-3.2h-1.8v6.5Zm1-5.6h.7c1.2 0 1.9.8 1.9 2.3s-.7 2.4-1.9 2.4h-.7v-4.7Zm4.4 5.6h1v-2.8h2.1v-.9h-2.1v-1.9h2.4V11h-3.4v6.5Z"/>
-              </svg>
-              Paper
-            </a>
-            <a class="btn" href="https://github.com/alibaba-damo-academy/WorldOlympiad">
-              <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true">
-                <path fill="currentColor" d="M12 .5C5.7.5.8 5.4.8 11.7c0 5 3.2 9.3 7.7 10.7.6.1.8-.2.8-.5v-2c-3.1.7-3.8-1.3-3.8-1.3-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 .1.5 2.5 3.2 1.8.1-.7.4-1.2.7-1.5-2.5-.3-5.1-1.3-5.1-5.6 0-1.2.4-2.2 1.2-3-.1-.3-.5-1.5.1-3 0 0 .9-.3 3.1 1.1.9-.2 1.9-.4 2.8-.4s1.9.1 2.8.4c2.1-1.4 3.1-1.1 3.1-1.1.6 1.5.2 2.7.1 3 .7.8 1.2 1.8 1.2 3 0 4.3-2.6 5.3-5.1 5.6.4.4.8 1.1.8 2.2v3.2c0 .3.2.6.8.5 4.5-1.5 7.7-5.7 7.7-10.7C23.2 5.4 18.3.5 12 .5Z"/>
-              </svg>
-              Code
-            </a>
-            <a class="btn" href="https://huggingface.co/datasets/ziplab/WorldOlympiad"><span class="btn-icon hf" aria-hidden="true">🤗</span>Data</a>
-            <a class="btn" href="#leaderboard">View Leaderboard</a>
-            <a class="btn" href="#cases">Browse Cases</a>
+          <div>
+            <div class="kicker">Benchmarking Video World Models</div>
+            <h1>WorldOlympiad: Can Your World Model Survive a Triathlon?</h1>
+            <div class="version-tabs" role="tablist" aria-label="WorldOlympiad version">
+              <button class="version-tab" type="button" role="tab" data-version-switch="v1">WorldOlympiad <span class="version-badge">1.0</span></button>
+              <button class="version-tab active" type="button" role="tab" data-version-switch="v2">WorldOlympiad 2.0 <span class="version-badge new">NEW</span></button>
+            </div>
+            <p class="subtitle">A unified benchmark for diagnosing video-based world models across physical faithfulness, geometric consistency, and interaction fidelity.</p>
+          </div>
+          <div>
+            <p class="authors">Yuke Zhao<sup>1*</sup>, Wangbo Zhao<sup>3*</sup>, Weijie Wang<sup>1*</sup>, Zeyu Zhang<sup>2*&dagger;</sup>, Dakai An<sup>3</sup>, Akide Liu<sup>4</sup>, Yinghao Yu<sup>5</sup>, Jiasheng Tang<sup>2&ddagger;</sup>, Fan Wang<sup>2</sup>, Wei Wang<sup>3</sup>, Bohan Zhuang<sup>1&ddagger;</sup></p>
+            <p class="affiliations"><sup>1</sup>Zhejiang University &middot; <sup>2</sup>DAMO Academy, Alibaba Group &middot; <sup>3</sup>HKUST &middot; <sup>4</sup>Monash University &middot; <sup>5</sup>TRE, Alibaba Group</p>
+            <p class="contributions"><sup>*</sup>Equal contribution. &middot; <sup>&dagger;</sup>Project lead. &middot; <sup>&ddagger;</sup>Corresponding authors.</p>
+            <div class="cta-row">
+              <a class="btn primary" href="https://arxiv.org/abs/2606.11129">
+                <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="currentColor" d="M6 2h8l5 5v15H6V2Zm7 1.8V8h4.2L13 3.8ZM8 14.4h1.2c.9 0 1.5-.5 1.5-1.3s-.6-1.3-1.5-1.3H8v2.6Zm0 3.1h1v-2.2h.3c1.5 0 2.4-.8 2.4-2.2s-.9-2.1-2.4-2.1H8v6.5Zm4.5 0h1.8c1.8 0 2.9-1.2 2.9-3.3s-1.1-3.2-2.9-3.2h-1.8v6.5Zm1-5.6h.7c1.2 0 1.9.8 1.9 2.3s-.7 2.4-1.9 2.4h-.7v-4.7Zm4.4 5.6h1v-2.8h2.1v-.9h-2.1v-1.9h2.4V11h-3.4v6.5Z"/>
+                </svg>
+                Paper
+              </a>
+              <a class="btn" href="https://github.com/alibaba-damo-academy/WorldOlympiad/tree/v1">
+                <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="currentColor" d="M12 .5C5.7.5.8 5.4.8 11.7c0 5 3.2 9.3 7.7 10.7.6.1.8-.2.8-.5v-2c-3.1.7-3.8-1.3-3.8-1.3-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 .1.5 2.5 3.2 1.8.1-.7.4-1.2.7-1.5-2.5-.3-5.1-1.3-5.1-5.6 0-1.2.4-2.2 1.2-3-.1-.3-.5-1.5.1-3 0 0 .9-.3 3.1 1.1.9-.2 1.9-.4 2.8-.4s1.9.1 2.8.4c2.1-1.4 3.1-1.1 3.1-1.1.6 1.5.2 2.7.1 3 .7.8 1.2 1.8 1.2 3 0 4.3-2.6 5.3-5.1 5.6.4.4.8 1.1.8 2.2v3.2c0 .3.2.6.8.5 4.5-1.5 7.7-5.7 7.7-10.7C23.2 5.4 18.3.5 12 .5Z"/>
+                </svg>
+                Code
+              </a>
+              <a class="btn" href="https://huggingface.co/datasets/ziplab/WorldOlympiad"><span class="btn-icon hf" aria-hidden="true">🤗</span>Data</a>
+              <a class="btn" href="#leaderboard">View Leaderboard</a>
+              <a class="btn" href="#cases">Browse Cases</a>
+            </div>
           </div>
         </section>
 
@@ -422,7 +462,70 @@ footer a{color:#4b5563;text-decoration:none;margin:0 8px}
           </div>
         </div>
       </div>
+
+      <!-- HERO 2.0 (EXACT 1.0 PARITY IN TYPOGRAPHY, BUTTONS, PLACEMENT & FIRST-PAGE HEIGHT!) -->
+      <div class="hero-content" id="hero-v2">
+        <section class="hero">
+          <div>
+            <div class="kicker">Benchmarking Embodied World Models</div>
+            <h1>WorldOlympiad 2.0: Evaluating Embodied World Models with a Self-Evolving Agent Harness and Continuous Action Evaluation</h1>
+            <div class="version-tabs" role="tablist" aria-label="WorldOlympiad version">
+              <button class="version-tab" type="button" role="tab" data-version-switch="v1">WorldOlympiad <span class="version-badge">1.0</span></button>
+              <button class="version-tab active" type="button" role="tab" data-version-switch="v2">WorldOlympiad 2.0 <span class="version-badge new">NEW</span></button>
+            </div>
+            <p class="subtitle">A self-evolving evaluation harness with continuous 3D action evaluation across 1,100 benchmark cases and 300 real-robot demos.</p>
+          </div>
+          <div>
+            <p class="authors">Chengzhi Wang<sup>1*</sup>, Yuke Zhao<sup>1*</sup>, Zanyang Huang<sup>1</sup>, Zeyu Zhang<sup>2&dagger;</sup>, Shiyuan Zhang<sup>1</sup>, Weijie Wang<sup>1</sup>, Akide Liu<sup>3</sup>, Jiasheng Tang<sup>4,5</sup>, Yinghao Yu<sup>2</sup>, Bohan Zhuang<sup>1,4&ddagger;</sup></p>
+            <p class="affiliations"><sup>1</sup>Zhejiang University &middot; <sup>2</sup>TRE, Alibaba Group &middot; <sup>3</sup>Monash University &middot; <sup>4</sup>DAMO Academy, Alibaba Group &middot; <sup>5</sup>Hupan Lab</p>
+            <p class="contributions"><sup>*</sup>Equal contribution. &middot; <sup>&dagger;</sup>Project lead. &middot; <sup>&ddagger;</sup>Corresponding author.</p>
+            <div class="cta-row">
+              <a class="btn primary placeholder" href="#" onclick="return false" title="Paper coming soon">
+                <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="currentColor" d="M6 2h8l5 5v15H6V2Zm7 1.8V8h4.2L13 3.8ZM8 14.4h1.2c.9 0 1.5-.5 1.5-1.3s-.6-1.3-1.5-1.3H8v2.6Zm0 3.1h1v-2.2h.3c1.5 0 2.4-.8 2.4-2.2s-.9-2.1-2.4-2.1H8v6.5Zm4.5 0h1.8c1.8 0 2.9-1.2 2.9-3.3s-1.1-3.2-2.9-3.2h-1.8v6.5Zm1-5.6h.7c1.2 0 1.9.8 1.9 2.3s-.7 2.4-1.9 2.4h-.7v-4.7Zm4.4 5.6h1v-2.8h2.1v-.9h-2.1v-1.9h2.4V11h-3.4v6.5Z"/>
+                </svg>
+                Paper
+              </a>
+              <a class="btn" href="https://github.com/alibaba-damo-academy/WorldOlympiad/tree/v2">
+                <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="currentColor" d="M12 .5C5.7.5.8 5.4.8 11.7c0 5 3.2 9.3 7.7 10.7.6.1.8-.2.8-.5v-2c-3.1.7-3.8-1.3-3.8-1.3-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 .1.5 2.5 3.2 1.8.1-.7.4-1.2.7-1.5-2.5-.3-5.1-1.3-5.1-5.6 0-1.2.4-2.2 1.2-3-.1-.3-.5-1.5.1-3 0 0 .9-.3 3.1 1.1.9-.2 1.9-.4 2.8-.4s1.9.1 2.8.4c2.1-1.4 3.1-1.1 3.1-1.1.6 1.5.2 2.7.1 3 .7.8 1.2 1.8 1.2 3 0 4.3-2.6 5.3-5.1 5.6.4.4.8 1.1.8 2.2v3.2c0 .3.2.6.8.5 4.5-1.5 7.7-5.7 7.7-10.7C23.2 5.4 18.3.5 12 .5Z"/>
+                </svg>
+                Code
+              </a>
+              <a class="btn" href="https://huggingface.co/datasets/Chengzhiwww/WorldOlympiad2.0"><span class="btn-icon hf" aria-hidden="true">🤗</span>Data</a>
+              <a class="btn" href="#v2-leaderboard">View Leaderboard</a>
+              <a class="btn" href="#v2-videos">Browse Cases</a>
+            </div>
+          </div>
+        </section>
+
+        <div class="stats">
+          <div class="stat-card">
+            <div class="stat-num">1,100</div>
+            <div class="stat-title">Benchmark Cases</div>
+            <div class="stat-note">900 public &middot; 200 constructed</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">2,500</div>
+            <div class="stat-title">Model Rollouts</div>
+            <div class="stat-note">5 models &middot; native protocols</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">300</div>
+            <div class="stat-title">Real-Robot Demos</div>
+            <div class="stat-note">10 bimanual AgileX Piper tasks</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">0.90</div>
+            <div class="stat-title">Human Alignment</div>
+            <div class="stat-note">Spearman &rho; &middot; 10 human raters</div>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!-- ===== VERSION 1.0 PANEL (100% ORIGINAL CONTENT PRESERVED) ===== -->
+    <div id="panel-v1" class="version-panel hidden">
 
     <section id="overview">
       <div class="section-head">
@@ -865,8 +968,340 @@ footer a{color:#4b5563;text-decoration:none;margin:0 8px}
 }</pre>
       </div>
     </section>
+    </div><!-- /#panel-v1 -->
+
+    <!-- ===== VERSION 2.0 PANEL (VISUAL & VIDEO FIRST — MINIMAL TEXT) ===== -->
+    <div id="panel-v2" class="version-panel">
+
+      <!-- 1. PROMO DEMO VIDEO -->
+      <section id="v2-demo">
+        <div class="section-head">
+          <div>
+            <h2>Overview Video</h2>
+            <p class="desc">End-to-end walkthrough of WorldOlympiad 2.0: self-evolving harness, PBR synthesis, native rollouts, and Continuous Action Evaluation.</p>
+          </div>
+        </div>
+        <div class="v2-demo-frame">
+          <video controls playsinline preload="metadata" poster="assets/v2/img/promo_cover.jpg">
+            <source src="assets/v2/video/promo_web.mp4" type="video/mp4">
+          </video>
+        </div>
+      </section>
+
+      <!-- 2. FLOWING MULTI-ROW VIDEO SHOWCASE (ONE FLOWING RAIL PER CATEGORY) -->
+      <section id="v2-videos">
+        <div class="section-head">
+          <div>
+            <h2>Benchmark &amp; Real-Robot Showcase</h2>
+            <p class="desc">Hover any row to pause, click any clip to play fullscreen.</p>
+          </div>
+          <a class="btn" href="https://huggingface.co/datasets/Chengzhiwww/WorldOlympiad2.0"><span class="btn-icon hf" aria-hidden="true">🤗</span>Explore Full Dataset</a>
+        </div>
+        <div class="v2-rails-stack" id="v2VideoRails" aria-label="Flowing category video galleries"></div>
+      </section>
+
+      <!-- 3. SELF-EVOLVING AGENT HARNESS -->
+      <section id="v2-harness">
+        <div class="section-head">
+          <div>
+            <h2>Self-Evolving Agent Harness</h2>
+            <p class="desc">Closed-loop orchestration and automated asset / predicate repair before model scoring.</p>
+          </div>
+        </div>
+        <div class="v2-fig-card">
+          <img src="assets/v2/fig/method_overview.png" alt="WorldOlympiad 2.0 Self-Evolving Agent Harness Overview" data-zoom-img>
+        </div>
+        <div class="v2-stage-strip">
+          <div class="v2-stage-pill"><b>01 Synthesize</b><span>200 Tasks</span></div>
+          <div class="v2-stage-pill"><b>02 Validate</b><span>Reference V</span></div>
+          <div class="v2-stage-pill"><b>03 Rollout</b><span>5 Models</span></div>
+          <div class="v2-stage-pill"><b>04 Evaluate</b><span>P &middot; G &middot; I + CAE</span></div>
+        </div>
+
+        <div class="v2-repair-grid">
+          <div class="v2-repair-card">
+            <div class="v2-repair-head">
+              <h3>Cup Hanging</h3>
+              <span class="tag good">Asset Repaired &check;</span>
+            </div>
+            <div>
+              <div class="v2-strip-label before">Before &middot; Mug Drops</div>
+              <div class="v2-frame-row">
+                <div class="v2-frame-box"><img src="assets/v2/img/repair/cup_before_0.jpeg" alt="Cup before 1" data-zoom-img><span>Lift</span></div>
+                <div class="v2-frame-box"><img src="assets/v2/img/repair/cup_before_1.jpeg" alt="Cup before 2" data-zoom-img><span>Align</span></div>
+                <div class="v2-frame-box"><img src="assets/v2/img/repair/cup_before_2.jpeg" alt="Cup before 3" data-zoom-img><span>Release</span></div>
+                <div class="v2-frame-box bad"><img src="assets/v2/img/repair/cup_before_3.jpeg" alt="Cup before 4" data-zoom-img><span>Falls &cross;</span></div>
+              </div>
+            </div>
+            <div class="v2-fix-bar">
+              <span>Clearance bug &rarr; Revise rack hook geometry</span>
+              <span class="ok">Regression PASS &check;</span>
+            </div>
+            <div>
+              <div class="v2-strip-label after">After &middot; Supported Reference</div>
+              <div class="v2-frame-row">
+                <div class="v2-frame-box"><img src="assets/v2/img/repair/cup_after_0.jpeg" alt="Cup after 1" data-zoom-img><span>Approach</span></div>
+                <div class="v2-frame-box"><img src="assets/v2/img/repair/cup_after_1.jpeg" alt="Cup after 2" data-zoom-img><span>Grasp</span></div>
+                <div class="v2-frame-box"><img src="assets/v2/img/repair/cup_after_2.jpeg" alt="Cup after 3" data-zoom-img><span>Align</span></div>
+                <div class="v2-frame-box good"><img src="assets/v2/img/repair/cup_after_3.jpeg" alt="Cup after 4" data-zoom-img><span>Supported &check;</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="v2-repair-card">
+            <div class="v2-repair-head">
+              <h3>Bottle Uprighting</h3>
+              <span class="tag good">24 / 24 Tests Pass &check;</span>
+            </div>
+            <div>
+              <div class="v2-strip-label before">Before &middot; False Positive</div>
+              <div class="v2-frame-row">
+                <div class="v2-frame-box"><img src="assets/v2/img/repair/bottle_before_0.jpeg" alt="Bottle before 1" data-zoom-img><span>0.0 s</span></div>
+                <div class="v2-frame-box"><img src="assets/v2/img/repair/bottle_before_1.jpeg" alt="Bottle before 2" data-zoom-img><span>9.0 s</span></div>
+                <div class="v2-frame-box"><img src="assets/v2/img/repair/bottle_before_2.jpeg" alt="Bottle before 3" data-zoom-img><span>15.7 s</span></div>
+                <div class="v2-frame-box bad"><img src="assets/v2/img/repair/bottle_before_3.jpeg" alt="Bottle before 4" data-zoom-img><span>Side-lying &cross;</span></div>
+              </div>
+            </div>
+            <div class="v2-fix-bar">
+              <span>Axis bug &rarr; Enforce +Y upright predicate</span>
+              <span class="ok">24 / 24 Pass &check;</span>
+            </div>
+            <div>
+              <div class="v2-strip-label after">After &middot; Valid Upright Reference</div>
+              <div class="v2-frame-row">
+                <div class="v2-frame-box"><img src="assets/v2/img/repair/bottle_after_0.jpeg" alt="Bottle after 1" data-zoom-img><span>0.0 s</span></div>
+                <div class="v2-frame-box"><img src="assets/v2/img/repair/bottle_after_1.jpeg" alt="Bottle after 2" data-zoom-img><span>7.8 s</span></div>
+                <div class="v2-frame-box"><img src="assets/v2/img/repair/bottle_after_2.jpeg" alt="Bottle after 3" data-zoom-img><span>13.7 s</span></div>
+                <div class="v2-frame-box good"><img src="assets/v2/img/repair/bottle_after_3.jpeg" alt="Bottle after 4" data-zoom-img><span>Upright &check;</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. CONTINUOUS ACTION EVALUATION (CAE) -->
+      <section id="v2-cae">
+        <div class="section-head">
+          <div>
+            <h2>Continuous Action Evaluation (CAE)</h2>
+            <p class="desc">3D object trajectories recovered directly from RGB—separating path fidelity (S<sub>path</sub>) from velocity pacing (S<sub>vel</sub>) at native frame rates.</p>
+          </div>
+        </div>
+
+        <div class="v2-cae-panel">
+          <div class="v2-cae-head">
+            <h3>3D Object Flow &amp; Synced Trajectory Curves</h3>
+            <button class="v2-sync-btn" id="caeSyncBanana" type="button">Play Sync</button>
+          </div>
+          <div class="v2-cae-grid">
+            <div class="v2-cae-vidbox">
+              <span class="v2-cae-chip ref">Reference &middot; 3D Object Flow</span>
+              <video id="caeBananaRef" muted loop playsinline preload="metadata" poster="assets/v2/video/cae/banana_ref_flow.jpg">
+                <source src="assets/v2/video/cae/banana_ref_flow.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="v2-cae-vidbox">
+              <span class="v2-cae-chip gen">Cosmos3 &middot; Recovered Flow</span>
+              <video id="caeBananaCos" muted loop playsinline preload="metadata" poster="assets/v2/video/cae/banana_cosmos_flow.jpg">
+                <source src="assets/v2/video/cae/banana_cosmos_flow.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="v2-cae-charts">
+            <div class="v2-chart-box">
+              <div class="v2-chart-title">
+                <span>Path Fidelity (S<sub>path</sub> &middot; Y-Z Projection)</span>
+                <span><b style="color:#2563eb">&mdash; Ref</b> &nbsp;<b style="color:#dc2626">- - Cosmos3</b></span>
+              </div>
+              <svg id="caePathSvg" viewBox="0 0 420 138"></svg>
+            </div>
+            <div class="v2-chart-box">
+              <div class="v2-chart-title">
+                <span>Velocity Fidelity (S<sub>vel</sub> &middot; Speed over Time)</span>
+                <span><b style="color:#2563eb">&mdash; Ref</b> &nbsp;<b style="color:#dc2626">- - Cosmos3</b></span>
+              </div>
+              <svg id="caeVelSvg" viewBox="0 0 420 138"></svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="v2-cae-panel">
+          <div class="v2-cae-head">
+            <h3>Native Frame-Rate Comparison (30 fps vs. 10 fps)</h3>
+            <button class="v2-sync-btn" id="caeSyncBowl" type="button">Play Sync</button>
+          </div>
+          <div class="v2-cae-grid">
+            <div class="v2-cae-vidbox">
+              <span class="v2-cae-chip ref">Reference &middot; Native 30 fps</span>
+              <video id="caeBowlRef" muted loop playsinline preload="metadata" poster="assets/v2/video/cae/bowl_ref.jpg">
+                <source src="assets/v2/video/cae/bowl_ref.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="v2-cae-vidbox">
+              <span class="v2-cae-chip gen">LingBot-VA &middot; Native 10 fps</span>
+              <video id="caeBowlLing" muted loop playsinline preload="metadata" poster="assets/v2/video/cae/bowl_lingbot.jpg">
+                <source src="assets/v2/video/cae/bowl_lingbot.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="v2-perturb-grid">
+            <div class="v2-perturb-card">
+              <b>Mid-Rollout Pause</b>
+              <div class="v2-mini-bar-row"><span style="color:#0f9f6e;font-weight:700">Path</span><div class="v2-mini-track"><div class="v2-mini-fill" style="width:100%;background:#0f9f6e"></div></div><b>1.000</b></div>
+              <div class="v2-mini-bar-row"><span style="color:#d97706;font-weight:700">Vel</span><div class="v2-mini-track"><div class="v2-mini-fill" style="width:67.7%;background:#d97706"></div></div><b>0.677</b></div>
+            </div>
+            <div class="v2-perturb-card">
+              <b>Spatial Offset</b>
+              <div class="v2-mini-bar-row"><span style="color:#0f9f6e;font-weight:700">Path</span><div class="v2-mini-track"><div class="v2-mini-fill" style="width:85.7%;background:#0f9f6e"></div></div><b>0.857</b></div>
+              <div class="v2-mini-bar-row"><span style="color:#d97706;font-weight:700">Vel</span><div class="v2-mini-track"><div class="v2-mini-fill" style="width:100%;background:#d97706"></div></div><b>1.000</b></div>
+            </div>
+            <div class="v2-perturb-card">
+              <b>Half Extent</b>
+              <div class="v2-mini-bar-row"><span style="color:#0f9f6e;font-weight:700">Path</span><div class="v2-mini-track"><div class="v2-mini-fill" style="width:66.7%;background:#0f9f6e"></div></div><b>0.667</b></div>
+              <div class="v2-mini-bar-row"><span style="color:#d97706;font-weight:700">Vel</span><div class="v2-mini-track"><div class="v2-mini-fill" style="width:66.7%;background:#d97706"></div></div><b>0.667</b></div>
+            </div>
+            <div class="v2-perturb-card">
+              <b>Reversed Motion</b>
+              <div class="v2-mini-bar-row"><span style="color:#0f9f6e;font-weight:700">Path</span><div class="v2-mini-track"><div class="v2-mini-fill" style="width:2%;background:#dc2626"></div></div><b>0.000</b></div>
+              <div class="v2-mini-bar-row"><span style="color:#d97706;font-weight:700">Vel</span><div class="v2-mini-track"><div class="v2-mini-fill" style="width:2%;background:#dc2626"></div></div><b>0.000</b></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. UNIFIED LEADERBOARD + INTERACTIVE 11-DIM RADAR -->
+      <section id="v2-leaderboard">
+        <div class="section-head">
+          <div>
+            <h2>Leaderboard</h2>
+            <p class="desc">Click column headers to sort; click any model pill below to spotlight its 11-dimension profile.</p>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table id="v2LeaderboardTable">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Model</th>
+                <th class="dim-all" data-v2-sort="all">All</th>
+                <th class="dim-physical" data-v2-sort="p">Physical</th>
+                <th class="dim-geometry" data-v2-sort="g">Geometry</th>
+                <th class="dim-interact" data-v2-sort="i">Interact.</th>
+                <th class="dim-geometry" data-v2-sort="path">Path</th>
+                <th class="dim-clip" data-v2-sort="vel">Vel</th>
+                <th class="dim-interact" data-v2-sort="human">Human</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="v2-radar-row">
+          <div class="v2-radar-card">
+            <div>
+              <h3>11-Dimension Profile</h3>
+              <svg id="v2RadarSvg" viewBox="0 0 350 326"></svg>
+            </div>
+            <div class="v2-radar-pills" id="v2RadarPills"></div>
+          </div>
+          <div class="v2-insights-col">
+            <div class="v2-human-strip">
+              <div>
+                <b>Human Alignment (10 Raters)</b>
+                <div style="font-size:12.5px;color:#166534;margin-top:2px">#1 LingBot-VA (0.608) &middot; #2 GR00T N1.6 (0.595) &middot; #3 Long-WAM (0.512)</div>
+              </div>
+              <div class="v2-human-rho">&rho; = 0.90</div>
+            </div>
+            <div class="v2-highlight-grid">
+              <div class="v2-hl-card">
+                <div><b>Top Overall Visual Score</b><span>GR00T N1.6 leads P (0.920) &amp; Cam (0.903), lowest CAE</span></div>
+                <div class="v2-hl-num" style="color:#dc2626">0.643</div>
+              </div>
+              <div class="v2-hl-card">
+                <div><b>Top Dual-Arm &amp; Human Rank</b><span>LingBot-VA leads Interaction (0.433) &amp; Transition (0.549)</span></div>
+                <div class="v2-hl-num" style="color:#0f9f6e">0.519</div>
+              </div>
+              <div class="v2-hl-card">
+                <div><b>Top Continuous Action Fidelity</b><span>Cosmos3 leads CAE Path (0.382) &amp; Velocity (0.183)</span></div>
+                <div class="v2-hl-num" style="color:#7c3aed">0.382</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. FINE-GRAINED BREAKDOWNS -->
+      <section id="v2-breakdown">
+        <div class="section-head">
+          <div>
+            <h2>Fine-Grained Breakdown</h2>
+            <p class="desc">Per-dimension sub-scores, 5 constructed task families, and Public (400) vs. Constructed (100) splits.</p>
+          </div>
+        </div>
+        <div class="v2-filter-bar">
+          <span class="seg" id="v2BreakdownTabs">
+            <button class="active" type="button" data-v2-breakdown="submetrics">11 Sub-Metrics</button>
+            <button type="button" data-v2-breakdown="families">5 Task Families</button>
+            <button type="button" data-v2-breakdown="split">Public vs. Constructed</button>
+          </span>
+        </div>
+        <div id="v2BreakdownStage"></div>
+      </section>
+
+      <!-- 7. MULTI-MODEL QUALITATIVE COMPARISONS -->
+      <section id="v2-rollouts">
+        <div class="section-head">
+          <div>
+            <h2>Qualitative Comparisons</h2>
+            <p class="desc">Click any figure to inspect fullscreen.</p>
+          </div>
+        </div>
+        <div class="v2-filter-bar">
+          <span class="seg" id="v2RolloutTabs">
+            <button class="active" type="button" data-v2-rollout="dualarm">Dual-Arm Rollouts</button>
+            <button type="button" data-v2-rollout="constructed">Constructed Tasks</button>
+            <button type="button" data-v2-rollout="cae">CAE 3D Trajectories</button>
+          </span>
+        </div>
+        <div class="v2-fig-card">
+          <img id="v2RolloutFig" src="assets/v2/fig/rollouts1.png" alt="Dual-Arm Block Stacking — Fast-WAM vs Long-WAM vs LingBot-VA" data-zoom-img>
+        </div>
+      </section>
+
+      <!-- 8. CITATION -->
+      <section id="v2-citation">
+        <div class="section-head">
+          <div>
+            <h2>Citation</h2>
+          </div>
+        </div>
+        <div class="citation-card">
+          <div class="citation-head">
+            <h3>BibTeX</h3>
+            <button class="copy-btn" id="copyBibtexV2" type="button">Copy</button>
+          </div>
+<pre class="bibtex" id="bibtexBlockV2">@article{wang2026worldolympiad2,
+  title   = {WorldOlympiad 2.0: Evaluating Embodied World Models with a Self-Evolving Agent Harness and Continuous Action Evaluation},
+  author  = {Chengzhi Wang and Yuke Zhao and Zanyang Huang and Zeyu Zhang and
+             Shiyuan Zhang and Weijie Wang and Akide Liu and Jiasheng Tang and
+             Yinghao Yu and Bohan Zhuang},
+  year    = {2026}
+}</pre>
+        </div>
+      </section>
+
+    </div><!-- /#panel-v2 -->
   </div>
 </main>
+
+<div class="v2-lightbox" id="v2Lightbox" aria-hidden="true">
+  <div class="v2-lightbox-box" role="dialog" aria-modal="true" aria-labelledby="v2LightboxTitle">
+    <div class="v2-lightbox-head">
+      <b id="v2LightboxTitle">Preview</b>
+      <button class="v2-lightbox-close" id="v2LightboxClose" type="button">Close</button>
+    </div>
+    <div class="v2-lightbox-body" id="v2LightboxBody"></div>
+  </div>
+</div>
 
 <div class="caption-modal" id="captionModal" aria-hidden="true">
   <div class="caption-dialog" role="dialog" aria-modal="true" aria-labelledby="captionTitle">
@@ -1659,8 +2094,8 @@ initCaseStudies().catch(error=>{
   console.error(error);
 });
 
-const sections=Array.from(document.querySelectorAll("section[id]"));
-const tocLinks=Array.from(document.querySelectorAll(".toc a"));
+const sections=Array.from(document.querySelectorAll("#panel-v1 section[id]"));
+const tocLinks=Array.from(document.querySelectorAll("#toc-v1 a"));
 const observer=new IntersectionObserver(entries=>{
   entries.forEach(entry=>{
     if(!entry.isIntersecting)return;
@@ -1668,6 +2103,8 @@ const observer=new IntersectionObserver(entries=>{
   });
 },{rootMargin:"-35% 0px -55% 0px",threshold:0});
 sections.forEach(section=>observer.observe(section));
+window.updateActiveCaseFromScroll=updateActiveCaseFromScroll;
 </script>
+<script src="assets/v2/v2.js"></script>
 </body>
 </html>
